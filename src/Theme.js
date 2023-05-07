@@ -2,16 +2,16 @@ import { createTheme } from '@mui/material/styles';
 
 export const defaultTheme = createTheme({
     appbar: {
-        backgroundColor: "rgb(0, 16, 32)",
+        backgroundColor: "rgb(15, 15, 15)",
     },
     border: {
-        color: "rgb(30, 73, 118)",
+        color: "rgb(168, 147, 105)",
     },
     paper: {
-        backgroundColor: "rgb(0, 23, 47)",
+        backgroundColor: "rgb(30, 30, 30)",
     },
     card: {
-        backgroundColor: "rgb(0, 23, 47)",
+        backgroundColor: "rgb(30, 30, 30)",
     },
     table: {
         header: {
