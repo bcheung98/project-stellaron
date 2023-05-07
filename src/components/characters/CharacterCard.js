@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardContent, ButtonBase, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
+import MaterialGrid from "../../helpers/MaterialGrid";
 
 const CharacterCard = (props) => {
 
@@ -19,13 +20,16 @@ const CharacterCard = (props) => {
         backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
         backgroundSize: "contain"
     }
+    const smallIcon = {
+        width: "32px",
+    }
 
     return (
         <React.Fragment>
             <Card variant="outlined"
                 sx={{
                     width: "315px",
-                    height: "175px",
+                    height: "150px",
                     mx: "auto",
                     my: "10px",
                     backgroundColor: `${theme.card.backgroundColor}`,
@@ -57,12 +61,15 @@ const CharacterCard = (props) => {
                             </Box>
                             <Box sx={{ display: "flex" }}>
                                 <CustomTooltip title={element} arrow placement="top">
-                                    <img style={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} />
+                                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} />
                                 </CustomTooltip>
                                 <CustomTooltip title={path} arrow placement="top">
-                                    <img style={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path} />
+                                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path} />
                                 </CustomTooltip>
                             </Box>
+                            <Grid xs={8} sx={{ mt: "15px" }}>
+                                <MaterialGrid character={props.character} />
+                            </Grid>
                         </Grid>
                     </Grid>
                 </CardContent>

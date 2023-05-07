@@ -15,18 +15,18 @@ export const defaultTheme = createTheme({
     },
     table: {
         header: {
-            backgroundColor: "rgb(0, 20, 40)",
+            backgroundColor: "rgb(18, 18, 18)",
         },
         body: {
-            backgroundColor: "rgb(0, 30, 60)",
-            hover: "rgb(19, 47, 76)",
+            backgroundColor: "rgb(20, 20, 20)",
+            hover: "rgb(40, 40, 40)",
         },
     },
     toolbar: {
-        backgroundColor: "rgb(0, 16, 32)",
+        backgroundColor: "rgb(15, 15, 15)",
     },
     materialImage: {
-        backgroundColor: "rgb(0, 30, 60)",
+        backgroundColor: "rgb(20, 20, 20)",
     },
     text: {
         color: "white",
