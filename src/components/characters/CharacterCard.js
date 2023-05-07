@@ -2,6 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardContent, ButtonBase, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import { CustomTooltip } from "../../helpers/CustomTooltip";
 
 const CharacterCard = (props) => {
 
@@ -12,7 +13,7 @@ const CharacterCard = (props) => {
         width: "115px",
         height: "180px",
         objectFit: "cover",
-        marginLeft: "-17px",
+        marginLeft: "-18px",
         marginTop: "-15px",
         backgroundColor: "rgb(32, 32, 32)",
         backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
@@ -40,18 +41,6 @@ const CharacterCard = (props) => {
                                 <img src={(`${process.env.REACT_APP_URL}/characters/icons/Character_${name.split(" ").join("_")}_Icon.png`)} alt={name}
                                     style={characterIcon} />
                             </ButtonBase>
-                            <Typography
-                                sx={{
-                                    display: "block",
-                                    m: "auto",
-                                    mt: "5px",
-                                    width: "95%",
-                                    color: "rgb(255, 208, 112)"
-                                }}
-                                variant="h5"
-                            >
-                                {[...Array(rarity).keys()].map(i => "✦")}
-                            </Typography>
                         </Grid>
                         <Grid xs={7.5}>
                             <Box
@@ -65,6 +54,14 @@ const CharacterCard = (props) => {
                                         {name}
                                     </Typography>
                                 </ButtonBase>
+                            </Box>
+                            <Box sx={{ display: "flex" }}>
+                                <CustomTooltip title={element} arrow placement="top">
+                                    <img style={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} />
+                                </CustomTooltip>
+                                <CustomTooltip title={path} arrow placement="top">
+                                    <img style={{ height: "30px", width: "30px" }} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path} />
+                                </CustomTooltip>
                             </Box>
                         </Grid>
                     </Grid>
