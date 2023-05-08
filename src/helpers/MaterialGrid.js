@@ -4,6 +4,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { Box } from "@mui/material";
 import { CustomTooltip } from "./CustomTooltip";
 import { formatCommonMats, formatWeeklyBossMats } from "./TooltipText";
+import ErrorLoadingImage from "./ErrorLoadingImage";
 
 const MaterialGrid = (props) => {
 
@@ -23,22 +24,22 @@ const MaterialGrid = (props) => {
             <Grid container spacing={1}>
                 <Grid>
                     <CustomTooltip title={calyxMat} arrow placement="top">
-                        <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${calyxMat.split(" ").join("_")}3.png`} alt={calyxMat} style={imageStyle} />
+                        <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${calyxMat.split(" ").join("_")}3.png`} alt={calyxMat} style={imageStyle} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 </Grid>
                 <Grid>
                     <CustomTooltip title={formatCommonMats(commonMat)} arrow placement="top">
-                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`} alt={commonMat} style={imageStyle} />
+                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`} alt={commonMat} style={imageStyle} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 </Grid>
                 <Grid>
                     <CustomTooltip title={bossMat} arrow placement="top">
-                        <img src={`${process.env.REACT_APP_URL}/materials/boss_mats/${bossMat.split(" ").join("_")}.png`} alt={bossMat} style={imageStyle} />
+                        <img src={`${process.env.REACT_APP_URL}/materials/boss_mats/${bossMat.split(" ").join("_")}.png`} alt={bossMat} style={imageStyle} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 </Grid>
                 <Grid >
                     <CustomTooltip title={formatWeeklyBossMats(weeklyBossMat)} arrow placement="top">
-                        <img src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${weeklyBossMat.split(" ").join("_")}.png`} alt={weeklyBossMat} style={imageStyle} />
+                        <img src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${weeklyBossMat.split(" ").join("_")}.png`} alt={weeklyBossMat} style={imageStyle} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 </Grid>
             </Grid>

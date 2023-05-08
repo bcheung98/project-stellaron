@@ -4,6 +4,7 @@ import { Typography, Card, CardContent, ButtonBase, Box, Avatar } from "@mui/mat
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import MaterialGrid from "../../helpers/MaterialGrid";
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const CharacterCard = (props) => {
 
@@ -25,6 +26,7 @@ const CharacterCard = (props) => {
         height: "30px",
         backgroundColor: `${theme.materialImage.backgroundColor}`,
         border: `1px solid ${theme.border.color}`,
+        borderRadius: "15px",
         marginTop: "5px",
         marginRight: "5px",
     }
@@ -47,8 +49,7 @@ const CharacterCard = (props) => {
                     <Grid container>
                         <Grid xs>
                             <ButtonBase disableRipple>
-                                <img src={(`${process.env.REACT_APP_URL}/characters/icons/Character_${name.split(" ").join("_")}_Icon.png`)} alt={name}
-                                    style={characterIcon} />
+                                <img src={(`${process.env.REACT_APP_URL}/characters/icons/Character_${name.split(" ").join("_")}_Icon.png`)} alt={name} style={characterIcon} onError={ErrorLoadingImage} />
                             </ButtonBase>
                         </Grid>
                         <Grid xs={7.5}>
@@ -66,10 +67,10 @@ const CharacterCard = (props) => {
                             </Box>
                             <Box sx={{ display: "flex" }}>
                                 <CustomTooltip title={element} arrow placement="top">
-                                    <Avatar sx={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} />
+                                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
                                 </CustomTooltip>
                                 <CustomTooltip title={path} arrow placement="top">
-                                    <Avatar sx={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path} />
+                                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path} onError={ErrorLoadingImage} />
                                 </CustomTooltip>
                             </Box>
                             <Grid xs={8} sx={{ mt: "15px" }}>
