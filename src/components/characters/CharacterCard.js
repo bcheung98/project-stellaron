@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Typography, Card, CardContent, ButtonBase, Box } from "@mui/material";
+import { Typography, Card, CardContent, ButtonBase, Box, Avatar } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import MaterialGrid from "../../helpers/MaterialGrid";
@@ -21,7 +21,12 @@ const CharacterCard = (props) => {
         backgroundSize: "contain"
     }
     const smallIcon = {
-        width: "32px",
+        width: "30px",
+        height: "30px",
+        backgroundColor: `${theme.materialImage.backgroundColor}`,
+        border: `1px solid ${theme.border.color}`,
+        marginTop: "5px",
+        marginRight: "5px",
     }
 
     return (
@@ -61,10 +66,10 @@ const CharacterCard = (props) => {
                             </Box>
                             <Box sx={{ display: "flex" }}>
                                 <CustomTooltip title={element} arrow placement="top">
-                                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} />
+                                    <Avatar sx={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} />
                                 </CustomTooltip>
                                 <CustomTooltip title={path} arrow placement="top">
-                                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path} />
+                                    <Avatar sx={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path} />
                                 </CustomTooltip>
                             </Box>
                             <Grid xs={8} sx={{ mt: "15px" }}>
