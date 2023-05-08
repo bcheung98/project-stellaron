@@ -11,8 +11,6 @@ const CharacterBrowser = (props) => {
 
     let { characters } = props;
 
-    console.log(characters)
-
     return (
         <React.Fragment>
             <Box
@@ -37,7 +35,7 @@ const CharacterBrowser = (props) => {
                 </Typography>
             </Box>
             <Grid container sx={{ margin: "auto", width: "98%" }}>
-                <Grid item xs={9}>
+                <Grid xs={9}>
                     <Grid container>
                         {characters.characters.length > 0 &&
                             <React.Fragment>
