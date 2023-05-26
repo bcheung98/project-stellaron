@@ -1,13 +1,21 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Paper, InputBase } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import CharacterCard from "./CharacterCard";
+import CharacterFilters from "./filters/_CharacterFilters";
 
 const CharacterBrowser = (props) => {
 
     const theme = useTheme();
+
+    const [searchValue, setSearchValue] = React.useState("");
+    const [view, setView] = React.useState("grid");
+
+    const handleInputChange = (e) => {
+        setSearchValue(e.target.value);
+    }
 
     let { characters } = props;
 
@@ -45,6 +53,32 @@ const CharacterBrowser = (props) => {
                             </React.Fragment>
                         }
                     </Grid>
+                </Grid>
+                <Grid item xs={3}>
+                    <Paper
+                        sx={{
+                            border: `2px solid ${theme.border.color}`,
+                            borderRadius: "5px",
+                            backgroundColor: `${theme.paper.backgroundColor}`,
+                            display: "flex",
+                            margin: "auto",
+                            height: "40px",
+                            width: "84.5%",
+                            marginBottom: "10px",
+                            marginLeft: "35px",
+                        }}
+                    >
+                        <InputBase
+                            sx={{
+                                marginLeft: "10px",
+                                flex: 1,
+                                color: `${theme.text.color}`,
+                            }}
+                            placeholder="Search"
+                            onChange={handleInputChange}
+                        />
+                    </Paper>
+                    <CharacterFilters />
                 </Grid>
             </Grid>
         </React.Fragment>
