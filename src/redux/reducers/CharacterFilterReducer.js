@@ -1,5 +1,6 @@
 const initialState = {
-    element: []
+    element: [],
+    path: [],
 }
 
 const CharacterFilterReducer = (state = initialState, action) => {
@@ -23,6 +24,15 @@ const CharacterFilterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 element: tempElement
+            }
+        case "SET_CHAR_PATH_FILTERS":
+            let tempPath = [...state.path];
+            !state.path.includes(target) ? tempPath.push(target) : tempPath.splice(tempPath.indexOf(target), 1);
+            let pathText = document.getElementById(`${type.split("_")[2].toLowerCase()}-filter-text`);
+            pathText.className === "filter-text-on" && tempPath.length === 0 ? pathText.className = "filter-text-off" : pathText.className = "filter-text-on";
+            return {
+                ...state,
+                path: tempPath
             }
         default:
             return state;
