@@ -2,10 +2,10 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension"
 import thunk from "redux-thunk";
 
-import characterReducer from "./reducers/characterReducer";
+import CharacterReducer from "./reducers/CharacterReducer";
 
 const rootReducer = combineReducers({
-    characters: characterReducer,
+    characters: CharacterReducer,
 })
 
 const composedEnhancer = composeWithDevTools(

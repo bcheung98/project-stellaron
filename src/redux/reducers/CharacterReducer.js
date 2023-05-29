@@ -3,7 +3,7 @@ const initialState = {
     requesting: false
 }
 
-const characterReducer = (state = initialState, action) => {
+const CharacterReducer = (state = initialState, action) => {
     switch (action.type) {
         case "START_GETTING_CHARS_REQUEST":
             return {
@@ -22,4 +22,4 @@ const characterReducer = (state = initialState, action) => {
     }
 }
 
-export default characterReducer;
+export default CharacterReducer;
