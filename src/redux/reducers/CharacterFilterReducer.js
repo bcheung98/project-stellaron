@@ -15,6 +15,15 @@ const CharacterFilterReducer = (state = initialState, action) => {
         targetButton.className === "filter-off" ? targetButton.className = "filter-on" : targetButton.className = "filter-off";
     }
     switch (type) {
+        case "SET_CHAR_ELEMENT_FILTERS":
+            let tempElement = [...state.element];
+            !state.element.includes(target) ? tempElement.push(target) : tempElement.splice(tempElement.indexOf(target), 1);
+            let elementText = document.getElementById(`${type.split("_")[2].toLowerCase()}-filter-text`);
+            elementText.className === "filter-text-on" && tempElement.length === 0 ? elementText.className = "filter-text-off" : elementText.className = "filter-text-on";
+            return {
+                ...state,
+                element: tempElement
+            }
         default:
             return state;
     }

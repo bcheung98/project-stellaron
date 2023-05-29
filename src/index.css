@@ -12,3 +12,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.filter-text-off, .filter-text-on {
+  font-family: Roboto, sans-serif;
+  margin: 0;
+}
+
+.filter-text-off {
+  color: white;
+}
+
+.filter-text-on {
+  color: rgb(30, 175, 255);
+}
+
+.filter-off, .filter-on {
+  height: 32px;
+  padding: 3px;
+  margin: 3px;
+  border: 1px solid rgb(168, 147, 105);
+  border-radius: 5px;
+}
+
+.filter-off:hover, .filter-on:hover {
+  box-shadow: 0 0 5px 1px gold;
+  border: 1px solid gold;
+  cursor: pointer;
+}
+
+.filter-off {
+  background-color: rgb(15, 15, 15);
+  opacity: 0.35;
+}
+
+.filter-on {
+  background-color: rgb(15, 15, 15);
+  opacity: 1;
+}

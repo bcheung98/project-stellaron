@@ -5,6 +5,7 @@ import { Box, Typography, Paper, InputBase } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import CharacterCard from "./CharacterCard";
 import CharacterFilters from "./filters/_CharacterFilters";
+import { filterCharacters } from "../../helpers/FilterCharacters";
 
 const CharacterBrowser = (props) => {
 
@@ -17,7 +18,7 @@ const CharacterBrowser = (props) => {
         setSearchValue(e.target.value);
     }
 
-    let { characters } = props;
+    let { characters, characterFilters } = props;
 
     return (
         <React.Fragment>
@@ -48,7 +49,7 @@ const CharacterBrowser = (props) => {
                         {characters.characters.length > 0 &&
                             <React.Fragment>
                                 {
-                                    characters.characters.map(char => <CharacterCard key={char.id} character={char} />)
+                                    filterCharacters(characters.characters, characterFilters, searchValue).map(char => <CharacterCard key={char.id} character={char} />)
                                 }
                             </React.Fragment>
                         }
@@ -88,6 +89,7 @@ const CharacterBrowser = (props) => {
 const mapStateToProps = (state) => {
     return {
         characters: state.characters,
+        characterFilters: state.characterFilters,
     }
 }
 

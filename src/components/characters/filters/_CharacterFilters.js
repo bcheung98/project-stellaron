@@ -7,6 +7,8 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 
+import CharacterElementFilter from "./CharacterElementFilter";
+
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} {...props} />
 ))(({ theme }) => ({
@@ -69,6 +71,15 @@ const CharacterFilters = (props) => {
                     Filters
                 </Typography>
 
+                {/* ELEMENT */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ color: `${theme.text.color}` }}>Element</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <CharacterElementFilter />
+                    </AccordionDetails>
+                </Accordion>
 
             </Paper>
         </Box>
