@@ -1,6 +1,7 @@
 const initialState = {
     element: [],
     path: [],
+    weeklyBossMat: [],
 }
 
 const CharacterFilterReducer = (state = initialState, action) => {
@@ -33,6 +34,15 @@ const CharacterFilterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 path: tempPath
+            }
+        case "SET_CHAR_WEEKLYBOSS_MAT_FILTERS":
+            let tempWeeklyBossMat = [...state.weeklyBossMat];
+            !state.weeklyBossMat.includes(target) ? tempWeeklyBossMat.push(target) : tempWeeklyBossMat.splice(tempWeeklyBossMat.indexOf(target), 1);
+            let weeklyBossText = document.getElementById(`${type.split("_")[2].toLowerCase()}-filter-text`);
+            weeklyBossText.className === "filter-text-on" && tempWeeklyBossMat.length === 0 ? weeklyBossText.className = "filter-text-off" : weeklyBossText.className = "filter-text-on";
+            return {
+                ...state,
+                weeklyBossMat: tempWeeklyBossMat
             }
         default:
             return state;

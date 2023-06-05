@@ -9,6 +9,7 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 
 import CharacterElementFilter from "./CharacterElementFilter";
 import CharacterPathFilter from "./CharacterPathFilter";
+import CharacterWeeklyBostMatFilter from "./CharacterWeeklyBostMatFilter";
 
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} {...props} />
@@ -89,6 +90,16 @@ const CharacterFilters = (props) => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <CharacterPathFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                {/* WEEKLY BOSS MAT */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="weeklyboss-filter-text" sx={{ color: `${theme.text.color}` }}>Weekly Boss</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <CharacterWeeklyBostMatFilter />
                     </AccordionDetails>
                 </Accordion>
 
