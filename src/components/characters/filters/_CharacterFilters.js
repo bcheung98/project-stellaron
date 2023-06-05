@@ -9,6 +9,7 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 
 import CharacterElementFilter from "./CharacterElementFilter";
 import CharacterPathFilter from "./CharacterPathFilter";
+import CharacterCommonMatFilter from "./CharacterCommonMatFilter";
 import CharacterWeeklyBostMatFilter from "./CharacterWeeklyBostMatFilter";
 
 const Accordion = styled((props) => (
@@ -90,6 +91,16 @@ const CharacterFilters = (props) => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <CharacterPathFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                {/* COMMON MAT */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="common-filter-text" sx={{ color: `${theme.text.color}` }}>Common Material</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <CharacterCommonMatFilter />
                     </AccordionDetails>
                 </Accordion>
 

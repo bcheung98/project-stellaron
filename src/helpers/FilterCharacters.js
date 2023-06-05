@@ -6,6 +6,9 @@ export const filterCharacters = (characters, filters, searchValue) => {
     if (filters.path.length > 0) {
         chars = chars.filter(char => filters.path.includes(char.path));
     }
+    if (filters.commonMat.length > 0) {
+        chars = chars.filter(char => filters.commonMat.includes(char.materials.commonMat));
+    }
     if (filters.weeklyBossMat.length > 0) {
         chars = chars.filter(char => filters.weeklyBossMat.includes(char.materials.weeklyBossMat));
     }
