@@ -48,7 +48,7 @@ const CharacterCard = (props) => {
                 <CardContent sx={{ py: "10px" }}>
                     <Grid container>
                         <Grid xs>
-                            <ButtonBase disableRipple>
+                            <ButtonBase disableRipple href={`/project-stellaron/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                                 <img src={(`${process.env.REACT_APP_URL}/characters/icons/Character_${name.split(" ").join("_")}_Icon.png`)} alt={name} style={characterIcon} onError={ErrorLoadingImage} />
                             </ButtonBase>
                         </Grid>
@@ -59,7 +59,7 @@ const CharacterCard = (props) => {
                                     position: "relative"
                                 }}
                             >
-                                <ButtonBase disableRipple>
+                                <ButtonBase disableRipple href={`/project-stellaron/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                                     <Typography sx={{ color: `${theme.text.color}`, fontWeight: "450" }} variant="h5">
                                         {name}
                                     </Typography>
