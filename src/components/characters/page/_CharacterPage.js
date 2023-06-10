@@ -2,6 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import parse from "html-react-parser";
 import { Typography, Box, Avatar, CardHeader } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
@@ -48,7 +49,7 @@ const CharacterPage = (props) => {
                             }}
                         >
                             <Typography sx={{ mb: "20px", color: `${theme.text.color}` }} variant="body2">
-                                {description}
+                                {parse(description)}
                             </Typography>
                             <Box
                                 sx={{
