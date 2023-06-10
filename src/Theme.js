@@ -30,5 +30,6 @@ export const defaultTheme = createTheme({
     },
     text: {
         color: "white",
+        highlight: "rgb(202, 166, 112)",
     },
 });
