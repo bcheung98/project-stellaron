@@ -6,6 +6,7 @@ import parse from "html-react-parser";
 import { Typography, Box, Avatar, CardHeader } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
+import CharacterSkillDisplay from "./CharacterSkillDisplay";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const CharacterPage = (props) => {
@@ -107,6 +108,7 @@ const CharacterPage = (props) => {
                         </Box>
                     </Grid>
                 </Grid>
+                <CharacterSkillDisplay character={character} />
             </React.Fragment>
         )
     }
