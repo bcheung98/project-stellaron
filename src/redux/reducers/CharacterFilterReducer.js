@@ -1,6 +1,7 @@
 const initialState = {
     element: [],
     path: [],
+    rarity: [],
     commonMat: [],
     weeklyBossMat: [],
 }
@@ -35,6 +36,15 @@ const CharacterFilterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 path: tempPath
+            }
+        case "SET_CHAR_RARITY_FILTERS":
+            let tempRarity = [...state.rarity];
+            !state.rarity.includes(parseInt(target)) ? tempRarity.push(parseInt(target)) : tempRarity.splice(tempRarity.indexOf(parseInt(target)), 1);
+            let rarityText = document.getElementById(`${type.split("_")[2].toLowerCase()}-filter-text`);
+            rarityText.className === "filter-text-on" && tempRarity.length === 0 ? rarityText.className = "filter-text-off" : rarityText.className = "filter-text-on";
+            return {
+                ...state,
+                rarity: tempRarity
             }
         case "SET_CHAR_COMMON_MAT_FILTERS":
             let tempCommonMat = [...state.commonMat];

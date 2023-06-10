@@ -9,6 +9,7 @@ import MuiAccordionDetails from '@mui/material/AccordionDetails';
 
 import CharacterElementFilter from "./CharacterElementFilter";
 import CharacterPathFilter from "./CharacterPathFilter";
+import CharacterRarityFilter from "./CharacterRarityFilter";
 import CharacterCommonMatFilter from "./CharacterCommonMatFilter";
 import CharacterWeeklyBostMatFilter from "./CharacterWeeklyBostMatFilter";
 
@@ -91,6 +92,16 @@ const CharacterFilters = (props) => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <CharacterPathFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                {/* RARITY */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="rarity-filter-text" sx={{ color: `${theme.text.color}` }}>Rarity</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <CharacterRarityFilter />
                     </AccordionDetails>
                 </Accordion>
 
