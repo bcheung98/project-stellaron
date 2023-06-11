@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import parse from "html-react-parser";
-import { Typography, Box, AppBar, Slider } from "@mui/material";
+import { Typography, Box, AppBar } from "@mui/material";
 import { TabPanel, StyledTabs, StyledTab } from "../../../helpers/CustomTabs";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 import CharacterSkillTab from "./CharacterSkillTab";
