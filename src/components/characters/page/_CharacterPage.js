@@ -7,6 +7,7 @@ import { Typography, Box, Avatar, CardHeader } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import CharacterSkillDisplay from "./CharacterSkillDisplay";
+import CharacterEidolonDisplay from "./CharacterEidolonDisplay";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const CharacterPage = (props) => {
@@ -109,6 +110,7 @@ const CharacterPage = (props) => {
                     </Grid>
                 </Grid>
                 <CharacterSkillDisplay character={character} />
+                <CharacterEidolonDisplay character={character} />
             </React.Fragment>
         )
     }
