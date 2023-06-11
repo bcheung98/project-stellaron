@@ -1,51 +1,94 @@
 body {
-  margin: 0;
-  background-color: rgb(26, 22, 24);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    background-color: rgb(26, 22, 24);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
 }
 
-.filter-text-off, .filter-text-on {
-  font-family: Roboto, sans-serif;
-  margin: 0;
+.filter-text-off,
+.filter-text-on {
+    font-family: Roboto, sans-serif;
+    margin: 0;
 }
 
 .filter-text-off {
-  color: white;
+    color: white;
 }
 
 .filter-text-on {
-  color: rgb(30, 175, 255);
+    color: rgb(30, 175, 255);
 }
 
-.filter-off, .filter-on {
-  height: 32px;
-  padding: 3px;
-  margin: 3px;
-  border: 1px solid rgb(168, 147, 105);
-  border-radius: 5px;
+.filter-off,
+.filter-on {
+    height: 32px;
+    padding: 3px;
+    margin: 3px;
+    border: 1px solid rgb(168, 147, 105);
+    border-radius: 5px;
 }
 
-.filter-off:hover, .filter-on:hover {
-  box-shadow: 0 0 5px 1px gold;
-  border: 1px solid gold;
-  cursor: pointer;
+.filter-off:hover,
+.filter-on:hover {
+    box-shadow: 0 0 5px 1px gold;
+    border: 1px solid gold;
+    cursor: pointer;
 }
 
 .filter-off {
-  background-color: rgb(15, 15, 15);
-  opacity: 0.35;
+    background-color: rgb(15, 15, 15);
+    opacity: 0.35;
 }
 
 .filter-on {
-  background-color: rgb(15, 15, 15);
-  opacity: 1;
+    background-color: rgb(15, 15, 15);
+    opacity: 1;
+}
+
+.text-physical {
+    color: #71718c;
+    font-weight: bold;
+}
+
+.text-fire {
+    color: #e62a29;
+    font-weight: bold;
+}
+
+.text-ice {
+    color: #2192d6;
+    font-weight: bold;
+}
+
+.text-lightning {
+    color: #b54bd3;
+    font-weight: bold;
+}
+
+.text-wind {
+    color: #42c38c;
+    font-weight: bold;
+}
+
+.text-quantum {
+    color: #6778fd;
+    font-weight: bold;
+}
+
+.text-imaginary {
+    color: #e5b909;
+    font-weight: bold;
+}
+
+.text-highlight {
+    color: #f29e38;
+    font-weight: bold;
 }
