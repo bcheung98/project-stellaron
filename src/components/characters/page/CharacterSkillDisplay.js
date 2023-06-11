@@ -11,6 +11,7 @@ const CharacterSkillDisplay = (props) => {
 
     const skillIcon = {
         width: "56px",
+        height: "56px",
         border: `1px solid ${theme.border.color}`,
         borderRadius: "56px",
     }
@@ -42,17 +43,19 @@ const CharacterSkillDisplay = (props) => {
                     Skills
                 </Typography>
             </AppBar>
-            <StyledTabs value={tabValue} onChange={handleTabChange}>
-                <StyledTab label={<img src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_attack.png`} style={skillIcon} alt="Basic ATK" onError={ErrorLoadingImage} />} />
-                <StyledTab label={<img src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_skill.png`} style={skillIcon} alt="Skill" onError={ErrorLoadingImage} />} />
-                <StyledTab label={<img src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_ultimate.png`} style={skillIcon} alt="Ultimate" onError={ErrorLoadingImage} />} />
-                <StyledTab label={<img src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_talent.png`} style={skillIcon} alt="Talent" onError={ErrorLoadingImage} />} />
-                <StyledTab label={<img src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_technique.png`} style={skillIcon} alt="Technique" onError={ErrorLoadingImage} />} />
-            </StyledTabs>
+            <Box sx={{ mt: "10px" }}>
+                <StyledTabs value={tabValue} onChange={handleTabChange}>
+                    <StyledTab label={<img src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_attack.webp`} style={skillIcon} alt="Basic ATK" onError={ErrorLoadingImage} />} />
+                    <StyledTab label={<img src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_skill.webp`} style={skillIcon} alt="Skill" onError={ErrorLoadingImage} />} />
+                    <StyledTab label={<img src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_ultimate.webp`} style={skillIcon} alt="Ultimate" onError={ErrorLoadingImage} />} />
+                    <StyledTab label={<img src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_talent.webp`} style={skillIcon} alt="Talent" onError={ErrorLoadingImage} />} />
+                    <StyledTab label={<img src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_technique.webp`} style={skillIcon} alt="Technique" onError={ErrorLoadingImage} />} />
+                </StyledTabs>
+            </Box>
             {
                 Object.keys(skills).map((key, index) => (
                     <TabPanel key={key} value={tabValue} index={index}>
-                        <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
+                        <Typography variant="subtitle1" sx={{ color: `${theme.text.color}` }}>
                             <i>{FormatSkillKey(key)}</i>
                         </Typography>
                         <Typography variant="h4" sx={{ color: `${theme.text.color}` }}>
