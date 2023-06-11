@@ -9,8 +9,9 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import CharacterSkillDisplay from "./CharacterSkillDisplay";
 import CharacterEidolonDisplay from "./CharacterEidolonDisplay";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 import CharacterStatsTable from "./CharacterStatsTable";
+import MaterialGrid from "../../../helpers/MaterialGrid";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const CharacterPage = (props) => {
 
@@ -112,6 +113,9 @@ const CharacterPage = (props) => {
                                         {[...Array(rarity).keys()].map(() => "✦")}
                                     </Typography>
                                 </Box>
+                            </Box>
+                            <Box sx={{ mt: "15px", ml: "20px" }}>
+                                <MaterialGrid character={character} size={"48px"} />
                             </Box>
                         </Box>
                         <Box

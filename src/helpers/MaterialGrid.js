@@ -13,7 +13,7 @@ const MaterialGrid = (props) => {
     let { calyxMat, commonMat, bossMat, weeklyBossMat } = props.character.materials;
 
     const imageStyle = {
-        height: "36px",
+        height: props.size,
         border: `1px solid ${theme.border.color}`,
         borderRadius: "5px",
         backgroundColor: `${theme.materialImage.backgroundColor}`,
@@ -47,5 +47,10 @@ const MaterialGrid = (props) => {
     )
 
 }
+
+MaterialGrid.defaultProps = {
+    size: "36px",
+}
+
 
 export default MaterialGrid;
