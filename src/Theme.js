@@ -15,11 +15,11 @@ export const defaultTheme = createTheme({
     },
     table: {
         header: {
-            backgroundColor: "rgb(18, 18, 18)",
+            backgroundColor: "rgb(15, 15, 15)",
         },
         body: {
-            backgroundColor: "rgb(20, 20, 20)",
-            hover: "rgb(40, 40, 40)",
+            backgroundColor: "rgb(26, 22, 24)",
+            hover: "rgb(50, 50, 50)",
         },
     },
     toolbar: {

@@ -3,16 +3,23 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import parse from "html-react-parser";
-import { Typography, Box, Avatar, CardHeader } from "@mui/material";
+import { Typography, Box, Avatar, CardHeader, AppBar } from "@mui/material";
+import { TabPanel, StyledTabs, StyledTab } from "../../../helpers/CustomTabs";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import CharacterSkillDisplay from "./CharacterSkillDisplay";
 import CharacterEidolonDisplay from "./CharacterEidolonDisplay";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+import CharacterStatsTable from "./CharacterStatsTable";
 
 const CharacterPage = (props) => {
 
     const theme = useTheme();
+
+    const [tabValue, setTabValue] = React.useState(0);
+    const handleTabChange = (event, newValue) => {
+        setTabValue(newValue);
+    };
 
     let { char_name } = useParams();
     let { characters } = props;
@@ -106,6 +113,32 @@ const CharacterPage = (props) => {
                                     </Typography>
                                 </Box>
                             </Box>
+                        </Box>
+                        <Box
+                            sx={{
+                                p: 0,
+                                mx: "15px",
+                                marginTop: "15px",
+                                border: `1px solid ${theme.border.color}`,
+                                borderRadius: "5px",
+                                backgroundColor: `${theme.paper.backgroundColor}`,
+                            }}
+                        >
+                            <AppBar position="static"
+                                sx={{
+                                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                                    borderBottom: `1px solid ${theme.border.color}`,
+                                    borderRadius: "5px 5px 0px 0px",
+                                }}
+                            >
+                                <StyledTabs value={tabValue} onChange={handleTabChange}>
+                                    <StyledTab label="Stats" />
+                                </StyledTabs>
+                            </AppBar>
+
+                            <TabPanel value={tabValue} index={0}>
+                                <CharacterStatsTable character={character} />
+                            </TabPanel>
                         </Box>
                     </Grid>
                 </Grid>
