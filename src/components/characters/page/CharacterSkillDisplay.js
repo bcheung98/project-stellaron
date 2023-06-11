@@ -1,9 +1,10 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import parse from "html-react-parser";
-import { Typography, Box, AppBar, CardHeader } from "@mui/material";
+import { Typography, Box, AppBar, Slider } from "@mui/material";
 import { TabPanel, StyledTabs, StyledTab } from "../../../helpers/CustomTabs";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+import CharacterSkillTab from "./CharacterSkillTab";
 
 const CharacterSkillDisplay = (props) => {
 
@@ -16,7 +17,7 @@ const CharacterSkillDisplay = (props) => {
         borderRadius: "56px",
     }
 
-    let { name, element, path, skills } = props.character;
+    let { name, skills } = props.character;
 
     const [tabValue, setTabValue] = React.useState(0);
     const handleTabChange = (event, newValue) => {
@@ -54,16 +55,8 @@ const CharacterSkillDisplay = (props) => {
             </Box>
             {
                 Object.keys(skills).map((key, index) => (
-                    <TabPanel key={key} value={tabValue} index={index}>
-                        <Typography variant="subtitle1" sx={{ color: `${theme.text.color}` }}>
-                            <i>{FormatSkillKey(key)}</i>
-                        </Typography>
-                        <Typography variant="h4" sx={{ color: `${theme.text.color}` }}>
-                            <b>{parse(skills[key].name)}</b>
-                        </Typography>
-                        <Typography variant="body1" sx={{ color: `${theme.text.color}` }}>
-                            {parse(skills[key].description)}
-                        </Typography>
+                    <TabPanel key={key} index={index} value={tabValue} >
+                        <CharacterSkillTab skillKey={key} skills={skills} />
                     </TabPanel>
                 ))
             }
@@ -73,26 +66,3 @@ const CharacterSkillDisplay = (props) => {
 }
 
 export default CharacterSkillDisplay;
-
-const FormatSkillKey = (key) => {
-    switch (key) {
-        case "attack":
-            key = "Basic ATK";
-            break;
-        case "skill":
-            key = "Skill";
-            break;
-        case "ultimate":
-            key = "Ultimate";
-            break;
-        case "talent":
-            key = "Talent";
-            break;
-        case "technique":
-            key = "Technique";
-            break;
-        default:
-            key = key;
-    }
-    return key;
-}
