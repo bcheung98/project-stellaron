@@ -8,6 +8,7 @@ import { TabPanel, StyledTabs, StyledTab } from "../../../helpers/CustomTabs";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import CharacterSkillDisplay from "./CharacterSkillDisplay";
+import CharacterTraceDisplay from "./CharacterTraceDisplay";
 import CharacterEidolonDisplay from "./CharacterEidolonDisplay";
 import CharacterStatsTable from "./CharacterStatsTable";
 import MaterialGrid from "../../../helpers/MaterialGrid";
@@ -147,6 +148,7 @@ const CharacterPage = (props) => {
                     </Grid>
                 </Grid>
                 <CharacterSkillDisplay character={character} />
+                <CharacterTraceDisplay character={character} />
                 <CharacterEidolonDisplay character={character} />
             </React.Fragment>
         )
