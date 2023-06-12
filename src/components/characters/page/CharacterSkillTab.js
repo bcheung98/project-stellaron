@@ -34,7 +34,7 @@ const CharacterSkillTab = (props) => {
                 <b>{skills[key].name}</b>
             </Typography>
             {
-                skills[key].type !== "———" &&
+                skills[key].type &&
                 <Typography variant="subtitle1" sx={{ color: "#f29e38", fontWeight: "450" }}>
                     {skills[key].type}
                 </Typography>
