@@ -149,11 +149,11 @@ const ShowTraces = (props) => {
                         return (
                             traces.subTraces.length === 1 ?
                                 <Box key={index} sx={{ display: "flex" }}>
-                                    <ShowTraces traces={trace} />
+                                    <ShowTraces name={name} traces={trace} />
                                 </Box>
                                 :
                                 <Box key={index} sx={{ my: "25px" }}>
-                                    <ShowTraces traces={trace} />
+                                    <ShowTraces name={name} traces={trace} />
                                 </Box>
                         )
                     })
