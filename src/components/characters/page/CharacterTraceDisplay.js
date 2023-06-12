@@ -33,8 +33,9 @@ const CharacterTraceDisplay = (props) => {
             {
                 props.character.traces?.map((trace, index) => {
                     return (
-                        <Box key={index} sx={{ mx: "20px", my: "25px" }}>
+                        <Box key={index} sx={{ mx: "20px", mt: "25px" }}>
                             <ShowTraces name={name} traces={trace} />
+                            <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "25px", marginBottom: "25px" }} />
                         </Box>
                     )
                 })
