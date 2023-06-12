@@ -64,6 +64,7 @@ const ShowTraces = (props) => {
                             backgroundColor: `${theme.table.body.backgroundColor}`,
                             border: `1px solid ${theme.border.color}`,
                             borderRadius: "5px",
+                            pr: "15px",
                             py: "10px",
                             width: "30%",
                             mr: "80px",
