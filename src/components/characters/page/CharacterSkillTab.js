@@ -17,7 +17,7 @@ const CharacterSkillTab = (props) => {
     };
     
     // Dynamically changes the values of the skill attributes
-    let targets = document.getElementsByClassName("text-highlight");
+    let targets = document.getElementsByClassName("text-value");
     if (scaling !== undefined) {
         scaling.forEach((subScaling, index) => {
             let target = targets[index];
@@ -33,12 +33,6 @@ const CharacterSkillTab = (props) => {
             <Typography variant="h4" sx={{ color: `${theme.text.color}` }}>
                 <b>{skills[key].name}</b>
             </Typography>
-            {
-                skills[key].type &&
-                <Typography variant="subtitle1" sx={{ color: "#f29e38", fontWeight: "450" }}>
-                    {skills[key].type}
-                </Typography>
-            }
             <Typography variant="body1" sx={{ color: `${theme.text.color}`, mt: "15px" }}>
                 {parse(skills[key].description)}
             </Typography>

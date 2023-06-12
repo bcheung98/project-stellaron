@@ -90,5 +90,10 @@ code {
 
 .text-highlight {
     color: #f29e38;
+    font-weight: 450;
+}
+
+.text-value {
+    color: #f29e38;
     font-weight: bold;
 }
