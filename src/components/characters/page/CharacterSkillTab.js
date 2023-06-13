@@ -37,6 +37,13 @@ const CharacterSkillTab = (props) => {
             <Typography variant="body1" sx={{ color: `${theme.text.color}`, mt: "15px" }}>
                 {parse(skills[key].description)}
             </Typography>
+            {
+                key === "ultimate" &&
+                <Typography variant="body1" sx={{ color: "#f29e38", mt: "15px", fontWeight: "450" }}>
+                    Energy Cost: {skills["ultimate"].energyCost}
+                </Typography>
+
+            }
             <Box >
                 {
                     key !== "technique" &&
