@@ -162,7 +162,7 @@ const ShowTraces = (props) => {
                         return (
                             <Box key={index} sx={{ my: "15px" }}>
                                 <ShowTraces name={name} traces={trace} id={nextID} />
-                                <Xarrow start={id} end={nextID} showHead={false} path="grid" />
+                                <Xarrow start={id} end={nextID} showHead={false} path="grid" color="lightgray" strokeWidth={3} />
                             </Box>
                         )
                     })
