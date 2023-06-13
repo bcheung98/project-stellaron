@@ -2,6 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import parse from "html-react-parser";
 import { Typography, Box, AppBar, CardHeader, Avatar } from "@mui/material";
+import Xarrow from "react-xarrows";
 
 const CharacterTraceDisplay = (props) => {
 
@@ -34,7 +35,7 @@ const CharacterTraceDisplay = (props) => {
                 props.character.traces?.map((trace, index) => {
                     return (
                         <Box key={index} sx={{ mx: "20px", mt: "25px" }}>
-                            <ShowTraces name={name} traces={trace} />
+                            <ShowTraces name={name} traces={trace} id={`${String.fromCharCode(index + 65)}-1`} />
                             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "25px", marginBottom: "25px" }} />
                         </Box>
                     )
@@ -52,10 +53,10 @@ const ShowTraces = (props) => {
 
     const theme = useTheme();
 
-    let { name, traces } = props;
+    let { name, traces, id } = props;
 
     return (
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box sx={{ display: "flex", alignItems: "center" }} >
             {
                 traces.name ?
                     // Component for the bonus abilities
@@ -69,6 +70,7 @@ const ShowTraces = (props) => {
                             width: "30%",
                             mr: "80px",
                         }}
+                        id={id}
                     >
                         <CardHeader
                             sx={{
@@ -113,6 +115,7 @@ const ShowTraces = (props) => {
                                     borderRadius: "5px",
                                     mr: "60px",
                                 }}
+                                id={id}
                             >
                                 <CardHeader
                                     sx={{
@@ -148,15 +151,19 @@ const ShowTraces = (props) => {
             <Box>
                 {
                     traces?.subTraces?.map((trace, index) => {
+                        let nextID = "";
+                        // If there is more than one child node, add an extra identifier to the ID
+                        if (traces.subTraces?.length > 1) {
+                            nextID = incrementID(id) + `-${index}`;
+                        }
+                        else {
+                            nextID = incrementID(id);
+                        }
                         return (
-                            traces.subTraces.length === 1 ?
-                                <Box key={index} sx={{ display: "flex" }}>
-                                    <ShowTraces name={name} traces={trace} />
-                                </Box>
-                                :
-                                <Box key={index} sx={{ my: "25px" }}>
-                                    <ShowTraces name={name} traces={trace} />
-                                </Box>
+                            <Box key={index} sx={{ my: "15px" }}>
+                                <ShowTraces name={name} traces={trace} id={nextID} />
+                                <Xarrow start={id} end={nextID} showHead={false} path="grid" />
+                            </Box>
                         )
                     })
                 }
@@ -164,4 +171,10 @@ const ShowTraces = (props) => {
         </Box>
     )
 
+}
+
+const incrementID = (id) => {
+    let splitID = id.split("-")
+    splitID[1] = parseInt(splitID[1]) + 1;
+    return splitID.join("-");
 }
