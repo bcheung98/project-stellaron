@@ -1,21 +1,22 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import parse from "html-react-parser";
-import { Typography, Box, Slider } from "@mui/material";
+import { Typography, Box } from "@mui/material";
+import { CustomSlider } from "../../../helpers/CustomSlider";
 
 const CharacterSkillTab = (props) => {
 
     const theme = useTheme();
 
-    let skills = props.skills;
     let key = props.skillKey;
+    let skills = props.skills;
     let scaling = skills[key].scaling;
 
     const [sliderValue, setSliderValue] = React.useState(1);
     const handleSliderChange = (event, newValue) => {
         setSliderValue(newValue);
     };
-    
+
     // Dynamically changes the values of the skill attributes
     let targets = document.getElementsByClassName("text-value");
     if (scaling !== undefined) {
@@ -45,9 +46,9 @@ const CharacterSkillTab = (props) => {
                         </Typography>
                         {
                             key === "attack" ?
-                                <Slider value={sliderValue} step={1} min={1} max={9} onChange={handleSliderChange} />
+                                <CustomSlider value={sliderValue} step={1} min={1} max={7} onChange={handleSliderChange} element={props.element} />
                                 :
-                                <Slider value={sliderValue} step={1} min={1} max={15} onChange={handleSliderChange} />
+                                <CustomSlider value={sliderValue} step={1} min={1} max={12} onChange={handleSliderChange} element={props.element} />
                         }
                     </Box>
                 }
