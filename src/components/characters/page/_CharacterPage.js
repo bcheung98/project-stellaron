@@ -97,11 +97,13 @@ const CharacterPage = (props) => {
                                 </CustomTooltip>
                                 <Box sx={{ ml: "10px", mt: "5px" }}>
                                     <Typography sx={{ mb: "-15px", color: `${theme.text.color}`, fontWeight: "550" }} variant="h4">
-                                        {name}
+                                        {character.displayName ? character.displayName : name}
                                     </Typography>
                                     <CardHeader
                                         avatar={
-                                            <Avatar src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={`${path}`} sx={{ height: "36px", width: "36px" }} onError={ErrorLoadingImage} />
+                                            <Avatar src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={`${path}`} sx={{ height: "36px", width: "36px" }}>
+                                                <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "36px" }} />
+                                            </Avatar>
                                         }
                                         title={
                                             <Typography sx={{ ml: "-10px", color: `${theme.text.color}`, fontWeight: "450" }} variant="subtitle1">
