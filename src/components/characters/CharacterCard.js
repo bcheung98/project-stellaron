@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Typography, Card, CardContent, ButtonBase, Box, Avatar } from "@mui/material";
+import { Typography, Card, CardContent, ButtonBase, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import MaterialGrid from "../../helpers/MaterialGrid";
@@ -11,6 +11,7 @@ const CharacterCard = (props) => {
     const theme = useTheme();
 
     let { name, rarity, element, path } = props.character;
+
     const characterIcon = {
         width: "115px",
         height: "180px",
@@ -19,8 +20,9 @@ const CharacterCard = (props) => {
         marginTop: "-15px",
         backgroundColor: "rgb(32, 32, 32)",
         backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
-        backgroundSize: "contain"
+        backgroundSize: "contain",
     }
+
     const smallIcon = {
         width: "30px",
         height: "30px",
