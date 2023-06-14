@@ -13,6 +13,23 @@ code {
         monospace;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(16, 16, 16);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(168, 147, 105);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(187, 163, 140);
+}
+
 .filter-text-off,
 .filter-text-on {
     font-family: Roboto, sans-serif;
