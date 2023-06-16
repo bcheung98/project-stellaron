@@ -19,7 +19,7 @@ const CharacterCard = (props) => {
         marginLeft: "-18px",
         marginTop: "-15px",
         backgroundColor: "rgb(32, 32, 32)",
-        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
+        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.webp)`,
         backgroundSize: "contain",
     }
 
