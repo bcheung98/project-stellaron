@@ -24,7 +24,7 @@ const CharacterTraceLevelUpMaterials = (props) => {
         width: "48px",
         height: "69px",
         mr: "5px",
-        backgroundColor: "lightgray",
+        backgroundColor: "rgb(34, 35, 36)",
         border: `1px solid ${theme.border.color}`,
         borderRadius: "5px",
     }
@@ -35,6 +35,7 @@ const CharacterTraceLevelUpMaterials = (props) => {
     }
 
     const MaterialText = {
+        color: "rgb(208, 208, 208)",
         fontWeight: "450",
     }
 
@@ -48,7 +49,7 @@ const CharacterTraceLevelUpMaterials = (props) => {
                         <img src={`${process.env.REACT_APP_URL}/materials/Credit.png`} style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} alt="Credit" className="material-image" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
-                        <Typography variant="body2" sx={MaterialText}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
                             {materialArray[0]}
                         </Typography>
                     </Box>
@@ -59,7 +60,7 @@ const CharacterTraceLevelUpMaterials = (props) => {
                         <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${calyxMat.split(" ").join("_")}${materialArray[1][1] - 1}.png`} style={{ backgroundImage: "url(" + Backgrounds[materialArray[1][1]] + ")" }} alt={calyxMat} className="material-image" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
-                        <Typography variant="body2" sx={MaterialText}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
                             {materialArray[1][0]}
                         </Typography>
                     </Box>
@@ -70,7 +71,7 @@ const CharacterTraceLevelUpMaterials = (props) => {
                         <img src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${weeklyBossMat.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt={weeklyBossMat} className="material-image" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
-                        <Typography variant="body2" sx={MaterialText}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
                             {materialArray[2]}
                         </Typography>
                     </Box>
@@ -83,7 +84,7 @@ const CharacterTraceLevelUpMaterials = (props) => {
                             <img src={`${process.env.REACT_APP_URL}/materials/Tracks_of_Destiny.png`} style={{ backgroundImage: "url(" + Backgrounds["5"] + ")" }} alt="Tracks of Destiny" className="material-image" onError={ErrorLoadingImage} />
                         </CustomTooltip>
                         <Box sx={MaterialTextContainer}>
-                            <Typography variant="body2" sx={MaterialText}>
+                            <Typography variant="subtitle2" sx={MaterialText}>
                                 {materialArray[3]}
                             </Typography>
                         </Box>
@@ -102,7 +103,7 @@ const CharacterTraceLevelUpMaterials = (props) => {
                         <img src={`${process.env.REACT_APP_URL}/materials/Credit.png`} style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} alt="Credit" className="material-image" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
-                        <Typography variant="body2" sx={MaterialText}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
                             {materialArray[0]}
                         </Typography>
                     </Box>
@@ -115,7 +116,7 @@ const CharacterTraceLevelUpMaterials = (props) => {
                             <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${calyxMat.split(" ").join("_")}${materialArray[1][1] - 1}.png`} style={{ backgroundImage: "url(" + Backgrounds[materialArray[1][1]] + ")" }} alt={calyxMat} className="material-image" onError={ErrorLoadingImage} />
                         </CustomTooltip>
                         <Box sx={MaterialTextContainer}>
-                            <Typography variant="body2" sx={MaterialText}>
+                            <Typography variant="subtitle2" sx={MaterialText}>
                                 {materialArray[1][0]}
                             </Typography>
                         </Box>
@@ -127,7 +128,7 @@ const CharacterTraceLevelUpMaterials = (props) => {
                         <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}${materialArray[2][1] - 1}.png`} style={{ backgroundImage: "url(" + Backgrounds[materialArray[2][1]] + ")" }} alt={commonMat} className="material-image" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
-                        <Typography variant="body2" sx={MaterialText}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
                             {materialArray[2][0]}
                         </Typography>
                     </Box>
