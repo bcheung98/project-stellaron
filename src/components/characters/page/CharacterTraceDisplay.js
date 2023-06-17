@@ -2,20 +2,20 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Box, AppBar } from "@mui/material";
 import Xarrow from "react-xarrows";
-import { TraceNodeMain, TraceNodeSmall } from "../../../helpers/TraceNode";
+import { TraceNodeMain, TraceNodeSmall } from "./CharacterTraceNode";
 
 // Recursively displays all trace nodes
 const ShowTraces = (props) => {
 
-    let { name, traces, id } = props;
+    let { id, traces } = props;
 
     return (
         <Box sx={{ display: "flex", alignItems: "center" }} >
             {
                 traces.name ?
-                    <TraceNodeMain id={id} name={name} traces={traces} />
+                    <TraceNodeMain id={id} character={props.character} traces={traces} />
                     :
-                    <TraceNodeSmall id={id} traces={traces} />
+                    <TraceNodeSmall id={id} character={props.character} traces={traces} />
             }
             <Box>
                 {
@@ -27,7 +27,7 @@ const ShowTraces = (props) => {
                         }
                         return (
                             <Box key={index} sx={{ my: "15px" }}>
-                                <ShowTraces name={name} traces={trace} id={nextID} />
+                                <ShowTraces character={props.character} traces={trace} id={nextID} />
                                 <Xarrow start={id} end={nextID} showHead={false} path="grid" color="lightgray" strokeWidth={3} />
                             </Box>
                         )
@@ -42,8 +42,6 @@ const ShowTraces = (props) => {
 const CharacterTraceDisplay = (props) => {
 
     const theme = useTheme();
-
-    let { name } = props.character;
 
     return (
         <Box
@@ -70,7 +68,7 @@ const CharacterTraceDisplay = (props) => {
                 props.character.traces?.map((trace, index) => {
                     return (
                         <Box key={index} sx={{ mx: "20px", mt: "25px" }}>
-                            <ShowTraces name={name} traces={trace} id={`${String.fromCharCode(index + 65)}-1`} />
+                            <ShowTraces character={props.character} traces={trace} id={`${String.fromCharCode(index + 65)}-1`} />
                             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "25px", marginBottom: "25px" }} />
                         </Box>
                     )

@@ -70,6 +70,13 @@ code {
     opacity: 1;
 }
 
+.material-image {
+    width: 48px;
+    background-color: rgb(20, 20, 20);
+    background-size: contain;
+    border-radius: 5px 5px 5px 0px;
+}
+
 .text-physical {
     color: #a8a8a8;
     font-weight: bold;

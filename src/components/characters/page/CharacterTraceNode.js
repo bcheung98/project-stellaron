@@ -2,13 +2,15 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import parse from "html-react-parser";
 import { Typography, Box, CardHeader, Avatar } from "@mui/material";
+import CharacterTraceLevelUpMaterials from "./CharacterTraceLevelUpMaterials";
 
 // Component for the main bonus abilities
 export const TraceNodeMain = (props) => {
 
     const theme = useTheme();
 
-    let { id, name, traces } = props;
+    let { name, rarity, materials } = props.character;
+    let { id, traces } = props;
 
     return (
         <Box
@@ -17,7 +19,6 @@ export const TraceNodeMain = (props) => {
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 pr: "15px",
-                py: "10px",
                 width: "30%",
                 mr: "80px",
             }}
@@ -53,6 +54,7 @@ export const TraceNodeMain = (props) => {
             <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "20px" }}>
                 {parse(traces.description)}
             </Typography>
+            <CharacterTraceLevelUpMaterials main rarity={rarity} materials={materials} unlock={traces.unlock} />
         </Box>
     )
 
@@ -63,6 +65,7 @@ export const TraceNodeSmall = (props) => {
 
     const theme = useTheme();
 
+    let { rarity, materials } = props.character;
     let { id, traces } = props;
 
     return (
@@ -79,12 +82,13 @@ export const TraceNodeSmall = (props) => {
                 sx={{
                     display: "flex",
                     alignItems: "center",
+                    mb: "-15px",
                 }}
                 avatar={
                     <Avatar alt={traces.type} src={(`${process.env.REACT_APP_URL}/stat_icons/${traces.type.split(" ").join("_")}.webp`)}
                         sx={{
-                            width: "36px",
-                            height: "36px",
+                            width: "48px",
+                            height: "48px",
                             border: `2px solid ${theme.border.color}`,
                         }}
                     >
@@ -102,6 +106,7 @@ export const TraceNodeSmall = (props) => {
                     </React.Fragment>
                 }
             />
+            <CharacterTraceLevelUpMaterials rarity={rarity} materials={materials} unlock={traces.unlock} />
         </Box>
     )
 
