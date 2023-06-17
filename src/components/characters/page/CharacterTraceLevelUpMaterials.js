@@ -2,7 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
-import { formatCommonMats, formatWeeklyBossMats } from "../../../helpers/TooltipText";
+import { formatCommonMats, formatCalyxMats, formatWeeklyBossMats } from "../../../helpers/TooltipText";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const CharacterTraceLevelUpMaterials = (props) => {
@@ -56,7 +56,7 @@ const CharacterTraceLevelUpMaterials = (props) => {
                 </Box>
                 {/* Calyx Material  */}
                 <Box sx={MaterialImageRoot}>
-                    <CustomTooltip title={calyxMat} arrow placement="top">
+                    <CustomTooltip title={formatCalyxMats(`${calyxMat}${materialArray[1][1] - 1}`)} arrow placement="top">
                         <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${calyxMat.split(" ").join("_")}${materialArray[1][1] - 1}.png`} style={{ backgroundImage: "url(" + Backgrounds[materialArray[1][1]] + ")" }} alt={calyxMat} className="material-image" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
@@ -112,7 +112,7 @@ const CharacterTraceLevelUpMaterials = (props) => {
                 {
                     materialArray[1][1] !== 0 &&
                     <Box sx={MaterialImageRoot}>
-                        <CustomTooltip title={calyxMat} arrow placement="top">
+                        <CustomTooltip title={formatCalyxMats(`${calyxMat}${materialArray[1][1] - 1}`)} arrow placement="top">
                             <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${calyxMat.split(" ").join("_")}${materialArray[1][1] - 1}.png`} style={{ backgroundImage: "url(" + Backgrounds[materialArray[1][1]] + ")" }} alt={calyxMat} className="material-image" onError={ErrorLoadingImage} />
                         </CustomTooltip>
                         <Box sx={MaterialTextContainer}>
@@ -124,7 +124,7 @@ const CharacterTraceLevelUpMaterials = (props) => {
                 }
                 {/* Common Material */}
                 <Box sx={MaterialImageRoot}>
-                    <CustomTooltip title={formatCommonMats(commonMat)} arrow placement="top">
+                    <CustomTooltip title={formatCommonMats(`${commonMat}${materialArray[2][1] - 1}`)} arrow placement="top">
                         <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}${materialArray[2][1] - 1}.png`} style={{ backgroundImage: "url(" + Backgrounds[materialArray[2][1]] + ")" }} alt={commonMat} className="material-image" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
