@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import parse from "html-react-parser";
 import { Typography, Box } from "@mui/material";
 import { CustomSlider } from "../../../helpers/CustomSlider";
+import CharacterSkillLevelUp from "./CharacterSkillLevelUp";
 
 const CharacterSkillTab = (props) => {
 
@@ -11,6 +12,9 @@ const CharacterSkillTab = (props) => {
     let key = props.skillKey;
     let skills = props.skills;
     let scaling = skills[key].scaling;
+
+    let maxValue;
+    if (key === "attack") { maxValue = 7 } else { maxValue = 12 }
 
     const [sliderValue, setSliderValue] = React.useState(1);
     const handleSliderChange = (event, newValue) => {
@@ -38,28 +42,17 @@ const CharacterSkillTab = (props) => {
                 {parse(skills[key].description)}
             </Typography>
             {
-                key === "ultimate" &&
-                <Typography variant="body1" sx={{ color: "#f29e38", mt: "15px", fontWeight: "450" }}>
-                    Energy Cost: {skills["ultimate"].energyCost}
-                </Typography>
-
-            }
-            <Box >
-                {
-                    key !== "technique" &&
+                key !== "technique" &&
+                <React.Fragment>
                     <Box sx={{ display: "inlineFlex", alignItems: "center", width: "30%", mt: "15px" }}>
                         <Typography variant="h6" sx={{ color: `${theme.text.color}`, mr: "35px", mt: "-8px" }}>
                             Lv. {sliderValue}
                         </Typography>
-                        {
-                            key === "attack" ?
-                                <CustomSlider value={sliderValue} step={1} min={1} max={7} onChange={handleSliderChange} element={props.element} />
-                                :
-                                <CustomSlider value={sliderValue} step={1} min={1} max={12} onChange={handleSliderChange} element={props.element} />
-                        }
+                        <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={props.element} />
                     </Box>
-                }
-            </Box>
+                    <CharacterSkillLevelUp skillKey={key} materials={props.materials} rarity={props.rarity} element={props.element} />
+                </React.Fragment>
+            }
         </React.Fragment>
     )
 

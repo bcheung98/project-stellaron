@@ -16,7 +16,7 @@ const CharacterSkillDisplay = (props) => {
         borderRadius: "56px",
     }
 
-    let { name, element, skills } = props.character;
+    let { name, element, rarity, skills } = props.character;
 
     const [tabValue, setTabValue] = React.useState(0);
     const handleTabChange = (event, newValue) => {
@@ -55,7 +55,7 @@ const CharacterSkillDisplay = (props) => {
             {
                 Object.keys(skills).map((key, index) => (
                     <TabPanel key={key} index={index} value={tabValue} >
-                        <CharacterSkillTab skillKey={key} skills={skills} element={element} />
+                        <CharacterSkillTab skillKey={key} skills={skills} rarity={rarity} element={element} materials={props.character.materials} />
                     </TabPanel>
                 ))
             }
