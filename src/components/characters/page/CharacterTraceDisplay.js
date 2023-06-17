@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { Typography, Box, AppBar } from "@mui/material";
 import Xarrow from "react-xarrows";
 import { TraceNodeMain, TraceNodeSmall } from "./CharacterTraceNode";
+import CharacterTraceLevelUpMaterials from "./CharacterTraceLevelUpMaterials";
 
 // Recursively displays all trace nodes
 const ShowTraces = (props) => {
@@ -74,6 +75,10 @@ const CharacterTraceDisplay = (props) => {
                     )
                 })
             }
+            <Typography sx={{ m: 2, color: `${theme.text.color}`, fontWeight: 550 }} variant="h6">
+                Total Cost to Unlock Bonus Abilities
+            </Typography>
+            <CharacterTraceLevelUpMaterials total rarity={props.character.rarity} materials={props.character.materials} />
         </Box>
     )
 
@@ -82,7 +87,7 @@ const CharacterTraceDisplay = (props) => {
 export default CharacterTraceDisplay;
 
 const incrementID = (id) => {
-    let splitID = id.split("-")
+    let splitID = id.split("-");
     splitID[1] = parseInt(splitID[1]) + 1;
     return splitID.join("-");
 }
