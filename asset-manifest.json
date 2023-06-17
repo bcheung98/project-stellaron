@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/project-stellaron/static/css/main.3f2cf867.css",
-    "main.js": "/project-stellaron/static/js/main.019aa9b1.js",
+    "main.css": "/project-stellaron/static/css/main.c625dc40.css",
+    "main.js": "/project-stellaron/static/js/main.fc321034.js",
     "index.html": "/project-stellaron/index.html",
-    "main.3f2cf867.css.map": "/project-stellaron/static/css/main.3f2cf867.css.map",
-    "main.019aa9b1.js.map": "/project-stellaron/static/js/main.019aa9b1.js.map"
+    "main.c625dc40.css.map": "/project-stellaron/static/css/main.c625dc40.css.map",
+    "main.fc321034.js.map": "/project-stellaron/static/js/main.fc321034.js.map"
   },
   "entrypoints": [
-    "static/css/main.3f2cf867.css",
-    "static/js/main.019aa9b1.js"
+    "static/css/main.c625dc40.css",
+    "static/js/main.fc321034.js"
   ]
 }
