@@ -42,10 +42,10 @@ export const TraceNodeMain = (props) => {
                 }
                 title={
                     <React.Fragment>
-                        <Typography variant="h6" sx={{ color: `${theme.text.color}`, fontWeight: "450" }}>
+                        <Typography variant="h6" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>
                             {traces.name}
                         </Typography>
-                        <Typography variant="subtitle1" sx={{ color: `${theme.text.color}`, fontWeight: "450" }}>
+                        <Typography variant="subtitle1" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>
                             <i>{traces.unlock}</i>
                         </Typography>
                     </React.Fragment>
@@ -97,10 +97,10 @@ export const TraceNodeSmall = (props) => {
                 }
                 title={
                     <React.Fragment>
-                        <Typography variant="body1" sx={{ color: `${theme.text.color}`, fontWeight: "450" }}>
+                        <Typography variant="body1" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>
                             {parse(traces.description)}
                         </Typography>
-                        <Typography variant="subtitle1" sx={{ color: `${theme.text.color}`, fontWeight: "450" }}>
+                        <Typography variant="subtitle1" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>
                             <i>{traces.unlock}</i>
                         </Typography>
                     </React.Fragment>

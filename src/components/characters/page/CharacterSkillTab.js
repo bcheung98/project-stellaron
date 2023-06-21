@@ -32,7 +32,7 @@ const CharacterSkillTab = (props) => {
 
     return (
         <React.Fragment>
-            <Typography variant="subtitle1" sx={{ color: `${theme.text.color}`, fontWeight: "450" }}>
+            <Typography variant="subtitle1" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>
                 <i>{FormatSkillKey(key)}</i>
             </Typography>
             <Typography variant="h4" sx={{ color: `${theme.text.color}` }}>

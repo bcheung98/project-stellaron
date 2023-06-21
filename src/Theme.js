@@ -1,6 +1,16 @@
 import { createTheme } from '@mui/material/styles';
 
 export const defaultTheme = createTheme({
+    components: {
+        MuiTypography: {
+            styleOverrides: {
+                root: {
+                    fontFamily: "DIN, Roboto, Segoe UI",
+                    fontWeight: "bold"
+                }
+            }
+        }
+    },
     appbar: {
         backgroundColor: "rgb(15, 15, 15)",
     },

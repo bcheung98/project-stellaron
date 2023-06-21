@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Table, TableBody, TableContainer, TableHead, Paper } from "@mui/material";
+import { Table, TableBody, TableContainer, TableHead, Paper, Typography } from "@mui/material";
 import { StyledTableCell, StyledTableRows } from "../../../helpers/CustomTable";
 
 const CharacterStatsTable = (props) => {
@@ -25,23 +25,71 @@ const CharacterStatsTable = (props) => {
             <Table sx={{ backgroundColor: `${theme.table.body.backgroundColor}` }}>
                 <TableHead>
                     <StyledTableRows>
-                        <StyledTableCell>Level</StyledTableCell>
-                        <StyledTableCell>HP</StyledTableCell>
-                        <StyledTableCell>ATK</StyledTableCell>
-                        <StyledTableCell>DEF</StyledTableCell>
-                        <StyledTableCell>SPD</StyledTableCell>
-                        <StyledTableCell>Taunt</StyledTableCell>
+                        <StyledTableCell>
+                            <Typography>
+                                Level
+                            </Typography>
+                        </StyledTableCell>
+                        <StyledTableCell>
+                            <Typography>
+                                HP
+                            </Typography>
+                        </StyledTableCell>
+                        <StyledTableCell>
+                            <Typography>
+                                ATK
+                            </Typography>
+                        </StyledTableCell>
+                        <StyledTableCell>
+                            <Typography>
+                                DEF
+                            </Typography>
+                        </StyledTableCell>
+                        <StyledTableCell>
+                            <Typography>
+                                SPD
+                            </Typography>
+                        </StyledTableCell>
+                        <StyledTableCell>
+                            <Typography>
+                                Taunt
+                            </Typography>
+                        </StyledTableCell>
                     </StyledTableRows>
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
                         <StyledTableRows key={row.level}>
-                            <StyledTableCell>{row.level}</StyledTableCell>
-                            <StyledTableCell>{Number(row.hp).toLocaleString()}</StyledTableCell>
-                            <StyledTableCell>{row.atk}</StyledTableCell>
-                            <StyledTableCell>{row.def}</StyledTableCell>
-                            <StyledTableCell>{row.spd}</StyledTableCell>
-                            <StyledTableCell>{row.taunt}</StyledTableCell>
+                            <StyledTableCell>
+                                <Typography variant="body2">
+                                    {row.level}
+                                </Typography>
+                            </StyledTableCell>
+                            <StyledTableCell>
+                                <Typography variant="body2">
+                                    {Number(row.hp).toLocaleString()}
+                                </Typography>
+                            </StyledTableCell>
+                            <StyledTableCell>
+                                <Typography variant="body2">
+                                    {row.atk}
+                                </Typography>
+                            </StyledTableCell>
+                            <StyledTableCell>
+                                <Typography variant="body2">
+                                    {row.def}
+                                </Typography>
+                            </StyledTableCell>
+                            <StyledTableCell>
+                                <Typography variant="body2">
+                                    {row.spd}
+                                </Typography>
+                            </StyledTableCell>
+                            <StyledTableCell>
+                                <Typography variant="body2">
+                                    {row.taunt}
+                                </Typography>
+                            </StyledTableCell>
                         </StyledTableRows>
                     ))}
                 </TableBody>

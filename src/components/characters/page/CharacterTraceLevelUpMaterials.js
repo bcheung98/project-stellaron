@@ -39,12 +39,12 @@ const CharacterTraceLevelUpMaterials = (props) => {
 
     const MaterialTextContainer = {
         textAlign: "center",
-        mt: "-3.5px",
+        mt: "-5px",
     }
 
     const MaterialText = {
         color: "rgb(208, 208, 208)",
-        fontWeight: "450",
+        fontWeight: "bold",
     }
 
 

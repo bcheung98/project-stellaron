@@ -2,7 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
-import { formatCommonMats, formatCalyxMats, formatWeeklyBossMats } from "../../../helpers/TooltipText";
+import { formatCommonMats } from "../../../helpers/TooltipText";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const CharacterAscensionMaterials = (props) => {
@@ -30,12 +30,12 @@ const CharacterAscensionMaterials = (props) => {
 
     const MaterialTextContainer = {
         textAlign: "center",
-        mt: "-3.5px",
+        mt: "-5px",
     }
 
     const MaterialText = {
         color: "rgb(208, 208, 208)",
-        fontWeight: "450",
+        fontWeight: "bold",
     }
 
     let materialArray = AscensionMaterials[rarity.toString()];

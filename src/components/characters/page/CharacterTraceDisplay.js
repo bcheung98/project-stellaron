@@ -75,7 +75,7 @@ const CharacterTraceDisplay = (props) => {
                     )
                 })
             }
-            <Typography sx={{ m: 2, color: `${theme.text.color}`, fontWeight: 550 }} variant="h6">
+            <Typography sx={{ m: 2, color: `${theme.text.color}`, fontWeight: "bolder" }} variant="h6">
                 Total Cost to Unlock Bonus Abilities
             </Typography>
             <CharacterTraceLevelUpMaterials total rarity={props.character.rarity} materials={props.character.materials} />

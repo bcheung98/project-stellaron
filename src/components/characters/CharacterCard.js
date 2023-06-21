@@ -62,7 +62,7 @@ const CharacterCard = (props) => {
                                 }}
                             >
                                 <ButtonBase disableRipple href={`/project-stellaron/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                    <Typography sx={{ color: `${theme.text.color}`, fontWeight: "450" }} variant="h5">
+                                    <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="h5">
                                         {props.character.displayName ? props.character.displayName : name}
                                     </Typography>
                                 </ButtonBase>
