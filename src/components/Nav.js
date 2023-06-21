@@ -18,7 +18,7 @@ const Nav = () => {
                     <ButtonBase disableRipple href={`/project-stellaron/`}>
                         <CardHeader
                             avatar={
-                                null
+                                <Avatar src={(`${process.env.REACT_APP_URL}/images/Aeon_Lan.png`)} alt="PROJECT STELLARON" sx={{ height: "85px", width: "85px" }} />
                             }
                             title={
                                 <Typography variant="h6" noWrap
@@ -39,7 +39,7 @@ const Nav = () => {
                         <ButtonBase disableRipple href={`/project-stellaron/characters`}>
                             <CardHeader
                                 avatar={
-                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/char.webp`)} alt="PROJECT IRMINSUL" sx={{ height: "32px", width: "32px" }} />
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/char.webp`)} alt="Characters" sx={{ height: "32px", width: "32px" }} />
                                 }
                                 title={
                                     <Typography variant="body1" noWrap
@@ -57,7 +57,7 @@ const Nav = () => {
                         <ButtonBase disableRipple href={`/project-stellaron/lightcones`}>
                             <CardHeader
                                 avatar={
-                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/lightcone.webp`)} alt="PROJECT IRMINSUL" sx={{ height: "32px", width: "32px" }} />
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/lightcone.webp`)} alt="Lightcones" sx={{ height: "32px", width: "32px" }} />
                                 }
                                 title={
                                     <Typography variant="body1" noWrap
