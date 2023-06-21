@@ -13,6 +13,7 @@ import Home from "./components/Home";
 import Nav from "./components/Nav";
 import CharacterBrowser from "./components/characters/CharacterBrowser";
 import CharacterPage from "./components/characters/page/_CharacterPage";
+import LightconeBrowser from "./components/lightcones/LightconeBrowser";
 import { AppBar, Typography, Box, IconButton, Fade, useScrollTrigger, Fab } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -34,6 +35,7 @@ const App = (props) => {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/characters" component={CharacterBrowser} />
                     <Route path="/character/:char_name" children={<CharacterPage />} />
+                    <Route exact path="/lightcones" component={LightconeBrowser} />
                 </Switch>
                 <AppBar position="static" sx={{
                     mt: 10,
