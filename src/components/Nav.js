@@ -13,12 +13,9 @@ const Nav = () => {
                 borderBottom: `1px solid ${theme.border.color}`
             }}
         >
-            <Container maxWidth="xl" sx={{ margin: 0 }}>
+            <Container maxWidth="xl" sx={{ m: 0 }}>
                 <Toolbar disableGutters>
-                    <ButtonBase
-                        disableRipple
-                        href={`/project-stellaron/`}
-                    >
+                    <ButtonBase disableRipple href={`/project-stellaron/`}>
                         <CardHeader
                             avatar={
                                 null
@@ -29,7 +26,7 @@ const Nav = () => {
                                         mr: 2,
                                         display: { xs: "none", md: "flex" },
                                         letterSpacing: ".3rem",
-                                        color: "white",
+                                        color: `${theme.text.color}`,
                                         textDecoration: "none",
                                     }}
                                 >
@@ -38,6 +35,44 @@ const Nav = () => {
                             }
                         />
                     </ButtonBase>
+                    <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+                        <ButtonBase disableRipple href={`/project-stellaron/characters`}>
+                            <CardHeader
+                                avatar={
+                                    null
+                                }
+                                title={
+                                    <Typography variant="body1" noWrap
+                                        sx={{
+                                            letterSpacing: ".1rem",
+                                            color: `${theme.text.color}`,
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        CHARACTERS
+                                    </Typography>
+                                }
+                            />
+                        </ButtonBase>
+                        <ButtonBase disableRipple href={`/project-stellaron/lightcones`}>
+                            <CardHeader
+                                avatar={
+                                    null
+                                }
+                                title={
+                                    <Typography variant="body1" noWrap
+                                        sx={{
+                                            letterSpacing: ".1rem",
+                                            color: `${theme.text.color}`,
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        LIGHTCONES
+                                    </Typography>
+                                }
+                            />
+                        </ButtonBase>
+                    </Box>
                 </Toolbar>
             </Container>
         </AppBar>

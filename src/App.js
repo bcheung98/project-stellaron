@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { ThemeProvider } from '@mui/material/styles';
 import { defaultTheme as theme } from "./Theme";
 import { fetchCharacters } from "./redux/actions/fetchCharacters";
+import Home from "./components/Home";
 import Nav from "./components/Nav";
 import CharacterBrowser from "./components/characters/CharacterBrowser";
 import CharacterPage from "./components/characters/page/_CharacterPage";
@@ -30,7 +31,8 @@ const App = (props) => {
                 <Box id="back-to-top-anchor" />
                 <Nav />
                 <Switch>
-                    <Route exact path="/" component={CharacterBrowser} />
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/characters" component={CharacterBrowser} />
                     <Route path="/character/:char_name" children={<CharacterPage />} />
                 </Switch>
                 <AppBar position="static" sx={{
