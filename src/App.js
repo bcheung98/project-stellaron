@@ -12,7 +12,8 @@ import { fetchCharacters } from "./redux/actions/fetchCharacters";
 import Nav from "./components/Nav";
 import CharacterBrowser from "./components/characters/CharacterBrowser";
 import CharacterPage from "./components/characters/page/_CharacterPage";
-import { AppBar, Typography, Box, IconButton } from "@mui/material";
+import { AppBar, Typography, Box, IconButton, Fade, useScrollTrigger, Fab } from "@mui/material";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 const App = (props) => {
@@ -47,9 +48,40 @@ const App = (props) => {
                         </IconButton>
                     </Box>
                 </AppBar>
+                <ScrollTop {...props}>
+                    <Fab size="medium" disableRipple color="primary">
+                        <KeyboardArrowUpIcon sx={{ color: `${theme.text.color}` }} />
+                    </Fab>
+                </ScrollTop>
             </Router >
         </ThemeProvider>
 
+    );
+}
+
+function ScrollTop(props) {
+    const { children } = props;
+    const trigger = useScrollTrigger({ threshold: 600 });
+    const handleClick = (event) => {
+        const anchor = (event.target.ownerDocument || document).querySelector(
+            "#back-to-top-anchor",
+        );
+        if (anchor) {
+            anchor.scrollIntoView({
+                block: "center",
+            });
+        }
+    };
+
+    return (
+        <Fade in={trigger}>
+            <Box
+                onClick={handleClick}
+                sx={{ position: "fixed", bottom: 96, right: 16 }}
+            >
+                {children}
+            </Box>
+        </Fade>
     );
 }
 
