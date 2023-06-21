@@ -44,7 +44,7 @@ const CharacterSkillLevelUp = (props) => {
             <AccordionDetails>
                 <CharacterSkillLevelUpMaterials skillKey={key} materials={props.materials} rarity={props.rarity} values={sliderValue} />
                 <Box sx={{ display: "inlineFlex", alignItems: "center", width: "20%", mt: "15px", ml: "30px" }}>
-                    <Typography variant="body1" sx={{ color: `${theme.text.color}`, mr: "35px", mt: "-8px", fontWeight: "450" }}>
+                    <Typography variant="body1" sx={{ color: `${theme.text.color}`, width: "100px", mr: "35px", mt: "-8px", fontWeight: "450" }}>
                         Lv. {sliderValue[0]} → Lv. {sliderValue[1]}
                     </Typography>
                     <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={props.element} disableSwap />
