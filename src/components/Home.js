@@ -26,7 +26,7 @@ const Home = () => {
                 >
                     <Typography variant="h3" component="p">Welcome to PROJECT STELLARON</Typography>
                 </Box>
-                <img src={(`${process.env.REACT_APP_URL}/Second_Closed_Beta_Wallpaper.webp`)} alt=""
+                <img src={(`${process.env.REACT_APP_URL}/images/Second_Closed_Beta_Wallpaper.webp`)} alt=""
                     style={{
                         border: `1px solid ${theme.border.color}`,
                         borderRadius: "5px",
