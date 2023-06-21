@@ -11,6 +11,7 @@ import CharacterSkillDisplay from "./CharacterSkillDisplay";
 import CharacterTraceDisplay from "./CharacterTraceDisplay";
 import CharacterEidolonDisplay from "./CharacterEidolonDisplay";
 import CharacterStatsTable from "./CharacterStatsTable";
+import CharacterAscension from "./CharacterAscension";
 import MaterialGrid from "../../../helpers/MaterialGrid";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
@@ -140,11 +141,14 @@ const CharacterPage = (props) => {
                             >
                                 <StyledTabs value={tabValue} onChange={handleTabChange}>
                                     <StyledTab label="Stats" />
+                                    <StyledTab label="Ascension" />
                                 </StyledTabs>
                             </AppBar>
-
                             <TabPanel value={tabValue} index={0}>
                                 <CharacterStatsTable character={character} />
+                            </TabPanel>
+                            <TabPanel value={tabValue} index={1}>
+                                <CharacterAscension character={character} />
                             </TabPanel>
                         </Box>
                     </Grid>
