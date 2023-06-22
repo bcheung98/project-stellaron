@@ -18,7 +18,7 @@ const Nav = () => {
                     <ButtonBase disableRipple href={`/project-stellaron/`}>
                         <CardHeader
                             avatar={
-                                <Avatar src={(`${process.env.REACT_APP_URL}/images/Aeon_Lan.png`)} alt="PROJECT STELLARON" sx={{ height: "85px", width: "85px" }} />
+                                null
                             }
                             title={
                                 <Typography variant="h6" noWrap
