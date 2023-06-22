@@ -29,38 +29,44 @@ const LightconeCard = (props) => {
                     borderRadius: "5px",
                 }}
             >
-                <ButtonBase disableRipple>
-                    <CardHeader
-                        avatar={
-                            <CustomTooltip title={path} arrow placement="top">
-                                <Avatar src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path}
-                                    sx={{
-                                        width: "30px",
-                                        height: "30px",
-                                        backgroundColor: `${theme.card.backgroundColor}`,
-                                        border: `1px solid ${theme.border.color}`,
-                                        borderRadius: "15px",
-                                    }}
-                                >
-                                    <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "30px" }} />
-                                </Avatar>
-                            </CustomTooltip>
-                        }
-                        title={
-                            <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold", textAlign: "left" }} variant="h6">
-                                {name}
-                            </Typography>
-                        }
-                        sx={{ height: "50px" }}
-                    />
-                </ButtonBase>
-                <CardMedia
-                    component="img"
-                    image={`${process.env.REACT_APP_URL}/lightcones/artwork/${name}.webp`}
-                    alt={name}
-                    sx={{ height: "215px", objectPosition: "100% 15%" }}
-                    onError={ErrorLoadingImage}
-                />
+                <Box>
+                    <ButtonBase disableRipple href={`/project-stellaron/lightcone/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <CardHeader
+                            avatar={
+                                <CustomTooltip title={path} arrow placement="top">
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path}
+                                        sx={{
+                                            width: "30px",
+                                            height: "30px",
+                                            backgroundColor: `${theme.card.backgroundColor}`,
+                                            border: `1px solid ${theme.border.color}`,
+                                            borderRadius: "15px",
+                                        }}
+                                    >
+                                        <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "30px" }} />
+                                    </Avatar>
+                                </CustomTooltip>
+                            }
+                            title={
+                                <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold", textAlign: "left" }} variant="h6">
+                                    {name}
+                                </Typography>
+                            }
+                            sx={{ height: "50px" }}
+                        />
+                    </ButtonBase>
+                </Box>
+                <Box>
+                    <ButtonBase disableRipple href={`/project-stellaron/lightcone/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <CardMedia
+                            component="img"
+                            image={`${process.env.REACT_APP_URL}/lightcones/artwork/${name}.webp`}
+                            alt={name}
+                            sx={{ height: "210px", width: "370px", objectFit: "cover", objectPosition: "100% 15%" }}
+                            onError={ErrorLoadingImage}
+                        />
+                    </ButtonBase>
+                </Box>
                 <CardContent>
                     <Box sx={{ display: "flex", mt: "-12px" }}>
                         <Typography sx={{ color: "rgb(255, 208, 112)", fontWeight: "bolder" }} variant="h5">
