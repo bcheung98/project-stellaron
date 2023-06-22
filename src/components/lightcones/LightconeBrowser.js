@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Box, Typography, Paper, InputBase } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import LightconeFilters from "./filters/_LightconeFilters";
 
 const LightconeBrowser = (props) => {
 
@@ -66,6 +67,7 @@ const LightconeBrowser = (props) => {
                             onChange={handleInputChange}
                         />
                     </Paper>
+                    <LightconeFilters />
                 </Grid>
             </Grid>
         </React.Fragment>
