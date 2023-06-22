@@ -52,7 +52,8 @@ code {
 
 .filter-text-off,
 .filter-text-on {
-    font-family: Roboto, sans-serif;
+    font-family: "DIN", "Roboto", "Segoe UI";
+    font-weight: bold;
     margin: 0;
 }
 
@@ -103,7 +104,6 @@ code {
     background-size: contain;
     border-radius: 5px 5px 0px 0px;
 }
-
 
 .text-physical {
     color: #a8a8a8;
