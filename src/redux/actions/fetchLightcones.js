@@ -4,7 +4,7 @@ export const fetchLightcones = () => {
         dispatch({ type: "START_GETTING_LC_REQUEST" });
         fetch(url)
             .then(res => res.json())
-            .then(lightcones => dispatch({ type: "GET_LIGHTCONES", lightcones }))
+            .then(lightcones => dispatch({ type: "GET_LC", lightcones }))
             .catch((error) => {
                 console.error(error);
             });

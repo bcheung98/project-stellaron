@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import { ThemeProvider } from '@mui/material/styles';
 import { defaultTheme as theme } from "./Theme";
 import { fetchCharacters } from "./redux/actions/fetchCharacters";
+import { fetchLightcones } from "./redux/actions/fetchLightcones";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
 import CharacterBrowser from "./components/characters/CharacterBrowser";
@@ -22,9 +23,10 @@ const App = (props) => {
 
     useEffect(() => {
         fetchCharacters();
+        fetchLightcones();
     }, [])
 
-    let { fetchCharacters } = props;
+    let { fetchCharacters, fetchLightcones } = props;
 
     return (
         <ThemeProvider theme={theme}>
@@ -92,12 +94,14 @@ function ScrollTop(props) {
 const mapStateToProps = (state) => {
     return {
         characters: state.characters,
+        lightcones: state.lightcones,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchCharacters: () => dispatch(fetchCharacters()),
+        fetchLightcones: () => dispatch(fetchLightcones()),
     }
 }
 

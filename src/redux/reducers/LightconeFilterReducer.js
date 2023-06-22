@@ -16,7 +16,6 @@ const LightconeFilterReducer = (state = initialState, action) => {
         }
         targetButton.className === "filter-off" ? targetButton.className = "filter-on" : targetButton.className = "filter-off";
     }
-    console.log(type)
     switch (type) {
         case "SET_LC_PATH_FILTERS":
             let tempPath = [...state.lc_path];

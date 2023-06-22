@@ -3,7 +3,7 @@ const initialState = {
     requesting: false
 }
 
-const CharacterReducer = (state = initialState, action) => {
+const LightconeReducer = (state = initialState, action) => {
     switch (action.type) {
         case "START_GETTING_LC_REQUEST":
             return {
@@ -22,4 +22,4 @@ const CharacterReducer = (state = initialState, action) => {
     }
 }
 
-export default CharacterReducer;
+export default LightconeReducer;

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Box, Typography, Paper, InputBase } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import LightconeFilters from "./filters/_LightconeFilters";
+import { filterLightcones } from "../../helpers/FilterLightcones";
 
 const LightconeBrowser = (props) => {
 
@@ -14,6 +15,8 @@ const LightconeBrowser = (props) => {
     const handleInputChange = (e) => {
         setSearchValue(e.target.value);
     }
+
+    let { lightcones, lightconeFilters } = props;
 
     return (
         <React.Fragment>
@@ -40,8 +43,15 @@ const LightconeBrowser = (props) => {
             </Box>
             <Grid container sx={{ margin: "auto", width: "98%" }}>
                 <Grid xs={9}>
-                    <>
-                    </>
+                    <Grid container>
+                        {lightcones.lightcones.length > 0 &&
+                            <React.Fragment>
+                                {
+                                    filterLightcones(lightcones.lightcones, lightconeFilters, searchValue).map(lc => <></>)
+                                }
+                            </React.Fragment>
+                        }
+                    </Grid>
                 </Grid>
                 <Grid xs={3}>
                     <Paper
