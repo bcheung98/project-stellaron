@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Box, Typography, Paper, InputBase } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import LightconeCard from "./LightconeCard";
 import LightconeFilters from "./filters/_LightconeFilters";
 import { filterLightcones } from "../../helpers/FilterLightcones";
 
@@ -47,7 +48,7 @@ const LightconeBrowser = (props) => {
                         {lightcones.lightcones.length > 0 &&
                             <React.Fragment>
                                 {
-                                    filterLightcones(lightcones.lightcones, lightconeFilters, searchValue).map(lc => <></>)
+                                    filterLightcones(lightcones.lightcones, lightconeFilters, searchValue).map(lightcone => <LightconeCard key={lightcone.id} lightcone={lightcone} />)
                                 }
                             </React.Fragment>
                         }
