@@ -48,7 +48,7 @@ const LightconeBrowser = (props) => {
                         {lightcones.lightcones.length > 0 &&
                             <React.Fragment>
                                 {
-                                    filterLightcones(lightcones.lightcones, lightconeFilters, searchValue).map(lightcone => <LightconeCard key={lightcone.id} lightcone={lightcone} />)
+                                    filterLightcones(lightcones.lightcones, lightconeFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(lightcone => <LightconeCard key={lightcone.id} lightcone={lightcone} />)
                                 }
                             </React.Fragment>
                         }
