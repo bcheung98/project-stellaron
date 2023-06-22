@@ -74,6 +74,8 @@ const CharacterBrowser = (props) => {
                                 marginLeft: "10px",
                                 flex: 1,
                                 color: `${theme.text.color}`,
+                                fontFamily: "DIN, Roboto, Segoe UI",
+                                fontWeight: "bold",
                             }}
                             placeholder="Search"
                             onChange={handleInputChange}
