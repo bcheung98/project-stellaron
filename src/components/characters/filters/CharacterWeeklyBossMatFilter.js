@@ -5,7 +5,7 @@ import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const WeeklyBossMats = ["Destroyer's Final Road", "Guardian's Lament"];
 
-const CharacterWeeklyBostMatFilter = (props) => {
+const CharacterWeeklyBossMatFilter = (props) => {
 
     return (
         <React.Fragment>
@@ -27,4 +27,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(CharacterWeeklyBostMatFilter);
+export default connect(null, mapDispatchToProps)(CharacterWeeklyBossMatFilter);

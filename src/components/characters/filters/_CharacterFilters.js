@@ -7,7 +7,7 @@ import CharacterElementFilter from "./CharacterElementFilter";
 import CharacterPathFilter from "./CharacterPathFilter";
 import CharacterRarityFilter from "./CharacterRarityFilter";
 import CharacterCommonMatFilter from "./CharacterCommonMatFilter";
-import CharacterWeeklyBostMatFilter from "./CharacterWeeklyBostMatFilter";
+import CharacterWeeklyBossMatFilter from "./CharacterWeeklyBossMatFilter";
 
 const CharacterFilters = () => {
 
@@ -84,7 +84,7 @@ const CharacterFilters = () => {
                         <Typography variant="body1" className="filter-text-off" id="weeklyboss-filter-text" sx={{ color: `${theme.text.color}` }}>Weekly Boss</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <CharacterWeeklyBostMatFilter />
+                        <CharacterWeeklyBossMatFilter />
                     </AccordionDetails>
                 </Accordion>
 
