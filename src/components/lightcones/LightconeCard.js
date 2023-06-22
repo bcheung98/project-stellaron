@@ -47,7 +47,7 @@ const LightconeCard = (props) => {
                             </CustomTooltip>
                         }
                         title={
-                            <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="h5">
+                            <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold", fontSize: "1vw", width: "310px", textAlign: "left" }} variant="h6">
                                 {name}
                             </Typography>
                         }
