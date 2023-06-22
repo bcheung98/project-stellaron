@@ -21,7 +21,7 @@ const LightconeCard = (props) => {
             <Card variant="outlined"
                 sx={{
                     width: "370px",
-                    height: "340px",
+                    height: "370px",
                     mx: "auto",
                     my: "10px",
                     backgroundColor: `${theme.card.backgroundColor}`,
@@ -62,7 +62,7 @@ const LightconeCard = (props) => {
                             component="img"
                             image={`${process.env.REACT_APP_URL}/lightcones/artwork/${name}.webp`}
                             alt={name}
-                            sx={{ height: "210px", width: "370px", objectFit: "cover", objectPosition: "100% 15%" }}
+                            sx={{ height: "250px", width: "370px", objectFit: "cover", objectPosition: "100% 15%" }}
                             onError={ErrorLoadingImage}
                         />
                     </ButtonBase>
