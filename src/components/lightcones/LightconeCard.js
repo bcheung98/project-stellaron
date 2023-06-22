@@ -20,8 +20,8 @@ const LightconeCard = (props) => {
         <React.Fragment>
             <Card variant="outlined"
                 sx={{
-                    width: "365px",
-                    height: "215px",
+                    width: "370px",
+                    height: "340px",
                     mx: "auto",
                     my: "10px",
                     backgroundColor: `${theme.card.backgroundColor}`,
@@ -47,17 +47,18 @@ const LightconeCard = (props) => {
                             </CustomTooltip>
                         }
                         title={
-                            <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold", fontSize: "1vw", width: "310px", textAlign: "left" }} variant="h6">
+                            <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold", textAlign: "left" }} variant="h6">
                                 {name}
                             </Typography>
                         }
+                        sx={{ height: "50px" }}
                     />
                 </ButtonBase>
                 <CardMedia
                     component="img"
                     image={`${process.env.REACT_APP_URL}/lightcones/artwork/${name}.webp`}
                     alt={name}
-                    sx={{ height: "110px", objectFit: "cover", objectPosition: "100% 40%" }}
+                    sx={{ height: "215px", objectPosition: "100% 15%" }}
                     onError={ErrorLoadingImage}
                 />
                 <CardContent>
