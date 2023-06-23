@@ -9,7 +9,7 @@ const CharacterStatsTable = (props) => {
 
     let { stats } = props.character;
 
-    const levels = ["1", "20", "20+", "40", "40+", "50", "50+", "60", "60+", "70", "70+", "80"];
+    const levels = ["1", "20", "20+", "30", "30+", "40", "40+", "50", "50+", "60", "60+", "70", "70+", "80"];
     const rows = levels.map((level, index) => createCharacterStats(level, stats.hp[index], stats.atk[index], stats.def[index], stats.speed[index], stats.taunt[index]));
 
     return (
