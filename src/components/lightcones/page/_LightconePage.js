@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import parse from "html-react-parser";
 import { Typography, Box, Avatar, CardHeader } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import { CustomSlider } from "../../../helpers/CustomSlider";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const LightconePage = (props) => {
@@ -14,10 +15,27 @@ const LightconePage = (props) => {
     let { lc_name } = useParams();
     let { lightcones } = props;
     let lightcone = lightcones.lightcones.find(lc => lc.name.split(" ").join("_").toLowerCase() === lc_name);
-    console.log(props)
+
+    let maxValue = 5;
+    const [sliderValue, setSliderValue] = React.useState(1);
+    const handleSliderChange = (event, newValue) => {
+        setSliderValue(newValue);
+    };
+
+    let scaling;
+    if (lightcone !== undefined) {
+        scaling = lightcone.passive.scaling;
+    }
+    let targets = document.getElementsByClassName("text-value");
+    if (scaling !== undefined) {
+        scaling.forEach((subScaling, index) => {
+            let target = targets[index];
+            if (target !== undefined) { target.innerHTML = subScaling[sliderValue - 1]; }
+        })
+    }
 
     if (lightcone !== undefined) {
-        let { name, path, rarity, description } = lightcone;
+        let { name, path, rarity, passive, description } = lightcone;
         return (
             <React.Fragment>
                 <Grid container sx={{ mb: "20px" }}>
@@ -84,6 +102,32 @@ const LightconePage = (props) => {
                                         {[...Array(rarity).keys()].map(() => "✦")}
                                     </Typography>
                                 </Box>
+                            </Box>
+                        </Box>
+                        <Box
+                            sx={{
+                                p: "15px",
+                                mx: "15px",
+                                marginTop: "15px",
+                                border: `1px solid ${theme.border.color}`,
+                                borderRadius: "5px",
+                                backgroundColor: `${theme.paper.backgroundColor}`,
+                            }}
+                        >
+                            <Typography sx={{ color: `${theme.text.color}` }} variant="body2">
+                                <i>The following effects only work on characters of the Path of The {path}.</i>
+                            </Typography>
+                            <Typography sx={{ color: `${theme.text.color}`, mt: "20px" }} variant="h5">
+                                {passive.name}
+                            </Typography>
+                            <Typography sx={{ color: `${theme.text.color}`, mt: "10px" }} variant="body1">
+                                {parse(passive.effect)}
+                            </Typography>
+                            <Box sx={{ display: "inlineFlex", alignItems: "center", width: "20%", mt: "15px" }}>
+                                <Typography variant="h6" sx={{ color: `${theme.text.color}`, mr: "25px", mt: "-8px" }}>
+                                    S{sliderValue}
+                                </Typography>
+                                <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} />
                             </Box>
                         </Box>
                     </Grid>
