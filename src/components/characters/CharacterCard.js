@@ -17,7 +17,7 @@ const CharacterCard = (props) => {
         height: "32px",
         backgroundColor: `${theme.materialImage.backgroundColor}`,
         border: `1px solid ${theme.border.color}`,
-        borderRadius: "15px",
+        borderRadius: "32px",
         marginBottom: "10px",
     };
 
@@ -39,8 +39,8 @@ const CharacterCard = (props) => {
                         sx={{
                             display: "grid",
                             position: "absolute",
-                            top: "7px",
-                            left: "5px",
+                            top: "10px",
+                            left: "10px",
                         }}
                     >
                         <CustomTooltip title={element} arrow placement="top">
