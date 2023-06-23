@@ -89,7 +89,7 @@ const LightconePage = (props) => {
                         >
                             <Box sx={{ display: "flex" }}>
                                 <Box sx={{ ml: "10px", mt: "5px" }}>
-                                    <Typography sx={{ mb: "-15px", color: `${theme.text.color}`, fontWeight: "bolder" }} variant="h4">
+                                    <Typography sx={{ mb: "-10px", color: `${theme.text.color}`, fontWeight: "bolder" }} variant="h4">
                                         {name}
                                     </Typography>
                                     <CardHeader
@@ -103,7 +103,7 @@ const LightconePage = (props) => {
                                                 The {path}
                                             </Typography>
                                         }
-                                        sx={{ ml: "-15px" }}
+                                        sx={{ ml: "-20px" }}
                                     />
                                     <Typography sx={{ mt: "-15px", color: "rgb(255, 208, 112)", fontWeight: "bolder" }} variant="h4">
                                         {[...Array(rarity).keys()].map(() => "✦")}
