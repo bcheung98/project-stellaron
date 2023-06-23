@@ -41,7 +41,7 @@ const CharacterFilters = () => {
                 {/* ELEMENT */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ color: `${theme.text.color}` }}>Element</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ color: `${theme.text.color}` }}>Combat Type</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <CharacterElementFilter />
