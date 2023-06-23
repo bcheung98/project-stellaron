@@ -8,6 +8,7 @@ import { TabPanel, StyledTabs, StyledTab } from "../../../helpers/CustomTabs";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomSlider } from "../../../helpers/CustomSlider";
 import LightconeStatsTable from "./LightconeStatsTable";
+import LightconeAscension from "./LightconeAscension";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const LightconePage = (props) => {
@@ -156,10 +157,14 @@ const LightconePage = (props) => {
                             >
                                 <StyledTabs value={tabValue} onChange={handleTabChange}>
                                     <StyledTab label="Stats" />
+                                    <StyledTab label="Ascension" />
                                 </StyledTabs>
                             </AppBar>
                             <TabPanel value={tabValue} index={0}>
                                 <LightconeStatsTable lightcone={lightcone} />
+                            </TabPanel>
+                            <TabPanel value={tabValue} index={1}>
+                                <LightconeAscension lightcone={lightcone} />
                             </TabPanel>
                         </Box>
                     </Grid>
