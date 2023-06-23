@@ -103,7 +103,7 @@ const CharacterPage = (props) => {
                                     <CardHeader
                                         avatar={
                                             <Avatar src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={`${path}`} sx={{ height: "36px", width: "36px" }}>
-                                                <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "36px" }} />
+                                                <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "36px" }} />
                                             </Avatar>
                                         }
                                         title={

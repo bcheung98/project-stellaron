@@ -37,7 +37,7 @@ export const TraceNodeMain = (props) => {
                             border: `2px solid ${theme.border.color}`,
                         }}
                     >
-                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "56px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                        <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "56px", backgroundColor: `${theme.paper.backgroundColor}` }} />
                     </Avatar>
                 }
                 title={
@@ -92,7 +92,7 @@ export const TraceNodeSmall = (props) => {
                             border: `2px solid ${theme.border.color}`,
                         }}
                     >
-                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                        <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
                     </Avatar>
                 }
                 title={

@@ -47,7 +47,7 @@ const CharacterEidolonDisplay = (props) => {
                                             height: "96px",
                                         }}
                                     >
-                                        <img src={`${process.env.REACT_APP_URL}/Unknown.png`} alt="Unknown" style={{ width: "96px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                                        <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "96px", backgroundColor: `${theme.paper.backgroundColor}` }} />
                                     </Avatar>
                                 }
                                 title={
