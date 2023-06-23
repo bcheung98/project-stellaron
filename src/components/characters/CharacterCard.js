@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Typography, Card, CardContent, ButtonBase, Box } from "@mui/material";
+import { Typography, Card, CardMedia, CardContent, ButtonBase, Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import MaterialGrid from "../../helpers/MaterialGrid";
@@ -12,79 +12,100 @@ const CharacterCard = (props) => {
 
     let { name, rarity, element, path } = props.character;
 
-    const characterIcon = {
-        width: "115px",
-        height: "180px",
-        objectFit: "cover",
-        marginLeft: "-18px",
-        marginTop: "-15px",
-        backgroundColor: "rgb(32, 32, 32)",
-        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.webp)`,
-        backgroundSize: "contain",
-    }
-
     const smallIcon = {
-        width: "30px",
-        height: "30px",
+        width: "32px",
+        height: "32px",
         backgroundColor: `${theme.materialImage.backgroundColor}`,
         border: `1px solid ${theme.border.color}`,
         borderRadius: "15px",
-        marginTop: "5px",
-        marginRight: "5px",
-    }
+        marginBottom: "10px",
+    };
 
     return (
-        <React.Fragment>
-            <Card variant="outlined"
-                sx={{
-                    width: "315px",
-                    height: "150px",
-                    mx: "auto",
-                    my: "10px",
-                    backgroundColor: `${theme.card.backgroundColor}`,
-                    border: `1px solid ${theme.border.color}`,
-                    borderRadius: "5px",
-                    fontFamily: "Genshin, sans-serif"
-                }}
-            >
-                <CardContent sx={{ py: "10px" }}>
-                    <Grid container>
-                        <Grid xs>
-                            <ButtonBase disableRipple href={`/project-stellaron/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                <img src={(`${process.env.REACT_APP_URL}/characters/icons/Character_${name.split(" ").join("_")}_Icon.png`)} alt={name} style={characterIcon} onError={ErrorLoadingImage} />
-                            </ButtonBase>
+        <Card
+            sx={{
+                width: "193px",
+                height: "327px",
+                mx: "15px",
+                my: "10px",
+                backgroundColor: `${theme.card.backgroundColor}`,
+                border: `1px solid ${theme.border.color}`,
+                borderRadius: "5px 25px 5px 5px",
+            }}
+        >
+            <ButtonBase disableRipple href={`/project-stellaron/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                <Box>
+                    <Box
+                        sx={{
+                            display: "grid",
+                            position: "absolute",
+                            top: "7px",
+                            left: "5px",
+                        }}
+                    >
+                        <CustomTooltip title={element} arrow placement="top">
+                            <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
+                        </CustomTooltip>
+                        <CustomTooltip title={path} arrow placement="top">
+                            <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path} onError={ErrorLoadingImage} />
+                        </CustomTooltip>
+                    </Box>
+                    <CardMedia
+                        component="img"
+                        image={`${process.env.REACT_APP_URL}/characters/avatars/Avatar_${name.split(" ").join("_")}.png`}
+                        alt={name}
+                        sx={{ height: "264px" }}
+                        onError={ErrorLoadingImage}
+                    />
+                    <Box
+                        sx={{
+                            mt: "-60px",
+                            textAlign: "center",
+                            background: `linear-gradient(transparent, ${GetBackgroundColor(rarity)})`,
+                        }}
+                    >
+                        <Box sx={{ textAlign: "center" }}>
+                            <Typography variant="h5" sx={{ color: "white", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000", fontWeight: "bold" }}>
+                                {props.character.displayName ? props.character.displayName : name}
+                            </Typography>
+                            <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px" }} variant="h6">
+                                {[...Array(rarity).keys()].map(() => "✦")}
+                            </Typography>
+                        </Box>
+                    </Box>
+                    <CardContent sx={{ backgroundColor: `${theme.table.header.backgroundColor}`, borderTop: `7px solid ${GetRarityColor(rarity)}` }}>
+                        <Grid sx={{ mt: "-11px" }}>
+                            <MaterialGrid character={props.character} size="32px" />
                         </Grid>
-                        <Grid xs={7.5}>
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    position: "relative"
-                                }}
-                            >
-                                <ButtonBase disableRipple href={`/project-stellaron/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                    <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="h5">
-                                        {props.character.displayName ? props.character.displayName : name}
-                                    </Typography>
-                                </ButtonBase>
-                            </Box>
-                            <Box sx={{ display: "flex" }}>
-                                <CustomTooltip title={element} arrow placement="top">
-                                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
-                                </CustomTooltip>
-                                <CustomTooltip title={path} arrow placement="top">
-                                    <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path} onError={ErrorLoadingImage} />
-                                </CustomTooltip>
-                            </Box>
-                            <Grid xs={8} sx={{ mt: "15px" }}>
-                                <MaterialGrid character={props.character} />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </CardContent>
-            </Card >
-        </React.Fragment >
+                    </CardContent>
+                </Box>
+            </ButtonBase>
+        </Card >
     )
 
 }
 
 export default CharacterCard;
+
+function GetRarityColor(rarity) {
+    let color = "rgb(0, 90, 156)";
+    if (rarity === 5) {
+        color = "rgba(255, 208, 112)";
+    }
+    if (rarity === 4) {
+        color = "rgba(175, 134, 255)";
+    }
+    return color;
+}
+
+function GetBackgroundColor(rarity) {
+    let opacity = 0.45;
+    let color = `rgb(0, 90, 156, ${opacity})`;
+    if (rarity === 5) {
+        color = `rgba(255, 199, 129, ${opacity})`;
+    }
+    if (rarity === 4) {
+        color = `rgba(193, 153, 253, ${opacity})`;
+    }
+    return color;
+}
