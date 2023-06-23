@@ -2,6 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Avatar, Card, CardHeader, CardMedia, CardContent, ButtonBase, Box } from "@mui/material";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
+import { LightconeStats } from "../../helpers/LightconeStats";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const LightconeCard = (props) => {
@@ -72,7 +73,7 @@ const LightconeCard = (props) => {
                         <Typography sx={{ color: "rgb(255, 208, 112)", fontWeight: "bolder" }} variant="h5">
                             {[...Array(rarity).keys()].map(() => "✦")}
                         </Typography>
-                        <Box sx={{ display: "flex", mt: "-16px", ml: "15px" }}>
+                        <Box sx={{ display: "flex", mt: "-15px" }}>
                             <CardHeader
                                 avatar={
                                     <Avatar src={(`${process.env.REACT_APP_URL}/icons/Icon_HP.png`)} alt={path} sx={StatIcon}>
@@ -80,11 +81,11 @@ const LightconeCard = (props) => {
                                     </Avatar>
                                 }
                                 title={
-                                    <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="h6">
-                                        {stats.hp}
+                                    <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="body1">
+                                        {LightconeStats["hp"][stats.hp.toString()] ? Number(LightconeStats["hp"][stats.hp.toString()][13]).toLocaleString() : stats.hp}
                                     </Typography>
                                 }
-                                sx={{ mr: "-15px" }}
+                                sx={{ mr: "-20px" }}
                             />
                             <CardHeader
                                 avatar={
@@ -93,11 +94,11 @@ const LightconeCard = (props) => {
                                     </Avatar>
                                 }
                                 title={
-                                    <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="h6">
-                                        {stats.atk}
+                                    <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="body1">
+                                        {LightconeStats["atk"][stats.atk.toString()] ? LightconeStats["atk"][stats.atk.toString()][13] : stats.atk}
                                     </Typography>
                                 }
-                                sx={{ mr: "-15px" }}
+                                sx={{ mr: "-20px" }}
                             />
                             <CardHeader
                                 avatar={
@@ -106,11 +107,10 @@ const LightconeCard = (props) => {
                                     </Avatar>
                                 }
                                 title={
-                                    <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="h6">
-                                        {stats.def}
+                                    <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="body1">
+                                        {LightconeStats["def"][stats.def.toString()] ? LightconeStats["def"][stats.def.toString()][13] : stats.def}
                                     </Typography>
                                 }
-                                sx={{ mr: "-15px" }}
                             />
                         </Box>
                     </Box>
