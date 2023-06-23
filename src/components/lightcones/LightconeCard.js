@@ -82,7 +82,7 @@ const LightconeCard = (props) => {
                                 }
                                 title={
                                     <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="body1">
-                                        {LightconeStats["hp"][stats.hp.toString()] ? Number(LightconeStats["hp"][stats.hp.toString()][13]).toLocaleString() : stats.hp}
+                                        {Number(LightconeStats["hp"][stats.hp.toString()][13]).toLocaleString()}
                                     </Typography>
                                 }
                                 sx={{ mr: "-20px" }}
@@ -95,7 +95,7 @@ const LightconeCard = (props) => {
                                 }
                                 title={
                                     <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="body1">
-                                        {LightconeStats["atk"][stats.atk.toString()] ? LightconeStats["atk"][stats.atk.toString()][13] : stats.atk}
+                                        {LightconeStats["atk"][stats.atk.toString()][13]}
                                     </Typography>
                                 }
                                 sx={{ mr: "-20px" }}
@@ -108,7 +108,7 @@ const LightconeCard = (props) => {
                                 }
                                 title={
                                     <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="body1">
-                                        {LightconeStats["def"][stats.def.toString()] ? LightconeStats["def"][stats.def.toString()][13] : stats.def}
+                                        {LightconeStats["def"][stats.def.toString()][13]}
                                     </Typography>
                                 }
                             />
