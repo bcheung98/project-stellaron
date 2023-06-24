@@ -1,20 +1,30 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
-import { Box, Typography, Paper, InputBase } from "@mui/material";
+import { Box, Typography, Paper, InputBase, Stack, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+import AppsSharpIcon from '@mui/icons-material/AppsSharp';
+import ListSharpIcon from '@mui/icons-material/ListSharp';
+import { blue } from '@mui/material/colors';
 import LightconeCard from "./LightconeCard";
 import LightconeFilters from "./filters/_LightconeFilters";
 import { filterLightcones } from "../../helpers/FilterLightcones";
+import LightconeList from "./LightconeList";
 
 const LightconeBrowser = (props) => {
 
     const theme = useTheme();
 
     const [searchValue, setSearchValue] = React.useState("");
-
     const handleInputChange = (e) => {
         setSearchValue(e.target.value);
+    }
+
+    const [view, setView] = React.useState("grid");
+    const handleView = (event, newView) => {
+        if (newView !== null) {
+            setView(newView);
+        }
     }
 
     let { lightcones, lightconeFilters } = props;
@@ -48,7 +58,10 @@ const LightconeBrowser = (props) => {
                         {lightcones.lightcones.length > 0 &&
                             <React.Fragment>
                                 {
-                                    filterLightcones(lightcones.lightcones, lightconeFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(lightcone => <LightconeCard key={lightcone.id} lightcone={lightcone} />)
+                                    view === "list" ?
+                                        <LightconeList lightcones={filterLightcones(lightcones.lightcones, lightconeFilters, searchValue)} />
+                                        :
+                                        filterLightcones(lightcones.lightcones, lightconeFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(lightcone => <LightconeCard key={lightcone.id} lightcone={lightcone} />)
                                 }
                             </React.Fragment>
                         }
