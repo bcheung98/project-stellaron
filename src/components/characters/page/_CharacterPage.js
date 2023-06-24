@@ -12,7 +12,6 @@ import CharacterTraceDisplay from "./CharacterTraceDisplay";
 import CharacterEidolonDisplay from "./CharacterEidolonDisplay";
 import CharacterStatsTable from "./CharacterStatsTable";
 import CharacterAscension from "./CharacterAscension";
-import MaterialGrid from "../../../helpers/MaterialGrid";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const CharacterPage = (props) => {

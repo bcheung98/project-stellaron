@@ -12,7 +12,7 @@ const CharacterBrowser = (props) => {
     const theme = useTheme();
 
     const [searchValue, setSearchValue] = React.useState("");
-    const [view, setView] = React.useState("grid");
+    // const [view, setView] = React.useState("grid");
 
     const handleInputChange = (e) => {
         setSearchValue(e.target.value);
