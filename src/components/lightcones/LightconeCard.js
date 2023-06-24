@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { Typography, Avatar, Card, CardHeader, CardMedia, CardContent, ButtonBase, Box } from "@mui/material";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { LightconeStats } from "../../helpers/LightconeStats";
+import { GetBackgroundColor, GetRarityColor } from "../../helpers/RarityColors";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const LightconeCard = (props) => {
@@ -134,32 +135,3 @@ const LightconeCard = (props) => {
 }
 
 export default LightconeCard;
-
-function GetRarityColor(rarity) {
-    let color;
-    if (rarity === 5) {
-        color = "rgba(255, 208, 112)";
-    }
-    if (rarity === 4) {
-        color = "rgba(175, 134, 255)";
-    }
-    if (rarity === 3) {
-        color = "rgb(105, 157, 237)";
-    }
-    return color;
-}
-
-function GetBackgroundColor(rarity) {
-    let opacity = 0.45;
-    let color;
-    if (rarity === 5) {
-        color = `rgba(255, 199, 129, ${opacity})`;
-    }
-    if (rarity === 4) {
-        color = `rgba(193, 153, 253, ${opacity})`;
-    }
-    if (rarity === 3) {
-        color = `rgba(115, 176, 244, ${opacity})`
-    }
-    return color;
-}

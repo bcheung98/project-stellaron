@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardMedia, CardContent, ButtonBase, Box } from "@mui/material";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import MaterialGrid from "../../helpers/MaterialGrid";
+import { GetBackgroundColor, GetRarityColor } from "../../helpers/RarityColors";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const CharacterCard = (props) => {
@@ -79,26 +80,3 @@ const CharacterCard = (props) => {
 }
 
 export default CharacterCard;
-
-function GetRarityColor(rarity) {
-    let color = "rgb(0, 90, 156)";
-    if (rarity === 5) {
-        color = "rgba(255, 208, 112)";
-    }
-    if (rarity === 4) {
-        color = "rgba(175, 134, 255)";
-    }
-    return color;
-}
-
-function GetBackgroundColor(rarity) {
-    let opacity = 0.45;
-    let color = `rgb(0, 90, 156, ${opacity})`;
-    if (rarity === 5) {
-        color = `rgba(255, 199, 129, ${opacity})`;
-    }
-    if (rarity === 4) {
-        color = `rgba(193, 153, 253, ${opacity})`;
-    }
-    return color;
-}
