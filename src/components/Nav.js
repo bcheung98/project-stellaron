@@ -69,7 +69,7 @@ const Nav = () => {
                                             textDecoration: "none",
                                         }}
                                     >
-                                        LIGHTCONES
+                                        LIGHT CONES
                                     </Typography>
                                 }
                             />

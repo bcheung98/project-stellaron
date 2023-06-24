@@ -39,7 +39,7 @@ const LightconeBrowser = (props) => {
                         textAlign: "center",
                     }}
                 >
-                    LIGHTCONES
+                    LIGHT CONES
                 </Typography>
             </Box>
             <Grid container sx={{ margin: "auto", width: "98%" }}>
