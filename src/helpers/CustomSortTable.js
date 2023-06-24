@@ -85,9 +85,9 @@ export function stableSort(array, comparator) {
 
 const IconActive = styled((props) => (
     <KeyboardArrowDownSharpIcon {...props} />
-))(() => ({
+))(({ theme }) => ({
     [`&.${tableSortLabelClasses.icon}`]: {
-        color: "red !important"
+        color: `${theme.button.selected} !important`
     }
 }))
 
