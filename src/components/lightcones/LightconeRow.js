@@ -17,7 +17,7 @@ const LightconeRow = (props) => {
         marginRight: "3.5px",
         border: `1px solid ${theme.border.color}`,
         borderRadius: "5px",
-        backgroundColor: "rgb(9, 24, 39)",
+        backgroundColor: `${theme.materialImage.backgroundColor}`,
     }
 
     return (

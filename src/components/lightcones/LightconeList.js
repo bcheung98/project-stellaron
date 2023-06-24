@@ -39,7 +39,7 @@ const LightconeList = (props) => {
             >
                 <Toolbar sx={{ backgroundColor: `${theme.toolbar.backgroundColor}` }}>
                     <Typography variant="h5" component="div" sx={{ display: "block", margin: "auto" }}>
-                        {props.lightcones.length} {props.lightcones.length === 1 ? "Lightcone" : "Lightcones"}
+                        {props.lightcones.length} {props.lightcones.length === 1 ? "Light Cone" : "Light Cones"}
                     </Typography>
                 </Toolbar>
                 < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "0px" }} />
