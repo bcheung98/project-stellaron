@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
-import { Box, Typography, Paper, InputBase, Stack, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Box, Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import ListSharpIcon from '@mui/icons-material/ListSharp';
-import { blue } from '@mui/material/colors';
+import { CustomToggleButton } from "../../helpers/CustomToggleButton";
 import LightconeCard from "./LightconeCard";
 import LightconeFilters from "./filters/_LightconeFilters";
 import { filterLightcones } from "../../helpers/FilterLightcones";
@@ -20,7 +20,7 @@ const LightconeBrowser = (props) => {
         setSearchValue(e.target.value);
     }
 
-    const [view, setView] = React.useState("grid");
+    const [view, setView] = React.useState("list");
     const handleView = (event, newView) => {
         if (newView !== null) {
             setView(newView);
@@ -51,6 +51,16 @@ const LightconeBrowser = (props) => {
                 >
                     LIGHT CONES
                 </Typography>
+                <Stack direction="row" spacing={4}>
+                    <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ border: `1px solid ${theme.border.color}` }}>
+                        <CustomToggleButton value="list">
+                            <ListSharpIcon sx={{ color: "white" }} />
+                        </CustomToggleButton>
+                        <CustomToggleButton value="grid">
+                            <AppsSharpIcon sx={{ color: "white" }} />
+                        </CustomToggleButton>
+                    </ToggleButtonGroup>
+                </Stack>
             </Box>
             <Grid container sx={{ margin: "auto", width: "98%" }}>
                 <Grid xs={9}>

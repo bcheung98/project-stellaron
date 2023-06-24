@@ -42,4 +42,7 @@ export const defaultTheme = createTheme({
         color: "white",
         highlight: "rgb(202, 166, 112)",
     },
+    button: {
+        selected: "rgb(169, 142, 84)",
+    }
 });
