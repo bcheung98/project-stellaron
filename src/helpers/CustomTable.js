@@ -8,7 +8,6 @@ export const StyledTableCell = styled((props) => (
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: `${theme.table.header.backgroundColor}`,
         color: `${theme.text.color}`,
-        fontFamily: "Genshin, sans-serif",
     },
     color: `${theme.text.color}`,
     fontSize: "10pt",

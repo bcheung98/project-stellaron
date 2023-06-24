@@ -75,7 +75,7 @@ const CharacterCard = (props) => {
             <CardContent sx={{ backgroundColor: `${theme.table.header.backgroundColor}`, mb: "-12px" }}>
                 <MaterialGrid character={props.character} size="32px" />
             </CardContent>
-        </Card >
+        </Card>
     )
 
 }

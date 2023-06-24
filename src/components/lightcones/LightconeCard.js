@@ -95,7 +95,7 @@ const LightconeCard = (props) => {
                     </CustomTooltip>
                 </Box>
             </CardContent>
-        </Card >
+        </Card>
     )
 
 }
