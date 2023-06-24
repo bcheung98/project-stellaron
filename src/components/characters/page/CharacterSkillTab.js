@@ -35,10 +35,10 @@ const CharacterSkillTab = (props) => {
             <Typography variant="subtitle1" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>
                 <i>{FormatSkillKey(key)}</i>
             </Typography>
-            <Typography variant="h4" sx={{ color: `${theme.text.color}` }}>
+            <Typography variant="h4" sx={{ color: `${theme.text.color}`, mb: "5px" }}>
                 <b>{skills[key].name}</b>
             </Typography>
-            <Typography variant="body1" sx={{ color: `${theme.text.color}`, mt: "15px" }}>
+            <Typography variant="body1" sx={{ color: `${theme.text.color}` }}>
                 {parse(skills[key].description)}
             </Typography>
             {
