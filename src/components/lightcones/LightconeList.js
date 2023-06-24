@@ -2,6 +2,8 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Table, TableBody, TableContainer, Toolbar, Typography, Paper } from "@mui/material";
 import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable";
+import LightconeRow from "./LightconeRow";
+import { LightconeStats } from "../../helpers/LightconeStats";
 
 const LightconeList = (props) => {
 
@@ -15,7 +17,15 @@ const LightconeList = (props) => {
         setOrderBy(property);
     };
 
-    const rows = [];
+    const rows = props.lightcones.map((lightcone) => {
+
+        let hp = Number(LightconeStats["hp"][lightcone.stats.hp.toString()][13]).toLocaleString();
+        let atk = LightconeStats["atk"][lightcone.stats.atk.toString()][13];
+        let def = LightconeStats["def"][lightcone.stats.def.toString()][13];
+        let materialString = `${lightcone.materials.calyxMat} ${lightcone.materials.commonMat}`;
+
+        return createData(lightcone.name, lightcone.rarity, lightcone.path, hp, atk, def, lightcone.materials.calyxMat, lightcone.materials.commonMat, materialString);
+    });
 
     return (
         <Box sx={{ width: "100%" }}>
@@ -41,17 +51,16 @@ const LightconeList = (props) => {
                             onRequestSort={handleRequestSort}
                             rowCount={rows.length}
                             headCells={headCells}
-                        >
-                            <TableBody>
-                                {
-                                    stableSort(rows, getComparator(order, orderBy)).map((row, index) => {
-                                        return (
-                                            <></>
-                                        )
-                                    })
-                                }
-                            </TableBody>
-                        </EnhancedTableHead>
+                        />
+                        <TableBody>
+                            {
+                                stableSort(rows, getComparator(order, orderBy)).map((row, index) => {
+                                    return (
+                                        <LightconeRow key={index} row={row} />
+                                    )
+                                })
+                            }
+                        </TableBody>
                     </Table>
                 </TableContainer>
             </Paper>
@@ -71,3 +80,7 @@ const headCells = [
     { id: "def", label: "DEF" },
     { id: "materialString", label: "Materials" }
 ];
+
+const createData = (name, rarity, path, hp, atk, def, calyxMat, commonMat, materialString) => {
+    return { name, rarity, path, hp, atk, def, calyxMat, commonMat, materialString };
+}
