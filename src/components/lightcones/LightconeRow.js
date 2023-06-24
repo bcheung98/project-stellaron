@@ -70,9 +70,6 @@ const LightconeRow = (props) => {
                                 sx={{
                                     width: "32px",
                                     height: "32px",
-                                    backgroundColor: `${theme.materialImage.backgroundColor}`,
-                                    border: `1px solid ${theme.border.color}`,
-                                    borderRadius: "32px",
                                 }}
                             >
                                 <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "30px" }} />
