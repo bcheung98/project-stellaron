@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import { formatCommonMats, formatCalyxMats, formatWeeklyBossMats } from "../../../helpers/TooltipText";
+import { Backgrounds } from "../../../helpers/Backgrounds";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const CharacterTraceLevelUpMaterials = (props) => {
@@ -255,14 +256,6 @@ const CharacterTraceLevelUpMaterials = (props) => {
 }
 
 export default CharacterTraceLevelUpMaterials;
-
-const Backgrounds = {
-    "5": `${process.env.REACT_APP_URL}/backgrounds/Background_5_Star.webp`,
-    "4": `${process.env.REACT_APP_URL}/backgrounds/Background_4_Star.webp`,
-    "3": `${process.env.REACT_APP_URL}/backgrounds/Background_3_Star.webp`,
-    "2": `${process.env.REACT_APP_URL}/backgrounds/Background_2_Star.webp`,
-    "1": `${process.env.REACT_APP_URL}/backgrounds/Background_1_Star.webp`,
-}
 
 const TotalCosts = {
     // [Number of Credits, [Number of T2 Calyx Mat, Number of T3 Calyx Mat, Number of T4 Calyx Mat], [Number of T2 Common Mat, Number of T3 Common Mat, Number of T4 Common Mat], Weekly Boss Material, Tracks of Destiny]
