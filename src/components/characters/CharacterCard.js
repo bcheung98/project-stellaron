@@ -23,10 +23,7 @@ const CharacterCard = (props) => {
     return (
         <Card
             sx={{
-                minWidth: "192px",
-                minHeight: "300px",
-                mx: "15px",
-                my: "10px",
+                m: "15px",
                 backgroundColor: `${theme.card.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px 25px 5px 5px",
@@ -52,13 +49,14 @@ const CharacterCard = (props) => {
                     <CardMedia
                         image={`${process.env.REACT_APP_URL}/characters/avatars/Avatar_${name.split(" ").join("_")}.png`}
                         alt={name}
-                        sx={{ height: "236px" }}
+                        sx={{ width: "192px", height: "236px" }}
                     />
                     <Box
                         sx={{
                             mt: "-60px",
                             textAlign: "center",
                             background: `linear-gradient(transparent, ${GetBackgroundColor(rarity)})`,
+                            borderBottom: `7px solid ${GetRarityColor(rarity)}`,
                         }}
                     >
                         <Box sx={{ textAlign: "center" }}>
@@ -70,7 +68,7 @@ const CharacterCard = (props) => {
                             </Typography>
                         </Box>
                     </Box>
-                    <CardContent sx={{ backgroundColor: `${theme.table.header.backgroundColor}`, borderTop: `7px solid ${GetRarityColor(rarity)}`, mb: "-12px" }}>
+                    <CardContent sx={{ backgroundColor: `${theme.table.header.backgroundColor}`, mb: "-12px" }}>
                         <MaterialGrid character={props.character} size="32px" />
                     </CardContent>
                 </Box>
