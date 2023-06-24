@@ -113,13 +113,10 @@ const CharacterPage = (props) => {
                                         }
                                         sx={{ ml: "-15px" }}
                                     />
-                                    <Typography sx={{ mt: "-15px", color: "rgb(255, 208, 112)", fontWeight: "bolder" }} variant="h4">
+                                    <Typography sx={{ mt: "-15px", color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px" }} variant="h4">
                                         {[...Array(rarity).keys()].map(() => "✦")}
                                     </Typography>
                                 </Box>
-                            </Box>
-                            <Box sx={{ mt: "15px", ml: "20px" }}>
-                                <MaterialGrid character={character} size={"48px"} />
                             </Box>
                         </Box>
                         <Box

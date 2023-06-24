@@ -106,7 +106,7 @@ const LightconePage = (props) => {
                                         }
                                         sx={{ ml: "-20px" }}
                                     />
-                                    <Typography sx={{ mt: "-15px", color: "rgb(255, 208, 112)", fontWeight: "bolder" }} variant="h4">
+                                    <Typography sx={{ mt: "-15px", color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px" }} variant="h4">
                                         {[...Array(rarity).keys()].map(() => "✦")}
                                     </Typography>
                                 </Box>

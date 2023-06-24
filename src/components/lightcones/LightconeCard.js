@@ -70,7 +70,7 @@ const LightconeCard = (props) => {
                 </Box>
                 <CardContent>
                     <Box sx={{ display: "flex", mt: "-12px" }}>
-                        <Typography sx={{ color: "rgb(255, 208, 112)", fontWeight: "bolder" }} variant="h5">
+                        <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px" }} variant="h5">
                             {[...Array(rarity).keys()].map(() => "✦")}
                         </Typography>
                         <Box sx={{ display: "flex", mt: "-15px" }}>
