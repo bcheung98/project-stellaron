@@ -53,11 +53,11 @@ const LightconeBrowser = (props) => {
                 </Typography>
                 <Stack direction="row" spacing={4}>
                     <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ border: `1px solid ${theme.border.color}` }}>
-                        <CustomToggleButton value="list">
-                            <ListSharpIcon sx={{ color: "white" }} />
-                        </CustomToggleButton>
                         <CustomToggleButton value="grid">
                             <AppsSharpIcon sx={{ color: "white" }} />
+                        </CustomToggleButton>
+                        <CustomToggleButton value="list">
+                            <ListSharpIcon sx={{ color: "white" }} />
                         </CustomToggleButton>
                     </ToggleButtonGroup>
                 </Stack>
