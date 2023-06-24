@@ -68,11 +68,11 @@ const CharacterCard = (props) => {
                             </Typography>
                         </Box>
                     </Box>
-                    <CardContent sx={{ backgroundColor: `${theme.table.header.backgroundColor}`, mb: "-12px" }}>
-                        <MaterialGrid character={props.character} size="32px" />
-                    </CardContent>
                 </Box>
             </ButtonBase>
+            <CardContent sx={{ backgroundColor: `${theme.table.header.backgroundColor}`, mb: "-12px" }}>
+                <MaterialGrid character={props.character} size="32px" />
+            </CardContent>
         </Card >
     )
 
