@@ -1,10 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { styled } from '@mui/material/styles';
-import PropTypes from "prop-types";
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Toolbar, Typography, Paper } from "@mui/material";
-import TableSortLabel, { tableSortLabelClasses } from "@mui/material/TableSortLabel";
-import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
+import { Box, Table, TableBody, TableContainer, Toolbar, Typography, Paper } from "@mui/material";
+import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable";
 
 const LightconeList = (props) => {
 
@@ -12,12 +9,13 @@ const LightconeList = (props) => {
 
     const [order, setOrder] = React.useState("desc");
     const [orderBy, setOrderBy] = React.useState("rarity");
-
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === "asc";
         setOrder(isAsc ? "desc" : "asc");
         setOrderBy(property);
     };
+
+    const rows = [];
 
     return (
         <Box sx={{ width: "100%" }}>
@@ -37,7 +35,23 @@ const LightconeList = (props) => {
                 < hr style={{ border: `0.5px solid ${theme.border.color}`, marginTop: "0px" }} />
                 <TableContainer>
                     <Table>
-                        
+                        <EnhancedTableHead
+                            order={order}
+                            orderBy={orderBy}
+                            onRequestSort={handleRequestSort}
+                            rowCount={rows.length}
+                            headCells={headCells}
+                        >
+                            <TableBody>
+                                {
+                                    stableSort(rows, getComparator(order, orderBy)).map((row, index) => {
+                                        return (
+                                            <></>
+                                        )
+                                    })
+                                }
+                            </TableBody>
+                        </EnhancedTableHead>
                     </Table>
                 </TableContainer>
             </Paper>
@@ -47,3 +61,13 @@ const LightconeList = (props) => {
 }
 
 export default LightconeList;
+
+const headCells = [
+    { id: "name", label: "Name" },
+    { id: "rarity", label: "Rarity" },
+    { id: "path", label: "Path" },
+    { id: "hp", label: "HP" },
+    { id: "atk", label: "ATK" },
+    { id: "def", label: "DEF" },
+    { id: "materialString", label: "Materials" }
+];
