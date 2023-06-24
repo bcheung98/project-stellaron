@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Typography, Avatar, Card, CardHeader, CardMedia, CardContent, ButtonBase, Box } from "@mui/material";
+import { Typography, Card, CardMedia, CardContent, ButtonBase, Box } from "@mui/material";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
-import { LightconeStats } from "../../helpers/LightconeStats";
+import { formatCalyxMats, formatCommonMats } from "../../helpers/TooltipText";
 import { GetBackgroundColor, GetRarityColor } from "../../helpers/RarityColors";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
@@ -10,17 +10,15 @@ const LightconeCard = (props) => {
 
     const theme = useTheme();
 
-    let { name, path, rarity, stats } = props.lightcone;
+    let { name, path, rarity } = props.lightcone;
+    let { calyxMat, commonMat } = props.lightcone.materials;
 
-    const StatIcon = {
-        width: "30px",
-        height: "30px",
-        mr: "-17px",
-    };
-
-    const Stats = {
-        p: 0,
-        mr: "5px",
+    const MaterialImage = {
+        height: "40px",
+        marginRight: "5px",
+        border: `1px solid ${theme.border.color}`,
+        borderRadius: "5px",
+        backgroundColor: `${theme.materialImage.backgroundColor}`,
     }
 
     const SmallIcon = {
@@ -88,46 +86,13 @@ const LightconeCard = (props) => {
                     </ButtonBase>
                 </Box>
                 <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "5px", marginBottom: "15px" }} />
-                <Box sx={{ display: "flex" }}>
-                    <CardHeader
-                        avatar={
-                            <Avatar src={(`${process.env.REACT_APP_URL}/icons/Icon_HP.png`)} alt={path} sx={StatIcon}>
-                                <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "30px" }} />
-                            </Avatar>
-                        }
-                        title={
-                            <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="body1">
-                                {Number(LightconeStats["hp"][stats.hp.toString()][13]).toLocaleString()}
-                            </Typography>
-                        }
-                        sx={Stats}
-                    />
-                    <CardHeader
-                        avatar={
-                            <Avatar src={(`${process.env.REACT_APP_URL}/icons/Icon_ATK.png`)} alt={path} sx={StatIcon}>
-                                <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "30px" }} />
-                            </Avatar>
-                        }
-                        title={
-                            <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="body1">
-                                {LightconeStats["atk"][stats.atk.toString()][13]}
-                            </Typography>
-                        }
-                        sx={Stats}
-                    />
-                    <CardHeader
-                        avatar={
-                            <Avatar src={(`${process.env.REACT_APP_URL}/icons/Icon_DEF.png`)} alt={path} sx={StatIcon}>
-                                <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "30px" }} />
-                            </Avatar>
-                        }
-                        title={
-                            <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="body1">
-                                {LightconeStats["def"][stats.def.toString()][13]}
-                            </Typography>
-                        }
-                        sx={Stats}
-                    />
+                <Box sx={{ display: "flex", width: "50%", mx: "auto" }}>
+                    <CustomTooltip title={formatCalyxMats(`${calyxMat}`)} arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${calyxMat.split(" ").join("_")}3.png`} style={MaterialImage} alt={calyxMat} onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <CustomTooltip title={formatCommonMats(`${commonMat}`)} arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`} style={MaterialImage} alt={commonMat} onError={ErrorLoadingImage} />
+                    </CustomTooltip>
                 </Box>
             </CardContent>
         </Card >

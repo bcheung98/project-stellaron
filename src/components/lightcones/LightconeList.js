@@ -18,13 +18,10 @@ const LightconeList = (props) => {
     };
 
     const rows = props.lightcones.map((lightcone) => {
-
         let hp = Number(LightconeStats["hp"][lightcone.stats.hp.toString()][13]).toLocaleString();
         let atk = LightconeStats["atk"][lightcone.stats.atk.toString()][13];
         let def = LightconeStats["def"][lightcone.stats.def.toString()][13];
-        let materialString = `${lightcone.materials.calyxMat} ${lightcone.materials.commonMat}`;
-
-        return createData(lightcone.name, lightcone.rarity, lightcone.path, hp, atk, def, lightcone.materials.calyxMat, lightcone.materials.commonMat, materialString);
+        return createData(lightcone.name, lightcone.rarity, lightcone.path, hp, atk, def);
     });
 
     return (
@@ -78,9 +75,8 @@ const headCells = [
     { id: "hp", label: "HP" },
     { id: "atk", label: "ATK" },
     { id: "def", label: "DEF" },
-    { id: "materialString", label: "Materials" }
 ];
 
-const createData = (name, rarity, path, hp, atk, def, calyxMat, commonMat, materialString) => {
-    return { name, rarity, path, hp, atk, def, calyxMat, commonMat, materialString };
+const createData = (name, rarity, path, hp, atk, def) => {
+    return { name, rarity, path, hp, atk, def };
 }
