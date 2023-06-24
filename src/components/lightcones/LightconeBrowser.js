@@ -20,7 +20,7 @@ const LightconeBrowser = (props) => {
         setSearchValue(e.target.value);
     }
 
-    const [view, setView] = React.useState("list");
+    const [view, setView] = React.useState("grid");
     const handleView = (event, newView) => {
         if (newView !== null) {
             setView(newView);
