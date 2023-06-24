@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardMedia, CardContent, ButtonBase, Box } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import MaterialGrid from "../../helpers/MaterialGrid";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
@@ -24,8 +23,8 @@ const CharacterCard = (props) => {
     return (
         <Card
             sx={{
-                width: "193px",
-                height: "327px",
+                minWidth: "192px",
+                minHeight: "300px",
                 mx: "15px",
                 my: "10px",
                 backgroundColor: `${theme.card.backgroundColor}`,
@@ -51,11 +50,9 @@ const CharacterCard = (props) => {
                         </CustomTooltip>
                     </Box>
                     <CardMedia
-                        component="img"
                         image={`${process.env.REACT_APP_URL}/characters/avatars/Avatar_${name.split(" ").join("_")}.png`}
                         alt={name}
-                        sx={{ height: "264px" }}
-                        onError={ErrorLoadingImage}
+                        sx={{ height: "236px" }}
                     />
                     <Box
                         sx={{
@@ -73,10 +70,8 @@ const CharacterCard = (props) => {
                             </Typography>
                         </Box>
                     </Box>
-                    <CardContent sx={{ backgroundColor: `${theme.table.header.backgroundColor}`, borderTop: `7px solid ${GetRarityColor(rarity)}` }}>
-                        <Grid sx={{ mt: "-11px" }}>
-                            <MaterialGrid character={props.character} size="32px" />
-                        </Grid>
+                    <CardContent sx={{ backgroundColor: `${theme.table.header.backgroundColor}`, borderTop: `7px solid ${GetRarityColor(rarity)}`, mb: "-12px" }}>
+                        <MaterialGrid character={props.character} size="32px" />
                     </CardContent>
                 </Box>
             </ButtonBase>
