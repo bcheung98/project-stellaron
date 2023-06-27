@@ -9,6 +9,16 @@ export const defaultTheme = createTheme({
                     fontWeight: "bold"
                 }
             }
+        },
+        MuiAutocomplete: {
+            styleOverrides: {
+                noOptions: {
+                    color: "white",
+                    backgroundColor: "rgb(30, 30, 30)",
+                    fontFamily: "DIN, Roboto, Segoe UI",
+                    fontWeight: "bold"
+                }
+            }
         }
     },
     appbar: {

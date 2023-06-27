@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { AppBar, Box, Toolbar, Typography, Container, ButtonBase, Avatar, CardHeader } from "@mui/material";
+import ChecklistIcon from '@mui/icons-material/Checklist';
 
 const Nav = () => {
 
@@ -70,6 +71,24 @@ const Nav = () => {
                                         }}
                                     >
                                         LIGHT CONES
+                                    </Typography>
+                                }
+                            />
+                        </ButtonBase>
+                        <ButtonBase disableRipple href={`/project-stellaron/planner`}>
+                            <CardHeader
+                                avatar={
+                                    <ChecklistIcon sx={{ height: "32px", width: "32px" }} />
+                                }
+                                title={
+                                    <Typography variant="body1" noWrap
+                                        sx={{
+                                            letterSpacing: ".1rem",
+                                            color: `${theme.text.color}`,
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        ASCENSION PLANNER
                                     </Typography>
                                 }
                             />

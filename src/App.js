@@ -16,6 +16,7 @@ import CharacterBrowser from "./components/characters/CharacterBrowser";
 import CharacterPage from "./components/characters/page/_CharacterPage";
 import LightconeBrowser from "./components/lightcones/LightconeBrowser";
 import LightconePage from "./components/lightcones/page/_LightconePage";
+import AscensionPlanner from "./components/planner/AscensionPlanner";
 import { AppBar, Typography, Box, IconButton, Fade, useScrollTrigger, Fab } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -40,6 +41,7 @@ const App = (props) => {
                     <Route path="/character/:char_name" children={<CharacterPage />} />
                     <Route exact path="/lightcones" component={LightconeBrowser} />
                     <Route path="/lightcone/:lc_name" children={<LightconePage />} />
+                    <Route path="/planner" component={AscensionPlanner} />
                 </Switch>
                 <AppBar position="static" sx={{
                     mt: 10,
