@@ -10,12 +10,15 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const LightconeSelector = (props) => {
 
-    const lightconeOptions = props.lightcones;
+    const theme = useTheme();
+
+    let { lightcones, setPlannerLightcones } = props;
+
+    React.useEffect(() => { setPlannerLightcones(value) })
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [value, setValue] = React.useState([]);
     const [pendingValue, setPendingValue] = React.useState([]);
-    const theme = useTheme();
 
     const handleClick = (event) => {
         setPendingValue(value);
@@ -33,7 +36,7 @@ const LightconeSelector = (props) => {
     const open = Boolean(anchorEl);
     const id = open ? "lc-label" : undefined;
 
-    if (lightconeOptions.length > 0) {
+    if (lightcones.length > 0) {
         return (
             <React.Fragment>
                 <Box
@@ -105,12 +108,12 @@ const LightconeSelector = (props) => {
                                         />
                                     </li>
                                 )}
-                                options={[...lightconeOptions].sort((a, b) => {
+                                options={[...lightcones].sort((a, b) => {
                                     // Display the selected labels first.
                                     let ai = value.indexOf(a);
-                                    ai = ai === -1 ? value.length + lightconeOptions.indexOf(a) : ai;
+                                    ai = ai === -1 ? value.length + lightcones.indexOf(a) : ai;
                                     let bi = value.indexOf(b);
-                                    bi = bi === -1 ? value.length + lightconeOptions.indexOf(b) : bi;
+                                    bi = bi === -1 ? value.length + lightcones.indexOf(b) : bi;
                                     return ai - bi;
                                 })}
                                 getOptionLabel={(option) => option.name}
@@ -129,7 +132,7 @@ const LightconeSelector = (props) => {
             </React.Fragment>
         )
     }
-    
+
 }
 
 const mapStateToProps = (state) => {
@@ -138,4 +141,11 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(LightconeSelector);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setPlannerLightcones: (payload) => dispatch({ type: "SET_PLANNER_LIGHTCONES", payload })
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LightconeSelector);

@@ -10,12 +10,15 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const CharacterSelector = (props) => {
 
-    const characterOptions = props.characters;
+    const theme = useTheme();
+
+    let { characters, setPlannerCharacters } = props;
+
+    React.useEffect(() => { setPlannerCharacters(value) })
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [value, setValue] = React.useState([]);
     const [pendingValue, setPendingValue] = React.useState([]);
-    const theme = useTheme();
 
     const handleClick = (event) => {
         setPendingValue(value);
@@ -33,7 +36,7 @@ const CharacterSelector = (props) => {
     const open = Boolean(anchorEl);
     const id = open ? "char-label" : undefined;
 
-    if (characterOptions.length > 0) {
+    if (characters.length > 0) {
         return (
             <React.Fragment>
                 <Box
@@ -105,12 +108,12 @@ const CharacterSelector = (props) => {
                                         />
                                     </li>
                                 )}
-                                options={[...characterOptions].sort((a, b) => {
+                                options={[...characters].sort((a, b) => {
                                     // Display the selected labels first.
                                     let ai = value.indexOf(a);
-                                    ai = ai === -1 ? value.length + characterOptions.indexOf(a) : ai;
+                                    ai = ai === -1 ? value.length + characters.indexOf(a) : ai;
                                     let bi = value.indexOf(b);
-                                    bi = bi === -1 ? value.length + characterOptions.indexOf(b) : bi;
+                                    bi = bi === -1 ? value.length + characters.indexOf(b) : bi;
                                     return ai - bi;
                                 })}
                                 getOptionLabel={(option) => option.name}
@@ -129,7 +132,7 @@ const CharacterSelector = (props) => {
             </React.Fragment>
         )
     }
-    
+
 }
 
 const mapStateToProps = (state) => {
@@ -138,4 +141,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(CharacterSelector);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setPlannerCharacters: (payload) => dispatch({ type: "SET_PLANNER_CHARS", payload })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CharacterSelector);
