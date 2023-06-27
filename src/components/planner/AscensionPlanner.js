@@ -2,6 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Box } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import CharacterSelector from "./CharacterSelector";
 import LightconeSelector from "./LightconeSelector";
 import CharacterAscensionCard from "./CharacterAscensionCard";
@@ -15,14 +16,21 @@ const AscensionPlanner = (props) => {
 
     return (
         <Box>
-            <Box sx={{ display: "block", mt: "30px", mx: "auto", width: "35%" }}>
+            <Box sx={{ display: "block", my: "30px" }}>
                 <Box sx={{ display: "flex" }}>
                     <CharacterSelector />
                     <LightconeSelector />
                 </Box>
             </Box>
-            {characters.map(character => <CharacterAscensionCard key={character.id} character={character} />)}
-            {lightcones.map(lightcone => <LightconeAscensionCard key={lightcone.id} lightcone={lightcone} />)}
+            <Box sx={{ mx: "20px" }}>
+                <Grid container>
+                    {characters.map(character => <CharacterAscensionCard key={character.id} character={character} />)}
+                </Grid>
+                <br />
+                <Grid container>
+                    {lightcones.map(lightcone => <LightconeAscensionCard key={lightcone.id} lightcone={lightcone} />)}
+                </Grid>
+            </Box>
         </Box>
     )
 
