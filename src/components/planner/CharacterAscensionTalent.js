@@ -33,6 +33,11 @@ const CharacterAscensionTalent = (props) => {
         }
     }
 
+    const [selected, setSelected] = React.useState(true);
+    const handleSelect = () => {
+        setSelected(!selected);
+    }
+
     return (
         <Box
             sx={{
@@ -40,10 +45,11 @@ const CharacterAscensionTalent = (props) => {
                 mx: "15px",
                 width: "350px",
             }}
+            style={selected ? { opacity: "1" } : { opacity: "0.35" }}
         >
             <CardHeader
                 avatar={
-                    <img alt={name} src={(`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_talent.webp`)} style={{ width: "48px", height: "48px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />
+                    <img alt={name} src={(`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_talent.webp`)} style={{ width: "48px", height: "48px", border: `1px solid ${theme.border.color}`, borderRadius: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} onClick={handleSelect} />
                 }
                 title={
                     <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
@@ -56,7 +62,7 @@ const CharacterAscensionTalent = (props) => {
                 <Typography variant="body1" sx={{ color: `${theme.text.color}`, mr: "25px", width: "80px", fontWeight: "bold" }}>
                     Lv. {levels[sliderValue[0] - 1]}
                 </Typography>
-                <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={element} disableSwap />
+                <CustomSlider disabled={!selected} value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={element} disableSwap />
                 <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "25px", width: "80px", fontWeight: "bold" }}>
                     Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
