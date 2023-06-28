@@ -10,6 +10,7 @@ import CharacterAscensionBasicATK from "./CharacterAscensionBasicATK";
 import CharacterAscensionSkill from "./CharacterAscensionSkill";
 import CharacterAscensionUltimate from "./CharacterAscensionUltimate";
 import CharacterAscensionTalent from "./CharacterAscensionTalent";
+import CharacterAscensionTraces from "./CharacterAscensionTraces";
 
 const CharacterAscensionCard = (props) => {
 
@@ -66,7 +67,7 @@ const CharacterAscensionCard = (props) => {
                 }
             />
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
-            <Box sx={{ml: "15px"}}>
+            <Box sx={{ ml: "15px" }}>
                 <Typography variant="body1" sx={{ color: `${theme.text.color}` }}>
                     Materials Required
                 </Typography>
@@ -95,6 +96,7 @@ const CharacterAscensionCard = (props) => {
                         </Grid>
                     </Grid>
                     <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
+                    <CharacterAscensionTraces character={props.character} />
                 </AccordionDetails>
             </Accordion>
         </Box>
