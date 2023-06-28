@@ -12,6 +12,11 @@ export const TraceNodeMain = (props) => {
     let { name, rarity, materials } = props.character;
     let { id, traces } = props;
 
+    const [selected, setSelected] = React.useState(true);
+    const handleSelect = () => {
+        setSelected(!selected);
+    }
+
     return (
         <CustomTooltip arrow placement="top" title={
             <Typography variant="body2" sx={{ color: `${theme.text.color}` }}>
@@ -25,7 +30,10 @@ export const TraceNodeMain = (props) => {
                     border: `2px solid ${theme.border.color}`,
                     mx: "20px",
                     my: "5px",
+                    cursor: "pointer",
                 }}
+                style={selected ? { opacity: "1" } : { opacity: "0.35" }}
+                onClick={handleSelect}
             >
                 <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "56px", backgroundColor: `${theme.paper.backgroundColor}` }} />
             </Avatar>
@@ -42,6 +50,11 @@ export const TraceNodeSmall = (props) => {
     let { rarity, materials } = props.character;
     let { id, traces } = props;
 
+    const [selected, setSelected] = React.useState(true);
+    const handleSelect = () => {
+        setSelected(!selected);
+    }
+
     return (
         <CustomTooltip arrow placement="top" title={
             <Typography variant="body2" sx={{ color: `${theme.text.color}` }}>
@@ -56,7 +69,10 @@ export const TraceNodeSmall = (props) => {
                     border: `2px solid ${theme.border.color}`,
                     mx: "20px",
                     my: "5px",
+                    cursor: "pointer",
                 }}
+                style={selected ? { opacity: "1" } : { opacity: "0.35" }}
+                onClick={handleSelect}
             >
                 <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
             </Avatar>
