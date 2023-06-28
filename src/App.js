@@ -16,7 +16,7 @@ import CharacterBrowser from "./components/characters/CharacterBrowser";
 import CharacterPage from "./components/characters/page/_CharacterPage";
 import LightconeBrowser from "./components/lightcones/LightconeBrowser";
 import LightconePage from "./components/lightcones/page/_LightconePage";
-import AscensionPlanner from "./components/planner/AscensionPlanner";
+import AscensionPlanner from "./components/planner/_AscensionPlanner";
 import { AppBar, Typography, Box, IconButton, Fade, useScrollTrigger, Fab } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import GitHubIcon from '@mui/icons-material/GitHub';

@@ -2,13 +2,15 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography, CardHeader } from "@mui/material";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
+import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+import LightconeAscensionLevel from "./LightconeAscensionLevel";
 
-const CharacterAscensionCard = (props) => {
+const LightconeAscensionCard = (props) => {
 
     const theme = useTheme();
 
-    let { name, rarity, element, path } = props.character;
+    let { name, rarity, path, materials } = props.lightcone;
 
     const smallIcon = {
         width: "24px",
@@ -22,22 +24,19 @@ const CharacterAscensionCard = (props) => {
     return (
         <Box
             sx={{
-                width: "300px",
-                height: "150px",
+                width: "750px",
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
+                backgroundColor: `${theme.paper.backgroundColor}`,
                 mr: "30px",
+                mb: "30px",
+                p: 1,
             }}
         >
             <CardHeader
                 avatar={
                     <Box sx={{ position: "relative" }}>
-                        <img alt={name} src={(`${process.env.REACT_APP_URL}/characters/icons/Icon_${name.split(" ").join("_")}.png`)} style={{ width: "64px", border: `2px solid ${theme.border.color}`, borderRadius: "64px" }} onError={ErrorLoadingImage} />
-                        <Box sx={{ position: "absolute", top: "50px", left: "-5px" }}>
-                            <CustomTooltip title={element} arrow placement="top">
-                                <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
-                            </CustomTooltip>
-                        </Box>
+                        <img alt={name} src={(`${process.env.REACT_APP_URL}/lightcones/icon/${name}.webp`)} style={{ width: "64px", border: `2px solid ${theme.border.color}`, borderRadius: "64px" }} onError={ErrorLoadingImage} />
                         <Box sx={{ position: "absolute", top: "50px", left: "45px" }}>
                             <CustomTooltip title={path} arrow placement="top">
                                 <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path} onError={ErrorLoadingImage} />
@@ -56,9 +55,26 @@ const CharacterAscensionCard = (props) => {
                     </React.Fragment>
                 }
             />
+            <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
+            <Box sx={{ ml: "15px" }}>
+                <Typography variant="body1" sx={{ color: `${theme.text.color}` }}>
+                    Materials Required
+                </Typography>
+            </Box>
+            <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
+            <Accordion>
+                <AccordionSummary>
+                    <Typography variant="body1" sx={{ color: `${theme.text.color}` }}>
+                        Edit
+                    </Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <LightconeAscensionLevel />
+                </AccordionDetails>
+            </Accordion>
         </Box>
     )
 
 }
 
-export default CharacterAscensionCard;
+export default LightconeAscensionCard;
