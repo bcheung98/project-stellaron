@@ -5,6 +5,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+import CharacterAscensionCardMaterials from "./CharacterAscensionCardMaterials";
 import CharacterAscensionLevel from "./CharacterAscensionLevel";
 import CharacterAscensionBasicATK from "./CharacterAscensionBasicATK";
 import CharacterAscensionSkill from "./CharacterAscensionSkill";
@@ -71,6 +72,7 @@ const CharacterAscensionCard = (props) => {
                 <Typography variant="body1" sx={{ color: `${theme.text.color}` }}>
                     Materials Required
                 </Typography>
+                <CharacterAscensionCardMaterials character={props.character} />
             </Box>
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
             <Accordion>

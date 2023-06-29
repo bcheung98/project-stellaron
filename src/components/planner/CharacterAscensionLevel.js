@@ -1,4 +1,5 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import { CustomSlider } from "../../helpers/CustomSlider";
@@ -7,12 +8,14 @@ const CharacterAscensionLevel = (props) => {
 
     const theme = useTheme();
 
-    let { name, element } = props.character;
+    let { updateCharacterCosts } = props;
+    let { name, element, rarity } = props.character;
+
+    let materialArray = AscensionMaterials[rarity.toString()];
 
     const levels = ["1", "20", "30", "40", "50", "60", "70", "80"];
-
     const minDistance = 1;
-    let maxValue = 8;
+    let maxValue = levels.length;
     const [sliderValue, setSliderValue] = React.useState([1, maxValue]);
     const handleSliderChange = (event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
@@ -32,6 +35,24 @@ const CharacterAscensionLevel = (props) => {
             setSliderValue(newValue);
         }
     }
+
+    const GetCost = (start, stop) => {
+        let costArray = materialArray.map((material, index) => (materialArray[index].slice(start, stop).reduce((a, c) => a + c)));
+        return {
+            credits: costArray[0],
+            bossMat: costArray[1],
+            common1: costArray[2],
+            common2: costArray[3],
+            common3: costArray[4],
+            xp1: costArray[5],
+            xp2: costArray[6],
+            xp3: costArray[7],
+        }
+    }
+
+    React.useEffect(() => {
+        updateCharacterCosts([name, GetCost(sliderValue[0], sliderValue[1])])
+    })
 
     return (
         <Box
@@ -57,4 +78,33 @@ const CharacterAscensionLevel = (props) => {
 
 }
 
-export default CharacterAscensionLevel;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateCharacterCosts: (payload) => dispatch({ type: "UPDATE_CHAR_COSTS", payload })
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CharacterAscensionLevel);
+
+const AscensionMaterials = {
+    "5": [
+        [0, 11300, 21800, 28700, 55300, 122300, 212700, 436300],
+        [0, 0, 0, 0, 3, 7, 20, 35],
+        [0, 0, 5, 10, 0, 0, 0, 0],
+        [0, 0, 0, 0, 6, 9, 0, 0],
+        [0, 0, 0, 0, 0, 0, 6, 9],
+        [0, 3, 3, 2, 5, 3, 2, 3],
+        [0, 2, 4, 1, 1, 0, 1, 0],
+        [0, 5, 8, 10, 19, 41, 66, 138]
+    ],
+    "4": [
+        [0, 11300, 21000, 27100, 52100, 114300, 196700, 404300],
+        [0, 0, 0, 0, 2, 5, 15, 28],
+        [0, 0, 4, 8, 0, 0, 0, 0],
+        [0, 0, 0, 0, 5, 8, 0, 0],
+        [0, 0, 0, 0, 0, 0, 5, 7],
+        [0, 3, 3, 2, 5, 3, 2, 3],
+        [0, 2, 4, 1, 1, 0, 1, 0],
+        [0, 5, 8, 10, 19, 41, 66, 138]
+    ]
+}
