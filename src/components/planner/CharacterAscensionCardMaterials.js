@@ -41,7 +41,6 @@ const CharacterAscensionCardMaterials = (props) => {
 
     return (
         <Box sx={MaterialStyle}>
-
             {/* Credits */
                 costs["credits"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
@@ -55,7 +54,6 @@ const CharacterAscensionCardMaterials = (props) => {
                     </Box>
                 </Box>
             }
-
             {
                 /* Boss Material */
                 costs["bossMat"] !== 0 &&
@@ -70,8 +68,7 @@ const CharacterAscensionCardMaterials = (props) => {
                     </Box>
                 </Box>
             }
-
-            {/* T1 Character EXP Material */
+            {/* T2 Character EXP Material */
                 costs["xp1"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Travel Encounters" arrow placement="top">
@@ -84,8 +81,7 @@ const CharacterAscensionCardMaterials = (props) => {
                     </Box>
                 </Box>
             }
-
-            {/* T2 Character EXP Material */
+            {/* T3 Character EXP Material */
                 costs["xp2"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Adventure Log" arrow placement="top">
@@ -98,8 +94,7 @@ const CharacterAscensionCardMaterials = (props) => {
                     </Box>
                 </Box>
             }
-
-            {/* T3 Character EXP Material */
+            {/* T4 Character EXP Material */
                 costs["xp3"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Travel's Guide" arrow placement="top">
@@ -112,7 +107,48 @@ const CharacterAscensionCardMaterials = (props) => {
                     </Box>
                 </Box>
             }
-
+            {
+                /* T2 Common Material */
+                costs["common1"] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title={formatCommonMats(`${commonMat}1`)} arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}1.png`} style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} alt={commonMat} className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costs["common1"]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* T3 Common Material */
+                costs["common2"] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title={formatCommonMats(`${commonMat}2`)} arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}2.png`} style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} alt={commonMat} className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costs["common2"]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* T4 Common Material */
+                costs["common3"] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title={formatCommonMats(`${commonMat}3`)} arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt={commonMat} className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costs["common3"]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
         </Box>
     )
 

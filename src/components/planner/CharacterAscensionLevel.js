@@ -14,7 +14,7 @@ const CharacterAscensionLevel = (props) => {
 
     let materialArray = AscensionMaterials[rarity.toString()];
 
-    const levels = ["1", "20", "30", "40", "50", "60", "70", "80"];
+    const levels = ["1", "20", "20+", "30", "30+", "40", "40+", "50", "50+", "60", "60+", "70", "70+", "80"];
     const minDistance = 1;
     let maxValue = levels.length;
     const [sliderValue, setSliderValue] = React.useState([1, maxValue]);
@@ -75,11 +75,11 @@ const CharacterAscensionLevel = (props) => {
                 </Typography>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", px: 2 }}>
-                <Typography variant="body1" sx={{ color: `${theme.text.color}`, mr: "25px", width: "60px", fontWeight: "bold" }}>
+                <Typography variant="body1" sx={{ color: `${theme.text.color}`, mr: "25px", width: "70px", fontWeight: "bold" }}>
                     Lv. {levels[sliderValue[0] - 1]}
                 </Typography>
                 <CustomSlider disabled={!selected} value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={element} disableSwap />
-                <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "25px", width: "60px", fontWeight: "bold" }}>
+                <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "25px", width: "70px", fontWeight: "bold" }}>
                     Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
             </Box>
@@ -97,24 +97,35 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(null, mapDispatchToProps)(CharacterAscensionLevel);
 
 const AscensionMaterials = {
+    // Level [1, 20, 20+, 30, 30+, 40, 40+, 50, 50+, 60, 60+, 70, 70+, 80] (14)
+    /*
+        Credits
+        Boss Material
+        T1 Common Material
+        T2 Common Material
+        T3 Common Material
+        T1 Character EXP Material
+        T2 Character EXP Material
+        T3 Character EXP Material
+    */
     "5": [
-        [0, 11300, 21800, 28700, 55300, 122300, 212700, 436300],
-        [0, 0, 0, 0, 3, 7, 20, 35],
-        [0, 0, 5, 10, 0, 0, 0, 0],
-        [0, 0, 0, 0, 6, 9, 0, 0],
-        [0, 0, 0, 0, 0, 0, 6, 9],
-        [0, 3, 3, 2, 5, 3, 2, 3],
-        [0, 2, 4, 1, 1, 0, 1, 0],
-        [0, 5, 8, 10, 19, 41, 66, 138]
+        [0, 11300, 4000, 17800, 8000, 20700, 16000, 39300, 40000, 82300, 80000, 132700, 160000, 276300],
+        [0, 0, 0, 0, 0, 0, 3, 0, 7, 0, 20, 0, 35, 0],
+        [0, 0, 5, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 6, 0, 9, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 9, 0, 0],
+        [0, 3, 0, 3, 0, 2, 0, 5, 0, 3, 0, 2, 0, 3, 0],
+        [0, 2, 0, 4, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+        [0, 5, 0, 8, 0, 10, 0, 19, 0, 41, 0, 66, 0, 138, 0]
     ],
     "4": [
-        [0, 11300, 21000, 27100, 52100, 114300, 196700, 404300],
-        [0, 0, 0, 0, 2, 5, 15, 28],
-        [0, 0, 4, 8, 0, 0, 0, 0],
-        [0, 0, 0, 0, 5, 8, 0, 0],
-        [0, 0, 0, 0, 0, 0, 5, 7],
-        [0, 3, 3, 2, 5, 3, 2, 3],
-        [0, 2, 4, 1, 1, 0, 1, 0],
-        [0, 5, 8, 10, 19, 41, 66, 138]
+        [0, 11300, 3200, 17800, 6400, 20700, 12800, 39300, 32000, 82300, 64000, 132700, 128000, 276300],
+        [0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 15, 0, 28, 0],
+        [0, 0, 4, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 5, 0, 8, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 7, 0, 0],
+        [0, 3, 0, 3, 0, 2, 0, 5, 0, 3, 0, 2, 0, 3, 0],
+        [0, 2, 0, 4, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+        [0, 5, 0, 8, 0, 10, 0, 19, 0, 41, 0, 66, 0, 138, 0]
     ]
 }
