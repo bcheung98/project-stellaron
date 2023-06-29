@@ -38,16 +38,30 @@ const CharacterAscensionLevel = (props) => {
     }
 
     const GetCost = (start, stop) => {
-        let costArray = materialArray.map((material, index) => (materialArray[index].slice(start, stop).reduce((a, c) => a + c)));
-        return {
-            credits: costArray[0],
-            bossMat: costArray[1],
-            common1: costArray[2],
-            common2: costArray[3],
-            common3: costArray[4],
-            xp1: costArray[5],
-            xp2: costArray[6],
-            xp3: costArray[7],
+        if (selected) {
+            let costArray = materialArray.map((material, index) => (materialArray[index].slice(start, stop).reduce((a, c) => a + c)));
+            return {
+                credits: costArray[0],
+                bossMat: costArray[1],
+                common1: costArray[2],
+                common2: costArray[3],
+                common3: costArray[4],
+                xp1: costArray[5],
+                xp2: costArray[6],
+                xp3: costArray[7],
+            }
+        }
+        else {
+            return {
+                credits: 0,
+                bossMat: 0,
+                common1: 0,
+                common2: 0,
+                common3: 0,
+                xp1: 0,
+                xp2: 0,
+                xp3: 0,
+            }
         }
     }
 
