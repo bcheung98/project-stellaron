@@ -2,6 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography, CardHeader } from "@mui/material";
 import { CustomSlider } from "../../helpers/CustomSlider";
+import { CustomSwitch } from "../../helpers/CustomSwitch";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const CharacterAscensionUltimate = (props) => {
@@ -47,17 +48,20 @@ const CharacterAscensionUltimate = (props) => {
             }}
             style={selected ? { opacity: "1" } : { opacity: "0.35" }}
         >
-            <CardHeader
-                avatar={
-                    <img alt={name} src={(`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_ultimate.webp`)} style={{ width: "48px", height: "48px", border: `1px solid ${theme.border.color}`, borderRadius: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} onClick={handleSelect} />
-                }
-                title={
-                    <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
-                        Ultimate
-                    </Typography>
-                }
-                sx={{ ml: "-5px" }}
-            />
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+                <CustomSwitch checked={selected} onChange={handleSelect} element={element} />
+                <CardHeader
+                    avatar={
+                        <img alt={name} src={(`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_ultimate.webp`)} style={{ width: "48px", height: "48px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />
+                    }
+                    title={
+                        <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
+                            Ultimate
+                        </Typography>
+                    }
+                    sx={{ ml: "-5px" }}
+                />
+            </Box>
             <Box sx={{ display: "flex", alignItems: "center", px: 2 }}>
                 <Typography variant="body1" sx={{ color: `${theme.text.color}`, mr: "25px", width: "80px", fontWeight: "bold" }}>
                     Lv. {levels[sliderValue[0] - 1]}
