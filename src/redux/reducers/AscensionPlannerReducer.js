@@ -15,19 +15,19 @@ const AscensionPlannerReducer = (state = initialState, action) => {
                 tempCharCosts.push({
                     name: char.name,
                     costs: {
-                        credits: [0],
-                        xp1: [0],
-                        xp2: [0],
-                        xp3: [0],
-                        bossMat: [0],
-                        calyx1: [0],
-                        calyx2: [0],
-                        calyx3: [0],
-                        common1: [0],
-                        common2: [0],
-                        common3: [0],
-                        weeklyBossMat: [0],
-                        tracksOfDestiny: [0]
+                        credits: 0,
+                        xp1: 0,
+                        xp2: 0,
+                        xp3: 0,
+                        bossMat: 0,
+                        calyx1: 0,
+                        calyx2: 0,
+                        calyx3: 0,
+                        common1: 0,
+                        common2: 0,
+                        common3: 0,
+                        weeklyBossMat: 0,
+                        tracksOfDestiny: 0
                     }
                 })
             ));

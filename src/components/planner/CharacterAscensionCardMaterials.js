@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
-import { formatCommonMats } from "../../helpers/TooltipText";
+import { formatCalyxMats, formatCommonMats, formatWeeklyBossMats } from "../../helpers/TooltipText";
 import { Backgrounds } from "../../helpers/Backgrounds";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
@@ -12,7 +12,7 @@ const CharacterAscensionCardMaterials = (props) => {
     const theme = useTheme();
 
     let { name } = props.character;
-    let { bossMat, calyxMat, commonMat } = props.character.materials;
+    let { bossMat, calyxMat, commonMat, weeklyBossMat } = props.character.materials;
     let costs = props.costs.find(char => char.name === name).costs;
 
     const MaterialStyle = {
@@ -145,6 +145,76 @@ const CharacterAscensionCardMaterials = (props) => {
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
                             {costs["common3"]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* T2 Calyx Material */
+                costs["calyx1"] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title={formatCalyxMats(`${calyxMat}1`)} arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${calyxMat.split(" ").join("_")}1.png`} style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} alt={calyxMat} className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costs["calyx1"]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* T3 Calyx Material */
+                costs["calyx2"] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title={formatCalyxMats(`${calyxMat}2`)} arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${calyxMat.split(" ").join("_")}2.png`} style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} alt={calyxMat} className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costs["calyx2"]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* T4 Calyx Material */
+                costs["calyx3"] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title={formatCalyxMats(`${calyxMat}3`)} arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${calyxMat.split(" ").join("_")}3.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt={calyxMat} className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costs["calyx3"]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* Weekly Boss Material  */
+                costs["weeklyBossMat"] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title={formatWeeklyBossMats(weeklyBossMat)} arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${weeklyBossMat.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt={weeklyBossMat} className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costs["weeklyBossMat"]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* Tracks of Destiny  */
+                costs["tracksOfDestiny"] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title="Tracks of Destiny" arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/Tracks_of_Destiny.png`} style={{ backgroundImage: "url(" + Backgrounds["5"] + ")" }} alt="Tracks of Destiny" className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costs["tracksOfDestiny"]}
                         </Typography>
                     </Box>
                 </Box>
