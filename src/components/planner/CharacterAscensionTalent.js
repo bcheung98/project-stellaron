@@ -69,7 +69,7 @@ const CharacterAscensionTalent = (props) => {
     }
 
     React.useEffect(() => {
-        updateCharacterCosts([name, GetCost(sliderValue[0], sliderValue[1]), "ultimate"])
+        updateCharacterCosts([name, GetCost(sliderValue[0], sliderValue[1]), "talent"])
     })
 
     const [selected, setSelected] = React.useState(true);
