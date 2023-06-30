@@ -2,7 +2,8 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Box } from "@mui/material";
 import Xarrow from "react-xarrows";
-import { TraceNodeMain, TraceNodeSmall } from "./AscensionTraceNode";
+import AscensionTraceNodeMain from "./AscensionTraceNodeMain";
+import AscensionTraceNodeSmall from "./AscensionTraceNodeSmall";
 
 const CharacterAscensionTraces = (props) => {
 
@@ -17,7 +18,7 @@ const CharacterAscensionTraces = (props) => {
                 props.character.traces?.map((trace, index) => {
                     return (
                         <Box key={index}>
-                            <ShowTraces character={props.character} traces={trace} id={`${props.character.name}${String.fromCharCode(index + 65)}-1`} />
+                            <ShowTraces character={props.character} traces={trace} id={`${props.character.name} ${String.fromCharCode(index + 65)}-1`} />
                             <hr style={{ border: `.5px solid ${theme.border.color}`, marginLeft: "25px", marginRight: "25px" }} />
                         </Box>
                     )
@@ -39,9 +40,9 @@ const ShowTraces = (props) => {
         <Box sx={{ display: "flex", alignItems: "center" }} >
             {
                 traces.name ?
-                    <TraceNodeMain id={id} character={props.character} traces={traces} />
+                    <AscensionTraceNodeMain id={id} character={props.character} traces={traces} />
                     :
-                    <TraceNodeSmall id={id} character={props.character} traces={traces} />
+                    <AscensionTraceNodeSmall id={id} character={props.character} traces={traces} />
             }
             <Box>
                 {

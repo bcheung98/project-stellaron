@@ -13,8 +13,9 @@ const AscensionPlannerReducer = (state = initialState, action) => {
             let tempCharCosts = [];
             payload.map(char => {
                 let costs;
+                let traceIDs = [];
                 let currentCharacter = state.characterCosts.find(c => char.name === c.name);
-                // If the character is not already in the list
+                // If the character is not already in the list, initialize the material array
                 if (currentCharacter === undefined) {
                     costs = {
                         // Source of each material:
@@ -40,7 +41,8 @@ const AscensionPlannerReducer = (state = initialState, action) => {
                 return (
                     tempCharCosts.push({
                         name: char.name,
-                        costs: costs
+                        costs: costs,
+                        traceIDs: traceIDs
                     })
                 )
             });
@@ -55,17 +57,33 @@ const AscensionPlannerReducer = (state = initialState, action) => {
             Object.keys(payload[1]).forEach(key => {
                 switch (payload[2]) {
                     case "level":
-                        return tempArr[index].costs[key][0] = payload[1][key];
+                        tempArr[index].costs[key][0] = payload[1][key];
+                        break;
                     case "attack":
-                        return tempArr[index].costs[key][1] = payload[1][key];
+                        tempArr[index].costs[key][1] = payload[1][key];
+                        break;
                     case "skill":
-                        return tempArr[index].costs[key][2] = payload[1][key];
+                        tempArr[index].costs[key][2] = payload[1][key];
+                        break;
                     case "ultimate":
-                        return tempArr[index].costs[key][3] = payload[1][key];
+                        tempArr[index].costs[key][3] = payload[1][key];
+                        break;
                     case "talent":
-                        return tempArr[index].costs[key][4] = payload[1][key];
+                        tempArr[index].costs[key][4] = payload[1][key];
+                        break;
+                    case "trace":
+                        if (!tempArr[index].traceIDs.includes(payload[3])) {
+                            tempArr[index].traceIDs.push(payload[3]);
+                        }
+                        if (tempArr[index].traceIDs.length === 13) {
+                            tempArr[index].traceIDs.forEach(() => {
+                                let traceIndex = tempArr[index].traceIDs.indexOf(tempArr[index].traceIDs.find(el => el === payload[3]))
+                                tempArr[index].costs[key][5][traceIndex] = payload[1][key];
+                            })
+                        }
+                        break;
                     default:
-                        return;
+                        break;
                 }
             })
             return {
