@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Box, Typography, CardHeader } from "@mui/material";
+import { Box, Typography, CardHeader, ButtonBase } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion";
@@ -43,7 +43,9 @@ const CharacterAscensionCard = (props) => {
             <CardHeader
                 avatar={
                     <Box sx={{ position: "relative" }}>
-                        <img alt={name} src={(`${process.env.REACT_APP_URL}/characters/icons/Icon_${name.split(" ").join("_")}.png`)} style={{ width: "64px", border: `2px solid ${theme.border.color}`, borderRadius: "64px" }} onError={ErrorLoadingImage} />
+                        <ButtonBase disableRipple href={`/project-stellaron/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                            <img alt={name} src={(`${process.env.REACT_APP_URL}/characters/icons/Icon_${name.split(" ").join("_")}.png`)} style={{ width: "64px", border: `2px solid ${theme.border.color}`, borderRadius: "64px" }} onError={ErrorLoadingImage} />
+                        </ButtonBase>
                         <Box sx={{ position: "absolute", top: "50px", left: "-5px" }}>
                             <CustomTooltip title={element} arrow placement="top">
                                 <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
@@ -58,9 +60,11 @@ const CharacterAscensionCard = (props) => {
                 }
                 title={
                     <React.Fragment>
-                        <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
-                            {name}
-                        </Typography>
+                        <ButtonBase disableRipple href={`/project-stellaron/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                            <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
+                                {name}
+                            </Typography>
+                        </ButtonBase>
                         <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px" }} variant="h6">
                             {[...Array(rarity).keys()].map(() => "✦")}
                         </Typography>
