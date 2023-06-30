@@ -1,4 +1,5 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography, CardHeader } from "@mui/material";
 import { CustomSlider } from "../../helpers/CustomSlider";
@@ -9,7 +10,10 @@ const CharacterAscensionUltimate = (props) => {
 
     const theme = useTheme();
 
-    let { name, element } = props.character;
+    let { updateCharacterCosts } = props;
+    let { name, element, rarity } = props.character;
+
+    let materialArray = SkillLevelUpMaterials[rarity.toString()];
 
     const minDistance = 1;
     let maxValue = 10;
@@ -33,6 +37,40 @@ const CharacterAscensionUltimate = (props) => {
             setSliderValue(newValue);
         }
     }
+
+    const GetCost = (start, stop) => {
+        if (selected) {
+            let costArray = materialArray.map((material, index) => (materialArray[index].slice(start, stop).reduce((a, c) => a + c)));
+            return {
+                credits: costArray[0],
+                calyx1: costArray[1],
+                calyx2: costArray[2],
+                calyx3: costArray[3],
+                common1: costArray[4],
+                common2: costArray[5],
+                common3: costArray[6],
+                weeklyBossMat: costArray[7],
+                tracksOfDestiny: costArray[8]
+            }
+        }
+        else {
+            return {
+                credits: 0,
+                common1: 0,
+                common2: 0,
+                common3: 0,
+                calyx1: 0,
+                calyx2: 0,
+                calyx3: 0,
+                weeklyBossMat: 0,
+                tracksOfDestiny: 0
+            }
+        }
+    }
+
+    React.useEffect(() => {
+        updateCharacterCosts([name, GetCost(sliderValue[0], sliderValue[1]), "ultimate"])
+    })
 
     const [selected, setSelected] = React.useState(true);
     const handleSelect = () => {
@@ -76,4 +114,48 @@ const CharacterAscensionUltimate = (props) => {
 
 }
 
-export default CharacterAscensionUltimate;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateCharacterCosts: (payload) => dispatch({ type: "UPDATE_CHAR_COSTS", payload })
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CharacterAscensionUltimate);
+
+const SkillLevelUpMaterials = {
+    // Level [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] (10)
+    /*
+        Credits
+        T1 Calyx Material
+        T2 Calyx Material
+        T3 Calyx Material
+        T1 Common Material
+        T2 Common Material
+        T3 Common Material
+        Weekly Boss Material
+        Tracks of Destiny
+    */
+    "5": [
+        [0, 2500, 5000, 10000, 20000, 30000, 45000, 80000, 160000, 300000],
+        [0, 0, 3, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 3, 5, 7, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 3, 5, 8, 14],
+        [0, 3, 6, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 3, 4, 6, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 3, 4, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    ]
+    ,
+    "4": [
+        [0, 2000, 4000, 8000, 16000, 24000, 36000, 64000, 128000, 240000],
+        [0, 0, 2, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 2, 4, 6, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 2, 4, 6, 11],
+        [0, 2, 4, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 2, 3, 5, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 2, 3, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+    ]
+}
