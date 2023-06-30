@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import CharacterSelector from "./CharacterSelector";
 import LightconeSelector from "./LightconeSelector";
@@ -16,6 +16,19 @@ const AscensionPlanner = (props) => {
 
     return (
         <Box>
+            <Typography variant="h4"
+                sx={{
+                    mx: "25px",
+                    my: "20px",
+                    display: { xs: "none", md: "flex" },
+                    letterSpacing: ".2rem",
+                    color: `${theme.text.color}`,
+                    textDecoration: "none",
+                    textAlign: "center",
+                }}
+            >
+                ASCENSION PLANNER
+            </Typography>
             <Box sx={{ display: "block", my: "30px" }}>
                 <Box sx={{ display: "flex" }}>
                     <CharacterSelector />
