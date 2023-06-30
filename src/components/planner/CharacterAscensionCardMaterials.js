@@ -2,6 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { formatCalyxMats, formatCommonMats, formatWeeklyBossMats } from "../../helpers/TooltipText";
 import { Backgrounds } from "../../helpers/Backgrounds";
@@ -18,12 +19,13 @@ const CharacterAscensionCardMaterials = (props) => {
     const MaterialStyle = {
         mx: "15px",
         my: "10px",
-        display: "flex",
+        display: "flex",  
     }
 
     const MaterialImageRootBig = {
         width: "72px",
         mr: "15px",
+        mb: "15px",
         backgroundColor: "rgb(34, 35, 36)",
         border: `1px solid ${theme.border.color}`,
         borderRadius: "5px",
@@ -54,7 +56,7 @@ const CharacterAscensionCardMaterials = (props) => {
     let tracksOfDestiny = costs.tracksOfDestiny.reduce((a, c) => Number(a) + Number(c));
 
     return (
-        <Box sx={MaterialStyle}>
+        <Grid container sx={MaterialStyle}>
             {/* Credits */
                 credits !== 0 &&
                 <Box sx={MaterialImageRootBig}>
@@ -233,7 +235,7 @@ const CharacterAscensionCardMaterials = (props) => {
                     </Box>
                 </Box>
             }
-        </Box>
+        </Grid>
     )
 
 }
