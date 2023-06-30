@@ -17,7 +17,7 @@ const CharacterAscensionCard = (props) => {
 
     const theme = useTheme();
 
-    let { name, rarity, element, path, materials } = props.character;
+    let { name, rarity, element, path } = props.character;
 
     const smallIcon = {
         width: "24px",

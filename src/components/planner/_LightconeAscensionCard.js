@@ -11,7 +11,7 @@ const LightconeAscensionCard = (props) => {
 
     const theme = useTheme();
 
-    let { name, rarity, path, materials } = props.lightcone;
+    let { name, rarity, path } = props.lightcone;
 
     const smallIcon = {
         width: "24px",
