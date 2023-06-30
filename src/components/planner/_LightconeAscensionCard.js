@@ -4,6 +4,7 @@ import { Box, Typography, CardHeader } from "@mui/material";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
+import LightconeAscensionCardMaterials from "./LightconeAscensionCardMaterials";
 import LightconeAscensionLevel from "./LightconeAscensionLevel";
 
 const LightconeAscensionCard = (props) => {
@@ -60,6 +61,7 @@ const LightconeAscensionCard = (props) => {
                 <Typography variant="body1" sx={{ color: `${theme.text.color}` }}>
                     Materials Required
                 </Typography>
+                <LightconeAscensionCardMaterials lightcone={props.lightcone} />
             </Box>
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
             <Accordion>
@@ -69,7 +71,7 @@ const LightconeAscensionCard = (props) => {
                     </Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <LightconeAscensionLevel />
+                    <LightconeAscensionLevel lightcone={props.lightcone} />
                 </AccordionDetails>
             </Accordion>
         </Box>

@@ -52,33 +52,33 @@ const AscensionPlannerReducer = (state = initialState, action) => {
                 characterCosts: tempCharCosts
             }
         case "UPDATE_CHAR_COSTS":
-            let tempArr = [...state.characterCosts];
-            let index = tempArr.indexOf(tempArr.find(char => char.name === payload[0]));
+            let tempCharArr = [...state.characterCosts];
+            let indexChar = tempCharArr.indexOf(tempCharArr.find(char => char.name === payload[0]));
             Object.keys(payload[1]).forEach(key => {
                 switch (payload[2]) {
                     case "level":
-                        tempArr[index].costs[key][0] = payload[1][key];
+                        tempCharArr[indexChar].costs[key][0] = payload[1][key];
                         break;
                     case "attack":
-                        tempArr[index].costs[key][1] = payload[1][key];
+                        tempCharArr[indexChar].costs[key][1] = payload[1][key];
                         break;
                     case "skill":
-                        tempArr[index].costs[key][2] = payload[1][key];
+                        tempCharArr[indexChar].costs[key][2] = payload[1][key];
                         break;
                     case "ultimate":
-                        tempArr[index].costs[key][3] = payload[1][key];
+                        tempCharArr[indexChar].costs[key][3] = payload[1][key];
                         break;
                     case "talent":
-                        tempArr[index].costs[key][4] = payload[1][key];
+                        tempCharArr[indexChar].costs[key][4] = payload[1][key];
                         break;
                     case "trace":
-                        if (!tempArr[index].traceIDs.includes(payload[3])) {
-                            tempArr[index].traceIDs.push(payload[3]);
+                        if (!tempCharArr[indexChar].traceIDs.includes(payload[3])) {
+                            tempCharArr[indexChar].traceIDs.push(payload[3]);
                         }
-                        if (tempArr[index].traceIDs.length === 13) {
-                            tempArr[index].traceIDs.forEach(() => {
-                                let traceIndex = tempArr[index].traceIDs.indexOf(tempArr[index].traceIDs.find(el => el === payload[3]))
-                                tempArr[index].costs[key][5][traceIndex] = payload[1][key];
+                        if (tempCharArr[indexChar].traceIDs.length === 13) {
+                            tempCharArr[indexChar].traceIDs.forEach(() => {
+                                let traceIndex = tempCharArr[indexChar].traceIDs.indexOf(tempCharArr[indexChar].traceIDs.find(el => el === payload[3]))
+                                tempCharArr[indexChar].costs[key][5][traceIndex] = payload[1][key];
                             })
                         }
                         break;
@@ -88,17 +88,52 @@ const AscensionPlannerReducer = (state = initialState, action) => {
             })
             return {
                 ...state,
-                characterCosts: tempArr
+                characterCosts: tempCharArr
             }
         case "SET_PLANNER_LIGHTCONES":
             let tempLightconeCosts = [];
-            payload.map(lc => (
-                tempLightconeCosts.push({ name: lc.name, costs: {} })
-            ))
+            payload.map(lightcone => {
+                let costs;
+                let currentLightcone = state.lightconeCosts.find(lc => lightcone.name === lc.name);
+                // If the lightcone is not already in the list, initialize the material array
+                if (currentLightcone === undefined) {
+                    costs = {
+                        credits: 0,
+                        xp1: 0,
+                        xp2: 0,
+                        xp3: 0,
+                        calyx1: 0,
+                        calyx2: 0,
+                        calyx3: 0,
+                        common1: 0,
+                        common2: 0,
+                        common3: 0
+                    }
+                }
+                else {
+                    costs = currentLightcone.costs;
+                }
+                return (
+                    tempLightconeCosts.push({
+                        name: lightcone.name,
+                        costs: costs,
+                    })
+                )
+            });
             return {
                 ...state,
                 lightcones: payload,
                 lightconeCosts: tempLightconeCosts
+            }
+        case "UPDATE_LIGHTCONE_COSTS":
+            let tempLightconeArr = [...state.lightconeCosts];
+            let indexLightcone = tempLightconeArr.indexOf(tempLightconeArr.find(lc => lc.name === payload[0]));
+            Object.keys(payload[1]).forEach(key => {
+                tempLightconeArr[indexLightcone].costs[key] = payload[1][key];
+            })
+            return {
+                ...state,
+                lightconeCosts: tempLightconeArr
             }
         default:
             return state;
