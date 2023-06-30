@@ -17,21 +17,21 @@ const AscensionPlannerReducer = (state = initialState, action) => {
                 // If the character is not already in the list
                 if (currentCharacter === undefined) {
                     costs = {
-                        // Source of each resource:
-                        // [Level, Basic ATK, Skill, Ultimate, Talent, [Traces]]
-                        credits: [0, 0, 0, 0, 0, [0]],
-                        xp1: [0, 0, 0, 0, 0, [0]],
-                        xp2: [0, 0, 0, 0, 0, [0]],
-                        xp3: [0, 0, 0, 0, 0, [0]],
-                        bossMat: [0, 0, 0, 0, 0, [0]],
-                        calyx1: [0, 0, 0, 0, 0, [0]],
-                        calyx2: [0, 0, 0, 0, 0, [0]],
-                        calyx3: [0, 0, 0, 0, 0, [0]],
-                        common1: [0, 0, 0, 0, 0, [0]],
-                        common2: [0, 0, 0, 0, 0, [0]],
-                        common3: [0, 0, 0, 0, 0, [0]],
-                        weeklyBossMat: [0, 0, 0, 0, 0, [0]],
-                        tracksOfDestiny: [0, 0, 0, 0, 0, [0]]
+                        // Source of each material:
+                        // [Level, Basic ATK, Skill, Ultimate, Talent, [A2 Passive, A4 Passive, A6 Passive, A2 Trace, A3 Trace 1, A3 Trace 2, A4 Trace, A5 Trace 1, A5 Trace 2, A6 Trace, Lv. 1 Trace, Lv. 75 Trace, Lv. 80 Trace]]
+                        credits: [0, 0, 0, 0, 0, 0],
+                        xp1: [0, 0, 0, 0, 0, 0],
+                        xp2: [0, 0, 0, 0, 0, 0],
+                        xp3: [0, 0, 0, 0, 0, 0],
+                        bossMat: [0, 0, 0, 0, 0, 0],
+                        calyx1: [0, 0, 0, 0, 0, 0],
+                        calyx2: [0, 0, 0, 0, 0, 0],
+                        calyx3: [0, 0, 0, 0, 0, 0],
+                        common1: [0, 0, 0, 0, 0, 0],
+                        common2: [0, 0, 0, 0, 0, 0],
+                        common3: [0, 0, 0, 0, 0, 0],
+                        weeklyBossMat: [0, 0, 0, 0, 0, 0],
+                        tracksOfDestiny: [0, 0, 0, 0, 0, 0]
                     }
                 }
                 else {

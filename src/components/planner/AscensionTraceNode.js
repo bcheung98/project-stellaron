@@ -80,3 +80,41 @@ export const TraceNodeSmall = (props) => {
     )
 
 }
+
+const TraceLevelUpMaterialsMain = {
+    // [Credits, T2 Calyx Material, T3 Calyx Material, T4 Calyx Material, Weekly Boss Material, Tracks of Destiny]
+    "5": {
+        "A2": [5000, 3, 0, 0, 1, 0],
+        "A4": [20000, 0, 5, 1, 1],
+        "A6": [160000, 0, 0, 8, 1, 1]
+    },
+    "4": {
+        "A2": [4000, 2, 0, 0, 1, 0],
+        "A4": [16000, 0, 4, 1, 1],
+        "A6": [128000, 0, 0, 6, 1, 1]
+    }
+}
+
+const TraceLevelUpMaterials = {
+    // [Credits, T2 Calyx Material, T3 Calyx Material, T4 Calyx Material, T2 Common Material, T3 Common Material, T4 Common Material, Weekly Boss Material, Tracks of Destiny]
+    "5": {
+        "A2": [5000, [3, 2], [6, 2]],
+        "A3": [10000, [3, 3], [3, 3]],
+        "A4": [20000, [5, 3], [4, 3]],
+        "A5": [45000, [3, 4], [3, 4]],
+        "A6": [160000, [8, 4], [8, 4]],
+        "Lv. 1": [2500, [0, 0], [2, 2]],
+        "Lv. 75": [160000, [8, 4], [8, 4]],
+        "Lv. 80": [160000, [8, 4], [8, 4]]
+    },
+    "4": {
+        "A2": [4000, [2, 2], [4, 2]],
+        "A3": [8000, [2, 3], [2, 3]],
+        "A4": [16000, [4, 3], [3, 3]],
+        "A5": [36000, [2, 4], [2, 4]],
+        "A6": [128000, [6, 4], [6, 4]],
+        "Lv. 1": [2000, [0, 0], [2, 2]],
+        "Lv. 75": [128000, [6, 4], [6, 4]],
+        "Lv. 80": [128000, [6, 4], [6, 4]]
+    }
+}
