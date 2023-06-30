@@ -11,10 +11,12 @@ const AscensionPlannerReducer = (state = initialState, action) => {
     switch (type) {
         case "SET_PLANNER_CHARS":
             let tempCharCosts = [];
-            payload.map(char => (
-                tempCharCosts.push({
-                    name: char.name,
-                    costs: {
+            payload.map(char => {
+                let costs;
+                let currentCharacter = state.characterCosts.find(c => char.name === c.name);
+                // If the character is not already in the list
+                if (currentCharacter === undefined) {
+                    costs = {
                         // Source of each resource:
                         // [Level, Basic ATK, Skill, Ultimate, Talent, [Traces]]
                         credits: [0, 0, 0, 0, 0, [0]],
@@ -31,8 +33,17 @@ const AscensionPlannerReducer = (state = initialState, action) => {
                         weeklyBossMat: [0, 0, 0, 0, 0, [0]],
                         tracksOfDestiny: [0, 0, 0, 0, 0, [0]]
                     }
-                })
-            ));
+                }
+                else {
+                    costs = currentCharacter.costs;
+                }
+                return (
+                    tempCharCosts.push({
+                        name: char.name,
+                        costs: costs
+                    })
+                )
+            });
             return {
                 ...state,
                 characters: payload,
