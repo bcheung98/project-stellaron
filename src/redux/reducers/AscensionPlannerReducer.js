@@ -1,5 +1,5 @@
 const initialState = {
-    totalCost: {},
+    totalCost: [],
     characters: [],
     characterCosts: [],
     lightcones: [],
@@ -13,9 +13,9 @@ const AscensionPlannerReducer = (state = initialState, action) => {
             let tempCharCosts = [];
             payload.map(char => {
                 let costs;
-                let traceIDs = [];
+                let traceIDs;
                 let currentCharacter = state.characterCosts.find(c => char.name === c.name);
-                // If the character is not already in the list, initialize the material array
+                // If the character is not already in the list, initialize the material array and trace ID array
                 if (currentCharacter === undefined) {
                     costs = {
                         // Source of each material:
@@ -33,10 +33,12 @@ const AscensionPlannerReducer = (state = initialState, action) => {
                         common3: [0, 0, 0, 0, 0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
                         weeklyBossMat: [0, 0, 0, 0, 0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
                         tracksOfDestiny: [0, 0, 0, 0, 0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-                    }
+                    };
+                    traceIDs = [];
                 }
                 else {
                     costs = currentCharacter.costs;
+                    traceIDs = currentCharacter.traceIDs;
                 }
                 return (
                     tempCharCosts.push({
@@ -72,9 +74,11 @@ const AscensionPlannerReducer = (state = initialState, action) => {
                         tempCharArr[indexChar].costs[key][4] = payload[1][key];
                         break;
                     case "trace":
+                        // Add all the unique trace IDs to the trace ID array
                         if (!tempCharArr[indexChar].traceIDs.includes(payload[3])) {
                             tempCharArr[indexChar].traceIDs.push(payload[3]);
                         }
+                        // Will only trigger when all the trace nodes have been added to the array
                         if (tempCharArr[indexChar].traceIDs.length === 13) {
                             tempCharArr[indexChar].traceIDs.forEach(() => {
                                 let traceIndex = tempCharArr[indexChar].traceIDs.indexOf(tempCharArr[indexChar].traceIDs.find(el => el === payload[3]))
