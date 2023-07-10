@@ -90,7 +90,7 @@ const CharacterAscensionSkill = (props) => {
                 <CustomSwitch checked={selected} onChange={handleSelect} element={element} />
                 <CardHeader
                     avatar={
-                        <img alt={name} src={(`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_skill.webp`)} style={{ width: "48px", height: "48px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />
+                        <img alt={name} src={(`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_skill.png`)} style={{ width: "48px", height: "48px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />
                     }
                     title={
                         <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>

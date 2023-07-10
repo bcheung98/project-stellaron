@@ -51,7 +51,7 @@ const AscensionTraceNodeMain = (props) => {
             <Typography variant="body2" sx={{ color: `${theme.text.color}` }}>
                 {parse(traces.name)}
             </Typography>}>
-            <Avatar alt={traces.name} src={(`${process.env.REACT_APP_URL}/characters/traces/${name.split(" ").join("_").toLowerCase()}_${traces.unlock.toLowerCase()}.webp`)}
+            <Avatar alt={traces.name} src={(`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_${traces.unlock.toLowerCase()}.png`)}
                 id={id}
                 sx={{
                     width: "40px",
