@@ -30,7 +30,7 @@ export const TraceNodeMain = (props) => {
                     alignItems: "center",
                 }}
                 avatar={
-                    <Avatar alt={traces.name} src={(`${process.env.REACT_APP_URL}/characters/traces/${name.split(" ").join("_").toLowerCase()}_${traces.unlock.toLowerCase()}.webp`)}
+                    <Avatar alt={traces.name} src={(`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_${traces.unlock.toLowerCase()}.png`)}
                         sx={{
                             width: "56px",
                             height: "56px",
