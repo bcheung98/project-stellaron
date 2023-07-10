@@ -31,44 +31,45 @@ const CharacterEidolonDisplay = (props) => {
                     Eidolons
                 </Typography>
             </AppBar>
-            <Grid container spacing={2} sx={{ m: 2 }}>
-                {Object.keys(eidolon).map((key, index) => {
-                    return (
-                        <Grid key={index} xs>
-                            <CardHeader
-                                sx={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                }}
-                                avatar={
-                                    <Avatar alt={eidolon[key].name} src={(`${process.env.REACT_APP_URL}/characters/eidolons/${name.split(" ").join("_").toLowerCase()}_${key}.webp`)}
-                                        sx={{
-                                            width: "96px",
-                                            height: "96px",
-                                        }}
-                                    >
-                                        <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "96px", backgroundColor: `${theme.paper.backgroundColor}` }} />
-                                    </Avatar>
-                                }
-                                title={
-                                    <React.Fragment>
-                                        <Typography variant="h5" sx={{ color: `${theme.text.color}` }}>
-                                            <b>{eidolon[key].name}</b>
-                                        </Typography>
-                                        <Typography variant="subtitle1" sx={{ color: `${theme.text.color}` }}>
-                                            <i>{key.toUpperCase()}</i>
-                                        </Typography>
-                                    </React.Fragment>
-                                }
-                            />
-                            <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "20px" }}>
-                                {parse(eidolon[key].description)}
-                            </Typography>
-                            <br />
-                        </Grid>
-                    )
-                })}
-            </Grid>
+            {Object.keys(eidolon).map((key, index) => {
+                return (
+                    <Grid key={index} xs>
+                        <CardHeader
+                            sx={{
+                                display: "flex",
+                                alignItems: "center",
+                            }}
+                            avatar={
+                                <Avatar alt={eidolon[key].name} src={(`${process.env.REACT_APP_URL}/characters/eidolons/${name.split(" ").join("_").toLowerCase()}_${key}.png`)}
+                                    sx={{
+                                        width: "96px",
+                                        height: "96px",
+                                    }}
+                                >
+                                    <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "96px", backgroundColor: `${theme.paper.backgroundColor}` }} />
+                                </Avatar>
+                            }
+                            title={
+                                <React.Fragment>
+                                    <Typography variant="h5" sx={{ color: `${theme.text.color}` }}>
+                                        <b>{eidolon[key].name}</b>
+                                    </Typography>
+                                    <Typography variant="subtitle1" sx={{ color: `${theme.text.color}` }}>
+                                        <i>{key.toUpperCase()}</i>
+                                    </Typography>
+                                </React.Fragment>
+                            }
+                        />
+                        <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "20px" }}>
+                            {parse(eidolon[key].description)}
+                        </Typography>
+                        <br />
+                        {
+                            index !== 5 && <hr style={{ border: `.5px solid ${theme.border.color}`, width: "98%" }} />
+                        }
+                    </Grid>
+                )
+            })}
         </Box>
     )
 
