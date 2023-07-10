@@ -33,8 +33,8 @@ const CharacterPage = (props) => {
             <React.Fragment>
                 <Grid container sx={{ mb: "20px" }}>
                     <Grid xs="auto">
-                        <img src={(`${process.env.REACT_APP_URL}/characters/splash/Character_${name.split(" ").join("_")}_Splash_Art.png`)} alt={name}
-                            style={{
+                        <Avatar src={(`${process.env.REACT_APP_URL}/characters/splash/Character_${name.split(" ").join("_")}_Splash_Art.png`)} alt={name}
+                            sx={{
                                 width: "35vw",
                                 height: "600px",
                                 objectFit: "contain",
@@ -45,8 +45,20 @@ const CharacterPage = (props) => {
                                 backgroundColor: `${theme.paper.backgroundColor}`,
                                 // cursor: "pointer",
                             }}
-                            onError={ErrorLoadingImage}
-                        />
+                        >
+                            <img src={(`${process.env.REACT_APP_URL}/images/Test_Character.png`)} alt="Unknown"
+                                style={{
+                                    width: "35vw",
+                                    height: "600px",
+                                    objectFit: "contain",
+                                    marginLeft: "15px",
+                                    marginTop: "15px",
+                                    backgroundColor: `${theme.paper.backgroundColor}`,
+                                    // cursor: "pointer",
+                                }}
+                                onError={ErrorLoadingImage}
+                            />
+                        </Avatar>
                         <Box
                             sx={{
                                 ml: "15px",
