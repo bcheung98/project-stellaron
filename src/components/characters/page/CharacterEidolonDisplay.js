@@ -42,8 +42,10 @@ const CharacterEidolonDisplay = (props) => {
                             avatar={
                                 <Avatar alt={eidolon[key].name} src={(`${process.env.REACT_APP_URL}/characters/eidolons/${name.split(" ").join("_").toLowerCase()}_${key}.png`)}
                                     sx={{
-                                        width: "96px",
-                                        height: "96px",
+                                        width: "64px",
+                                        height: "64px",
+                                        border: `2px solid ${theme.border.color}`,
+                                        borderRadius: "64px",
                                     }}
                                 >
                                     <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "96px", backgroundColor: `${theme.paper.backgroundColor}` }} />
