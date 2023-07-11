@@ -10,7 +10,7 @@ const CharacterAscensionTalent = (props) => {
 
     const theme = useTheme();
 
-    let { updateCharacterCosts } = props;
+    let { updateCharacterCosts, updateTotalCosts } = props;
     let { name, element, rarity } = props.character;
 
     let materialArray = SkillLevelUpMaterials[rarity.toString()];
@@ -70,6 +70,7 @@ const CharacterAscensionTalent = (props) => {
 
     React.useEffect(() => {
         updateCharacterCosts([name, GetCost(sliderValue[0], sliderValue[1]), "talent"])
+        updateTotalCosts()
     })
 
     const [selected, setSelected] = React.useState(true);
@@ -116,7 +117,8 @@ const CharacterAscensionTalent = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateCharacterCosts: (payload) => dispatch({ type: "UPDATE_CHAR_COSTS", payload })
+        updateCharacterCosts: (payload) => dispatch({ type: "UPDATE_CHAR_COSTS", payload }),
+        updateTotalCosts: (payload) => dispatch({ type: "UPDATE_TOTAL_COSTS", payload })
     }
 }
 

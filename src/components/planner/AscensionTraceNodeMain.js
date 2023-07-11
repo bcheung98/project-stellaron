@@ -9,7 +9,7 @@ const AscensionTraceNodeMain = (props) => {
 
     const theme = useTheme();
 
-    let { updateCharacterCosts } = props;
+    let { updateCharacterCosts, updateTotalCosts } = props;
     let { name, rarity } = props.character;
     let { id, traces } = props;
 
@@ -39,6 +39,7 @@ const AscensionTraceNodeMain = (props) => {
 
     React.useEffect(() => {
         updateCharacterCosts([name, GetCost(), "trace", id])
+        updateTotalCosts()
     })
 
     const [selected, setSelected] = React.useState(true);
@@ -73,7 +74,8 @@ const AscensionTraceNodeMain = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateCharacterCosts: (payload) => dispatch({ type: "UPDATE_CHAR_COSTS", payload })
+        updateCharacterCosts: (payload) => dispatch({ type: "UPDATE_CHAR_COSTS", payload }),
+        updateTotalCosts: (payload) => dispatch({ type: "UPDATE_TOTAL_COSTS", payload })
     }
 }
 

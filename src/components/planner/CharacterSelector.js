@@ -12,9 +12,12 @@ const CharacterSelector = (props) => {
 
     const theme = useTheme();
 
-    let { characters, setPlannerCharacters } = props;
+    let { characters, setPlannerCharacters, updateTotalCosts } = props;
 
-    React.useEffect(() => { setPlannerCharacters(value) })
+    React.useEffect(() => {
+        setPlannerCharacters(value)
+        updateTotalCosts()
+    })
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [value, setValue] = React.useState([]);
@@ -143,7 +146,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setPlannerCharacters: (payload) => dispatch({ type: "SET_PLANNER_CHARS", payload })
+        setPlannerCharacters: (payload) => dispatch({ type: "SET_PLANNER_CHARS", payload }),
+        updateTotalCosts: (payload) => dispatch({ type: "UPDATE_TOTAL_COSTS", payload })
     }
 }
 

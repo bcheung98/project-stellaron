@@ -57,40 +57,40 @@ const LightconeAscensionCardMaterials = (props) => {
                 </Box>
             }
             {/* T2 Lightcone EXP Material */
-                costs["xp1"] !== 0 &&
+                costs["lc_xp1"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Sparse Aether" arrow placement="top">
                         <img src={`${process.env.REACT_APP_URL}/items/Item_Sparse_Aether.png`} style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} alt="Sparse Aether" className="material-image-big" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
-                            {costs["xp1"]}
+                            {costs["lc_xp1"]}
                         </Typography>
                     </Box>
                 </Box>
             }
             {/* T3 Lightcone EXP Material */
-                costs["xp2"] !== 0 &&
+                costs["lc_xp2"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Condensed Aether" arrow placement="top">
                         <img src={`${process.env.REACT_APP_URL}/items/Item_Condensed_Aether.png`} style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} alt="Condensed Aether" className="material-image-big" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
-                            {costs["xp2"]}
+                            {costs["lc_xp2"]}
                         </Typography>
                     </Box>
                 </Box>
             }
             {/* T4 Lightcone EXP Material */
-                costs["xp3"] !== 0 &&
+                costs["lc_xp3"] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Refined Aether" arrow placement="top">
                         <img src={`${process.env.REACT_APP_URL}/items/Item_Refined_Aether.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt="Refined Aether" className="material-image-big" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
-                            {costs["xp3"]}
+                            {costs["lc_xp3"]}
                         </Typography>
                     </Box>
                 </Box>

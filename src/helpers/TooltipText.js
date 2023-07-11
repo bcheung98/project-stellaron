@@ -160,3 +160,29 @@ export const formatWeeklyBossMats = (material) => {
     }
     return material;
 }
+
+export const formatXPMats = (material) => {
+    switch (material) {
+        case "xp1":
+            material = "Travel Encounters";
+            break;
+        case "xp2":
+            material = "Adventure Log";
+            break;
+        case "xp3":
+            material = "Travelers Guide";
+            break;
+        case "lc_xp1":
+            material = "Sparse Aether";
+            break;
+        case "lc_xp2":
+            material = "Condensed Aether";
+            break;
+        case "lc_xp3":
+            material = "Refined Aether";
+            break;
+        default:
+            break;
+    }
+    return material;
+}

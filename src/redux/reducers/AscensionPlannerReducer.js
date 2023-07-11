@@ -1,5 +1,5 @@
 const initialState = {
-    totalCost: [],
+    totalCost: {},
     characters: [],
     characterCosts: [],
     lightcones: [],
@@ -103,9 +103,9 @@ const AscensionPlannerReducer = (state = initialState, action) => {
                 if (currentLightcone === undefined) {
                     costs = {
                         credits: 0,
-                        xp1: 0,
-                        xp2: 0,
-                        xp3: 0,
+                        lc_xp1: 0,
+                        lc_xp2: 0,
+                        lc_xp3: 0,
                         calyx1: 0,
                         calyx2: 0,
                         calyx3: 0,
@@ -139,9 +139,71 @@ const AscensionPlannerReducer = (state = initialState, action) => {
                 ...state,
                 lightconeCosts: tempLightconeArr
             }
+        case "UPDATE_TOTAL_COSTS":
+            let tempTotalCost = {};
+            state.characterCosts.forEach(char => {
+                Object.keys(char.costs).forEach(material => {
+                    let mat = GetMaterial(state.characters.find(c => c.name === char.name), material);
+                    if (!Object.keys(tempTotalCost).includes(mat)) {
+                        tempTotalCost[mat] = 0;
+                    }
+                    tempTotalCost[mat] += GetSum(char.costs[material]);
+                })
+            })
+            state.lightconeCosts.forEach(lightcone => {
+                Object.keys(lightcone.costs).forEach(material => {
+                    let lc_mat = GetMaterial(state.lightcones.find(lc => lc.name === lightcone.name), material);
+                    if (!Object.keys(tempTotalCost).includes(lc_mat)) {
+                        tempTotalCost[lc_mat] = 0;
+                    }
+                    tempTotalCost[lc_mat] += lightcone.costs[material];
+                })
+            })
+            return {
+                ...state,
+                totalCost: tempTotalCost
+            }
         default:
             return state;
     }
 }
 
 export default AscensionPlannerReducer;
+
+const GetMaterial = (unit, material) => {
+    switch (material) {
+        case "calyx1":
+            material = `${unit.materials.calyxMat}1`;
+            break;
+        case "calyx2":
+            material = `${unit.materials.calyxMat}2`;
+            break;
+        case "calyx3":
+            material = `${unit.materials.calyxMat}3`;
+            break;
+        case "common1":
+            material = `${unit.materials.commonMat}1`;
+            break;
+        case "common2":
+            material = `${unit.materials.commonMat}2`;
+            break;
+        case "common3":
+            material = `${unit.materials.commonMat}3`;
+            break;
+        case "bossMat":
+            material = unit.materials.bossMat;
+            break;
+        case "weeklyBossMat":
+            material = unit.materials.weeklyBossMat;
+            break;
+        default:
+            break;
+    }
+    return material;
+}
+
+// Reduces the character cost array: [0, 0, 0, 0, 0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+const GetSum = ([...arr]) => {
+    arr[5] = arr[5].reduce((a, c) => a + c);
+    return arr.reduce((a, c) => a + c);
+}

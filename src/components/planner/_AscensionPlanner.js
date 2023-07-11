@@ -7,6 +7,7 @@ import CharacterSelector from "./CharacterSelector";
 import LightconeSelector from "./LightconeSelector";
 import CharacterAscensionCard from "./_CharacterAscensionCard";
 import LightconeAscensionCard from "./_LightconeAscensionCard";
+import AscensionTotalCost from "./AscensionTotalCost";
 
 const AscensionPlanner = (props) => {
 
@@ -35,6 +36,7 @@ const AscensionPlanner = (props) => {
                     <LightconeSelector />
                 </Box>
             </Box>
+            <AscensionTotalCost />
             <Box sx={{ mx: "20px" }}>
                 <Grid container>
                     <Grid>

@@ -12,9 +12,12 @@ const LightconeSelector = (props) => {
 
     const theme = useTheme();
 
-    let { lightcones, setPlannerLightcones } = props;
+    let { lightcones, setPlannerLightcones, updateTotalCosts } = props;
 
-    React.useEffect(() => { setPlannerLightcones(value) })
+    React.useEffect(() => { 
+        setPlannerLightcones(value)
+        updateTotalCosts()
+     })
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [value, setValue] = React.useState([]);
@@ -143,7 +146,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setPlannerLightcones: (payload) => dispatch({ type: "SET_PLANNER_LIGHTCONES", payload })
+        setPlannerLightcones: (payload) => dispatch({ type: "SET_PLANNER_LIGHTCONES", payload }),
+        updateTotalCosts: (payload) => dispatch({ type: "UPDATE_TOTAL_COSTS", payload })
     }
 }
 

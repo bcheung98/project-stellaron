@@ -8,7 +8,7 @@ const LightconeAscensionLevel = (props) => {
 
     const theme = useTheme();
 
-    let { updateLightconeCosts } = props;
+    let { updateLightconeCosts, updateTotalCosts } = props;
     let { name, rarity } = props.lightcone;
 
     let materialArray = AscensionMaterials[rarity.toString()];
@@ -46,14 +46,15 @@ const LightconeAscensionLevel = (props) => {
             common1: costArray[4],
             common2: costArray[5],
             common3: costArray[6],
-            xp1: costArray[7],
-            xp2: costArray[8],
-            xp3: costArray[9],
+            lc_xp1: costArray[7],
+            lc_xp2: costArray[8],
+            lc_xp3: costArray[9],
         }
     }
 
     React.useEffect(() => {
         updateLightconeCosts([name, GetCost(sliderValue[0], sliderValue[1])])
+        updateTotalCosts()
     })
 
     return (
@@ -82,7 +83,8 @@ const LightconeAscensionLevel = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateLightconeCosts: (payload) => dispatch({ type: "UPDATE_LIGHTCONE_COSTS", payload })
+        updateLightconeCosts: (payload) => dispatch({ type: "UPDATE_LIGHTCONE_COSTS", payload }),
+        updateTotalCosts: (payload) => dispatch({ type: "UPDATE_TOTAL_COSTS", payload })
     }
 }
 
