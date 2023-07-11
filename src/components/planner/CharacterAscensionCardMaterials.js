@@ -102,7 +102,7 @@ const CharacterAscensionCardMaterials = (props) => {
                 costArray[3] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Traveler's Guide" arrow placement="top">
-                        <img src={`${process.env.REACT_APP_URL}/items/Item_Travelers_Guide.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt="Traveler's Guide" className="material-image-big" onError={ErrorLoadingImage} />
+                        <img src={`${process.env.REACT_APP_URL}/items/Item_Traveler's_Guide.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt="Traveler's Guide" className="material-image-big" onError={ErrorLoadingImage} />
                     </CustomTooltip>
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>

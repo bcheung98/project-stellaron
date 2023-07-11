@@ -170,7 +170,7 @@ export const formatXPMats = (material) => {
             material = "Adventure Log";
             break;
         case "xp3":
-            material = "Travelers Guide";
+            material = "Traveler's Guide";
             break;
         case "lc_xp1":
             material = "Sparse Aether";
