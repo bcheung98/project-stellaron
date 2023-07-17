@@ -155,6 +155,9 @@ export const formatWeeklyBossMats = (material) => {
         case "Guardian's Lament":
             material += " (Cocolia)";
             break;
+        case "Regret of Infinite Ochema":
+            material += " (Scalegorge Waterscape)";
+            break;
         default:
             material += "";
     }

@@ -1,9 +1,10 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
+import { formatWeeklyBossMats } from "../../../helpers/TooltipText";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
-const WeeklyBossMats = ["Destroyer's Final Road", "Guardian's Lament"];
+const WeeklyBossMats = ["Destroyer's Final Road", "Guardian's Lament", "Regret of Infinite Ochema"];
 
 const CharacterWeeklyBossMatFilter = (props) => {
 
@@ -11,7 +12,7 @@ const CharacterWeeklyBossMatFilter = (props) => {
         <React.Fragment>
             {
                 WeeklyBossMats.map((mat, index) => (
-                    <CustomTooltip key={index} title={mat} arrow placement="top">
+                    <CustomTooltip key={index} title={formatWeeklyBossMats(mat)} arrow placement="top">
                         <img className="filter-off" id={`${mat.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${mat.split(" ").join("_")}.png`} alt={mat} onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
