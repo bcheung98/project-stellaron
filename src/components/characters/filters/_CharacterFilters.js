@@ -7,6 +7,7 @@ import CharacterElementFilter from "./CharacterElementFilter";
 import CharacterPathFilter from "./CharacterPathFilter";
 import CharacterRarityFilter from "./CharacterRarityFilter";
 import CharacterCommonMatFilter from "./CharacterCommonMatFilter";
+import CharacterBossMatFilter from "./CharacterBossMatFilter";
 import CharacterWeeklyBossMatFilter from "./CharacterWeeklyBossMatFilter";
 
 const CharacterFilters = () => {
@@ -78,10 +79,20 @@ const CharacterFilters = () => {
                     </AccordionDetails>
                 </Accordion>
 
+                {/* BOSS MAT */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="boss-filter-text" sx={{ color: `${theme.text.color}` }}>Stagnant Shadow Material</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <CharacterBossMatFilter />
+                    </AccordionDetails>
+                </Accordion>
+
                 {/* WEEKLY BOSS MAT */}
                 <Accordion>
                     <AccordionSummary>
-                        <Typography variant="body1" className="filter-text-off" id="weeklyboss-filter-text" sx={{ color: `${theme.text.color}` }}>Weekly Boss</Typography>
+                        <Typography variant="body1" className="filter-text-off" id="weeklyboss-filter-text" sx={{ color: `${theme.text.color}` }}>Echo of War Material</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <CharacterWeeklyBossMatFilter />

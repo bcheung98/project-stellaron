@@ -3,6 +3,7 @@ const initialState = {
     path: [],
     rarity: [],
     commonMat: [],
+    bossMat: [],
     weeklyBossMat: [],
 }
 
@@ -54,6 +55,15 @@ const CharacterFilterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 commonMat: tempCommonMat
+            }
+        case "SET_CHAR_BOSS_MAT_FILTERS":
+            let tempBossMat = [...state.bossMat];
+            !state.bossMat.includes(target) ? tempBossMat.push(target) : tempBossMat.splice(tempBossMat.indexOf(target), 1);
+            let bossMatText = document.getElementById(`${type.split("_")[2].toLowerCase()}-filter-text`);
+            bossMatText.className === "filter-text-on" && tempBossMat.length === 0 ? bossMatText.className = "filter-text-off" : bossMatText.className = "filter-text-on";
+            return {
+                ...state,
+                bossMat: tempBossMat
             }
         case "SET_CHAR_WEEKLYBOSS_MAT_FILTERS":
             let tempWeeklyBossMat = [...state.weeklyBossMat];
