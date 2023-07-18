@@ -109,7 +109,9 @@ const CharacterPage = (props) => {
                                 </CustomTooltip>
                                 <Box sx={{ ml: "10px", mt: "5px" }}>
                                     <Typography sx={{ mb: "-15px", color: `${theme.text.color}`, fontWeight: "bolder" }} variant="h4">
-                                        {character.displayName ? character.displayName : name}
+                                        {character.displayName && character.displayName}
+                                        {character.fullName && character.fullName}
+                                        {!character.displayName && !character.fullName && name}
                                     </Typography>
                                     <CardHeader
                                         avatar={
