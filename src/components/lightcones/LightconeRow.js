@@ -79,7 +79,7 @@ const LightconeRow = (props) => {
             <StyledTableCellNoVert>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                     <Typography variant="body1">
-                        {row.hp}
+                        {row.hp.toLocaleString()}
                     </Typography>
                 </Box>
             </StyledTableCellNoVert>

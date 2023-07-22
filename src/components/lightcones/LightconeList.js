@@ -18,7 +18,7 @@ const LightconeList = (props) => {
     };
 
     const rows = props.lightcones.map((lightcone) => {
-        let hp = Number(LightconeStats["hp"][lightcone.stats.hp.toString()][13]).toLocaleString();
+        let hp = Number(LightconeStats["hp"][lightcone.stats.hp.toString()][13]);
         let atk = LightconeStats["atk"][lightcone.stats.atk.toString()][13];
         let def = LightconeStats["def"][lightcone.stats.def.toString()][13];
         return createData(lightcone.name, lightcone.rarity, lightcone.path, hp, atk, def);
