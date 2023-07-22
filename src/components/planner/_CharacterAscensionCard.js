@@ -62,7 +62,9 @@ const CharacterAscensionCard = (props) => {
                     <React.Fragment>
                         <ButtonBase disableRipple href={`/project-stellaron/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
-                                {name}
+                                {props.character.displayName && props.character.displayName}
+                                {props.character.fullName && props.character.fullName}
+                                {!props.character.displayName && !props.character.fullName && name}
                             </Typography>
                         </ButtonBase>
                         <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px" }} variant="h6">
