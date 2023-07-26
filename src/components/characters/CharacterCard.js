@@ -62,7 +62,7 @@ const CharacterCard = (props) => {
                         }}
                     >
                         <Box sx={{ textAlign: "center" }}>
-                            <Typography variant="h5" sx={{ color: "white", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000", fontWeight: "bold" }}>
+                            <Typography variant="h6" sx={{ color: "white", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000", fontWeight: "bold" }}>
                                 {props.character.displayName ? props.character.displayName : name}
                             </Typography>
                             <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px" }} variant="h6">
