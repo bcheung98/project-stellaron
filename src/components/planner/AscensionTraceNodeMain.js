@@ -50,7 +50,7 @@ const AscensionTraceNodeMain = (props) => {
     return (
         <CustomTooltip arrow placement="top" title={
             <Typography variant="body2" sx={{ color: `${theme.text.color}` }}>
-                {parse(traces.name)}
+                {parse(traces.name)} ({traces.unlock})
             </Typography>}>
             <Avatar alt={traces.name} src={(`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_${traces.unlock.toLowerCase()}.png`)}
                 id={id}

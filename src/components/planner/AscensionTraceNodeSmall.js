@@ -56,7 +56,7 @@ const AscensionTraceNodeSmall = (props) => {
     return (
         <CustomTooltip arrow placement="top" title={
             <Typography variant="body2" sx={{ color: `${theme.text.color}` }}>
-                {parse(traces.description)}
+                {parse(traces.description)} ({traces.unlock})
             </Typography>}
         >
             <Avatar alt={traces.type} src={(`${process.env.REACT_APP_URL}/stat_icons/${traces.type.split(" ").join("_")}.webp`)}
