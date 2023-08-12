@@ -5,6 +5,7 @@ import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { formatCalyxMats, formatCommonMats, formatWeeklyBossMats, formatXPMats } from "../../helpers/TooltipText";
+import * as Materials from "../../helpers/MaterialList";
 import { Backgrounds } from "../../helpers/Backgrounds";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
@@ -32,14 +33,6 @@ const AscensionTotalCost = (props) => {
         color: "rgb(208, 208, 208)",
         fontWeight: "bold",
     }
-
-    // MAKE SURE TO UPDATE THESE WHEN NEW DROPS/ENEMIES ARE ADDED!!!
-    let calyxMats = ["Arrow1", "Arrow2", "Arrow3", "Blade1", "Blade2", "Blade3", "Flower1", "Flower2", "Flower3", "Key1", "Key2", "Key3", "Music Box1", "Music Box2", "Music Box3", "Obsidian1", "Obsidian2", "Obsidian3", "Shield1", "Shield2", "Shield3"];
-    let commonMats = ["Antimatter1", "Antimatter2", "Antimatter3", "Artifex1", "Artifex2", "Artifex3", "Core1", "Core2", "Core3", "Engine1", "Engine2", "Engine3", "Immortal1", "Immortal2", "Immortal3", "Silvermane1", "Silvermane2", "Silvermane3"];
-    let bossMats = ["Broken Teeth of Iron Wolf", "Endotherm Chitin", "Enigmatic Ectostella", "Gelid Chitin", "Golden Crown of the Past Shadow", "Horn of Snow", "Lightning Crown of the Past Shadow", "Shape Shifter's Lightning Staff", "Storm Eye", "Void Cast Iron"];
-    let weeklyBossMats = ["Destroyer's Final Road", "Guardian's Lament"];
-    let charXPMats = ["xp1", "xp2", "xp3"];
-    let lcXPMats = ["lc_xp1", "lc_xp2", "lc_xp3"];
 
     return (
         <React.Fragment>
@@ -79,7 +72,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Character XP Materials */
-                                            charXPMats.includes(material) && totalCost[material] !== 0 &&
+                                            Materials.CharEXPMats.includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatXPMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/items/Item_${formatXPMats(material).split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[2]) + 1] + ")" }} alt={formatXPMats(material)} className="material-image-big" onError={ErrorLoadingImage} />
@@ -93,7 +86,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Lightcone XP Materials */
-                                            lcXPMats.includes(material) && totalCost[material] !== 0 &&
+                                            Materials.LightconeEXPMats.includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatXPMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/items/Item_${formatXPMats(material).split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[5]) + 1] + ")" }} alt={formatXPMats(material)} className="material-image-big" onError={ErrorLoadingImage} />
@@ -107,7 +100,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Boss Material */
-                                            bossMats.includes(material) && totalCost[material] !== 0 &&
+                                            Materials.BossMats.includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatCommonMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/boss_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
@@ -121,7 +114,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Common Materials */
-                                            commonMats.includes(material) && totalCost[material] !== 0 &&
+                                            Materials.CommonMats.includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatCommonMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[material.length - 1]) + 1] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
@@ -135,7 +128,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Calyx Materials */
-                                            calyxMats.includes(material) && totalCost[material] !== 0 &&
+                                            Materials.CalyxMats.includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatCalyxMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[material.length - 1]) + 1] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
@@ -149,7 +142,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Weekly Boss Materials */
-                                            weeklyBossMats.includes(material) && totalCost[material] !== 0 &&
+                                            Materials.WeeklyBossMats.includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatWeeklyBossMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[4] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
