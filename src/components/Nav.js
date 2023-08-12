@@ -19,7 +19,7 @@ const Nav = () => {
                     <ButtonBase disableRipple href={`/project-stellaron/`}>
                         <CardHeader
                             avatar={
-                                <Avatar src={(`${process.env.REACT_APP_URL}/images/Main_Icon.png`)} alt="PROJECT STELLARON" sx={{ height: "64px", width: "64px", backgroundColor: `${theme.appbar.backgroundColor}` }}>
+                                <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Imaginary.png`} alt="PROJECT STELLARON" sx={{ height: "64px", width: "64px", backgroundColor: `${theme.appbar.backgroundColor}` }}>
                                     <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "30px" }} />
                                 </Avatar>
                             }
