@@ -45,7 +45,8 @@ const CharacterAscensionCardMaterials = (props) => {
 
     return (
         <Grid container sx={MaterialStyle}>
-            {/* Credits */
+            {
+                /* Credits */
                 costArray[0] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title="Credits" arrow placement="top">
@@ -54,6 +55,48 @@ const CharacterAscensionCardMaterials = (props) => {
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
                             {costArray[0].toLocaleString()}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* T2 Character EXP Material */
+                costArray[1] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title="Travel Encounters" arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/items/Item_Travel_Encounters.png`} style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} alt="Travel Encounters" className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costArray[1]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* T3 Character EXP Material */
+                costArray[2] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title="Adventure Log" arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/items/Item_Adventure_Log.png`} style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} alt="Adventure Log" className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costArray[2]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* T4 Character EXP Material */
+                costArray[3] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title="Traveler's Guide" arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/items/Item_Traveler's_Guide.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt="Traveler's Guide" className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costArray[3]}
                         </Typography>
                     </Box>
                 </Box>
@@ -72,89 +115,8 @@ const CharacterAscensionCardMaterials = (props) => {
                     </Box>
                 </Box>
             }
-            {/* T2 Character EXP Material */
-                costArray[1] !== 0 &&
-                <Box sx={MaterialImageRootBig}>
-                    <CustomTooltip title="Travel Encounters" arrow placement="top">
-                        <img src={`${process.env.REACT_APP_URL}/items/Item_Travel_Encounters.png`} style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} alt="Travel Encounters" className="material-image-big" onError={ErrorLoadingImage} />
-                    </CustomTooltip>
-                    <Box sx={MaterialTextContainer}>
-                        <Typography variant="subtitle2" sx={MaterialText}>
-                            {costArray[1]}
-                        </Typography>
-                    </Box>
-                </Box>
-            }
-            {/* T3 Character EXP Material */
-                costArray[2] !== 0 &&
-                <Box sx={MaterialImageRootBig}>
-                    <CustomTooltip title="Adventure Log" arrow placement="top">
-                        <img src={`${process.env.REACT_APP_URL}/items/Item_Adventure_Log.png`} style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} alt="Adventure Log" className="material-image-big" onError={ErrorLoadingImage} />
-                    </CustomTooltip>
-                    <Box sx={MaterialTextContainer}>
-                        <Typography variant="subtitle2" sx={MaterialText}>
-                            {costArray[2]}
-                        </Typography>
-                    </Box>
-                </Box>
-            }
-            {/* T4 Character EXP Material */
-                costArray[3] !== 0 &&
-                <Box sx={MaterialImageRootBig}>
-                    <CustomTooltip title="Traveler's Guide" arrow placement="top">
-                        <img src={`${process.env.REACT_APP_URL}/items/Item_Traveler's_Guide.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt="Traveler's Guide" className="material-image-big" onError={ErrorLoadingImage} />
-                    </CustomTooltip>
-                    <Box sx={MaterialTextContainer}>
-                        <Typography variant="subtitle2" sx={MaterialText}>
-                            {costArray[3]}
-                        </Typography>
-                    </Box>
-                </Box>
-            }
             {
-                /* T2 Common Material */
-                costArray[8] !== 0 &&
-                <Box sx={MaterialImageRootBig}>
-                    <CustomTooltip title={formatCommonMats(`${commonMat}1`)} arrow placement="top">
-                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}1.png`} style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} alt={commonMat} className="material-image-big" onError={ErrorLoadingImage} />
-                    </CustomTooltip>
-                    <Box sx={MaterialTextContainer}>
-                        <Typography variant="subtitle2" sx={MaterialText}>
-                            {costArray[8]}
-                        </Typography>
-                    </Box>
-                </Box>
-            }
-            {
-                /* T3 Common Material */
-                costArray[9] !== 0 &&
-                <Box sx={MaterialImageRootBig}>
-                    <CustomTooltip title={formatCommonMats(`${commonMat}2`)} arrow placement="top">
-                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}2.png`} style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} alt={commonMat} className="material-image-big" onError={ErrorLoadingImage} />
-                    </CustomTooltip>
-                    <Box sx={MaterialTextContainer}>
-                        <Typography variant="subtitle2" sx={MaterialText}>
-                            {costArray[9]}
-                        </Typography>
-                    </Box>
-                </Box>
-            }
-            {
-                /* T4 Common Material */
-                costArray[10] !== 0 &&
-                <Box sx={MaterialImageRootBig}>
-                    <CustomTooltip title={formatCommonMats(`${commonMat}3`)} arrow placement="top">
-                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt={commonMat} className="material-image-big" onError={ErrorLoadingImage} />
-                    </CustomTooltip>
-                    <Box sx={MaterialTextContainer}>
-                        <Typography variant="subtitle2" sx={MaterialText}>
-                            {costArray[10]}
-                        </Typography>
-                    </Box>
-                </Box>
-            }
-            {
-                /* T2 Calyx Material */
+                /* T1 Calyx Material */
                 costArray[5] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatCalyxMats(`${calyxMat}1`)} arrow placement="top">
@@ -168,7 +130,7 @@ const CharacterAscensionCardMaterials = (props) => {
                 </Box>
             }
             {
-                /* T3 Calyx Material */
+                /* T2 Calyx Material */
                 costArray[6] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatCalyxMats(`${calyxMat}2`)} arrow placement="top">
@@ -182,7 +144,7 @@ const CharacterAscensionCardMaterials = (props) => {
                 </Box>
             }
             {
-                /* T4 Calyx Material */
+                /* T3 Calyx Material */
                 costArray[7] !== 0 &&
                 <Box sx={MaterialImageRootBig}>
                     <CustomTooltip title={formatCalyxMats(`${calyxMat}3`)} arrow placement="top">
@@ -191,6 +153,48 @@ const CharacterAscensionCardMaterials = (props) => {
                     <Box sx={MaterialTextContainer}>
                         <Typography variant="subtitle2" sx={MaterialText}>
                             {costArray[7]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* T1 Common Material */
+                costArray[8] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title={formatCommonMats(`${commonMat}1`)} arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}1.png`} style={{ backgroundImage: "url(" + Backgrounds["2"] + ")" }} alt={commonMat} className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costArray[8]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* T2 Common Material */
+                costArray[9] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title={formatCommonMats(`${commonMat}2`)} arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}2.png`} style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} alt={commonMat} className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costArray[9]}
+                        </Typography>
+                    </Box>
+                </Box>
+            }
+            {
+                /* T3 Common Material */
+                costArray[10] !== 0 &&
+                <Box sx={MaterialImageRootBig}>
+                    <CustomTooltip title={formatCommonMats(`${commonMat}3`)} arrow placement="top">
+                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${commonMat.split(" ").join("_")}3.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt={commonMat} className="material-image-big" onError={ErrorLoadingImage} />
+                    </CustomTooltip>
+                    <Box sx={MaterialTextContainer}>
+                        <Typography variant="subtitle2" sx={MaterialText}>
+                            {costArray[10]}
                         </Typography>
                     </Box>
                 </Box>
