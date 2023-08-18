@@ -44,8 +44,8 @@ const CharacterSkillTab = (props) => {
             {
                 key !== "technique" &&
                 <React.Fragment>
-                    <Box sx={{ display: "inlineFlex", alignItems: "center", width: "30%", mt: "15px" }}>
-                        <Typography variant="h6" sx={{ color: `${theme.text.color}`, width: "100px", mt: "-8px" }}>
+                    <Box sx={{ display: "flex", alignItems: "center", width: "30%", mt: "15px" }}>
+                        <Typography variant="h6" sx={{ fontWeight: "bold", color: `${theme.text.color}`, width: "100px" }}>
                             Lv. {sliderValue}
                         </Typography>
                         <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={props.element} />

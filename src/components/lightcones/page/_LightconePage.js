@@ -131,8 +131,8 @@ const LightconePage = (props) => {
                             <Typography sx={{ color: `${theme.text.color}`, mt: "10px" }} variant="body1">
                                 {parse(passive.effect)}
                             </Typography>
-                            <Box sx={{ display: "inlineFlex", alignItems: "center", width: "20%", mt: "15px" }}>
-                                <Typography variant="h6" sx={{ color: `${theme.text.color}`, mr: "25px", mt: "-8px" }}>
+                            <Box sx={{ display: "flex", alignItems: "center", width: "50%", mt: "15px" }}>
+                                <Typography variant="h6" sx={{ fontWeight: "bold", color: `${theme.text.color}`, mr: "35px" }}>
                                     S{sliderValue}
                                 </Typography>
                                 <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} />

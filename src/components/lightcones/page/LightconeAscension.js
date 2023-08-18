@@ -35,8 +35,8 @@ const LightconeAscension = (props) => {
     return (
         <React.Fragment>
             <LightconeAscensionMaterials materials={props.lightcone.materials} rarity={props.lightcone.rarity} values={sliderValue} />
-            <Box sx={{ display: "inlineFlex", alignItems: "center", width: "20%", mt: "15px", ml: "30px" }}>
-                <Typography variant="body1" sx={{ color: `${theme.text.color}`, mr: "35px", mt: "-8px", fontWeight: "bold" }}>
+            <Box sx={{ display: "flex", alignItems: "center", width: "50%", mt: "15px", ml: "20px" }}>
+                <Typography variant="body1" sx={{ fontWeight: "bold", color: `${theme.text.color}`, width: "180px", mr: "15px" }}>
                     Lv. {levels[sliderValue[0] - 1]} → Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
                 <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} disableSwap />
