@@ -72,9 +72,12 @@ const CharacterCard = (props) => {
                     </Box>
                 </Box>
             </ButtonBase>
-            <CardContent sx={{ backgroundColor: `${theme.table.header.backgroundColor}`, mb: "-12px" }}>
-                <MaterialGrid character={props.character} size="32px" />
-            </CardContent>
+            {
+                props.showMaterials &&
+                <CardContent sx={{ backgroundColor: `${theme.table.header.backgroundColor}`, mb: "-12px" }}>
+                    <MaterialGrid character={props.character} size="32px" />
+                </CardContent>
+            }
         </Card>
     )
 

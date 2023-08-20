@@ -69,7 +69,7 @@ const CharacterBrowser = (props) => {
                             <React.Fragment>
                                 {
                                     view === "grid" ?
-                                        filterCharacters(characters.characters, characterFilters, searchValue).map(char => <CharacterCard key={char.id} character={char} />)
+                                        filterCharacters(characters.characters, characterFilters, searchValue).map(char => <CharacterCard key={char.id} character={char} showMaterials />)
                                         :
                                         <CharacterList characters={filterCharacters(characters.characters, characterFilters, searchValue)} />
                                 }
