@@ -48,15 +48,12 @@ const LightconePage = (props) => {
             <React.Fragment>
                 <Grid container sx={{ mb: "20px" }}>
                     <Grid xs="auto">
-                        <img src={(`${process.env.REACT_APP_URL}/lightcones/artwork/${name}.webp`)} alt={name}
+                        <img src={(`${process.env.REACT_APP_URL}/lightcones/large/${name}.png`)} alt={name}
                             style={{
                                 width: "25vw",
                                 marginLeft: "15px",
                                 marginTop: "15px",
-                                border: `1px solid ${theme.border.color}`,
-                                borderRadius: "5px",
                                 backgroundColor: `${theme.paper.backgroundColor}`,
-                                // cursor: "pointer",
                             }}
                             onError={ErrorLoadingImage}
                         />
