@@ -19,7 +19,7 @@ const LightconeRow = (props) => {
                     <CardHeader
                         avatar={
                             <ButtonBase disableRipple href={`/project-stellaron/lightcone/${row.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                <img alt={row.name} src={(`${process.env.REACT_APP_URL}/lightcones/icon/${row.name}.webp`)} style={{ width: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
+                                <img alt={row.name} src={(`${process.env.REACT_APP_URL}/lightcones/medium/${row.name}.png`)} style={{ width: "48px", height: "56px", cursor: "pointer" }} onError={ErrorLoadingImage} />
                             </ButtonBase>
                         }
                         title={

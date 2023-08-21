@@ -93,7 +93,7 @@ const LightconeSelector = (props) => {
                                         />
                                         <CardHeader
                                             avatar={
-                                                <img alt={option.name} src={(`${process.env.REACT_APP_URL}/lightcones/icon/${option.name}.webp`)} style={{ width: "48px" }} onError={ErrorLoadingImage} />
+                                                <img alt={option.name} src={(`${process.env.REACT_APP_URL}/lightcones/medium/${option.name}.png`)} style={{ width: "48px", height: "56px" }} onError={ErrorLoadingImage} />
                                             }
                                             title={
                                                 <Typography variant="body1">
