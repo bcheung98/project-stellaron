@@ -114,7 +114,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Common Materials */
-                                            Materials.CommonMats.includes(material) && totalCost[material] !== 0 &&
+                                            ExpandMaterialArray(Materials.CommonMats, 3).includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatCommonMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[material.length - 1]) + 1] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
@@ -128,7 +128,7 @@ const AscensionTotalCost = (props) => {
                                         }
                                         {
                                             /* Calyx Materials */
-                                            Materials.CalyxMats.includes(material) && totalCost[material] !== 0 &&
+                                            ExpandMaterialArray(Materials.CalyxMats, 3).includes(material) && totalCost[material] !== 0 &&
                                             <Box sx={MaterialImageRootBig}>
                                                 <CustomTooltip title={formatCalyxMats(material)} arrow placement="top">
                                                     <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[material.length - 1]) + 1] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
@@ -187,3 +187,13 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(AscensionTotalCost);
+
+const ExpandMaterialArray = (arr, n) => {
+    let output = [];
+    for (const material in arr) {
+        for (let i = 1; i <= n; i++) {
+            output.push(`${arr[material]}${i}`)
+        }
+    }
+    return output;
+}

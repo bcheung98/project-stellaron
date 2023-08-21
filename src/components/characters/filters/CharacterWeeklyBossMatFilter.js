@@ -2,9 +2,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import { formatWeeklyBossMats } from "../../../helpers/TooltipText";
+import { WeeklyBossMats } from "../../../helpers/MaterialList";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
-
-const WeeklyBossMats = ["Destroyer's Final Road", "Guardian's Lament", "Regret of Infinite Ochema"];
 
 const CharacterWeeklyBossMatFilter = (props) => {
 

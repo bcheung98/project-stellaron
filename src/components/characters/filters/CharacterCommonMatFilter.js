@@ -2,9 +2,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import { formatCommonMats } from "../../../helpers/TooltipText";
+import { CommonMats } from "../../../helpers/MaterialList";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
-
-const CommonMats = ["Antimatter", "Artifex", "Core", "Engine", "Immortal", "Silvermane"];
 
 const CharacterCommonMatFilter = (props) => {
 
