@@ -11,6 +11,7 @@ const VersionHighlights = (props) => {
 
     const theme = useTheme();
 
+    // MAKE SURE TO CHANGE THIS EVERY UPDATE!
     let updates = [
         { version: "1.2", name: "Even Immortality Ends" },
         { version: "1.1", name: "Galactic Roaming" },
@@ -33,7 +34,7 @@ const VersionHighlights = (props) => {
                 display: "block",
                 margin: "auto",
                 mt: "20px",
-                width: "75vw",
+                width: "85vw",
                 color: `${theme.text.color}`,
             }}
         >
@@ -75,7 +76,7 @@ const VersionHighlights = (props) => {
                     characters.length > 0 &&
                     <Grid xs={6}>
                         <Box sx={{ mx: "30px", my: "20px" }}>
-                            <Typography variant="h5" component="p" sx={{ fontWeight: "bold", mb: "30px", ml: "-10px" }}>
+                            <Typography variant="h6" component="p" sx={{ fontWeight: "bold", mb: "30px", ml: "-10px" }}>
                                 New Characters
                             </Typography>
                             <Box>
@@ -89,12 +90,12 @@ const VersionHighlights = (props) => {
                     </Grid>
                 }
 
-                {/* NEW lightcones */}
+                {/* NEW LIGHT CONES */}
                 {
                     lightcones.length > 0 &&
                     <Grid xs={6}>
                         <Box sx={{ mx: "30px", my: "20px" }}>
-                            <Typography variant="h5" component="p" sx={{ fontWeight: "bold", mb: "30px", ml: "-10px" }}>
+                            <Typography variant="h6" component="p" sx={{ fontWeight: "bold", mb: "30px", ml: "-10px" }}>
                                 New Light Cones
                             </Typography>
                             <Box>
