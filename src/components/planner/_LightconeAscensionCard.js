@@ -38,7 +38,7 @@ const LightconeAscensionCard = (props) => {
                 avatar={
                     <Box sx={{ position: "relative" }}>
                         <ButtonBase disableRipple href={`/project-stellaron/lightcone/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                            <img alt={name} src={(`${process.env.REACT_APP_URL}/lightcones/medium/${name}.png`)} style={{ width: "64px", height: "64px", border: `2px solid ${theme.border.color}`, borderRadius: "64px" }} onError={ErrorLoadingImage} />
+                            <img alt={name} src={(`${process.env.REACT_APP_URL}/lightcones/small/${name}.png`)} style={{ width: "64px", height: "64px", border: `2px solid ${theme.border.color}`, borderRadius: "64px" }} onError={ErrorLoadingImage} />
                         </ButtonBase>
                         <Box sx={{ position: "absolute", top: "50px", left: "45px" }}>
                             <CustomTooltip title={path} arrow placement="top">
