@@ -2,6 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
+import VersionHighlights from "./VersionHighlights";
 
 const Home = () => {
 
@@ -26,7 +27,7 @@ const Home = () => {
                 >
                     <Typography variant="h3" component="p">Welcome to PROJECT STELLARON</Typography>
                 </Box>
-                <img src={(`${process.env.REACT_APP_URL}/images/Second_Closed_Beta_Wallpaper.webp`)} alt=""
+                {/* <img src={(`${process.env.REACT_APP_URL}/images/Second_Closed_Beta_Wallpaper.webp`)} alt=""
                     style={{
                         border: `1px solid ${theme.border.color}`,
                         borderRadius: "5px",
@@ -35,7 +36,8 @@ const Home = () => {
                         marginTop: "30px",
                         width: "75%",
                     }}
-                />
+                /> */}
+                <VersionHighlights />
             </Box>
         </React.Fragment>
     )
