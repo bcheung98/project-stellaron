@@ -34,7 +34,7 @@ const AscensionPlannerReducer = (state = initialState, action) => {
                         weeklyBossMat: [0, 0, 0, 0, 0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
                         tracksOfDestiny: [0, 0, 0, 0, 0, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
                     };
-                    traceIDs = [];
+                    traceIDs = TraceIDTemplates[char.path].map(id => `${char.name} ${id}`);
                 }
                 else {
                     costs = currentCharacter.costs;
@@ -74,17 +74,10 @@ const AscensionPlannerReducer = (state = initialState, action) => {
                         tempCharArr[indexChar].costs[key][4] = payload[1][key];
                         break;
                     case "trace":
-                        // Add all the unique trace IDs to the trace ID array
-                        if (!tempCharArr[indexChar].traceIDs.includes(payload[3])) {
-                            tempCharArr[indexChar].traceIDs.push(payload[3]);
-                        }
-                        // Will only trigger when all the trace nodes have been added to the array
-                        if (tempCharArr[indexChar].traceIDs.length === 13) {
-                            tempCharArr[indexChar].traceIDs.forEach(() => {
-                                let traceIndex = tempCharArr[indexChar].traceIDs.indexOf(tempCharArr[indexChar].traceIDs.find(el => el === payload[3]))
-                                tempCharArr[indexChar].costs[key][5][traceIndex] = payload[1][key];
-                            })
-                        }
+                        tempCharArr[indexChar].traceIDs.forEach(() => {
+                            let traceIndex = tempCharArr[indexChar].traceIDs.indexOf(tempCharArr[indexChar].traceIDs.find(el => el === payload[3]));
+                            tempCharArr[indexChar].costs[key][5][traceIndex] = payload[1][key];
+                        })
                         break;
                     default:
                         break;
@@ -206,4 +199,15 @@ const GetMaterial = (unit, material) => {
 const GetSum = ([...arr]) => {
     arr[5] = arr[5].reduce((a, c) => a + c);
     return arr.reduce((a, c) => a + c);
+}
+
+// ID templates for each path, used for trace nodes
+const TraceIDTemplates = {
+    "Destruction": ["A-1", "A-2", "A-3", "A-4", "B-1", "B-2", "B-3", "B-4", "C-1", "C-2", "C-3-0", "C-3-1", "D-1"],
+    "Hunt": ["A-1", "A-2", "A-3", "B-1", "B-2", "B-3", "C-1", "C-2", "C-3-0", "C-3-1", "D-1", "E-1", "F-1"],
+    "Erudition": ["A-1", "A-2", "A-3-0", "A-3-1", "B-1", "B-2", "B-3-0", "B-3-1", "C-1", "C-2-0", "C-2-1", "D-1", "E-1"],
+    "Harmony": ["A-1", "A-2", "A-3", "B-1", "B-2", "B-3", "C-1", "C-2", "C-3-0", "C-3-1", "D-1", "D-2-0", "D-2-1"],
+    "Nihility": ["A-1", "A-2", "A-3", "A-4", "B-1", "B-2", "B-3", "B-4", "C-1", "C-2-0", "C-2-1", "D-1", "D-2"],
+    "Preservation": ["A-1", "A-2-0", "A-3-0", "A-4-0", "A-2-1", "A-3-1", "A-4-1", "B-1", "B-2", "B-3-0", "B-3-1", "C-1", "D-1"],
+    "Abundance": ["A-1", "A-2", "A-3", "A-4", "B-1", "B-2", "B-3", "B-4", "C-1", "C-2-0", "C-2-1", "D-1", "E-1"]
 }
