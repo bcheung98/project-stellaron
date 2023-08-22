@@ -7,7 +7,7 @@ import { CustomTooltip } from "../../helpers/CustomTooltip";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const WeaponIconBackground = (index) => {
-    if (index == 0) {
+    if (index === 0) {
         return {
             backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_5_Star.webp)`,
             backgroundSize: "100%",
