@@ -45,7 +45,7 @@ const Nav = () => {
                                     <Avatar src={(`${process.env.REACT_APP_URL}/icons/char.webp`)} alt="Characters" sx={{ height: "32px", width: "32px" }} />
                                 }
                                 title={
-                                    <Typography variant="body1" noWrap
+                                    <Typography variant="body2" noWrap
                                         sx={{
                                             letterSpacing: ".1rem",
                                             color: `${theme.text.color}`,
@@ -63,7 +63,7 @@ const Nav = () => {
                                     <Avatar src={(`${process.env.REACT_APP_URL}/icons/lightcone.webp`)} alt="Lightcones" sx={{ height: "32px", width: "32px" }} />
                                 }
                                 title={
-                                    <Typography variant="body1" noWrap
+                                    <Typography variant="body2" noWrap
                                         sx={{
                                             letterSpacing: ".1rem",
                                             color: `${theme.text.color}`,
@@ -81,7 +81,7 @@ const Nav = () => {
                                     <ChecklistIcon sx={{ height: "32px", width: "32px" }} />
                                 }
                                 title={
-                                    <Typography variant="body1" noWrap
+                                    <Typography variant="body2" noWrap
                                         sx={{
                                             letterSpacing: ".1rem",
                                             color: `${theme.text.color}`,
@@ -89,6 +89,24 @@ const Nav = () => {
                                         }}
                                     >
                                         ASCENSION PLANNER
+                                    </Typography>
+                                }
+                            />
+                        </ButtonBase>
+                        <ButtonBase disableRipple href={`/project-stellaron/banners`}>
+                            <CardHeader
+                                avatar={
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Warp.png`)} alt="Lightcones" sx={{ height: "32px", width: "32px" }} />
+                                }
+                                title={
+                                    <Typography variant="body2" noWrap
+                                        sx={{
+                                            letterSpacing: ".1rem",
+                                            color: `${theme.text.color}`,
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        BANNERS
                                     </Typography>
                                 }
                             />

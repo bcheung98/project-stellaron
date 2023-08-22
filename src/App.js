@@ -10,6 +10,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { defaultTheme as theme } from "./Theme";
 import { fetchCharacters } from "./redux/actions/fetchCharacters";
 import { fetchLightcones } from "./redux/actions/fetchLightcones";
+import { fetchBanners } from "./redux/actions/fetchBanners";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
 import CharacterBrowser from "./components/characters/CharacterBrowser";
@@ -17,6 +18,7 @@ import CharacterPage from "./components/characters/page/_CharacterPage";
 import LightconeBrowser from "./components/lightcones/LightconeBrowser";
 import LightconePage from "./components/lightcones/page/_LightconePage";
 import AscensionPlanner from "./components/planner/_AscensionPlanner";
+import BannerArchive from "./components/banners/BannerArchive";
 import { AppBar, Typography, Box, IconButton, Fade, useScrollTrigger, Fab } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -26,9 +28,10 @@ const App = (props) => {
     useEffect(() => {
         fetchCharacters();
         fetchLightcones();
+        fetchBanners();
     }, [])
 
-    let { fetchCharacters, fetchLightcones } = props;
+    let { fetchCharacters, fetchLightcones, fetchBanners } = props;
 
     return (
         <ThemeProvider theme={theme}>
@@ -42,6 +45,7 @@ const App = (props) => {
                     <Route exact path="/lightcones" component={LightconeBrowser} />
                     <Route path="/lightcone/:lc_name" children={<LightconePage />} />
                     <Route path="/planner" component={AscensionPlanner} />
+                    <Route path="/banners/" component={BannerArchive} />
                 </Switch>
                 <AppBar position="static" sx={{
                     mt: 10,
@@ -99,6 +103,8 @@ const mapStateToProps = (state) => {
     return {
         characters: state.characters,
         lightcones: state.lightcones,
+        characterBanners: state.characterBanners,
+        lightconeBanners: state.lightconeBanners,
     }
 }
 
@@ -106,6 +112,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchCharacters: () => dispatch(fetchCharacters()),
         fetchLightcones: () => dispatch(fetchLightcones()),
+        fetchBanners: () => dispatch(fetchBanners())
     }
 }
 
