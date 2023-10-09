@@ -59,7 +59,7 @@ const AscensionTraceNodeSmall = (props) => {
                 {parse(traces.description)} ({traces.unlock})
             </Typography>}
         >
-            <Avatar alt={traces.type} src={(`${process.env.REACT_APP_URL}/stat_icons/${traces.type.split(" ").join("_")}.webp`)}
+            <Avatar alt={traces.type} src={(`${process.env.REACT_APP_URL}/stat_icons/${traces.type.split(" ").join("_")}.png`)}
                 id={id}
                 sx={{
                     width: "32px",

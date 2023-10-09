@@ -85,7 +85,7 @@ export const TraceNodeSmall = (props) => {
                     mb: "-15px",
                 }}
                 avatar={
-                    <Avatar alt={traces.type} src={(`${process.env.REACT_APP_URL}/stat_icons/${traces.type.split(" ").join("_")}.webp`)}
+                    <Avatar alt={traces.type} src={(`${process.env.REACT_APP_URL}/stat_icons/${traces.type.split(" ").join("_")}.png`)}
                         sx={{
                             width: "48px",
                             height: "48px",
