@@ -13,6 +13,7 @@ const VersionHighlights = (props) => {
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
     let updates = [
+        { version: "1.4", name: "Jolted Awake From A Winter Dream" },
         { version: "1.3", name: "Celestial Eyes Above Mortal Ruins" },
         { version: "1.2", name: "Even Immortality Ends" },
         { version: "1.1", name: "Galactic Roaming" },

@@ -8,6 +8,6 @@ export const CalyxMats = ["Arrow", "Blade", "Flower", "Key", "Music Box", "Obsid
 
 export const CommonMats = ["Antimatter", "Artifex", "Core", "Engine", "Immortal", "Silvermane"]
 
-export const BossMats = ["Broken Teeth of Iron Wolf", "Endotherm Chitin", "Enigmatic Ectostella", "Gelid Chitin", "Golden Crown of the Past Shadow", "Horn of Snow", "Lightning Crown of the Past Shadow", "Shape Shifter's Lightning Staff", "Storm Eye", "Void Cast Iron", "Ascendant Debris", "Nail of the Ape", "Suppressing Edict"]
+export const BossMats = ["Broken Teeth of Iron Wolf", "Endotherm Chitin", "Enigmatic Ectostella", "Gelid Chitin", "Golden Crown of the Past Shadow", "Horn of Snow", "Lightning Crown of the Past Shadow", "Shape Shifter's Lightning Staff", "Storm Eye", "Void Cast Iron", "Ascendant Debris", "Nail of the Ape", "Suppressing Edict", "Searing Steel Blade"]
 
 export const WeeklyBossMats = ["Destroyer's Final Road", "Guardian's Lament", "Regret of Infinite Ochema"]
