@@ -6,19 +6,33 @@ import { Typography, ButtonBase, Avatar, TableRow } from "@mui/material";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
-const WeaponIconBackground = (index) => {
-    if (index === 0) {
+const WeaponIconBackground = (index, len) => {
+    if (index === 0 && len === 4) {
         return {
             backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_5_Star.webp)`,
             backgroundSize: "100%",
-            backgroundPosition: "50% 50%"
+            backgroundPosition: "50% 50%",
         }
     }
-    else {
+    if (index <= 1 && len === 5) {
+        return {
+            backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_5_Star.webp)`,
+            backgroundSize: "100%",
+            backgroundPosition: "50% 50%",
+        }
+    }
+    if (index !== 0 && len === 4) {
         return {
             backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_4_Star.webp)`,
             backgroundSize: "100%",
-            backgroundPosition: "50% 50%"
+            backgroundPosition: "50% 50%",
+        }
+    }
+    if (index >= 2 && len === 5) {
+        return {
+            backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_4_Star.webp)`,
+            backgroundSize: "100%",
+            backgroundPosition: "50% 50%",
         }
     }
 }
@@ -63,7 +77,7 @@ const CharacterBannerRow = (props) => {
                                                     height: "64px",
                                                     backgroundColor: "rgb(9, 24, 39)",
                                                 }}
-                                                style={WeaponIconBackground(index)}
+                                                style={WeaponIconBackground(index, row.banner.length)}
                                             >
                                                 <img src={`${process.env.REACT_APP_URL}/lightcones/small/${lc}.png`} alt={lc} onError={ErrorLoadingImage}
                                                     style={{
