@@ -72,7 +72,7 @@ const CharacterPage = (props) => {
                             }}
                         >
                             <Typography sx={{ mb: "20px", color: `${theme.text.color}` }} variant="body2">
-                                {parse(description)}
+                                <i>{parse(description)}</i>
                             </Typography>
                             <Box
                                 sx={{
@@ -103,11 +103,11 @@ const CharacterPage = (props) => {
                                 backgroundColor: `${theme.paper.backgroundColor}`,
                             }}
                         >
-                            <Box sx={{ display: "flex" }}>
+                            <Box sx={{ display: "flex", my: "5px" }}>
                                 <CustomTooltip title={element} arrow placement="bottom">
-                                    <img style={{ marginRight: "-5px", marginTop: "10px", height: "96px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={`${element}`} onError={ErrorLoadingImage} />
+                                    <img style={{ marginLeft: "10px", marginRight: "10px", marginTop: "10px", height: "96px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={`${element}`} onError={ErrorLoadingImage} />
                                 </CustomTooltip>
-                                <Box sx={{ ml: "10px", mt: "5px" }}>
+                                <Box sx={{ mt: "5px" }}>
                                     <Typography sx={{ mb: "-15px", color: `${theme.text.color}`, fontWeight: "bolder" }} variant="h4">
                                         {character.displayName && character.displayName}
                                         {character.fullName && character.fullName}
