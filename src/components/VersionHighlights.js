@@ -13,6 +13,7 @@ const VersionHighlights = (props) => {
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
     let updates = [
+        { version: "1.6", name: "Crown of the Mundane and Divine" },
         { version: "1.5", name: "The Crepuscule Zone" },
         { version: "1.4", name: "Jolted Awake From A Winter Dream" },
         { version: "1.3", name: "Celestial Eyes Above Mortal Ruins" },

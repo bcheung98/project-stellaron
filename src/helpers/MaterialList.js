@@ -10,4 +10,4 @@ export const CommonMats = ["Antimatter", "Artifex", "Core", "Engine", "Immortal"
 
 export const BossMats = ["Broken Teeth of Iron Wolf", "Endotherm Chitin", "Enigmatic Ectostella", "Gelid Chitin", "Golden Crown of the Past Shadow", "Horn of Snow", "Lightning Crown of the Past Shadow", "Shape Shifter's Lightning Staff", "Storm Eye", "Void Cast Iron", "Ascendant Debris", "Nail of the Ape", "Suppressing Edict", "Searing Steel Blade", "Netherworld Pass"]
 
-export const WeeklyBossMats = ["Destroyer's Final Road", "Guardian's Lament", "Regret of Infinite Ochema"]
+export const WeeklyBossMats = ["Destroyer's Final Road", "Guardian's Lament", "Regret of Infinite Ochema", "Past Evils of the Borehole Planet Disaster"]
