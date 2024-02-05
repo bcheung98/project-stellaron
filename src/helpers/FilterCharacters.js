@@ -9,6 +9,9 @@ export const filterCharacters = (characters, filters, searchValue) => {
     if (filters.rarity.length > 0) {
         chars = chars.filter(char => filters.rarity.includes(char.rarity));
     }
+    if (filters.calyxMat.length > 0) {
+        chars = chars.filter(char => filters.calyxMat.includes(char.materials.calyxMat));
+    }
     if (filters.commonMat.length > 0) {
         chars = chars.filter(char => filters.commonMat.includes(char.materials.commonMat));
     }

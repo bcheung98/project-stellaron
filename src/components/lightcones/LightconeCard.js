@@ -75,7 +75,7 @@ const LightconeCard = (props) => {
                     </Typography>
                     <ButtonBase disableRipple href={`/project-stellaron/lightcone/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                         <Typography variant="body1" sx={{ color: "white", fontWeight: "bold" }}>
-                            {name}
+                            {props.lightcone.displayName ? props.lightcone.displayName : name}
                         </Typography>
                     </ButtonBase>
                 </Box>

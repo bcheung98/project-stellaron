@@ -88,7 +88,7 @@ const LightconePage = (props) => {
                             <Box sx={{ display: "flex" }}>
                                 <Box sx={{ ml: "10px", mt: "5px" }}>
                                     <Typography sx={{ mb: "-10px", color: `${theme.text.color}`, fontWeight: "bolder" }} variant="h4">
-                                        {name}
+                                        {lightcone.displayName ? lightcone.displayName : name}
                                     </Typography>
                                     <CardHeader
                                         avatar={
@@ -97,7 +97,7 @@ const LightconePage = (props) => {
                                             </Avatar>
                                         }
                                         title={
-                                            <Typography sx={{ ml: "-10px", color: `${theme.text.color}`, fontWeight: "bold" }} variant="subtitle1">
+                                            <Typography sx={{ ml: "-5px", color: `${theme.text.color}`, fontWeight: "bold" }} variant="subtitle1">
                                                 The {path}
                                             </Typography>
                                         }

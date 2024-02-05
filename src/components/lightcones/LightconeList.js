@@ -21,7 +21,7 @@ const LightconeList = (props) => {
         let hp = Number(LightconeStats["hp"][lightcone.stats.hp.toString()][13]);
         let atk = LightconeStats["atk"][lightcone.stats.atk.toString()][13];
         let def = LightconeStats["def"][lightcone.stats.def.toString()][13];
-        return createData(lightcone.name, lightcone.rarity, lightcone.path, hp, atk, def);
+        return createData(lightcone.name, lightcone.displayName, lightcone.rarity, lightcone.path, hp, atk, def);
     });
 
     return (
@@ -77,6 +77,6 @@ const headCells = [
     { id: "def", label: "DEF" },
 ];
 
-const createData = (name, rarity, path, hp, atk, def) => {
-    return { name, rarity, path, hp, atk, def };
+const createData = (name, displayName, rarity, path, hp, atk, def) => {
+    return { name, displayName, rarity, path, hp, atk, def };
 }

@@ -33,7 +33,7 @@ const LightconeRow = (props) => {
                                         },
                                     }}
                                 >
-                                    {row.name}
+                                    {row.displayName ? row.displayName : row.name}
                                 </Typography>
                             </ButtonBase>
                         }

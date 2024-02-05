@@ -1,6 +1,7 @@
 const initialState = {
     lc_path: [],
     lc_rarity: [],
+    lc_calyxMat: [],
     lc_commonMat: [],
 }
 
@@ -34,6 +35,15 @@ const LightconeFilterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 lc_rarity: tempRarity
+            }
+        case "SET_LC_CALYX_MAT_FILTERS":
+            let tempCalyxMat = [...state.lc_calyxMat];
+            !state.lc_calyxMat.includes(target) ? tempCalyxMat.push(target) : tempCalyxMat.splice(tempCalyxMat.indexOf(target), 1);
+            let calyxMatText = document.getElementById(`lc-${type.split("_")[2].toLowerCase()}-filter-text`);
+            calyxMatText.className === "filter-text-on" && tempCalyxMat.length === 0 ? calyxMatText.className = "filter-text-off" : calyxMatText.className = "filter-text-on";
+            return {
+                ...state,
+                lc_calyxMat: tempCalyxMat
             }
         case "SET_LC_COMMON_MAT_FILTERS":
             let tempCommonMat = [...state.lc_commonMat];

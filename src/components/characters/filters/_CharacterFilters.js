@@ -6,6 +6,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from "../../../helpers/
 import CharacterElementFilter from "./CharacterElementFilter";
 import CharacterPathFilter from "./CharacterPathFilter";
 import CharacterRarityFilter from "./CharacterRarityFilter";
+import CharacterCalyxMatFilter from "./CharacterCalyxMatFilter";
 import CharacterCommonMatFilter from "./CharacterCommonMatFilter";
 import CharacterBossMatFilter from "./CharacterBossMatFilter";
 import CharacterWeeklyBossMatFilter from "./CharacterWeeklyBossMatFilter";
@@ -66,6 +67,16 @@ const CharacterFilters = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <CharacterRarityFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                {/* CALYX MAT */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="calyx-filter-text" sx={{ color: `${theme.text.color}` }}>Calyx Material</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <CharacterCalyxMatFilter />
                     </AccordionDetails>
                 </Accordion>
 

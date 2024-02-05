@@ -70,6 +70,30 @@ export const formatCommonMats = (material) => {
         case "Silvermane3":
             material = "Silvermane Medal";
             break;
+        case "Dreamjolt":
+            material = "Dreamjolt Troupe Core";
+            break;
+        case "Dreamjolt1":
+            material = "Dream Collection Component";
+            break;
+        case "Dreamjolt2":
+            material = "Dream Flow Valve";
+            break;
+        case "Dreamjolt3":
+            material = "Dream Making Engine";
+            break;
+        case "Memoria":
+            material = "Memory Zone Meme Fragment";
+            break;
+        case "Memoria1":
+            material = "Tatters of Thought";
+            break;
+        case "Memoria2":
+            material = "Fragments of Impression";
+            break;
+        case "Memoria3":
+            material = "Shards of Desires";
+            break;
         default:
             material += "";
     }
@@ -78,6 +102,9 @@ export const formatCommonMats = (material) => {
 
 export const formatCalyxMats = (material) => {
     switch (material) {
+        case "Blade-filter":
+            material = "Blade (Destruction)";
+            break;
         case "Blade1":
             material = "Shattered Blade";
             break;
@@ -86,6 +113,9 @@ export const formatCalyxMats = (material) => {
             break;
         case "Blade3":
             material = "Worldbreaker Blade";
+            break;
+        case "Arrow-filter":
+            material = "Arrow (Hunt)";
             break;
         case "Arrow1":
             material = "Arrow of the Beast Hunter";
@@ -96,6 +126,9 @@ export const formatCalyxMats = (material) => {
         case "Arrow3":
             material = "Arrow of the Starchaser";
             break;
+        case "Key-filter":
+            material = "Key (Erudition)";
+            break;
         case "Key1":
             material = "Key of Inspiration";
             break;
@@ -104,6 +137,9 @@ export const formatCalyxMats = (material) => {
             break;
         case "Key3":
             material = "Key of Wisdom";
+            break;
+        case "Shield-filter":
+            material = "Shield (Preservation)";
             break;
         case "Shield1":
             material = "Endurance of Bronze";
@@ -114,6 +150,9 @@ export const formatCalyxMats = (material) => {
         case "Shield3":
             material = "Safeguard of Amber";
             break;
+        case "Obsidian-filter":
+            material = "Obsidian (Nihility)";
+            break;
         case "Obsidian1":
             material = "Obsidian of Dread";
             break;
@@ -122,6 +161,9 @@ export const formatCalyxMats = (material) => {
             break;
         case "Obsidian3":
             material = "Obsidian of Obsession";
+            break;
+        case "Music Box-filter":
+            material = "Music Box (Harmony)";
             break;
         case "Music Box1":
             material = "Harmonic Tune";
@@ -132,6 +174,9 @@ export const formatCalyxMats = (material) => {
         case "Music Box3":
             material = "Stellaris Symphony";
             break;
+        case "Flower-filter":
+            material = "Flower (Abundance)";
+            break;
         case "Flower1":
             material = "Seed of Abundance";
             break;
@@ -140,6 +185,42 @@ export const formatCalyxMats = (material) => {
             break;
         case "Flower3":
             material = "Flower of Eternity";
+            break;
+        case "Fang-filter":
+            material = "Fang (Destruction)";
+            break;
+        case "Fang1":
+            material = "Borisin Teeth";
+            break;
+        case "Fang2":
+            material = "Lupitoxin Sawteeth";
+            break;
+        case "Fang3":
+            material = "Moon Madness Fang";
+            break;
+        case "Heliobus-filter":
+            material = "Heliobus (Nihility)";
+            break;
+        case "Heliobus1":
+            material = "Fiery Spirit";
+            break;
+        case "Heliobus2":
+            material = "Starfire Essence";
+            break;
+        case "Heliobus3":
+            material = "Heaven Incinerator";
+            break;
+        case "Melody-filter":
+            material = "Melody (Harmony)";
+            break;
+        case "Melody1":
+            material = "Firmament Note";
+            break;
+        case "Melody2":
+            material = "Celestial Section";
+            break;
+        case "Melody3":
+            material = "Heavenly Melody";
             break;
         default:
             material += "";
@@ -157,6 +238,9 @@ export const formatWeeklyBossMats = (material) => {
             break;
         case "Regret of Infinite Ochema":
             material += " (Phantylia)";
+            break;
+        case "Past Evils of the Borehole Planet Disaster":
+            material += " (Starcrusher Swarm King)";
             break;
         default:
             material += "";
