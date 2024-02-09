@@ -55,7 +55,7 @@ const CharacterSkillDisplay = (props) => {
             {
                 Object.keys(skills).map((key, index) => (
                     <TabPanel key={key} index={index} value={tabValue} >
-                        <CharacterSkillTab skillKey={key} skills={skills} rarity={rarity} element={element} materials={props.character.materials} />
+                        <CharacterSkillTab skillKey={key} skills={skills} rarity={rarity} element={element} materials={props.character.materials} keywords={props.character.keywords} />
                     </TabPanel>
                 ))
             }
