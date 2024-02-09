@@ -6,7 +6,7 @@ export const LightconeEXPMats = ["lc_xp1", "lc_xp2", "lc_xp3"]
 
 export const CalyxMats = ["Blade", "Arrow", "Key", "Music Box", "Obsidian", "Shield", "Flower", "Fang", "Heliobus", "Melody"]
 
-export const CommonMats = ["Antimatter", "Artifex", "Core", "Engine", "Immortal", "Silvermane", "Dreamscape", "Memoria"]
+export const CommonMats = ["Antimatter", "Artifex", "Core", "Engine", "Immortal", "Silvermane", "Dreamjolt", "Memoria"]
 
 export const BossMats = ["Broken Teeth of Iron Wolf", "Endotherm Chitin", "Enigmatic Ectostella", "Gelid Chitin", "Golden Crown of the Past Shadow", "Horn of Snow", "Lightning Crown of the Past Shadow", "Shape Shifter's Lightning Staff", "Storm Eye", "Void Cast Iron", "Ascendant Debris", "Nail of the Ape", "Suppressing Edict", "Searing Steel Blade", "Netherworld Pass", "Dream Fridge", "Dream Flamer"]
 
