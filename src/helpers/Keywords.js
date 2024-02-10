@@ -23,6 +23,10 @@ const Keywords = {
         "name": "Counter",
         "description": "An effect that automatically triggers when the target is attacked, which unleashes an extra attack on the attacker.<br />Counter is also considered a follow-up attack."
     },
+    "crowd control debuff": {
+        "name": "Crowd Control debuff",
+        "description": "Frozen, Entanglement, Imprisonment, Dominated, Outrage, and Strong Reverberation."
+    },
     "debuff": {
         "name": "Debuff",
         "description": "Debuffs are negative status effects that render units weaker. Unless otherwise specified, debuffs can be dispelled."
