@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import parse from "html-react-parser";
-import { Typography, Box, CardHeader, Avatar } from "@mui/material";
+import { Typography, Box, CardHeader, Avatar, Dialog } from "@mui/material";
 import CharacterTraceLevelUpMaterials from "./CharacterTraceLevelUpMaterials";
 
 // Component for the main bonus abilities
@@ -11,6 +11,14 @@ export const TraceNodeMain = (props) => {
 
     let { name, rarity, materials } = props.character;
     let { id, traces } = props;
+
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <Box
@@ -35,7 +43,9 @@ export const TraceNodeMain = (props) => {
                             width: "56px",
                             height: "56px",
                             border: `2px solid ${theme.border.color}`,
+                            cursor: "pointer"
                         }}
+                        onClick={() => handleClickOpen()}
                     >
                         <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "56px", backgroundColor: `${theme.paper.backgroundColor}` }} />
                     </Avatar>
@@ -51,10 +61,28 @@ export const TraceNodeMain = (props) => {
                     </React.Fragment>
                 }
             />
-            <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "20px" }}>
+            <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "20px", mb: "10px" }}>
                 {parse(traces.description)}
             </Typography>
-            <CharacterTraceLevelUpMaterials main rarity={rarity} materials={materials} unlock={traces.unlock} />
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                maxWidth={false}
+            >
+                <Box
+                    sx={{
+                        p: "10px",
+                        backgroundColor: `${theme.paper.backgroundColor}`,
+                        border: `2px solid ${theme.border.color}`,
+                        borderRadius: "5px",
+                    }}
+                >
+                    <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
+                        Cost to Unlock Trace Node
+                    </Typography>
+                    <CharacterTraceLevelUpMaterials main rarity={rarity} materials={materials} unlock={traces.unlock} />
+                </Box>
+            </Dialog>
         </Box>
     )
 
@@ -67,6 +95,14 @@ export const TraceNodeSmall = (props) => {
 
     let { rarity, materials } = props.character;
     let { id, traces } = props;
+
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <Box
@@ -82,7 +118,6 @@ export const TraceNodeSmall = (props) => {
                 sx={{
                     display: "flex",
                     alignItems: "center",
-                    mb: "-15px",
                 }}
                 avatar={
                     <Avatar alt={traces.type} src={(`${process.env.REACT_APP_URL}/stat_icons/${traces.type.split(" ").join("_")}.png`)}
@@ -90,7 +125,9 @@ export const TraceNodeSmall = (props) => {
                             width: "48px",
                             height: "48px",
                             border: `2px solid ${theme.border.color}`,
+                            cursor: "pointer"
                         }}
+                        onClick={() => handleClickOpen()}
                     >
                         <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
                     </Avatar>
@@ -106,7 +143,25 @@ export const TraceNodeSmall = (props) => {
                     </React.Fragment>
                 }
             />
-            <CharacterTraceLevelUpMaterials rarity={rarity} materials={materials} unlock={traces.unlock} />
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                maxWidth={false}
+            >
+                <Box
+                    sx={{
+                        p: "10px",
+                        backgroundColor: `${theme.paper.backgroundColor}`,
+                        border: `2px solid ${theme.border.color}`,
+                        borderRadius: "5px",
+                    }}
+                >
+                    <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
+                        Cost to Unlock Trace Node
+                    </Typography>
+                    <CharacterTraceLevelUpMaterials rarity={rarity} materials={materials} unlock={traces.unlock} />
+                </Box>
+            </Dialog>
         </Box>
     )
 
