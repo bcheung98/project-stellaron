@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import parse from "html-react-parser";
@@ -7,6 +8,10 @@ import CharacterTraceLevelUpMaterials from "./CharacterTraceLevelUpMaterials";
 
 // Component for the extra trace nodes
 const TraceNodeSmall = (props) => {
+
+    useEffect(() => {
+        addStat([traces.type, traces.description]);
+    }, [])
 
     const theme = useTheme();
 
@@ -20,8 +25,6 @@ const TraceNodeSmall = (props) => {
     const handleClose = () => {
         setOpen(false);
     };
-
-    addStat([traces.type, traces.description]);
 
     return (
         <Box
