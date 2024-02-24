@@ -61,7 +61,7 @@ export const TraceNodeMain = (props) => {
                     </React.Fragment>
                 }
             />
-            <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "20px", mb: "10px" }}>
+            <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "20px", mb: "20px" }}>
                 {parse(traces.description)}
             </Typography>
             <Dialog
