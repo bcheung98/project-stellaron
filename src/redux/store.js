@@ -8,6 +8,7 @@ import LightconeReducer from "./reducers/LightconeReducer";
 import LightconeFilterReducer from "./reducers/LightconeFilterReducer";
 import AscensionPlannerReducer from "./reducers/AscensionPlannerReducer";
 import BannerReducer from "./reducers/BannerReducer";
+import CharacterTraceStatReducer from "./reducers/CharacterTraceStatReducer";
 
 const rootReducer = combineReducers({
     characters: CharacterReducer,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     lightcones: LightconeReducer,
     lightconeFilters: LightconeFilterReducer,
     ascensionPlanner: AscensionPlannerReducer,
-    banners: BannerReducer
+    banners: BannerReducer,
+    traceStats: CharacterTraceStatReducer
 })
 
 const composedEnhancer = composeWithDevTools(

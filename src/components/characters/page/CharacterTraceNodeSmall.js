@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
+import { connect } from "react-redux";
 import parse from "html-react-parser";
 import { Typography, Box, CardHeader, Avatar, Dialog } from "@mui/material";
 import CharacterTraceLevelUpMaterials from "./CharacterTraceLevelUpMaterials";
@@ -10,7 +11,7 @@ const TraceNodeSmall = (props) => {
     const theme = useTheme();
 
     let { rarity, materials } = props.character;
-    let { id, traces } = props;
+    let { id, traces, addStat } = props;
 
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
@@ -19,6 +20,8 @@ const TraceNodeSmall = (props) => {
     const handleClose = () => {
         setOpen(false);
     };
+
+    addStat([traces.type, traces.description]);
 
     return (
         <Box
@@ -50,7 +53,7 @@ const TraceNodeSmall = (props) => {
                 }
                 title={
                     <React.Fragment>
-                        <Typography variant="body1" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>
+                        <Typography variant="body1" sx={{ color: `${theme.text.color}`, fontWeight: "bold", cursor: "pointer" }} onClick={() => handleClickOpen()}>
                             {parse(traces.description)}
                         </Typography>
                         <Typography variant="subtitle1" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>
@@ -83,4 +86,10 @@ const TraceNodeSmall = (props) => {
 
 }
 
-export default TraceNodeSmall;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addStat: (data) => dispatch({ type: "ADD_TRACE_STAT", data })
+    }
+}
+
+export default connect(null, mapDispatchToProps)(TraceNodeSmall);
