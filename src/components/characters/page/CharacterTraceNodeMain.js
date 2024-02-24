@@ -52,7 +52,7 @@ const CharacterTraceNodeMain = (props) => {
                 }
                 title={
                     <React.Fragment>
-                        <Typography variant="h6" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>
+                        <Typography variant="h6" sx={{ color: `${theme.text.color}`, fontWeight: "bold", cursor: "pointer" }} onClick={() => handleClickOpen()}>
                             {traces.name}
                         </Typography>
                         <Typography variant="subtitle1" sx={{ color: `${theme.text.color}`, fontWeight: "bold" }}>
