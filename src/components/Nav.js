@@ -42,7 +42,7 @@ const Nav = () => {
                         <ButtonBase disableRipple href={`/project-stellaron/characters`}>
                             <CardHeader
                                 avatar={
-                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/char.webp`)} alt="Characters" sx={{ height: "32px", width: "32px" }} />
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Character.png`)} alt="Characters" sx={{ height: "32px", width: "32px" }} />
                                 }
                                 title={
                                     <Typography variant="body2" noWrap
@@ -60,7 +60,7 @@ const Nav = () => {
                         <ButtonBase disableRipple href={`/project-stellaron/lightcones`}>
                             <CardHeader
                                 avatar={
-                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/lightcone.webp`)} alt="Lightcones" sx={{ height: "32px", width: "32px" }} />
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Lightcone.png`)} alt="Lightcones" sx={{ height: "32px", width: "32px" }} />
                                 }
                                 title={
                                     <Typography variant="body2" noWrap
