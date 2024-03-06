@@ -149,3 +149,21 @@ code {
     color: #f29e38;
     font-weight: bold;
 }
+
+.sp-cost {
+    display: inline-flex;
+    align-items: center;
+    color: rgb(210, 210, 210);
+    font-size: 11pt;
+}
+
+.sp-icon {
+    height: 32px;
+    margin-left: 10px;
+    margin-right: -7.5px;
+    pointer-events: none;
+}
+
+.energy-cost {
+    color: rgb(210, 210, 210);
+}
