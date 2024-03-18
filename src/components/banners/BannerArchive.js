@@ -10,6 +10,8 @@ const BannerArchive = (props) => {
 
     let { banners } = props;
 
+    document.title = "Banner Archive - Project Stellaron";
+
     return (
         <React.Fragment>
             <Box

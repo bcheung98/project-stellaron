@@ -29,6 +29,11 @@ const CharacterPage = (props) => {
 
     if (character !== undefined) {
         let { name, element, path, rarity, description, release, voiceActors } = character;
+
+        if (character.displayName) document.title = `${character.displayName} - Project Stellaron`;
+        if (character.fullName) document.title = `${character.fullName} - Project Stellaron`;
+        if (!character.displayName && !character.fullName) document.title = `${name} - Project Stellaron`;
+
         return (
             <React.Fragment>
                 <Grid container sx={{ mb: "20px" }}>

@@ -44,6 +44,9 @@ const LightconePage = (props) => {
 
     if (lightcone !== undefined) {
         let { name, path, rarity, passive, description } = lightcone;
+
+        document.title = `${name} - Project Stellaron`;
+
         return (
             <React.Fragment>
                 <Grid container sx={{ mb: "20px" }}>

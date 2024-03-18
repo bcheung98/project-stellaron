@@ -15,6 +15,8 @@ const AscensionPlanner = (props) => {
 
     let { characters, lightcones } = props;
 
+    document.title = "Ascension Planner - Project Stellaron";
+
     return (
         <Box>
             <Typography variant="h4"

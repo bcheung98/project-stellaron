@@ -29,6 +29,8 @@ const LightconeBrowser = (props) => {
 
     let { lightcones, lightconeFilters } = props;
 
+    document.title = "Light Cones - Project Stellaron";
+
     return (
         <React.Fragment>
             <Box
