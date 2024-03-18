@@ -198,18 +198,6 @@ export const formatCalyxMats = (material) => {
         case "Fang3":
             material = "Moon Madness Fang";
             break;
-        case "Heliobus-filter":
-            material = "Heliobus (Nihility)";
-            break;
-        case "Heliobus1":
-            material = "Fiery Spirit";
-            break;
-        case "Heliobus2":
-            material = "Starfire Essence";
-            break;
-        case "Heliobus3":
-            material = "Heaven Incinerator";
-            break;
         case "Melody-filter":
             material = "Melody (Harmony)";
             break;
@@ -221,6 +209,18 @@ export const formatCalyxMats = (material) => {
             break;
         case "Melody3":
             material = "Heavenly Melody";
+            break;
+        case "Heliobus-filter":
+            material = "Heliobus (Nihility)";
+            break;
+        case "Heliobus1":
+            material = "Fiery Spirit";
+            break;
+        case "Heliobus2":
+            material = "Starfire Essence";
+            break;
+        case "Heliobus3":
+            material = "Heaven Incinerator";
             break;
         default:
             material += "";
