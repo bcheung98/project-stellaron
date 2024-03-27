@@ -33,6 +33,7 @@ const TraceNodeSmall = (props) => {
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 mr: "80px",
+                minWidth: "11%"
             }}
             id={id}
         >
