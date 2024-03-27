@@ -222,6 +222,30 @@ export const formatCalyxMats = (material) => {
         case "Heliobus3":
             material = "Heaven Incinerator";
             break;
+        case "Amber-filter":
+            material = "Amber (Preservation)";
+            break;
+        case "Amber1":
+            material = "Scattered Stardust";
+            break;
+        case "Amber2":
+            material = "Crystal Meteorites";
+            break;
+        case "Amber3":
+            material = "Divine Amber";
+            break;
+        case "Alien Tree-filter":
+            material = "Alien Tree (Abundance)";
+            break;
+        case "Alien Tree1":
+            material = "Alien Tree Seed";
+            break;
+        case "Alien Tree2":
+            material = "Nourishing Honey";
+            break;
+        case "Alien Tree3":
+            material = "Myriad Fruit";
+            break;
         default:
             material += "";
     }
