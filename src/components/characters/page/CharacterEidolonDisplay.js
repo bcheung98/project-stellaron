@@ -62,7 +62,7 @@ const CharacterEidolonDisplay = (props) => {
                                 </React.Fragment>
                             }
                         />
-                        <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "20px" }}>
+                        <Typography variant="body1" sx={{ color: `${theme.text.color}`, mx: "20px" }}>
                             {parse(eidolon[key].description)}
                         </Typography>
                         <br />
