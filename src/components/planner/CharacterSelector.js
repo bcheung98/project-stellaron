@@ -83,7 +83,7 @@ const CharacterSelector = (props) => {
                                 renderTags={() => null}
                                 noOptionsText="No characters"
                                 renderOption={(props, option, { selected }) => (
-                                    <li {...props} style={{ backgroundColor: selected ? `${theme.table.body.hover}` : `${theme.paper.backgroundColor}` }}>
+                                    <li {...props} style={{ backgroundColor: selected ? `${theme.table.body.hover}` : `${theme.paper.backgroundColor}`, borderLeft: `10px solid ${GetRarityColor(option.rarity)}` }}>
                                         <Box
                                             component={DoneIcon}
                                             sx={{ width: 17, height: 17, mr: "5px", ml: "-2px" }}
@@ -152,3 +152,14 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterSelector);
+
+const GetRarityColor = (rarity) => {
+    switch (rarity) {
+        case 5:
+            return "rgb(255, 208, 112)";
+        case 4:
+            return "rgb(175, 134, 255)";
+        default:
+            return "gray";
+    }
+}
