@@ -1,7 +1,8 @@
 import * as React from "react";
+import { exportComponentAsJPEG } from 'react-component-export-image';
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux"
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { formatCalyxMats, formatCommonMats, formatWeeklyBossMats, formatXPMats } from "../../helpers/TooltipText";
@@ -12,6 +13,8 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 const AscensionTotalCost = (props) => {
 
     const theme = useTheme();
+
+    const componentRef = React.useRef();
 
     let { totalCost } = props;
 
@@ -38,142 +41,156 @@ const AscensionTotalCost = (props) => {
         <React.Fragment>
             {
                 Object.keys(totalCost).length > 0 &&
-                <Box
-                    sx={{
-                        border: `1px solid ${theme.border.color}`,
-                        borderRadius: "5px",
-                        backgroundColor: `${theme.paper.backgroundColor}`,
-                        mx: "20px",
-                        mb: "30px",
-                        p: 1,
-                    }}
-                >
-                    <Typography variant="h6" sx={{ color: `${theme.text.color}`, ml: "15px", my: "15px" }}>
-                        Total Materials Required
-                    </Typography>
-                    <Grid container sx={{ mx: "15px", mt: "10px" }}>
-                        {
-                            Object.keys(totalCost).map((material, index) => {
-                                return (
-                                    <Box key={index}>
-                                        {
-                                            /* Credits */
-                                            material === "credits" && totalCost[material] !== 0 &&
-                                            <Box sx={MaterialImageRootBig}>
-                                                <CustomTooltip title="Credits" arrow placement="top">
-                                                    <img src={`${process.env.REACT_APP_URL}/materials/Credit.png`} style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} alt="Credit" className="material-image-big" onError={ErrorLoadingImage} />
-                                                </CustomTooltip>
-                                                <Box sx={MaterialTextContainer}>
-                                                    <Typography variant="subtitle2" sx={MaterialText}>
-                                                        {totalCost[material].toLocaleString()}
-                                                    </Typography>
+                <React.Fragment>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            mx: "20px",
+                            mb: "10px",
+                            p: 1,
+                        }}
+                        onClick={() => exportComponentAsJPEG(componentRef, { fileName: "Materials" })}
+                    >
+                        Download as Image
+                    </Button>
+                    <Box
+                        sx={{
+                            border: `1px solid ${theme.border.color}`,
+                            borderRadius: "5px",
+                            backgroundColor: `${theme.paper.backgroundColor}`,
+                            mx: "20px",
+                            mb: "30px",
+                            p: 1,
+                        }}
+                        ref={componentRef}
+                    >
+                        <Typography variant="h6" sx={{ color: `${theme.text.color}`, ml: "15px", my: "15px" }}>
+                            Total Materials Required
+                        </Typography>
+                        <Grid container sx={{ mx: "15px", mt: "10px" }}>
+                            {
+                                Object.keys(totalCost).map((material, index) => {
+                                    return (
+                                        <Box key={index}>
+                                            {
+                                                /* Credits */
+                                                material === "credits" && totalCost[material] !== 0 &&
+                                                <Box sx={MaterialImageRootBig}>
+                                                    <CustomTooltip title="Credits" arrow placement="top">
+                                                        <img src={`${process.env.REACT_APP_URL}/materials/Credit.png`} style={{ backgroundImage: "url(" + Backgrounds["3"] + ")" }} alt="Credit" className="material-image-big" onError={ErrorLoadingImage} />
+                                                    </CustomTooltip>
+                                                    <Box sx={MaterialTextContainer}>
+                                                        <Typography variant="subtitle2" sx={MaterialText}>
+                                                            {totalCost[material].toLocaleString()}
+                                                        </Typography>
+                                                    </Box>
                                                 </Box>
-                                            </Box>
-                                        }
-                                        {
-                                            /* Character XP Materials */
-                                            Materials.CharEXPMats.includes(material) && totalCost[material] !== 0 &&
-                                            <Box sx={MaterialImageRootBig}>
-                                                <CustomTooltip title={formatXPMats(material)} arrow placement="top">
-                                                    <img src={`${process.env.REACT_APP_URL}/items/Item_${formatXPMats(material).split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[2]) + 1] + ")" }} alt={formatXPMats(material)} className="material-image-big" onError={ErrorLoadingImage} />
-                                                </CustomTooltip>
-                                                <Box sx={MaterialTextContainer}>
-                                                    <Typography variant="subtitle2" sx={MaterialText}>
-                                                        {totalCost[material]}
-                                                    </Typography>
+                                            }
+                                            {
+                                                /* Character XP Materials */
+                                                Materials.CharEXPMats.includes(material) && totalCost[material] !== 0 &&
+                                                <Box sx={MaterialImageRootBig}>
+                                                    <CustomTooltip title={formatXPMats(material)} arrow placement="top">
+                                                        <img src={`${process.env.REACT_APP_URL}/items/Item_${formatXPMats(material).split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[2]) + 1] + ")" }} alt={formatXPMats(material)} className="material-image-big" onError={ErrorLoadingImage} />
+                                                    </CustomTooltip>
+                                                    <Box sx={MaterialTextContainer}>
+                                                        <Typography variant="subtitle2" sx={MaterialText}>
+                                                            {totalCost[material]}
+                                                        </Typography>
+                                                    </Box>
                                                 </Box>
-                                            </Box>
-                                        }
-                                        {
-                                            /* Lightcone XP Materials */
-                                            Materials.LightconeEXPMats.includes(material) && totalCost[material] !== 0 &&
-                                            <Box sx={MaterialImageRootBig}>
-                                                <CustomTooltip title={formatXPMats(material)} arrow placement="top">
-                                                    <img src={`${process.env.REACT_APP_URL}/items/Item_${formatXPMats(material).split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[5]) + 1] + ")" }} alt={formatXPMats(material)} className="material-image-big" onError={ErrorLoadingImage} />
-                                                </CustomTooltip>
-                                                <Box sx={MaterialTextContainer}>
-                                                    <Typography variant="subtitle2" sx={MaterialText}>
-                                                        {totalCost[material]}
-                                                    </Typography>
+                                            }
+                                            {
+                                                /* Lightcone XP Materials */
+                                                Materials.LightconeEXPMats.includes(material) && totalCost[material] !== 0 &&
+                                                <Box sx={MaterialImageRootBig}>
+                                                    <CustomTooltip title={formatXPMats(material)} arrow placement="top">
+                                                        <img src={`${process.env.REACT_APP_URL}/items/Item_${formatXPMats(material).split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[5]) + 1] + ")" }} alt={formatXPMats(material)} className="material-image-big" onError={ErrorLoadingImage} />
+                                                    </CustomTooltip>
+                                                    <Box sx={MaterialTextContainer}>
+                                                        <Typography variant="subtitle2" sx={MaterialText}>
+                                                            {totalCost[material]}
+                                                        </Typography>
+                                                    </Box>
                                                 </Box>
-                                            </Box>
-                                        }
-                                        {
-                                            /* Boss Material */
-                                            Materials.BossMats.includes(material) && totalCost[material] !== 0 &&
-                                            <Box sx={MaterialImageRootBig}>
-                                                <CustomTooltip title={formatCommonMats(material)} arrow placement="top">
-                                                    <img src={`${process.env.REACT_APP_URL}/materials/boss_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
-                                                </CustomTooltip>
-                                                <Box sx={MaterialTextContainer}>
-                                                    <Typography variant="subtitle2" sx={MaterialText}>
-                                                        {totalCost[material]}
-                                                    </Typography>
+                                            }
+                                            {
+                                                /* Boss Material */
+                                                Materials.BossMats.includes(material) && totalCost[material] !== 0 &&
+                                                <Box sx={MaterialImageRootBig}>
+                                                    <CustomTooltip title={formatCommonMats(material)} arrow placement="top">
+                                                        <img src={`${process.env.REACT_APP_URL}/materials/boss_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds["4"] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
+                                                    </CustomTooltip>
+                                                    <Box sx={MaterialTextContainer}>
+                                                        <Typography variant="subtitle2" sx={MaterialText}>
+                                                            {totalCost[material]}
+                                                        </Typography>
+                                                    </Box>
                                                 </Box>
-                                            </Box>
-                                        }
-                                        {
-                                            /* Common Materials */
-                                            ExpandMaterialArray(Materials.CommonMats, 3).includes(material) && totalCost[material] !== 0 &&
-                                            <Box sx={MaterialImageRootBig}>
-                                                <CustomTooltip title={formatCommonMats(material)} arrow placement="top">
-                                                    <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[material.length - 1]) + 1] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
-                                                </CustomTooltip>
-                                                <Box sx={MaterialTextContainer}>
-                                                    <Typography variant="subtitle2" sx={MaterialText}>
-                                                        {totalCost[material]}
-                                                    </Typography>
+                                            }
+                                            {
+                                                /* Common Materials */
+                                                ExpandMaterialArray(Materials.CommonMats, 3).includes(material) && totalCost[material] !== 0 &&
+                                                <Box sx={MaterialImageRootBig}>
+                                                    <CustomTooltip title={formatCommonMats(material)} arrow placement="top">
+                                                        <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[material.length - 1]) + 1] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
+                                                    </CustomTooltip>
+                                                    <Box sx={MaterialTextContainer}>
+                                                        <Typography variant="subtitle2" sx={MaterialText}>
+                                                            {totalCost[material]}
+                                                        </Typography>
+                                                    </Box>
                                                 </Box>
-                                            </Box>
-                                        }
-                                        {
-                                            /* Calyx Materials */
-                                            ExpandMaterialArray(Materials.CalyxMats, 3).includes(material) && totalCost[material] !== 0 &&
-                                            <Box sx={MaterialImageRootBig}>
-                                                <CustomTooltip title={formatCalyxMats(material)} arrow placement="top">
-                                                    <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[material.length - 1]) + 1] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
-                                                </CustomTooltip>
-                                                <Box sx={MaterialTextContainer}>
-                                                    <Typography variant="subtitle2" sx={MaterialText}>
-                                                        {totalCost[material]}
-                                                    </Typography>
+                                            }
+                                            {
+                                                /* Calyx Materials */
+                                                ExpandMaterialArray(Materials.CalyxMats, 3).includes(material) && totalCost[material] !== 0 &&
+                                                <Box sx={MaterialImageRootBig}>
+                                                    <CustomTooltip title={formatCalyxMats(material)} arrow placement="top">
+                                                        <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[Number(material[material.length - 1]) + 1] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
+                                                    </CustomTooltip>
+                                                    <Box sx={MaterialTextContainer}>
+                                                        <Typography variant="subtitle2" sx={MaterialText}>
+                                                            {totalCost[material]}
+                                                        </Typography>
+                                                    </Box>
                                                 </Box>
-                                            </Box>
-                                        }
-                                        {
-                                            /* Weekly Boss Materials */
-                                            Materials.WeeklyBossMats.includes(material) && totalCost[material] !== 0 &&
-                                            <Box sx={MaterialImageRootBig}>
-                                                <CustomTooltip title={formatWeeklyBossMats(material)} arrow placement="top">
-                                                    <img src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[4] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
-                                                </CustomTooltip>
-                                                <Box sx={MaterialTextContainer}>
-                                                    <Typography variant="subtitle2" sx={MaterialText}>
-                                                        {totalCost[material]}
-                                                    </Typography>
+                                            }
+                                            {
+                                                /* Weekly Boss Materials */
+                                                Materials.WeeklyBossMats.includes(material) && totalCost[material] !== 0 &&
+                                                <Box sx={MaterialImageRootBig}>
+                                                    <CustomTooltip title={formatWeeklyBossMats(material)} arrow placement="top">
+                                                        <img src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${material.split(" ").join("_")}.png`} style={{ backgroundImage: "url(" + Backgrounds[4] + ")" }} alt={material} className="material-image-big" onError={ErrorLoadingImage} />
+                                                    </CustomTooltip>
+                                                    <Box sx={MaterialTextContainer}>
+                                                        <Typography variant="subtitle2" sx={MaterialText}>
+                                                            {totalCost[material]}
+                                                        </Typography>
+                                                    </Box>
                                                 </Box>
-                                            </Box>
-                                        }
-                                        {
-                                            /* Tracks of Destiny */
-                                            material === "tracksOfDestiny" && totalCost[material] !== 0 &&
-                                            <Box sx={MaterialImageRootBig}>
-                                                <CustomTooltip title="Tracks of Destiny" arrow placement="top">
-                                                    <img src={`${process.env.REACT_APP_URL}/materials/Tracks_of_Destiny.png`} style={{ backgroundImage: "url(" + Backgrounds["5"] + ")" }} alt="Tracks of Destiny" className="material-image-big" onError={ErrorLoadingImage} />
-                                                </CustomTooltip>
-                                                <Box sx={MaterialTextContainer}>
-                                                    <Typography variant="subtitle2" sx={MaterialText}>
-                                                        {totalCost[material]}
-                                                    </Typography>
+                                            }
+                                            {
+                                                /* Tracks of Destiny */
+                                                material === "tracksOfDestiny" && totalCost[material] !== 0 &&
+                                                <Box sx={MaterialImageRootBig}>
+                                                    <CustomTooltip title="Tracks of Destiny" arrow placement="top">
+                                                        <img src={`${process.env.REACT_APP_URL}/materials/Tracks_of_Destiny.png`} style={{ backgroundImage: "url(" + Backgrounds["5"] + ")" }} alt="Tracks of Destiny" className="material-image-big" onError={ErrorLoadingImage} />
+                                                    </CustomTooltip>
+                                                    <Box sx={MaterialTextContainer}>
+                                                        <Typography variant="subtitle2" sx={MaterialText}>
+                                                            {totalCost[material]}
+                                                        </Typography>
+                                                    </Box>
                                                 </Box>
-                                            </Box>
-                                        }
-                                    </Box>
-                                )
-                            })
-                        }
-                    </Grid>
-                </Box>
+                                            }
+                                        </Box>
+                                    )
+                                })
+                            }
+                        </Grid>
+                    </Box>
+                </React.Fragment>
             }
         </React.Fragment>
     )
