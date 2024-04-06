@@ -167,3 +167,7 @@ code {
 .energy-cost {
     color: rgb(210, 210, 210);
 }
+
+.energy-cost-number {
+    color: rgb(220, 196, 145);
+}
