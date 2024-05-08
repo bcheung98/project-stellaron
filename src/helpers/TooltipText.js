@@ -198,6 +198,18 @@ export const formatCalyxMats = (material) => {
         case "Fang3":
             material = "Moon Madness Fang";
             break;
+        case "Bullet-filter":
+            material = "Bullet (Hunt)";
+            break;
+        case "Bullet1":
+            material = "Meteoric Bullet";
+            break;
+        case "Bullet2":
+            material = "Destined Expiration";
+            break;
+        case "Bullet3":
+            material = "Countertemporal Shot";
+            break;
         case "Melody-filter":
             material = "Melody (Harmony)";
             break;
@@ -265,6 +277,9 @@ export const formatWeeklyBossMats = (material) => {
             break;
         case "Past Evils of the Borehole Planet Disaster":
             material += " (Starcrusher Swarm King)";
+            break;
+        case "Lost Echo of the Shared Wish":
+            material += " (The Great Septimus)";
             break;
         default:
             material += "";
