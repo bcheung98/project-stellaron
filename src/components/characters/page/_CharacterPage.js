@@ -28,7 +28,7 @@ const CharacterPage = (props) => {
     let character = characters.characters.find(char => char.name.split(" ").join("_").toLowerCase() === char_name);
 
     if (character !== undefined) {
-        let { name, element, path, rarity, description, release, voiceActors } = character;
+        let { name, element, path, rarity, description, faction, release, voiceActors } = character;
 
         if (character.displayName) document.title = `${character.displayName} - Project Stellaron`;
         if (character.fullName) document.title = `${character.fullName} - Project Stellaron`;
@@ -76,23 +76,22 @@ const CharacterPage = (props) => {
                                 backgroundColor: `${theme.paper.backgroundColor}`,
                             }}
                         >
-                            <Typography sx={{ mb: "20px", color: `${theme.text.color}` }} variant="body2">
-                                <i>{parse(description)}</i>
-                            </Typography>
                             <Box
                                 sx={{
                                     display: "flex",
                                     justifyContent: "space-between",
                                 }}>
                                 <Box sx={{ textAlign: "left" }}>
-                                    <Typography variant="body2"><b>Release Date</b></Typography>
-                                    <Typography variant="body2"><b>Voice Actor (EN)</b></Typography>
-                                    <Typography variant="body2"><b>Voice Actor (JP)</b></Typography>
+                                    <Typography variant="subtitle2"><b>Faction</b></Typography>
+                                    <Typography variant="subtitle2"><b>Release Date</b></Typography>
+                                    <Typography variant="subtitle2"><b>Voice Actor (EN)</b></Typography>
+                                    <Typography variant="subtitle2"><b>Voice Actor (JP)</b></Typography>
                                 </Box>
                                 <Box sx={{ textAlign: "right" }}>
-                                    <Typography variant="body2">{`${release.date} (${release.version})`}</Typography>
-                                    <Typography variant="body2">{voiceActors["en"]}</Typography>
-                                    <Typography variant="body2">{voiceActors["jp"]}</Typography>
+                                    <Typography variant="subtitle2">{faction}</Typography>
+                                    <Typography variant="subtitle2">{`${release.date} (${release.version})`}</Typography>
+                                    <Typography variant="subtitle2">{voiceActors["en"]}</Typography>
+                                    <Typography variant="subtitle2">{voiceActors["jp"]}</Typography>
                                 </Box>
                             </Box>
                         </Box>
@@ -136,6 +135,18 @@ const CharacterPage = (props) => {
                                     </Typography>
                                 </Box>
                             </Box>
+                            <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "0px 15px 15px 15px" }} />
+                            <Typography
+                                variant="body1"
+                                sx={{
+                                    mb: "20px",
+                                    mx: "25px",
+                                    color: `${theme.text.color}`,
+                                    fontSize: "11.5pt"
+                                }}
+                            >
+                                <i>{description}</i>
+                            </Typography>
                         </Box>
                         <Box
                             sx={{
