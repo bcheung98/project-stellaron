@@ -10,6 +10,7 @@ import CharacterCalyxMatFilter from "./CharacterCalyxMatFilter";
 import CharacterCommonMatFilter from "./CharacterCommonMatFilter";
 import CharacterBossMatFilter from "./CharacterBossMatFilter";
 import CharacterWeeklyBossMatFilter from "./CharacterWeeklyBossMatFilter";
+import CharacterWorldFilter from "./CharacterWorldFilter";
 
 const CharacterFilters = () => {
 
@@ -107,6 +108,16 @@ const CharacterFilters = () => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <CharacterWeeklyBossMatFilter />
+                    </AccordionDetails>
+                </Accordion>
+
+                {/* WORLD */}
+                <Accordion>
+                    <AccordionSummary>
+                        <Typography variant="body1" className="filter-text-off" id="world-filter-text" sx={{ color: `${theme.text.color}` }}>World</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <CharacterWorldFilter />
                     </AccordionDetails>
                 </Accordion>
 

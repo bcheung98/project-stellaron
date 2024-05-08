@@ -6,6 +6,7 @@ const initialState = {
     commonMat: [],
     bossMat: [],
     weeklyBossMat: [],
+    world: [],
 }
 
 const CharacterFilterReducer = (state = initialState, action) => {
@@ -55,7 +56,7 @@ const CharacterFilterReducer = (state = initialState, action) => {
             calyxMatText.className === "filter-text-on" && tempCalyxMat.length === 0 ? calyxMatText.className = "filter-text-off" : calyxMatText.className = "filter-text-on";
             return {
                 ...state,
-                calyxMat: tempCalyxMat 
+                calyxMat: tempCalyxMat
             }
         case "SET_CHAR_COMMON_MAT_FILTERS":
             let tempCommonMat = [...state.commonMat];
@@ -83,6 +84,15 @@ const CharacterFilterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 weeklyBossMat: tempWeeklyBossMat
+            }
+        case "SET_CHAR_WORLD_FILTERS":
+            let tempWorld = [...state.world];
+            !state.world.includes(target) ? tempWorld.push(target) : tempWorld.splice(tempWorld.indexOf(target), 1);
+            let worldText = document.getElementById(`${type.split("_")[2].toLowerCase()}-filter-text`);
+            worldText.className === "filter-text-on" && tempWorld.length === 0 ? worldText.className = "filter-text-off" : worldText.className = "filter-text-on";
+            return {
+                ...state,
+                world: tempWorld
             }
         default:
             return state;

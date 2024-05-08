@@ -21,6 +21,9 @@ export const filterCharacters = (characters, filters, searchValue) => {
     if (filters.weeklyBossMat.length > 0) {
         chars = chars.filter(char => filters.weeklyBossMat.includes(char.materials.weeklyBossMat));
     }
+    if (filters.world.length > 0) {
+        chars = chars.filter(char => filters.world.includes(char.world));
+    }
     if (searchValue !== "") {
         chars = chars.filter(char => char.name.toLowerCase().includes(searchValue.toLowerCase()));
     }
