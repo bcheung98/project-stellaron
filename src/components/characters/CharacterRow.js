@@ -99,6 +99,30 @@ const CharacterRow = (props) => {
                 </Box>
             </StyledTableCellNoVert>
 
+            {/* World */}
+            <StyledTableCellNoVert>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <CardHeader
+                        avatar={
+                            <Avatar src={`${process.env.REACT_APP_URL}/factions/Icon_${row.world.split(" ").join("_")}.png`} alt={row.world}
+                                sx={{
+                                    width: "32px",
+                                    height: "32px",
+                                }}
+                            >
+                                <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "32px" }} />
+                            </Avatar>
+                        }
+                        title={
+                            <Typography sx={{ color: `${theme.text.color}`, fontWeight: "bold" }} variant="body1">
+                                {row.world}
+                            </Typography>
+                        }
+                        sx={{ p: 0 }}
+                    />
+                </Box>
+            </StyledTableCellNoVert>
+
             { /* Release date */}
             <StyledTableCellNoVert>
                 <Box sx={{ display: "flex", alignItems: "center" }}>

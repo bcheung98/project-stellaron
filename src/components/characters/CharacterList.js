@@ -16,7 +16,7 @@ const CharacterList = (props) => {
         setOrderBy(property);
     };
 
-    const rows = props.characters.map(char => createData(char.name, char.displayName, char.rarity, char.element, char.path, char.release.date, char.release.version, char.id));
+    const rows = props.characters.map(char => createData(char.name, char.displayName, char.rarity, char.element, char.path, char.world, char.release.date, char.release.version, char.id));
 
     return (
         <Box sx={{ width: "100%" }}>
@@ -67,9 +67,10 @@ const headCells = [
     { id: "rarity", label: "Rarity" },
     { id: "element", label: "Combat Type" },
     { id: "path", label: "Path" },
+    { id: "world", label: "World" },
     { id: "id", label: "Release Date" },
 ];
 
-const createData = (name, displayName, rarity, element, path, releaseDate, version, id) => {
-    return { name, displayName, rarity, element, path, releaseDate, version, id };
+const createData = (name, displayName, rarity, element, path, world, releaseDate, version, id) => {
+    return { name, displayName, rarity, element, path, world, releaseDate, version, id };
 }
