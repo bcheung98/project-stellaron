@@ -210,6 +210,18 @@ export const formatCalyxMats = (material) => {
         case "Bullet3":
             material = "Countertemporal Shot";
             break;
+        case "Draft-filter":
+            material = "Draft (Erudition)";
+            break;
+        case "Draft1":
+            material = "Rough Sketch";
+            break;
+        case "Draft2":
+            material = "Dynamic Outlining";
+            break;
+        case "Draft3":
+            material = "Exquisite Colored Draft";
+            break;
         case "Melody-filter":
             material = "Melody (Harmony)";
             break;
