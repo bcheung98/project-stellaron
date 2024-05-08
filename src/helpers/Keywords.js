@@ -55,6 +55,10 @@ const Keywords = {
         "name": "RES PEN",
         "description": "When dealing DMG, ignore a part of the enemy target's resistance to the corresponding damage type."
     },
+    "super break dmg": {
+        "name": "Super Break DMG",
+        "description": "Super Break DMG increases with higher Break Effect, higher Toughness Reduction of the attack, and higher character levels.<br />Super Break DMG cannot CRIT hit and is not affected by DMG Boost effects."
+    },
     "weakness break state": {
         "name": "Weakness Break State",
         "description": "When enemy targets' Toughness is reduced to 0, they will enter the Weakness Break State, which delays their actions."
