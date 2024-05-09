@@ -1,11 +1,20 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
-import { Box, Typography, Paper, Stack, ToggleButtonGroup } from "@mui/material";
+import { Box, Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
+import RelicCard from "./RelicCard";
 
 const RelicBrowser = (props) => {
 
     const theme = useTheme();
+
+    const [view, setView] = React.useState("cavern");
+    const handleView = (event, newView) => {
+        if (newView !== null) {
+            setView(newView);
+        }
+    }
 
     let { relics } = props;
 
@@ -34,6 +43,16 @@ const RelicBrowser = (props) => {
                     RELICS
                 </Typography>
             </Box>
+            <Grid container sx={{ margin: "auto", width: "98%" }}>
+                {
+                    relics.relics.length > 0 &&
+                    <React.Fragment>
+                        {relics.relics[0].cavernRelics.map((relic, index) => <RelicCard key={index} relic={relic} type="cavern" />)}
+                        <hr style={{ border: `.5px solid ${theme.border.color}`, width: "100%", marginBottom: "20px" }} />
+                        {relics.relics[0].planarOrnaments.map((relic, index) => <RelicCard key={index} relic={relic} type="planar" />)}
+                    </React.Fragment>
+                }
+            </Grid>
         </React.Fragment>
     )
 
