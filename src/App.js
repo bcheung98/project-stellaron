@@ -10,6 +10,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { defaultTheme as theme } from "./Theme";
 import { fetchCharacters } from "./redux/actions/fetchCharacters";
 import { fetchLightcones } from "./redux/actions/fetchLightcones";
+import { fetchRelics } from "./redux/actions/fetchRelics";
 import { fetchBanners } from "./redux/actions/fetchBanners";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
@@ -29,10 +30,11 @@ const App = (props) => {
     useEffect(() => {
         fetchCharacters();
         fetchLightcones();
+        fetchRelics();
         fetchBanners();
     }, [])
 
-    let { fetchCharacters, fetchLightcones, fetchBanners } = props;
+    let { fetchCharacters, fetchLightcones, fetchRelics, fetchBanners } = props;
 
     return (
         <ThemeProvider theme={theme}>
@@ -105,6 +107,7 @@ const mapStateToProps = (state) => {
     return {
         characters: state.characters,
         lightcones: state.lightcones,
+        relics: state.relics,
         characterBanners: state.characterBanners,
         lightconeBanners: state.lightconeBanners,
     }
@@ -114,6 +117,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchCharacters: () => dispatch(fetchCharacters()),
         fetchLightcones: () => dispatch(fetchLightcones()),
+        fetchRelics: () => dispatch(fetchRelics()),
         fetchBanners: () => dispatch(fetchBanners())
     }
 }

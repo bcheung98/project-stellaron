@@ -1,11 +1,13 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
-import { Box, Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material";
+import { Box, Typography, Paper, Stack, ToggleButtonGroup } from "@mui/material";
 
 const RelicBrowser = (props) => {
 
     const theme = useTheme();
+
+    let { relics } = props;
 
     document.title = "Relics - Project Stellaron";
 
@@ -37,4 +39,10 @@ const RelicBrowser = (props) => {
 
 }
 
-export default RelicBrowser;
+const mapStateToProps = (state) => {
+    return {
+        relics: state.relics
+    }
+}
+
+export default connect(mapStateToProps)(RelicBrowser);

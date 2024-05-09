@@ -6,6 +6,7 @@ import CharacterReducer from "./reducers/CharacterReducer";
 import CharacterFilterReducer from "./reducers/CharacterFilterReducer";
 import LightconeReducer from "./reducers/LightconeReducer";
 import LightconeFilterReducer from "./reducers/LightconeFilterReducer";
+import RelicReducer from "./reducers/RelicReducer";
 import AscensionPlannerReducer from "./reducers/AscensionPlannerReducer";
 import BannerReducer from "./reducers/BannerReducer";
 import CharacterTraceStatReducer from "./reducers/CharacterTraceStatReducer";
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     characterFilters: CharacterFilterReducer,
     lightcones: LightconeReducer,
     lightconeFilters: LightconeFilterReducer,
+    relics: RelicReducer,
     ascensionPlanner: AscensionPlannerReducer,
     banners: BannerReducer,
     traceStats: CharacterTraceStatReducer
