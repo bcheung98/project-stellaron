@@ -67,7 +67,6 @@ const RelicPopup = (props) => {
                                 p: "10px",
                                 mb: "20px",
                                 backgroundColor: `${theme.materialImage.backgroundColor}`,
-                                cursor: "pointer",
                             }}
                         >
                             <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "128px" }} />
