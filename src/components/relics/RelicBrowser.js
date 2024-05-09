@@ -1,20 +1,13 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
-import { Box, Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import RelicCard from "./RelicCard";
 
 const RelicBrowser = (props) => {
 
     const theme = useTheme();
-
-    const [view, setView] = React.useState("cavern");
-    const handleView = (event, newView) => {
-        if (newView !== null) {
-            setView(newView);
-        }
-    }
 
     let { relics } = props;
 
