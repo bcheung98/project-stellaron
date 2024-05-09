@@ -61,8 +61,11 @@ const RelicPopup = (props) => {
                             sx={{
                                 width: "128px",
                                 height: "128px",
+                                border: `2px solid ${theme.border.color}`,
+                                borderRadius: "15px",
+                                p: "10px",
                                 mb: "20px",
-                                backgroundColor: `${theme.card.backgroundColor}`,
+                                backgroundColor: `${theme.materialImage.backgroundColor}`,
                                 cursor: "pointer",
                             }}
                         >
