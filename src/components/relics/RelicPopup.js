@@ -12,6 +12,7 @@ const RelicPopup = (props) => {
     const pieceIcon = {
         width: "32px",
         height: "32px",
+        padding: "5px",
         border: `2px solid ${theme.border.color}`,
         borderRadius: "5px",
     }
@@ -50,7 +51,7 @@ const RelicPopup = (props) => {
             </Box>
             {
                 pieces.map((piece, index) => (
-                    <TabPanel index={index} value={tabValue}>
+                    <TabPanel key={index} index={index} value={tabValue}>
                         <Typography variant="h5" sx={{ color: "white" }}>
                             {piece.name}
                         </Typography>
