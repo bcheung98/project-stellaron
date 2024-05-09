@@ -1,11 +1,20 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Typography, Card, CardContent, Box, Avatar } from "@mui/material";
+import { Typography, Card, CardContent, Box, Avatar, Dialog } from "@mui/material";
 import { GetRarityColor } from "../../helpers/RarityColors";
+import RelicPopup from "./RelicPopup";
 
 const RelicCard = (props) => {
 
     const theme = useTheme();
+
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     let { name, rarity } = props.relic;
 
@@ -28,7 +37,9 @@ const RelicCard = (props) => {
                         width: "128px",
                         height: "128px",
                         backgroundColor: `${theme.card.backgroundColor}`,
+                        cursor: "pointer",
                     }}
+                    onClick={() => handleClickOpen()}
                 >
                     <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "128px" }} />
                 </Avatar>
@@ -50,11 +61,18 @@ const RelicCard = (props) => {
                 }}
             >
                 <Box sx={{ textAlign: "center" }}>
-                    <Typography variant="body1" sx={{ color: "white" }}>
+                    <Typography variant="body1" sx={{ color: "white", cursor: "pointer" }} onClick={() => handleClickOpen()}>
                         {props.relic.displayName ? props.relic.displayName : name}
                     </Typography>
                 </Box>
             </CardContent>
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                maxWidth={false}
+            >
+                <RelicPopup relic={props.relic} />
+            </Dialog>
         </Card>
     )
 
