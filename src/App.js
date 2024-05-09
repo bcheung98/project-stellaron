@@ -17,6 +17,7 @@ import CharacterBrowser from "./components/characters/CharacterBrowser";
 import CharacterPage from "./components/characters/page/_CharacterPage";
 import LightconeBrowser from "./components/lightcones/LightconeBrowser";
 import LightconePage from "./components/lightcones/page/_LightconePage";
+import RelicBrowser from "./components/relics/RelicBrowser";
 import AscensionPlanner from "./components/planner/_AscensionPlanner";
 import BannerArchive from "./components/banners/BannerArchive";
 import { AppBar, Typography, Box, IconButton, Fade, useScrollTrigger, Fab } from "@mui/material";
@@ -44,6 +45,7 @@ const App = (props) => {
                     <Route path="/character/:char_name" children={<CharacterPage />} />
                     <Route exact path="/lightcones" component={LightconeBrowser} />
                     <Route path="/lightcone/:lc_name" children={<LightconePage />} />
+                    <Route exact path="/relics" component={RelicBrowser} />
                     <Route path="/planner" component={AscensionPlanner} />
                     <Route path="/banners/" component={BannerArchive} />
                 </Switch>

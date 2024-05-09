@@ -75,6 +75,24 @@ const Nav = () => {
                                 }
                             />
                         </ButtonBase>
+                        <ButtonBase disableRipple href={`/project-stellaron/relics`}>
+                            <CardHeader
+                                avatar={
+                                    <Avatar src={(`${process.env.REACT_APP_URL}/icons/Relic.png`)} alt="Relics" sx={{ height: "32px", width: "32px" }} />
+                                }
+                                title={
+                                    <Typography variant="body2" noWrap
+                                        sx={{
+                                            letterSpacing: ".1rem",
+                                            color: `${theme.text.color}`,
+                                            textDecoration: "none",
+                                        }}
+                                    >
+                                        RELICS
+                                    </Typography>
+                                }
+                            />
+                        </ButtonBase>
                         <ButtonBase disableRipple href={`/project-stellaron/planner`}>
                             <CardHeader
                                 avatar={
