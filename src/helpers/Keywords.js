@@ -25,7 +25,7 @@ const Keywords = {
     },
     "crowd control debuff": {
         "name": "Crowd Control debuff",
-        "description": "Frozen, Entanglement, Imprisonment, Dominated, Outrage, and Strong Reverberation."
+        "description": "Frozen, Entanglement, Imprisonment, Dominated, Outrage, Strong Reverberation, and Alien Dream."
     },
     "debuff": {
         "name": "Debuff",
