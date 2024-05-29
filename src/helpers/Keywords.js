@@ -15,6 +15,10 @@ const Keywords = {
         "name": "Base Chance",
         "description": "The base chance of applying debuffs to targets hit.<br />The final probability is affected by the attacker's Effect Hit Rate and enemy targets' Effect RES."
     },
+    "break dmg": {
+        "name": "Break DMG",
+        "description": "Break DMG increases with higher Break Effect, higher target max Toughness, and higher character levels.<br />Break DMG cannot CRIT hit and is not affected by DMG Boost effects."
+    },
     "buff": {
         "name": "Buff",
         "description": "Can buff combat ability for a period of time, which can be dispelled unless otherwise specified."
