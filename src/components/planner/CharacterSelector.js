@@ -6,6 +6,7 @@ import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
 import { Button, PopperComponent, StyledPopper, StyledInput } from "../../helpers/CustomAutocomplete";
+import { CustomTooltip } from "../../helpers/CustomTooltip";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const CharacterSelector = (props) => {
@@ -38,6 +39,15 @@ const CharacterSelector = (props) => {
 
     const open = Boolean(anchorEl);
     const id = open ? "char-label" : undefined;
+
+    const smallIcon = {
+        width: "16px",
+        height: "16px",
+        backgroundColor: `${theme.materialImage.backgroundColor}`,
+        border: `1px solid ${theme.border.color}`,
+        borderRadius: "16px",
+        marginBottom: "10px",
+    };
 
     if (characters.length > 0) {
         return (
@@ -93,14 +103,26 @@ const CharacterSelector = (props) => {
                                         />
                                         <CardHeader
                                             avatar={
-                                                <img alt={option.name} src={(`${process.env.REACT_APP_URL}/characters/icons/Icon_${option.name.split(" ").join("_")}.png`)} style={{ width: "48px" }} onError={ErrorLoadingImage} />
+                                                <Box sx={{ position: "relative" }}>
+                                                    <img alt={option.name} src={(`${process.env.REACT_APP_URL}/characters/icons/Icon_${option.name.split(" ").join("_")}.png`)} style={{ width: "48px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />
+                                                    <Box sx={{ position: "absolute", top: "2.5px", left: "-10px" }}>
+                                                        <CustomTooltip title={option.element} arrow placement="top">
+                                                            <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${option.element}.png`)} alt={option.element} onError={ErrorLoadingImage} />
+                                                        </CustomTooltip>
+                                                    </Box>
+                                                    <Box sx={{ position: "absolute", top: "30px", left: "-10px" }}>
+                                                        <CustomTooltip title={option.path} arrow placement="top">
+                                                            <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${option.path}.png`)} alt={option.path} onError={ErrorLoadingImage} />
+                                                        </CustomTooltip>
+                                                    </Box>
+                                                </Box>
                                             }
                                             title={
-                                                <Typography variant="body1">
-                                                    {option.name}
+                                                <Typography variant="body1" sx={{ ml: "5px" }}>
+                                                    {option.displayName ? option.displayName : option.name}
                                                 </Typography>
                                             }
-                                            sx={{ p: 0, flexGrow: 1 }}
+                                            sx={{ p: 0, flexGrow: 1, ml: "10px" }}
                                         />
                                         <Box
                                             component={CloseIcon}
