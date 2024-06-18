@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardMedia, CardContent, ButtonBase, Box } from "@mui/material";
-import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import MaterialGrid from "../../helpers/MaterialGrid";
 import { GetBackgroundColor, GetRarityColor } from "../../helpers/RarityColors";

@@ -2,7 +2,6 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import parse from "html-react-parser";
 import { Typography, Box, Avatar, CardHeader, AppBar } from "@mui/material";
 import { TabPanel, StyledTabs, StyledTab } from "../../../helpers/CustomTabs";
 import Grid from "@mui/material/Unstable_Grid2";
