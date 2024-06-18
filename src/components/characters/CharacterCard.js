@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardMedia, CardContent, ButtonBase, Box } from "@mui/material";
+import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import MaterialGrid from "../../helpers/MaterialGrid";
 import { GetBackgroundColor, GetRarityColor } from "../../helpers/RarityColors";
@@ -61,8 +62,8 @@ const CharacterCard = (props) => {
                             borderBottom: `7px solid ${GetRarityColor(rarity)}`,
                         }}
                     >
-                        <Box sx={{ textAlign: "center" }}>
-                            <Typography variant="h6" sx={{ color: "white", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000", fontWeight: "bold" }}>
+                        <Box sx={{ textAlign: "center", display: "inline-block", width: "180px" }}>
+                            <Typography variant="h6" noWrap sx={{ color: "white", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000", fontWeight: "bold" }} >
                                 {props.character.displayName ? props.character.displayName : name}
                             </Typography>
                             <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px" }} variant="h6">
