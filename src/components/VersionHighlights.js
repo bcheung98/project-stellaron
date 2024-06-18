@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import CharacterCard from "./characters/CharacterCard";
 import LightconeCard from "./lightcones/LightconeCard";
+import RelicCard from "./relics/RelicCard";
 import { Box, Typography, Select, MenuItem, AppBar } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { CustomSelect } from "../helpers/CustomSelect"
@@ -32,6 +33,11 @@ const VersionHighlights = (props) => {
 
     let characters = props.characters.characters.filter(char => char.release.version === version);
     let lightcones = props.lightcones.lightcones.filter(lc => lc.release.version === version);
+    let cavernRelics = [];
+    let planarOrnaments = [];
+    if (props.relics.relics[0] !== undefined) { cavernRelics = props.relics.relics[0]["cavernRelics"].filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name)) };
+    if (props.relics.relics[0] !== undefined) { planarOrnaments = props.relics.relics[0]["planarOrnaments"].filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name)) };
+    let newRelics = cavernRelics.length > 0 || planarOrnaments.length > 0;
 
     return (
         <Box
@@ -79,8 +85,8 @@ const VersionHighlights = (props) => {
 
             <Grid container spacing={2}>
 
-                {/* NEW CHARACTERS */}
                 {
+                    // NEW CHARACTERS
                     characters.length > 0 &&
                     <Grid xs={6}>
                         <Box sx={{ mx: "30px", my: "20px" }}>
@@ -95,11 +101,30 @@ const VersionHighlights = (props) => {
                                 </Grid>
                             </Box>
                         </Box>
+
+                        {
+                            // NEW RELICS
+                            newRelics &&
+                            <Box sx={{ mx: "30px", my: "20px" }}>
+                                <Typography variant="h6" component="p" sx={{ fontWeight: "bold", mb: "30px", ml: "-10px" }}>
+                                    New Relics
+                                </Typography>
+                                <Box>
+                                    <Grid container spacing={2}>
+                                        {cavernRelics.map((relic, index) => <RelicCard key={index} relic={relic} type="cavern" />)}
+                                    </Grid>
+                                    <Grid container spacing={2}>
+                                        {planarOrnaments.map((relic, index) => <RelicCard key={index} relic={relic} type="planar" />)}
+                                    </Grid>
+                                </Box>
+                            </Box>
+                        }
+
                     </Grid>
                 }
-
-                {/* NEW LIGHT CONES */}
+                
                 {
+                    // NEW LIGHT CONES
                     lightcones.length > 0 &&
                     <Grid xs={6}>
                         <Box sx={{ mx: "30px", my: "20px" }}>
@@ -128,6 +153,7 @@ const mapStateToProps = (state) => {
     return {
         characters: state.characters,
         lightcones: state.lightcones,
+        relics: state.relics,
     }
 }
 
