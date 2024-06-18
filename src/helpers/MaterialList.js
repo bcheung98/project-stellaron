@@ -4,7 +4,7 @@ export const CharEXPMats = ["xp1", "xp2", "xp3"]
 
 export const LightconeEXPMats = ["lc_xp1", "lc_xp2", "lc_xp3"]
 
-export const CalyxMats = ["Blade", "Arrow", "Key", "Music Box", "Obsidian", "Shield", "Flower", "Fang", "Bullet", "Melody", "Heliobus", "Amber", "Alien Tree"]
+export const CalyxMats = ["Blade", "Arrow", "Key", "Music Box", "Obsidian", "Shield", "Flower", "Fang", "Bullet", "Draft", "Melody", "Heliobus", "Amber", "Alien Tree"]
 
 export const CommonMats = ["Antimatter", "Artifex", "Core", "Engine", "Immortal", "Silvermane", "Dreamjolt", "Memoria"]
 
