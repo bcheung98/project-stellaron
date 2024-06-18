@@ -111,10 +111,10 @@ const VersionHighlights = (props) => {
                                 </Typography>
                                 <Box>
                                     <Grid container spacing={2}>
-                                        {cavernRelics.map((relic, index) => <RelicCard key={index} relic={relic} type="cavern" />)}
+                                        {cavernRelics.map((relic, index) => <RelicCard key={index} relic={relic} />)}
                                     </Grid>
                                     <Grid container spacing={2}>
-                                        {planarOrnaments.map((relic, index) => <RelicCard key={index} relic={relic} type="planar" />)}
+                                        {planarOrnaments.map((relic, index) => <RelicCard key={index} relic={relic} />)}
                                     </Grid>
                                 </Box>
                             </Box>
@@ -122,7 +122,7 @@ const VersionHighlights = (props) => {
 
                     </Grid>
                 }
-                
+
                 {
                     // NEW LIGHT CONES
                     lightcones.length > 0 &&

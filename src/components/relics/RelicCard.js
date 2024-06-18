@@ -18,8 +18,6 @@ const RelicCard = (props) => {
 
     let { name, rarity } = props.relic;
 
-    let iconURL = props.type === "cavern" ? `${process.env.REACT_APP_URL}/relics/sets/${name}/head.png` : `${process.env.REACT_APP_URL}/relics/sets/${name}/orb.png`;
-
     return (
         <Card
             sx={{
@@ -32,7 +30,7 @@ const RelicCard = (props) => {
             }}
         >
             <Box>
-                <Avatar src={iconURL} alt={name}
+                <Avatar src={`${process.env.REACT_APP_URL}/relics/sets/${name}/${props.relic.pieces[0].type}.png`} alt={name}
                     sx={{
                         width: "128px",
                         height: "128px",

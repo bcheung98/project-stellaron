@@ -40,9 +40,9 @@ const RelicBrowser = (props) => {
                 {
                     relics.relics.length > 0 &&
                     <React.Fragment>
-                        {relics.relics[0].cavernRelics.sort((a, b) => a.name.localeCompare(b.name)).map((relic, index) => <RelicCard key={index} relic={relic} type="cavern" />)}
+                        {relics.relics[0].cavernRelics.sort((a, b) => a.name.localeCompare(b.name)).map((relic, index) => <RelicCard key={index} relic={relic} />)}
                         <hr style={{ border: `.5px solid ${theme.border.color}`, width: "100%", marginBottom: "20px" }} />
-                        {relics.relics[0].planarOrnaments.sort((a, b) => a.name.localeCompare(b.name)).map((relic, index) => <RelicCard key={index} relic={relic} type="planar" />)}
+                        {relics.relics[0].planarOrnaments.sort((a, b) => a.name.localeCompare(b.name)).map((relic, index) => <RelicCard key={index} relic={relic} />)}
                     </React.Fragment>
                 }
             </Grid>
