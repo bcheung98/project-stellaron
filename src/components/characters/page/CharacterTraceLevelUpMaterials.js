@@ -259,8 +259,8 @@ export default CharacterTraceLevelUpMaterials;
 
 const TotalCosts = {
     // [Number of Credits, [Number of T2 Calyx Mat, Number of T3 Calyx Mat, Number of T4 Calyx Mat], [Number of T2 Common Mat, Number of T3 Common Mat, Number of T4 Common Mat], Weekly Boss Material, Tracks of Destiny]
-    "5": ["802,500", [6, 16, 38], [8, 10, 30], 2, 2],
-    "4": ["642,000", [4, 12, 28], [6, 7, 22], 2, 2]
+    "5": ["802,500", [6, 16, 38], [8, 10, 30], 3, 2],
+    "4": ["642,000", [4, 12, 28], [6, 7, 22], 3, 2]
 }
 
 const TraceLevelUpMaterialsMain = {
