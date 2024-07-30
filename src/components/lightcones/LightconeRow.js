@@ -2,6 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, ButtonBase, CardHeader, Typography, Avatar } from "@mui/material";
 import { StyledTableRows, StyledTableCellNoVert } from "../../helpers/CustomTable";
+import { GetBackgroundColor } from "../../helpers/RarityColors";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const LightconeRow = (props) => {
@@ -11,7 +12,14 @@ const LightconeRow = (props) => {
     let { row } = props;
 
     return (
-        <StyledTableRows>
+        <StyledTableRows
+            sx={{
+                backgroundImage: `linear-gradient(to left, ${theme.table.body.backgroundColor}, 92%, ${GetBackgroundColor(row.rarity)})`,
+                "&:hover": {
+                    backgroundImage: `linear-gradient(to left, ${theme.table.body.hover}, 92%, ${GetBackgroundColor(row.rarity)})`
+                }
+            }}
+        >
 
             { /* Name + Icon */}
             <StyledTableCellNoVert>
