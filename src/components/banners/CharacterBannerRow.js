@@ -1,41 +1,10 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { StyledTableCell } from "../../helpers/CustomTable";
-import { Box } from "@mui/system";
-import { Typography, ButtonBase, Avatar, TableRow } from "@mui/material";
+import { Box, Typography, ButtonBase, TableRow } from "@mui/material";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
-
-const CharIconBackground = (index, len) => {
-    if (index === 0 && len === 4) {
-        return {
-            backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_5_Star.webp)`,
-            backgroundSize: "100%",
-            backgroundPosition: "50% 50%"
-        }
-    }
-    if (index <= 1 && len === 5) {
-        return {
-            backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_5_Star.webp)`,
-            backgroundSize: "100%",
-            backgroundPosition: "50% 50%"
-        }
-    }
-    if (index !== 0 && len === 4) {
-        return {
-            backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_4_Star.webp)`,
-            backgroundSize: "100%",
-            backgroundPosition: "50% 50%"
-        }
-    }
-    if (index >= 2 && len === 5) {
-        return {
-            backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_4_Star.webp)`,
-            backgroundSize: "100%",
-            backgroundPosition: "50% 50%"
-        }
-    }
-}
 
 let CurrentBanner = (startDate, endDate) => {
     let today = new Date();
@@ -48,14 +17,14 @@ const CharacterBannerRow = (props) => {
 
     const theme = useTheme();
 
-    let { row, index } = props;
+    let { row, index, characters } = props;
 
     return (
         <React.Fragment>
             <TableRow key={index} sx={CurrentBanner(row.startDate, row.endDate)}>
 
                 { /* Version */}
-                <StyledTableCell>
+                <StyledTableCell sx={{ width: "250px" }}>
                     <Typography sx={{ fontWeight: "bold" }}>{row.version}</Typography>
                     <Typography variant="body2">{row.startDate} — {row.endDate}</Typography>
                 </StyledTableCell>
@@ -65,33 +34,30 @@ const CharacterBannerRow = (props) => {
                     {
                         <Box sx={{ display: "flex" }}>
                             {
-                                row.banner.map((char, index) => (
-                                    <ButtonBase disableRipple href={`/project-stellaron/character/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={char} sx={{ m: "2px" }}>
-                                        <CustomTooltip title={char} arrow placement="top">
-                                            <Avatar variant="square" src={`${process.env.REACT_APP_URL}/characters/icons/Icon_${char.split(" ").join("_")}.png`} alt={char}
-                                                sx={{
-                                                    mx: "2px",
-                                                    border: `2px solid ${theme.border.color}`,
-                                                    borderRadius: "64px",
-                                                    width: "64px",
-                                                    height: "64px",
-                                                    backgroundColor: `${theme.materialImage.backgroundColor}`,
-                                                }}
-                                                style={CharIconBackground(index, row.banner.length)}
-                                            >
-                                                <img src={`${process.env.REACT_APP_URL}/characters/icons/Icon_${char.split(" ").join("_")}.png`} alt={char} onError={ErrorLoadingImage}
+                                row.banner.map((char, index) => {
+                                    let currentChar = characters.find(c => c.name === char)
+                                    return (
+                                        <ButtonBase disableRipple href={`/project-stellaron/character/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
+                                            <CustomTooltip title={char} arrow placement="top">
+                                                <img src={`${process.env.REACT_APP_URL}/characters/icons/Icon_${char.split(" ").join("_")}.png`}
+                                                    alt={char}
+                                                    onError={ErrorLoadingImage}
                                                     style={{
-                                                        mx: "2px",
+                                                        marginLeft: "2px",
+                                                        marginRight: "2px",
                                                         border: `1px solid ${theme.border.color}`,
                                                         borderRadius: "64px",
                                                         width: "64px",
                                                         height: "64px",
+                                                        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${currentChar.rarity}_Star.webp)`,
+                                                        backgroundSize: "100%",
+                                                        backgroundPosition: "50% 50%"
                                                     }}
                                                 />
-                                            </Avatar>
-                                        </CustomTooltip>
-                                    </ButtonBase>
-                                ))
+                                            </CustomTooltip>
+                                        </ButtonBase>
+                                    )
+                                })
                             }
                         </Box>
                     }
@@ -102,4 +68,10 @@ const CharacterBannerRow = (props) => {
     )
 }
 
-export default CharacterBannerRow;
+const mapStateToProps = (state) => {
+    return {
+        characters: state.characters.characters
+    }
+}
+
+export default connect(mapStateToProps)(CharacterBannerRow);
