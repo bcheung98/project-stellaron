@@ -293,6 +293,9 @@ export const formatWeeklyBossMats = (material) => {
         case "Lost Echo of the Shared Wish":
             material += " (The Great Septimus)";
             break;
+        case "Auspice Sliver":
+            material += " (Shadow of \"Feixiao\")";
+            break;
         default:
             material += "";
     }

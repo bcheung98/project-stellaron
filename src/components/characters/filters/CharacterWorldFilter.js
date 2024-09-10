@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
-const Worlds = ["Astral Express", "Stellaron Hunters", "Herta Space Station", "Jarilo-VI", "The Xianzhou Luofu", "Penacony", "Interastral Peace Corporation", "Cosmic"]
+const Worlds = ["Astral Express", "Stellaron Hunters", "Herta Space Station", "Jarilo-VI", "The Xianzhou Alliance", "Penacony", "Interastral Peace Corporation", "Cosmic"]
 
 const CharacterWorldFilter = (props) => {
 

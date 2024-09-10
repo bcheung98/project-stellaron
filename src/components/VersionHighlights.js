@@ -14,6 +14,7 @@ const VersionHighlights = (props) => {
 
     // MAKE SURE TO CHANGE THIS EVERY UPDATE!
     let updates = [
+        { version: "2.5", name: "Flying Aureus Shot to Lupine Rue" },
         { version: "2.4", name: "Finest Duel Under the Pristine Blue" },
         { version: "2.3", name: "Farewell, Penacony" },
         { version: "2.2", name: "Then Wake to Weep" },

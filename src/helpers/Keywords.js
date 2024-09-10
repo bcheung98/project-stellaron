@@ -35,6 +35,10 @@ const Keywords = {
         "name": "Debuff",
         "description": "Debuffs are negative status effects that render units weaker. Unless otherwise specified, debuffs can be dispelled."
     },
+    "departed": {
+        "name": "Departed",
+        "description": "Ally units in the Departed state cannot be designated as ability targets and will not appear in the Action Order."
+    },
     "distribute": {
         "name": "Distribute",
         "description": "Before DMG is calculated, distribute a part of the attacking unit's DMG to another target (or multiple other targets), with the target hit by the attack taking the rest of the DMG. DMG distributed to other targets cannot be distributed again."

@@ -8,6 +8,6 @@ export const CalyxMats = ["Blade", "Arrow", "Key", "Music Box", "Obsidian", "Shi
 
 export const CommonMats = ["Antimatter", "Artifex", "Core", "Engine", "Immortal", "Silvermane", "Dreamjolt", "Memoria"]
 
-export const BossMats = ["Broken Teeth of Iron Wolf", "Endotherm Chitin", "Enigmatic Ectostella", "Gelid Chitin", "Golden Crown of the Past Shadow", "Horn of Snow", "Lightning Crown of the Past Shadow", "Shape Shifter's Lightning Staff", "Storm Eye", "Void Cast Iron", "Ascendant Debris", "Nail of the Ape", "Suppressing Edict", "Searing Steel Blade", "Netherworld Pass", "Dream Fridge", "Dream Flamer", "Raging Heart", "IPC Work Permit"]
+export const BossMats = ["Broken Teeth of Iron Wolf", "Endotherm Chitin", "Enigmatic Ectostella", "Gelid Chitin", "Golden Crown of the Past Shadow", "Horn of Snow", "Lightning Crown of the Past Shadow", "Shape Shifter's Lightning Staff", "Storm Eye", "Void Cast Iron", "Ascendant Debris", "Nail of the Ape", "Suppressing Edict", "Searing Steel Blade", "Netherworld Pass", "Dream Fridge", "Dream Flamer", "Raging Heart", "IPC Work Permit", "A Glass of the Besotted Era", "Nail of the Beast Coffin"]
 
-export const WeeklyBossMats = ["Destroyer's Final Road", "Guardian's Lament", "Regret of Infinite Ochema", "Past Evils of the Borehole Planet Disaster", "Lost Echo of the Shared Wish"]
+export const WeeklyBossMats = ["Destroyer's Final Road", "Guardian's Lament", "Regret of Infinite Ochema", "Past Evils of the Borehole Planet Disaster", "Lost Echo of the Shared Wish", "Auspice Sliver"]
