@@ -12,7 +12,7 @@ const LightconePathFilter = (props) => {
             {
                 Paths.map((path, index) => (
                     <CustomTooltip key={index} title={path} arrow placement="top">
-                        <img className="filter-off" id={`lc-${path.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`} alt={path} onClick={(e) => props.setLightconeFilter(e.target.alt)} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`lc-${path.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/paths/The_${path}.png`} alt={path} onClick={(e) => props.setLightconeFilter(e.target.alt)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

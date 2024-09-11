@@ -33,7 +33,7 @@ const LightconeCard = (props) => {
                         }}
                     >
                         <CustomTooltip title={path} arrow placement="top">
-                            <img src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path}
+                            <img src={(`${process.env.REACT_APP_URL}/paths/The_${path}.png`)} alt={path}
                                 style={{
                                     width: "40px",
                                     height: "40px",
@@ -46,7 +46,7 @@ const LightconeCard = (props) => {
                         </CustomTooltip>
                     </Box>
                     <CardMedia
-                        image={`${process.env.REACT_APP_URL}/lightcones/medium/${name}.png`}
+                        image={`${process.env.REACT_APP_URL}/lightcones/medium/${name.split(" ").join("_")}.png`}
                         alt={name}
                         sx={{ width: "192px", height: "225px" }}
                     />
@@ -70,7 +70,7 @@ const LightconeCard = (props) => {
                 }}
             >
                 <Box sx={{ textAlign: "center", mt: "-10px" }}>
-                    <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px", fontSize: "16pt" }} variant="h6">
+                    <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px", fontSize: "16pt", userSelect: "none" }} variant="h6">
                         {[...Array(rarity).keys()].map(() => "✦")}
                     </Typography>
                     <ButtonBase disableRipple href={`/project-stellaron/lightcone/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">

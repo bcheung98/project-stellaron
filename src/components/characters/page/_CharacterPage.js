@@ -37,7 +37,7 @@ const CharacterPage = (props) => {
             <React.Fragment>
                 <Grid container sx={{ mb: "20px" }}>
                     <Grid xs="auto">
-                        <Avatar src={(`${process.env.REACT_APP_URL}/characters/splash/Character_${name.split(" ").join("_")}_Splash_Art.png`)} alt={name}
+                        <Avatar src={(`${process.env.REACT_APP_URL}/characters/splash/${name.split(" ").join("_")}.png`)} alt={name}
                             sx={{
                                 width: "35vw",
                                 height: "600px",
@@ -118,7 +118,7 @@ const CharacterPage = (props) => {
                                     </Typography>
                                     <CardHeader
                                         avatar={
-                                            <Avatar src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={`${path}`} sx={{ height: "36px", width: "36px" }}>
+                                            <Avatar src={(`${process.env.REACT_APP_URL}/paths/The_${path}.png`)} alt={`${path}`} sx={{ height: "36px", width: "36px" }}>
                                                 <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "36px" }} />
                                             </Avatar>
                                         }

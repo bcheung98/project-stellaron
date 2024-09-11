@@ -27,7 +27,7 @@ const LightconeRow = (props) => {
                     <CardHeader
                         avatar={
                             <ButtonBase disableRipple href={`/project-stellaron/lightcone/${row.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                <img alt={row.name} src={(`${process.env.REACT_APP_URL}/lightcones/small/${row.name}.png`)} style={{ width: "48px", height: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
+                                <img alt={row.name} src={(`${process.env.REACT_APP_URL}/lightcones/small/${row.name.split(" ").join("_")}.png`)} style={{ width: "48px", height: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
                             </ButtonBase>
                         }
                         title={
@@ -53,7 +53,7 @@ const LightconeRow = (props) => {
             { /* Rarity */}
             <StyledTableCellNoVert>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px" }} variant="h5">
+                    <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }} variant="h5">
                         {[...Array(row.rarity).keys()].map(() => "✦")}
                     </Typography>
                 </Box>
@@ -64,7 +64,7 @@ const LightconeRow = (props) => {
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                     <CardHeader
                         avatar={
-                            <Avatar src={`${process.env.REACT_APP_URL}/paths/Path_The_${row.path}.png`} alt={row.path}
+                            <Avatar src={`${process.env.REACT_APP_URL}/paths/The_${row.path}.png`} alt={row.path}
                                 sx={{
                                     width: "32px",
                                     height: "32px",

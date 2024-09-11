@@ -48,7 +48,7 @@ const CharacterBannerRow = (props) => {
                                     return (
                                         <ButtonBase disableRipple href={`/project-stellaron/character/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                             <CustomTooltip title={char} arrow placement="top">
-                                                <img src={`${process.env.REACT_APP_URL}/characters/icons/Icon_${char.split(" ").join("_")}.png`}
+                                                <img src={`${process.env.REACT_APP_URL}/characters/icons/${char.split(" ").join("_")}.png`}
                                                     alt={char}
                                                     onError={ErrorLoadingImage}
                                                     style={{

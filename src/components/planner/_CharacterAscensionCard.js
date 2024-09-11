@@ -44,7 +44,7 @@ const CharacterAscensionCard = (props) => {
                 avatar={
                     <Box sx={{ position: "relative" }}>
                         <ButtonBase disableRipple href={`/project-stellaron/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                            <img alt={name} src={(`${process.env.REACT_APP_URL}/characters/icons/Icon_${name.split(" ").join("_")}.png`)} style={{ width: "64px", border: `2px solid ${theme.border.color}`, borderRadius: "64px" }} onError={ErrorLoadingImage} />
+                            <img alt={name} src={(`${process.env.REACT_APP_URL}/characters/icons/${name.split(" ").join("_")}.png`)} style={{ width: "64px", border: `2px solid ${theme.border.color}`, borderRadius: "64px" }} onError={ErrorLoadingImage} />
                         </ButtonBase>
                         <Box sx={{ position: "absolute", top: "50px", left: "-5px" }}>
                             <CustomTooltip title={element} arrow placement="top">
@@ -53,7 +53,7 @@ const CharacterAscensionCard = (props) => {
                         </Box>
                         <Box sx={{ position: "absolute", top: "50px", left: "45px" }}>
                             <CustomTooltip title={path} arrow placement="top">
-                                <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path} onError={ErrorLoadingImage} />
+                                <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/The_${path}.png`)} alt={path} onError={ErrorLoadingImage} />
                             </CustomTooltip>
                         </Box>
                     </Box>
@@ -67,7 +67,7 @@ const CharacterAscensionCard = (props) => {
                                 {!props.character.displayName && !props.character.fullName && name}
                             </Typography>
                         </ButtonBase>
-                        <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px" }} variant="h6">
+                        <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }} variant="h6">
                             {[...Array(rarity).keys()].map(() => "✦")}
                         </Typography>
                     </React.Fragment>

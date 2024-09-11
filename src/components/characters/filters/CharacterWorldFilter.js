@@ -12,7 +12,7 @@ const CharacterWorldFilter = (props) => {
             {
                 Worlds.map((world, index) => (
                     <CustomTooltip key={index} title={world} arrow placement="top">
-                        <img className="filter-off" id={`${world.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/factions/Icon_${world.split(" ").join("_")}.png`} alt={world} onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
+                        <img className="filter-off" id={`${world.toLowerCase()}-button`} src={`${process.env.REACT_APP_URL}/factions/${world.split(" ").join("_")}.png`} alt={world} onClick={(e) => props.setFilter(e.target.alt)} onError={ErrorLoadingImage} />
                     </CustomTooltip>
                 ))
             }

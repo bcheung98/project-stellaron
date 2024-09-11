@@ -104,7 +104,7 @@ const CharacterSelector = (props) => {
                                         <CardHeader
                                             avatar={
                                                 <Box sx={{ position: "relative" }}>
-                                                    <img alt={option.name} src={(`${process.env.REACT_APP_URL}/characters/icons/Icon_${option.name.split(" ").join("_")}.png`)} style={{ width: "48px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />
+                                                    <img alt={option.name} src={(`${process.env.REACT_APP_URL}/characters/icons/${option.name.split(" ").join("_")}.png`)} style={{ width: "48px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />
                                                     <Box sx={{ position: "absolute", top: "2.5px", left: "-10px" }}>
                                                         <CustomTooltip title={option.element} arrow placement="top">
                                                             <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${option.element}.png`)} alt={option.element} onError={ErrorLoadingImage} />
@@ -112,7 +112,7 @@ const CharacterSelector = (props) => {
                                                     </Box>
                                                     <Box sx={{ position: "absolute", top: "30px", left: "-10px" }}>
                                                         <CustomTooltip title={option.path} arrow placement="top">
-                                                            <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${option.path}.png`)} alt={option.path} onError={ErrorLoadingImage} />
+                                                            <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/The_${option.path}.png`)} alt={option.path} onError={ErrorLoadingImage} />
                                                         </CustomTooltip>
                                                     </Box>
                                                 </Box>

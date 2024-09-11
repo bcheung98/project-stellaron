@@ -27,7 +27,7 @@ const CharacterRow = (props) => {
                     <CardHeader
                         avatar={
                             <ButtonBase disableRipple href={`/project-stellaron/character/${row.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                <img alt={row.name} src={(`${process.env.REACT_APP_URL}/characters/icons/Icon_${row.name.split(" ").join("_")}.png`)} style={{ width: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
+                                <img alt={row.name} src={(`${process.env.REACT_APP_URL}/characters/icons/${row.name.split(" ").join("_")}.png`)} style={{ width: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
                             </ButtonBase>
                         }
                         title={
@@ -88,7 +88,7 @@ const CharacterRow = (props) => {
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                     <CardHeader
                         avatar={
-                            <Avatar src={`${process.env.REACT_APP_URL}/paths/Path_The_${row.path}.png`} alt={row.path}
+                            <Avatar src={`${process.env.REACT_APP_URL}/paths/The_${row.path}.png`} alt={row.path}
                                 sx={{
                                     width: "32px",
                                     height: "32px",
@@ -112,7 +112,7 @@ const CharacterRow = (props) => {
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                     <CardHeader
                         avatar={
-                            <Avatar src={`${process.env.REACT_APP_URL}/factions/Icon_${row.world.split(" ").join("_")}.png`} alt={row.world}
+                            <Avatar src={`${process.env.REACT_APP_URL}/factions/${row.world.split(" ").join("_")}.png`} alt={row.world}
                                 sx={{
                                     width: "32px",
                                     height: "32px",

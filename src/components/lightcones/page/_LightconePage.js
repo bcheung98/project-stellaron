@@ -51,7 +51,7 @@ const LightconePage = (props) => {
             <React.Fragment>
                 <Grid container sx={{ mb: "20px" }}>
                     <Grid xs="auto">
-                        <img src={(`${process.env.REACT_APP_URL}/lightcones/large/${name}.png`)} alt={name}
+                        <img src={(`${process.env.REACT_APP_URL}/lightcones/large/${name.split(" ").join("_")}.png`)} alt={name}
                             style={{
                                 width: "25vw",
                                 marginLeft: "15px",
@@ -95,7 +95,7 @@ const LightconePage = (props) => {
                                     </Typography>
                                     <CardHeader
                                         avatar={
-                                            <Avatar src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={`${path}`} sx={{ height: "36px", width: "36px" }}>
+                                            <Avatar src={(`${process.env.REACT_APP_URL}/paths/The_${path}.png`)} alt={`${path}`} sx={{ height: "36px", width: "36px" }}>
                                                 <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "36px" }} />
                                             </Avatar>
                                         }
@@ -106,7 +106,7 @@ const LightconePage = (props) => {
                                         }
                                         sx={{ ml: "-20px" }}
                                     />
-                                    <Typography sx={{ mt: "-15px", color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px" }} variant="h4">
+                                    <Typography sx={{ mt: "-15px", color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }} variant="h4">
                                         {[...Array(rarity).keys()].map(() => "✦")}
                                     </Typography>
                                 </Box>

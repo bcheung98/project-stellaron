@@ -45,11 +45,11 @@ const CharacterCard = (props) => {
                             <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={element} onError={ErrorLoadingImage} />
                         </CustomTooltip>
                         <CustomTooltip title={path} arrow placement="top">
-                            <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/Path_The_${path}.png`)} alt={path} onError={ErrorLoadingImage} />
+                            <img style={smallIcon} src={(`${process.env.REACT_APP_URL}/paths/The_${path}.png`)} alt={path} onError={ErrorLoadingImage} />
                         </CustomTooltip>
                     </Box>
                     <CardMedia
-                        image={`${process.env.REACT_APP_URL}/characters/avatars/Avatar_${name.split(" ").join("_")}.png`}
+                        image={`${process.env.REACT_APP_URL}/characters/avatars/${name.split(" ").join("_")}.png`}
                         alt={name}
                         sx={{ width: "192px", height: "236px" }}
                     />
@@ -65,7 +65,7 @@ const CharacterCard = (props) => {
                             <Typography variant="h6" noWrap sx={{ color: "white", textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000", fontWeight: "bold" }} >
                                 {props.character.displayName ? props.character.displayName : name}
                             </Typography>
-                            <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px" }} variant="h6">
+                            <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }} variant="h6">
                                 {[...Array(rarity).keys()].map(() => "✦")}
                             </Typography>
                         </Box>

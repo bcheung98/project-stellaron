@@ -48,7 +48,7 @@ const CharacterBannerRow = (props) => {
                                     return (
                                         <ButtonBase disableRipple href={`/project-stellaron/lightcone/${lc.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                             <CustomTooltip title={lc} arrow placement="top">
-                                                <img src={`${process.env.REACT_APP_URL}/lightcones/small/${lc}.png`}
+                                                <img src={`${process.env.REACT_APP_URL}/lightcones/small/${lc.split(" ").join("_")}.png`}
                                                     alt={lc}
                                                     onError={ErrorLoadingImage}
                                                     style={{
