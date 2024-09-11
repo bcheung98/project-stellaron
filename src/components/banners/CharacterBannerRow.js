@@ -13,6 +13,15 @@ let CurrentBanner = (startDate, endDate) => {
     }
 }
 
+const GetRarityBackground = (char) => {
+    if (char !== undefined) {
+        return `url(${process.env.REACT_APP_URL}/backgrounds/Background_${char.rarity}_Star.webp)`
+    }
+    else {
+        return `url(${process.env.REACT_APP_URL}/backgrounds/Background_1_Star.webp)`
+    }
+}
+
 const CharacterBannerRow = (props) => {
 
     const theme = useTheme();
@@ -49,7 +58,7 @@ const CharacterBannerRow = (props) => {
                                                         borderRadius: "64px",
                                                         width: "64px",
                                                         height: "64px",
-                                                        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${currentChar.rarity}_Star.webp)`,
+                                                        backgroundImage: GetRarityBackground(currentChar),
                                                         backgroundSize: "100%",
                                                         backgroundPosition: "50% 50%"
                                                     }}
