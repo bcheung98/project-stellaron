@@ -30,7 +30,7 @@ const RelicCard = (props) => {
             }}
         >
             <Box>
-                <Avatar src={`${process.env.REACT_APP_URL}/relics/sets/${name}/${props.relic.pieces[0].type}.png`} alt={name}
+                <Avatar src={`${process.env.REACT_APP_URL}/relics/sets/${name.split(" ").join("_")}/${props.relic.pieces[0].type}.png`} alt={name}
                     sx={{
                         width: "128px",
                         height: "128px",

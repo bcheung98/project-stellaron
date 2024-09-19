@@ -58,7 +58,7 @@ const RelicPopup = (props) => {
                         <Typography variant="subtitle1" sx={{ color: "white", mb: "20px" }}>
                             <i>{formatPieceType(piece.type)}</i>
                         </Typography>
-                        <Avatar src={`${process.env.REACT_APP_URL}/relics/sets/${name}/${piece.type}.png`} alt={piece.name}
+                        <Avatar src={`${process.env.REACT_APP_URL}/relics/sets/${name.split(" ").join("_")}/${piece.type}.png`} alt={piece.name}
                             sx={{
                                 width: "128px",
                                 height: "128px",
