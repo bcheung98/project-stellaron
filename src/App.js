@@ -17,9 +17,9 @@ import LightconePage from "./components/lightcones/page/_LightconePage"
 import RelicBrowser from "./components/relics/RelicBrowser"
 import AscensionPlanner from "./components/planner/_AscensionPlanner"
 import BannerArchive from "./components/banners/BannerArchive"
-import { AppBar, Typography, Box, IconButton, Fade, useScrollTrigger, Fab } from "@mui/material"
+import BottomNav from "./components/BottomNav"
+import { Box, Fade, useScrollTrigger, Fab } from "@mui/material"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
-import GitHubIcon from '@mui/icons-material/GitHub'
 
 function App(props) {
 
@@ -51,24 +51,7 @@ function App(props) {
                         </Switch>
                     </Box>
                 </Box>
-                <AppBar
-                    position="static"
-                    sx={{
-                        mt: 10,
-                        mb: -5,
-                        pt: 2,
-                        textAlign: "center",
-                        backgroundColor: `${theme.appbar.backgroundColor}`,
-                        borderTop: `1px solid ${theme.border.color}`,
-                    }}
-                >
-                    <Typography sx={{ mb: "5px" }} variant="body2">Project Stellaron is not affiliated with HoYoverse.<br />Honkai: Star Rail, images and data are registered trademarks of HoYoverse.</Typography>
-                    <Box>
-                        <IconButton disableRipple href={"https://github.com/bcheung98/project-stellaron"} target="_blank" color="inherit">
-                            <GitHubIcon />
-                        </IconButton>
-                    </Box>
-                </AppBar>
+               <BottomNav />
                 <ScrollTop {...props}>
                     <Fab size="medium" disableRipple sx={{ backgroundColor: `${theme.border.color}` }}>
                         <KeyboardArrowUpIcon sx={{ color: `${theme.text.color}` }} />
