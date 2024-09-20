@@ -56,7 +56,7 @@ function Nav() {
                     >
                         <CardHeader
                             avatar={
-                                <Avatar src={`${process.env.REACT_APP_URL}/elements/Element_Imaginary.png`} alt="PROJECT Stellaron" sx={{ height: "48px", width: "48px" }} />
+                                <Avatar src={`${process.env.REACT_APP_URL}/factions/Stellaron_Hunters.png`} alt="PROJECT Stellaron" sx={{ height: "48px", width: "48px" }} />
                             }
                             title={
                                 <Typography variant="h6"
@@ -374,7 +374,7 @@ const linkItems = [
 
 const navItems = [
     {
-        primaryIcon: <Avatar variant="square" src={`${process.env.REACT_APP_URL}/factions/Astral_Express.png`} alt="Home" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
+        primaryIcon: <Avatar variant="square" src={`${process.env.REACT_APP_URL}/factions/Stellaron_Hunters.png`} alt="Home" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Home",
         link: "/project-stellaron/"
     },
