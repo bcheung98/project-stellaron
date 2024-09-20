@@ -12,8 +12,8 @@ import ExpandMore from "@mui/icons-material/ExpandMore"
 // Helper imports
 import { CustomTooltip } from "../helpers/CustomTooltip"
 
-const drawerWidth = 280
-const iconSize = "32px"
+const drawerWidth = 250 // px
+const iconSize = 32 // px
 
 function Nav() {
 
@@ -25,7 +25,7 @@ function Nav() {
         setDrawerOpen(!drawerOpen)
     }
 
-    const [dropdownOpen, setDropdownOpen] = React.useState(false);
+    const [dropdownOpen, setDropdownOpen] = React.useState(false)
     const toggleDropdownState = () => {
         setDropdownOpen(!dropdownOpen)
     }
@@ -102,15 +102,15 @@ function Nav() {
                                             },
                                             drawerOpen ?
                                                 {
-                                                    width: drawerWidth * 0.8,
+                                                    width: `${drawerWidth * 0.8}px`,
                                                     height: "50px",
                                                     my: 0,
                                                     justifyContent: "initial"
                                                 }
                                                 :
                                                 {
-                                                    width: "40px",
-                                                    height: "40px",
+                                                    width: `calc(${iconSize}px + ${iconSize * 0.25}px)`,
+                                                    height: `calc(${iconSize}px + ${iconSize * 0.25}px)`,
                                                     my: "5px",
                                                     justifyContent: "center"
                                                 }
@@ -165,15 +165,15 @@ function Nav() {
                                     },
                                     drawerOpen ?
                                         {
-                                            width: drawerWidth * 0.8,
+                                            width: `${drawerWidth * 0.8}px`,
                                             height: "50px",
                                             my: 0,
                                             justifyContent: "initial"
                                         }
                                         :
                                         {
-                                            width: "32px",
-                                            height: "40px",
+                                            width: `${iconSize}px`,
+                                            height: `calc(${iconSize}px + ${iconSize * 0.25}px)`,
                                             my: "5px",
                                             justifyContent: "center"
                                         }
@@ -235,15 +235,15 @@ function Nav() {
                                                         },
                                                         drawerOpen ?
                                                             {
-                                                                width: drawerWidth * 0.8,
+                                                                width: `${drawerWidth * 0.8}px`,
                                                                 height: "50px",
                                                                 my: 0,
                                                                 justifyContent: "initial"
                                                             }
                                                             :
                                                             {
-                                                                width: "40px",
-                                                                height: "40px",
+                                                                width: `calc(${iconSize}px + ${iconSize * 0.25}px)`,
+                                                                height: `calc(${iconSize}px + ${iconSize * 0.25}px)`,
                                                                 my: "5px",
                                                                 justifyContent: "center"
                                                             }
@@ -306,10 +306,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
         duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: "hidden",
-    width: `calc(${theme.spacing(7)} + 1px)`,
-    [theme.breakpoints.up("sm")]: {
-        width: `calc(${theme.spacing(8)} + 1px)`,
-    },
+    width: `${iconSize * 2 + 1}px`,
 })
 
 interface AppBarProps extends MuiAppBarProps {
@@ -366,13 +363,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
 
 const linkItems = [
     {
-        primaryIcon: <Avatar variant="square" src="https://raw.githubusercontent.com/bcheung98/project-irminsul-assets/main/icons/Sumeru.png" alt="Project Irminsul" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar variant="square" src="https://raw.githubusercontent.com/bcheung98/project-irminsul-assets/main/icons/Sumeru.png" alt="Project Irminsul" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Project Irminsul",
         secondaryText: "Genshin Impact",
         link: "https://bcheung98.github.io/project-irminsul/"
     },
     {
-        primaryIcon: <Avatar variant="square" src="https://raw.githubusercontent.com/bcheung98/project-tacetite-assets/main/icons/Black_Shores.png" alt="Project Tacetite" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar variant="square" src="https://raw.githubusercontent.com/bcheung98/project-tacetite-assets/main/icons/Black_Shores.png" alt="Project Tacetite" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Project Tacetite",
         secondaryText: "Wuthering Waves",
         link: "https://bcheung98.github.io/project-tacetite/"
@@ -381,32 +378,32 @@ const linkItems = [
 
 const navItems = [
     {
-        primaryIcon: <Avatar variant="square" src={`${process.env.REACT_APP_URL}/elements/Element_Imaginary.png`} alt="Home" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar variant="square" src={`${process.env.REACT_APP_URL}/elements/Element_Imaginary.png`} alt="Home" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Home",
         link: "/project-stellaron/"
     },
     {
-        primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Character.png`)} alt="Characters" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Character.png`)} alt="Characters" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Characters",
         link: "/project-stellaron/characters/"
     },
     {
-        primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Lightcone.png`)} alt="Light Cones" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Lightcone.png`)} alt="Light Cones" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Light Cones",
         link: "/project-stellaron/lightcones/"
     },
     {
-        primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Relic.png`)} alt="Relics" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Relic.png`)} alt="Relics" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Relics",
         link: "/project-stellaron/relics/"
     },
     {
-        primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="Ascension Planner" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="Ascension Planner" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Ascension Planner",
         link: "/project-stellaron/planner/"
     },
     {
-        primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Warp.png`)} alt="Banner Archive" sx={{ width: iconSize, height: iconSize }} />,
+        primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Warp.png`)} alt="Banner Archive" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Banner Archive",
         link: "/project-stellaron/banners/"
     }
