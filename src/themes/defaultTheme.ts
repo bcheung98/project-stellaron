@@ -1,6 +1,4 @@
-import { createTheme } from '@mui/material/styles';
-
-export const defaultTheme = createTheme({
+export const defaultTheme = {
     components: {
         MuiTypography: {
             styleOverrides: {
@@ -17,6 +15,13 @@ export const defaultTheme = createTheme({
                     backgroundColor: "rgb(30, 30, 30)",
                     fontFamily: "DIN, Roboto, Segoe UI",
                     fontWeight: "bold"
+                }
+            }
+        },
+        MuiDivider: {
+            styleOverrides: {
+                root: {
+                    borderColor: "rgb(168, 147, 105)"
                 }
             }
         }
@@ -55,4 +60,4 @@ export const defaultTheme = createTheme({
     button: {
         selected: "rgb(169, 142, 84)",
     }
-});
+}
