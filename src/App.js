@@ -5,11 +5,14 @@ import {
 } from "react-router-dom"
 import { useEffect } from "react"
 import { connect } from "react-redux"
-import { ThemeProvider } from '@mui/material/styles'
-import theme from "./themes/theme"
+
+// Fetch imports
 import { fetchCharacters, fetchLightcones, fetchRelics, fetchBanners } from "./redux/actions/fetch"
-import VersionHighlights from "./components/VersionHighlights"
+
+// Component imports
 import Nav from "./components/Nav"
+import BottomNav from "./components/BottomNav"
+import VersionHighlights from "./components/VersionHighlights"
 import CharacterBrowser from "./components/characters/CharacterBrowser"
 import CharacterPage from "./components/characters/page/_CharacterPage"
 import LightconeBrowser from "./components/lightcones/LightconeBrowser"
@@ -17,7 +20,10 @@ import LightconePage from "./components/lightcones/page/_LightconePage"
 import RelicBrowser from "./components/relics/RelicBrowser"
 import AscensionPlanner from "./components/planner/_AscensionPlanner"
 import BannerArchive from "./components/banners/BannerArchive"
-import BottomNav from "./components/BottomNav"
+
+// MUI imports
+import theme from "./themes/theme"
+import { ThemeProvider } from "@mui/material/styles"
 import { Box, Fade, useScrollTrigger, Fab } from "@mui/material"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
 
