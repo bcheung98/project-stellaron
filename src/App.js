@@ -59,7 +59,16 @@ function App(props) {
                 </Box>
                 <BottomNav />
                 <ScrollTop {...props}>
-                    <Fab size="medium" disableRipple sx={{ backgroundColor: `${theme.border.color}` }}>
+                    <Fab
+                        size="medium"
+                        disableRipple
+                        sx={{
+                            backgroundColor: `${theme.button.selected}`,
+                            "&:hover": {
+                                backgroundColor: `${theme.button.hover}`
+                            }
+                        }}
+                    >
                         <KeyboardArrowUpIcon sx={{ color: `${theme.text.color}` }} />
                     </Fab>
                 </ScrollTop>

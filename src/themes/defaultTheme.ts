@@ -59,5 +59,6 @@ export const defaultTheme = {
     },
     button: {
         selected: "rgb(169, 142, 84)",
+        hover: "rgb(125, 105, 62)",
     }
 }
