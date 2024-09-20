@@ -265,8 +265,6 @@ function Nav() {
                                                     <ListItemText
                                                         primary={item.primaryText}
                                                         primaryTypographyProps={{ color: `${theme.text.color}`, fontSize: "11pt" }}
-                                                        secondary={item.secondaryText}
-                                                        secondaryTypographyProps={{ color: `${theme.text.color}`, fontSize: "9pt" }}
                                                         sx={[
                                                             drawerOpen ?
                                                                 { opacity: 1 }
@@ -363,22 +361,20 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
 
 const linkItems = [
     {
-        primaryIcon: <Avatar variant="square" src="https://raw.githubusercontent.com/bcheung98/project-irminsul-assets/main/icons/Sumeru.png" alt="Project Irminsul" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
-        primaryText: "Project Irminsul",
-        secondaryText: "Genshin Impact",
+        primaryIcon: <Avatar src="https://raw.githubusercontent.com/bcheung98/irminsul-gg-assets/main/game-icons/Genshin.png" alt="Project Irminsul" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
+        primaryText: "Genshin Impact",
         link: "https://bcheung98.github.io/project-irminsul/"
     },
     {
-        primaryIcon: <Avatar variant="square" src="https://raw.githubusercontent.com/bcheung98/project-tacetite-assets/main/icons/Black_Shores.png" alt="Project Tacetite" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
-        primaryText: "Project Tacetite",
-        secondaryText: "Wuthering Waves",
+        primaryIcon: <Avatar src="https://raw.githubusercontent.com/bcheung98/irminsul-gg-assets/main/game-icons/WutheringWaves.png" alt="Project Tacetite" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
+        primaryText: "Wuthering Waves",
         link: "https://bcheung98.github.io/project-tacetite/"
     }
 ]
 
 const navItems = [
     {
-        primaryIcon: <Avatar variant="square" src={`${process.env.REACT_APP_URL}/elements/Element_Imaginary.png`} alt="Home" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
+        primaryIcon: <Avatar variant="square" src={`${process.env.REACT_APP_URL}/factions/Astral_Express.png`} alt="Home" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Home",
         link: "/project-stellaron/"
     },
