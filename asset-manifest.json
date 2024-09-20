@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/project-stellaron/static/css/main.79805c8e.css",
-    "main.js": "/project-stellaron/static/js/main.c82f38cd.js",
+    "main.js": "/project-stellaron/static/js/main.c8545833.js",
     "static/media/DIN Bold.ttf": "/project-stellaron/static/media/DIN Bold.24817c4932d10f06acd1.ttf",
     "static/media/DIN.ttf": "/project-stellaron/static/media/DIN.7f0f21a90a6f9e0acca1.ttf",
     "static/media/DIN Medium.ttf": "/project-stellaron/static/media/DIN Medium.ac50005d97791c65cf3e.ttf",
     "static/media/DIN Black.ttf": "/project-stellaron/static/media/DIN Black.4e63ea306282dff65d04.ttf",
     "index.html": "/project-stellaron/index.html",
     "main.79805c8e.css.map": "/project-stellaron/static/css/main.79805c8e.css.map",
-    "main.c82f38cd.js.map": "/project-stellaron/static/js/main.c82f38cd.js.map"
+    "main.c8545833.js.map": "/project-stellaron/static/js/main.c8545833.js.map"
   },
   "entrypoints": [
     "static/css/main.79805c8e.css",
-    "static/js/main.c82f38cd.js"
+    "static/js/main.c8545833.js"
   ]
 }
