@@ -188,7 +188,7 @@ function Nav() {
                                                 color: `${theme.text.color}`
                                             },
                                             drawerOpen ?
-                                                { mr: 2.5 }
+                                                { mr: 3 }
                                                 :
                                                 { mr: "auto" },
                                         ]}
