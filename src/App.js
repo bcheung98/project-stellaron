@@ -70,7 +70,7 @@ function App(props) {
                     </Box>
                 </AppBar>
                 <ScrollTop {...props}>
-                    <Fab size="medium" disableRipple color="primary">
+                    <Fab size="medium" disableRipple sx={{ backgroundColor: `${theme.border.color}` }}>
                         <KeyboardArrowUpIcon sx={{ color: `${theme.text.color}` }} />
                     </Fab>
                 </ScrollTop>
