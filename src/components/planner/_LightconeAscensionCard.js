@@ -37,7 +37,7 @@ const LightconeAscensionCard = (props) => {
             <CardHeader
                 avatar={
                     <Box sx={{ position: "relative" }}>
-                        <ButtonBase disableRipple href={`/project-stellaron/lightcone/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/lightcones/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <img alt={name} src={(`${process.env.REACT_APP_URL}/lightcones/small/${name.split(" ").join("_")}.png`)} style={{ width: "64px", height: "64px", border: `2px solid ${theme.border.color}`, borderRadius: "64px" }} onError={ErrorLoadingImage} />
                         </ButtonBase>
                         <Box sx={{ position: "absolute", top: "50px", left: "45px" }}>
@@ -49,7 +49,7 @@ const LightconeAscensionCard = (props) => {
                 }
                 title={
                     <React.Fragment>
-                        <ButtonBase disableRipple href={`/project-stellaron/lightcone/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/lightcones/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
                                 {name}
                             </Typography>

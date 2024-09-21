@@ -41,6 +41,8 @@ const VersionHighlights = (props) => {
     if (props.relics.relics[0] !== undefined) { planarOrnaments = props.relics.relics[0]["planarOrnaments"].filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name)) };
     let newRelics = cavernRelics.length > 0 || planarOrnaments.length > 0;
 
+    document.title = `Honkai: Star Rail ${process.env.REACT_APP_DOCUMENT_HEADER}`
+
     return (
         <Box
             sx={{
@@ -48,7 +50,7 @@ const VersionHighlights = (props) => {
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 display: "block",
-                margin: "auto",
+                ml: "20px",
                 mt: "20px",
                 width: "75vw",
                 color: `${theme.text.color}`,

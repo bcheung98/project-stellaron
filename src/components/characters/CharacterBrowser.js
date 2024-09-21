@@ -29,7 +29,7 @@ const CharacterBrowser = (props) => {
 
     let { characters, characterFilters } = props;
 
-    document.title = "Characters - Project Stellaron";
+    document.title = `Characters ${process.env.REACT_APP_DOCUMENT_HEADER}`;
 
     return (
         <React.Fragment>

@@ -15,7 +15,7 @@ const AscensionPlanner = (props) => {
 
     let { characters, lightcones } = props;
 
-    document.title = "Ascension Planner - Project Stellaron";
+    document.title = `Ascension Planner ${process.env.REACT_APP_DOCUMENT_HEADER}`;
 
     return (
         <Box>

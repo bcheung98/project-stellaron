@@ -45,7 +45,7 @@ const LightconePage = (props) => {
     if (lightcone !== undefined) {
         let { name, path, rarity, passive, description } = lightcone;
 
-        document.title = `${name} - Project Stellaron`;
+        document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
 
         return (
             <React.Fragment>

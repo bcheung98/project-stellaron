@@ -29,7 +29,7 @@ const LightconeBrowser = (props) => {
 
     let { lightcones, lightconeFilters } = props;
 
-    document.title = "Light Cones - Project Stellaron";
+    document.title = `Light Cones ${process.env.REACT_APP_DOCUMENT_HEADER}`;
 
     return (
         <React.Fragment>

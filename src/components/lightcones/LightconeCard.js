@@ -22,7 +22,7 @@ const LightconeCard = (props) => {
                 borderRadius: "5px 25px 5px 5px",
             }}
         >
-            <ButtonBase disableRipple href={`/project-stellaron/lightcone/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+            <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/lightcones/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                 <Box>
                     <Box
                         sx={{
@@ -73,7 +73,7 @@ const LightconeCard = (props) => {
                     <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px", fontSize: "16pt", userSelect: "none" }} variant="h6">
                         {[...Array(rarity).keys()].map(() => "✦")}
                     </Typography>
-                    <ButtonBase disableRipple href={`/project-stellaron/lightcone/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                    <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/lightcones/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                         <Typography variant="body1" sx={{ color: "white", fontWeight: "bold" }}>
                             {props.lightcone.displayName ? props.lightcone.displayName : name}
                         </Typography>

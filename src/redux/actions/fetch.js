@@ -1,14 +1,14 @@
-// https://bcheung98.github.io/project-stellaron-db/characters.json
-const charactersURL = "https://bcheung98.github.io/project-stellaron-db/characters.json";
+// https://api.irminsul.gg/hsr/characters.json
+const charactersURL = "https://api.irminsul.gg/hsr/characters.json";
 
-// https://bcheung98.github.io/project-stellaron-db/lightcones.json
-const lightconesURL = "https://bcheung98.github.io/project-stellaron-db/lightcones.json";
+// https://api.irminsul.gg/hsr/lightcones.json
+const lightconesURL = "https://api.irminsul.gg/hsr/lightcones.json";
 
-// https://bcheung98.github.io/project-stellaron-db/relics.json
-const relicsURL = "https://bcheung98.github.io/project-stellaron-db/relics.json";
+// https://api.irminsul.gg/hsr/relics.json
+const relicsURL = "https://api.irminsul.gg/hsr/relics.json";
 
-const characterBannerURL = "https://bcheung98.github.io/project-stellaron-db/character-banners.json";
-const lightconeBannerURL = "https://bcheung98.github.io/project-stellaron-db/lightcone-banners.json";
+const characterBannerURL = "https://api.irminsul.gg/hsr/character-banners.json";
+const lightconeBannerURL = "https://api.irminsul.gg/hsr/lightcone-banners.json";
 
 export const fetchCharacters = () => {
     return (dispatch) => {

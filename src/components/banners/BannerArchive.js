@@ -10,7 +10,7 @@ const BannerArchive = (props) => {
 
     let { banners } = props;
 
-    document.title = "Banner Archive - Project Stellaron";
+    document.title = `Banner Archive ${process.env.REACT_APP_DOCUMENT_HEADER}`;
 
     return (
         <React.Fragment>

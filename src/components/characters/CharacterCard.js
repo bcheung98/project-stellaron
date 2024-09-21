@@ -31,7 +31,7 @@ const CharacterCard = (props) => {
                 borderRadius: "5px 25px 5px 5px",
             }}
         >
-            <ButtonBase disableRipple href={`/project-stellaron/character/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+            <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                 <Box>
                     <Box
                         sx={{

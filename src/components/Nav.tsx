@@ -12,14 +12,15 @@ import ExpandMore from "@mui/icons-material/ExpandMore"
 // Helper imports
 import { CustomTooltip } from "../helpers/CustomTooltip"
 
-const drawerWidth = 250 // px
-const iconSize = 32 // px
+const drawerWidth = 240 //px
+const buttonHoverWidth = drawerWidth * 0.9 // px
+const iconSize = 32 //px
 
 function Nav() {
 
     const theme = useTheme()
 
-    let initialDrawerState = window.location.href.endsWith("/project-stellaron/") ? true : false
+    let initialDrawerState = window.location.href.endsWith(".gg/") ? true : false
     const [drawerOpen, setDrawerOpen] = React.useState(initialDrawerState)
     const toggleDrawerState = () => {
         setDrawerOpen(!drawerOpen)
@@ -50,33 +51,43 @@ function Nav() {
                                 <MenuOpenIcon sx={{ transform: "rotate(180deg)" }} />
                         }
                     </IconButton>
-                    <ButtonBase
-                        disableRipple
-                        href={`/project-stellaron/`}
-                    >
-                        <CardHeader
-                            avatar={
-                                <Avatar src={`${process.env.REACT_APP_URL}/factions/Stellaron_Hunters.png`} alt="PROJECT Stellaron" sx={{ height: "48px", width: "48px" }} />
-                            }
-                            title={
-                                <Typography variant="h6"
-                                    sx={{
-                                        letterSpacing: ".3rem",
-                                        color: `${theme.text.color}`,
-                                    }}
-                                >
-                                    PROJECT STELLARON
-                                </Typography>
-                            }
-                            sx={{ px: 0 }}
-                        />
-                    </ButtonBase>
+                    <CustomTooltip title="Irminsul.GG Portal" arrow placement="right" enterDelay={250}>
+                        <ButtonBase disableRipple href="https://irminsul.gg/">
+                            <CardHeader
+                                avatar={
+                                    <Avatar
+                                        variant="square"
+                                        src="https://assets.irminsul.gg/main/icons/Irminsul.png"
+                                        alt="irminsul.gg"
+                                        sx={{
+                                            height: "48px",
+                                            width: "48px"
+                                        }}
+                                    />
+                                }
+                                title={
+                                    <Typography
+                                        sx={{
+                                            fontFamily: "Bungee, DIN, Roboto",
+                                            fontSize: "15pt",
+                                            letterSpacing: ".1rem",
+                                            color: `white`
+                                        }}
+                                    >
+                                        Irminsul.GG
+                                    </Typography>
+                                }
+                                sx={{ px: 0 }}
+                            />
+                        </ButtonBase>
+                    </CustomTooltip>
                 </Toolbar>
             </AppBar>
             <Drawer
+                id="drawer"
                 variant="permanent"
                 open={drawerOpen}
-                sx={{ mr: 5, [`& .MuiDrawer-paper`]: { borderRight: `1px solid ${theme.border.color}`, backgroundColor: `${theme.appbar.backgroundColor}`, pt: 2.5 } }}
+                sx={{ [`& .MuiDrawer-paper`]: { borderRight: `1px solid ${theme.border.color}`, backgroundColor: `${theme.appbar.backgroundColor}`, pt: 2.5 } }}
             >
                 {/* Empty toolbar necessary for content to be below app bar */}
                 <Toolbar />
@@ -96,13 +107,13 @@ function Nav() {
                                                 px: "4px",
                                                 py: 0,
                                                 borderRadius: "5px",
-                                                "&:hover, &:focus": {
+                                                "&:hover": {
                                                     backgroundColor: `${theme.table.body.hover}`
                                                 }
                                             },
                                             drawerOpen ?
                                                 {
-                                                    width: `${drawerWidth * 0.8}px`,
+                                                    width: `${buttonHoverWidth}px`,
                                                     height: "50px",
                                                     my: 0,
                                                     justifyContent: "initial"
@@ -235,7 +246,7 @@ function Nav() {
                                                         },
                                                         drawerOpen ?
                                                             {
-                                                                width: `${drawerWidth * 0.8}px`,
+                                                                width: `${buttonHoverWidth}px`,
                                                                 height: "50px",
                                                                 my: 0,
                                                                 justifyContent: "initial"
@@ -361,12 +372,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
 
 const linkItems = [
     {
-        primaryIcon: <Avatar src="https://raw.githubusercontent.com/bcheung98/irminsul-gg-assets/main/game-icons/Genshin.png" alt="Project Irminsul" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
+        primaryIcon: <Avatar variant="square" src="https://assets.irminsul.gg/main/game-icons/Genshin.png" alt="Project Irminsul" sx={{ width: iconSize, height: iconSize, borderRadius: "5px" }} />,
         primaryText: "Genshin Impact",
-        link: "https://bcheung98.github.io/project-irminsul/"
+        link: "https://genshin.irminsul.gg/"
     },
     {
-        primaryIcon: <Avatar src="https://raw.githubusercontent.com/bcheung98/irminsul-gg-assets/main/game-icons/WutheringWaves.png" alt="Project Tacetite" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
+        primaryIcon: <Avatar variant="square" src="https://assets.irminsul.gg/main/game-icons/WutheringWaves.png" alt="Project Tacetite" sx={{ width: iconSize, height: iconSize, borderRadius: "5px" }} />,
         primaryText: "Wuthering Waves",
         link: "https://bcheung98.github.io/project-tacetite/"
     }
@@ -376,31 +387,31 @@ const navItems = [
     {
         primaryIcon: <Avatar variant="square" src={`${process.env.REACT_APP_URL}/factions/Stellaron_Hunters.png`} alt="Home" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Home",
-        link: "/project-stellaron/"
+        link: `${process.env.REACT_APP_BASENAME}/`
     },
     {
         primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Character.png`)} alt="Characters" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Characters",
-        link: "/project-stellaron/characters/"
+        link: `${process.env.REACT_APP_BASENAME}/characters/`
     },
     {
         primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Lightcone.png`)} alt="Light Cones" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Light Cones",
-        link: "/project-stellaron/lightcones/"
+        link: `${process.env.REACT_APP_BASENAME}/lightcones/`
     },
     {
         primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Relic.png`)} alt="Relics" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Relics",
-        link: "/project-stellaron/relics/"
+        link: `${process.env.REACT_APP_BASENAME}/relics/`
     },
     {
         primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Ascension.png`)} alt="Ascension Planner" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Ascension Planner",
-        link: "/project-stellaron/planner/"
+        link: `${process.env.REACT_APP_BASENAME}/planner/`
     },
     {
         primaryIcon: <Avatar variant="square" src={(`${process.env.REACT_APP_URL}/icons/Warp.png`)} alt="Banner Archive" sx={{ width: `${iconSize}px`, height: `${iconSize}px` }} />,
         primaryText: "Banner Archive",
-        link: "/project-stellaron/banners/"
+        link: `${process.env.REACT_APP_BASENAME}/banners/`
     }
 ]

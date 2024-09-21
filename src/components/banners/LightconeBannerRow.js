@@ -46,7 +46,7 @@ const CharacterBannerRow = (props) => {
                                 row.banner.map((lc, index) => {
                                     let currentLC = lightcones.find(l => l.name === lc)
                                     return (
-                                        <ButtonBase disableRipple href={`/project-stellaron/lightcone/${lc.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
+                                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/lightcones/${lc.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                             <CustomTooltip title={lc} arrow placement="top">
                                                 <img src={`${process.env.REACT_APP_URL}/lightcones/small/${lc.split(" ").join("_")}.png`}
                                                     alt={lc}

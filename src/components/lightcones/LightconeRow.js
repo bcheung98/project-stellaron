@@ -26,12 +26,12 @@ const LightconeRow = (props) => {
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                     <CardHeader
                         avatar={
-                            <ButtonBase disableRipple href={`/project-stellaron/lightcone/${row.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                            <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/lightcones/${row.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                                 <img alt={row.name} src={(`${process.env.REACT_APP_URL}/lightcones/small/${row.name.split(" ").join("_")}.png`)} style={{ width: "48px", height: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
                             </ButtonBase>
                         }
                         title={
-                            <ButtonBase disableRipple href={`/project-stellaron/lightcone/${row.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                            <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/lightcones/${row.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                                 <Typography variant="body1"
                                     sx={{
                                         cursor: "pointer",

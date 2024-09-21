@@ -29,9 +29,9 @@ const CharacterPage = (props) => {
     if (character !== undefined) {
         let { name, element, path, rarity, description, faction, release, voiceActors } = character;
 
-        if (character.displayName) document.title = `${character.displayName} - Project Stellaron`;
-        if (character.fullName) document.title = `${character.fullName} - Project Stellaron`;
-        if (!character.displayName && !character.fullName) document.title = `${name} - Project Stellaron`;
+        if (character.displayName) document.title = `${character.displayName} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
+        if (character.fullName) document.title = `${character.fullName} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
+        if (!character.displayName && !character.fullName) document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
 
         return (
             <React.Fragment>

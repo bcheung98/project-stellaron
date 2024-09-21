@@ -46,7 +46,7 @@ const CharacterBannerRow = (props) => {
                                 row.banner.map((char, index) => {
                                     let currentChar = characters.find(c => c.name === char)
                                     return (
-                                        <ButtonBase disableRipple href={`/project-stellaron/character/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
+                                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${char.split(" ").join("_").toLowerCase()}`} target="_blank" key={index} sx={{ m: "2px" }}>
                                             <CustomTooltip title={char} arrow placement="top">
                                                 <img src={`${process.env.REACT_APP_URL}/characters/icons/${char.split(" ").join("_")}.png`}
                                                     alt={char}

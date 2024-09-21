@@ -11,7 +11,7 @@ const RelicBrowser = (props) => {
 
     let { relics } = props;
 
-    document.title = "Relics - Project Stellaron";
+    document.title = `Relics ${process.env.REACT_APP_DOCUMENT_HEADER}`;
 
     return (
         <React.Fragment>

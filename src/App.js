@@ -40,7 +40,7 @@ function App(props) {
 
     return (
         <ThemeProvider theme={theme}>
-            <Router basename="project-stellaron">
+            <Router basename={`${process.env.REACT_APP_BASENAME}`}>
                 <Box id="back-to-top-anchor" />
                 <Box sx={{ display: "flex" }}>
                     <Nav />
@@ -48,12 +48,12 @@ function App(props) {
                         <Switch>
                             <Route exact path="/" component={VersionHighlights} />
                             <Route exact path="/characters" component={CharacterBrowser} />
-                            <Route path="/character/:char_name" children={<CharacterPage />} />
+                            <Route path="/characters/:char_name" children={<CharacterPage />} />
                             <Route exact path="/lightcones" component={LightconeBrowser} />
-                            <Route path="/lightcone/:lc_name" children={<LightconePage />} />
+                            <Route path="/lightcones/:lc_name" children={<LightconePage />} />
                             <Route exact path="/relics" component={RelicBrowser} />
-                            <Route path="/planner" component={AscensionPlanner} />
-                            <Route path="/banners/" component={BannerArchive} />
+                            <Route exact path="/planner" component={AscensionPlanner} />
+                            <Route exact path="/banners/" component={BannerArchive} />
                         </Switch>
                     </Box>
                 </Box>
