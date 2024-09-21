@@ -376,11 +376,11 @@ const linkItems = [
         primaryText: "Genshin Impact",
         link: "https://genshin.irminsul.gg/"
     },
-    {
-        primaryIcon: <Avatar variant="square" src="https://assets.irminsul.gg/main/game-icons/WutheringWaves.png" alt="Project Tacetite" sx={{ width: iconSize, height: iconSize, borderRadius: "5px" }} />,
-        primaryText: "Wuthering Waves",
-        link: "https://bcheung98.github.io/project-tacetite/"
-    }
+    // {
+    //     primaryIcon: <Avatar variant="square" src="https://assets.irminsul.gg/main/game-icons/WutheringWaves.png" alt="Project Tacetite" sx={{ width: iconSize, height: iconSize, borderRadius: "5px" }} />,
+    //     primaryText: "Wuthering Waves",
+    //     link: "https://wuwa.irminsul.gg/"
+    // }
 ]
 
 const navItems = [
