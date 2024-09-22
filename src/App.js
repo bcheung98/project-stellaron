@@ -44,7 +44,7 @@ function App(props) {
                 <Box id="back-to-top-anchor" />
                 <Box sx={{ display: "flex" }}>
                     <Nav />
-                    <Box sx={{ pt: 10 }}>
+                    <Box sx={{ pt: 10, minHeight: "90vh" }}>
                         <Switch>
                             <Route exact path="/" component={VersionHighlights} />
                             <Route exact path="/characters" component={CharacterBrowser} />
@@ -96,7 +96,7 @@ function ScrollTop(props) {
         <Fade in={trigger}>
             <Box
                 onClick={handleClick}
-                sx={{ position: "fixed", bottom: 96, right: 16 }}
+                sx={{ position: "fixed", bottom: 128, right: 16 }}
             >
                 {children}
             </Box>
