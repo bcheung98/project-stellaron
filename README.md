@@ -1,12 +1,11 @@
-# **PROJECT STELLARON**
+# **[hsr.Irminsul.GG](https://hsr.irminsul.gg/)**
 
-A database website for the action role-playing game *[Honkai: Star Rail](https://hsr.hoyoverse.com/en-us/home)*.
+The Honkai: Star Rail branch of [Irminsul.GG](https://irminsul.gg/)
 
-## Current Features:
+## **Current Features**
 
-- Character viewer
-- Light cone viewer
+- Character browser
+- Light cone browser
+- Relic browser
 - Ascension planner
-- Banner history
-
-The website uses this [script](https://github.com/rafgraph/spa-github-pages) to deploy single page apps on GitHub Pages. 
+- Banner archive
