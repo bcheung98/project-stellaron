@@ -18,7 +18,7 @@ function BottomNav() {
             <Toolbar sx={{ justifyContent: "center" }}>
                 <Typography sx={{ fontSize: "10.5pt" }}>
                     Irminsul.GG is not affiliated with HoYoverse.<br />
-                    Genshin Impact, images and data are registered trademarks of HoYoverse.
+                    Honkai: Star Rail, images and data are registered trademarks of HoYoverse.
                 </Typography>
                 <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: "25px", my: "10px" }} />
                 <Box sx={{ mt: "10px", textAlign: "center", }}>
