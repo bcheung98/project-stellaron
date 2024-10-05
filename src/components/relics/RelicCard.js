@@ -1,12 +1,15 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
-import { Typography, Card, CardContent, Box, Avatar, Dialog } from "@mui/material";
+import { Typography, Card, CardContent, Box, Dialog } from "@mui/material";
 import { GetRarityColor } from "../../helpers/RarityColors";
 import RelicPopup from "./RelicPopup";
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const RelicCard = (props) => {
 
     const theme = useTheme();
+
+    let { name, rarity } = props.relic;
 
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
@@ -16,31 +19,27 @@ const RelicCard = (props) => {
         setOpen(false);
     };
 
-    let { name, rarity } = props.relic;
+    const size = "128px"
 
     return (
         <Card
             sx={{
-                width: "128px",
-                mr: "18px",
-                mb: "20px",
+                width: size,
                 backgroundColor: `${theme.card.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px 25px 5px 5px",
             }}
         >
-            <Box>
-                <Avatar src={`${process.env.REACT_APP_URL}/relics/sets/${name.split(" ").join("_")}/${props.relic.pieces[0].type}.png`} alt={name}
-                    sx={{
-                        width: "128px",
-                        height: "128px",
-                        backgroundColor: `${theme.card.backgroundColor}`,
-                        cursor: "pointer",
+            <Box onClick={() => handleClickOpen()} sx={{ cursor: "pointer" }}>
+                <img src={`${process.env.REACT_APP_URL}/relics/sets/${name.split(" ").join("_")}/${props.relic.pieces[0].type}.png`} alt={name}
+                    style={{
+                        width: size,
+                        height: size,
+                        backgroundColor: "rgb(32, 32, 32)",
+                        backgroundSize: "100%",
                     }}
-                    onClick={() => handleClickOpen()}
-                >
-                    <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "128px" }} />
-                </Avatar>
+                    onError={ErrorLoadingImage}
+                />
                 <Box
                     sx={{
                         mt: "-50px",

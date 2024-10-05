@@ -3,9 +3,9 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import parse from "html-react-parser";
-import { Typography, Box, Avatar, CardHeader, AppBar } from "@mui/material";
+import { Typography, Box, CardHeader, AppBar } from "@mui/material";
 import { TabPanel, StyledTabs, StyledTab } from "../../../helpers/CustomTabs";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid2";
 import { CustomSlider } from "../../../helpers/CustomSlider";
 import LightconeStatsTable from "./LightconeStatsTable";
 import LightconeAscension from "./LightconeAscension";
@@ -49,64 +49,68 @@ const LightconePage = (props) => {
 
         return (
             <React.Fragment>
-                <Grid container sx={{ mb: "20px" }}>
-                    <Grid xs="auto">
+                <Grid container spacing={3} sx={{ mb: "20px" }}>
+                    <Grid size="auto">
                         <img src={(`${process.env.REACT_APP_URL}/lightcones/large/${name.split(" ").join("_")}.png`)} alt={name}
                             style={{
                                 width: "25vw",
-                                marginLeft: "15px",
-                                marginTop: "15px",
                                 backgroundColor: `${theme.paper.backgroundColor}`,
+                                transform: "scale(1)"
                             }}
                             onError={ErrorLoadingImage}
                         />
                         <Box
                             sx={{
-                                ml: "15px",
+                                py: "10px",
                                 mt: "10px",
-                                p: "10px",
-                                width: "24vw",
+                                width: "25vw",
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
                                 color: `${theme.text.color}`,
                                 backgroundColor: `${theme.paper.backgroundColor}`,
                             }}
                         >
-                            <Typography sx={{ mb: "20px", color: `${theme.text.color}` }} variant="body2">
+                            <Typography sx={{ px: 1.5, color: `${theme.text.color}` }} variant="body2">
                                 {parse(description)}
                             </Typography>
                         </Box>
                     </Grid>
-                    <Grid xs>
+                    <Grid size="grow">
                         <Box
                             sx={{
                                 p: "5px",
-                                mx: "15px",
-                                marginTop: "15px",
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
                                 backgroundColor: `${theme.paper.backgroundColor}`,
                             }}
                         >
-                            <Box sx={{ display: "flex" }}>
+                            <Box sx={{ display: "flex", alignItems: "center" }}>
                                 <Box sx={{ ml: "10px", mt: "5px" }}>
-                                    <Typography sx={{ mb: "-10px", color: `${theme.text.color}`, fontWeight: "bolder" }} variant="h4">
+                                    <Typography
+                                        variant="h4"
+                                        noWrap
+                                        sx={{
+                                            mt: "5px",
+                                            display: "flex",
+                                            color: `${theme.text.color}`,
+                                            textDecoration: "none",
+                                            textAlign: "center",
+                                        }}
+                                    >
                                         {lightcone.displayName ? lightcone.displayName : name}
                                     </Typography>
                                     <CardHeader
                                         avatar={
-                                            <Avatar src={(`${process.env.REACT_APP_URL}/paths/The_${path}.png`)} alt={`${path}`} sx={{ height: "36px", width: "36px" }}>
-                                                <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "36px" }} />
-                                            </Avatar>
+                                            <img src={`${process.env.REACT_APP_URL}/paths/The_${path}.png`} alt={path} style={{ height: "36px", marginLeft: "-5px" }} onError={ErrorLoadingImage} />
                                         }
                                         title={
-                                            <Typography sx={{ ml: "-5px", color: `${theme.text.color}`, fontWeight: "bold" }} variant="subtitle1">
+                                            <Typography sx={{ ml: "-10px", mb: "3px", color: `${theme.text.color}` }} variant="subtitle1">
                                                 The {path}
                                             </Typography>
                                         }
-                                        sx={{ ml: "-20px" }}
+                                        sx={{ px: 0, py: 1 }}
                                     />
-                                    <Typography sx={{ mt: "-15px", color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }} variant="h4">
+                                    <Typography sx={{ mt: "-10px", color: "rgb(255, 208, 112)", fontSize: "30px", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }}>
                                         {[...Array(rarity).keys()].map(() => "✦")}
                                     </Typography>
                                 </Box>
@@ -114,25 +118,26 @@ const LightconePage = (props) => {
                         </Box>
                         <Box
                             sx={{
-                                p: "15px",
-                                mx: "15px",
-                                marginTop: "15px",
+                                px: "5px",
+                                py: "15px",
+                                my: "15px",
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
                                 backgroundColor: `${theme.paper.backgroundColor}`,
+                                color: `${theme.text.color}`,
                             }}
                         >
-                            <Typography sx={{ color: `${theme.text.color}` }} variant="body2">
+                            <Typography sx={{ mx: "15px" }} variant="body2">
                                 <i>The following effects only work on characters of the Path of The {path}.</i>
                             </Typography>
-                            <Typography sx={{ color: `${theme.text.color}`, mt: "20px" }} variant="h5">
+                            <Typography sx={{ mx: "15px", mt: "20px" }} variant="h5">
                                 {passive.name}
                             </Typography>
-                            <Typography sx={{ color: `${theme.text.color}`, mt: "10px" }} variant="body1">
+                            <Typography sx={{ mx: "15px", mt: "10px" }} variant="body1">
                                 {parse(passive.effect)}
                             </Typography>
-                            <Box sx={{ display: "flex", alignItems: "center", width: "20%", mt: "15px" }}>
-                                <Typography variant="h6" sx={{ fontWeight: "bold", color: `${theme.text.color}`, mr: "35px" }}>
+                            <Box sx={{ display: "flex", alignItems: "center", width: "20%", mt: "15px", mx: "15px", }}>
+                                <Typography variant="h6" sx={{ color: `${theme.text.color}`, minWidth: "50px" }}>
                                     S{sliderValue}
                                 </Typography>
                                 <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} />
@@ -141,7 +146,6 @@ const LightconePage = (props) => {
                         <Box
                             sx={{
                                 p: 0,
-                                mx: "15px",
                                 marginTop: "15px",
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",

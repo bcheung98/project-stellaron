@@ -4,9 +4,12 @@ import { connect } from "react-redux";
 import CharacterCard from "./characters/CharacterCard";
 import LightconeCard from "./lightcones/LightconeCard";
 import RelicCard from "./relics/RelicCard";
-import { Box, Typography, Select, MenuItem, AppBar } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
-import { CustomSelect } from "../helpers/CustomSelect"
+import { Box, Typography, Select, AppBar, CardHeader, IconButton } from "@mui/material";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import Grid from "@mui/material/Grid2";
+import { CustomInput } from "../helpers/CustomInput"
+import { CustomMenuItem } from "../helpers/CustomMenu";
 
 const VersionHighlights = (props) => {
 
@@ -28,10 +31,18 @@ const VersionHighlights = (props) => {
         { version: "1.1", name: "Galactic Roaming" },
         { version: "1.0", name: "The Rail Unto the Stars" }
     ]
-    const [version, setVersion] = React.useState(updates[0].version);
-    const handleVersionChange = (event) => {
-        setVersion(event.target.value);
+    const [index, setIndex] = React.useState(0);
+    const handleIndexChange = (event) => {
+        setIndex(Number(event.target.value));
     }
+    const handleIndexChangeLeft = () => {
+        if (index + 1 < updates.length) setIndex(index + 1)
+    }
+    const handleIndexChangeRight = () => {
+        if (index - 1 >= 0) setIndex(index - 1)
+    }
+
+    let version = updates[index].version
 
     let characters = props.characters.characters.filter(char => char.release.version === version);
     let lightcones = props.lightcones.lightcones.filter(lc => lc.release.version === version);
@@ -49,10 +60,6 @@ const VersionHighlights = (props) => {
                 backgroundColor: `${theme.paper.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
-                display: "block",
-                ml: "20px",
-                mt: "20px",
-                width: "75vw",
                 color: `${theme.text.color}`,
             }}
         >
@@ -62,6 +69,7 @@ const VersionHighlights = (props) => {
                     borderBottom: `1px solid ${theme.border.color}`,
                     borderRadius: "5px 5px 0px 0px",
                     p: "10px",
+                    height: "70px"
                 }}
             >
                 <Box
@@ -70,84 +78,136 @@ const VersionHighlights = (props) => {
                         justifyContent: "space-between"
                     }}
                 >
-                    <Typography variant="h5" component="p" sx={{ fontWeight: "bold", mt: "5px" }}>
+                    <Typography variant="h6" component="p" sx={{ fontWeight: "bold", ml: "5px", lineHeight: "45px" }}>
                         {`Version Highlights`}
                     </Typography>
-                    <Select value={version} label="Version" onChange={handleVersionChange} input={<CustomSelect />}>
+                    <Box sx={{ display: "flex" }}>
                         {
-                            updates.map((version, index) => {
-                                return (
-                                    <MenuItem key={index} value={version.version}>
-                                        <Typography sx={{ fontWeight: "bold" }}>{version.version} - {version.name}</Typography>
-                                    </MenuItem>
-                                )
-                            })
+                            index < updates.length - 1 ?
+                                <Box sx={{ width: "32px" }}>
+                                    <IconButton onClick={handleIndexChangeLeft}>
+                                        <KeyboardArrowLeftIcon sx={{ color: `${theme.text.color}`, mt: "2px", ml: "-10px" }} />
+                                    </IconButton>
+                                </Box>
+                                :
+                                <Box sx={{ width: "32px" }} />
                         }
-                    </Select>
+                        <Select
+                            value={index.toString()}
+                            label="Version"
+                            onChange={handleIndexChange}
+                            input={<CustomInput />}
+                            sx={{
+                                width: "75px",
+                                "& .MuiSelect-icon": {
+                                    color: `${theme.text.color}`
+                                }
+                            }}
+                        >
+                            {
+                                updates.map((version, index) => (
+                                    <CustomMenuItem key={index} value={index}>
+                                        <Typography sx={{ fontWeight: "bold" }}>{version.version}</Typography>
+                                    </CustomMenuItem>
+                                ))
+                            }
+                        </Select>
+                        {
+                            index > 0 ?
+                                <Box sx={{ width: "32px" }}>
+                                    <IconButton onClick={handleIndexChangeRight}>
+                                        <KeyboardArrowRightIcon sx={{ color: `${theme.text.color}`, mt: "2px" }} />
+                                    </IconButton>
+                                </Box>
+                                :
+                                <Box sx={{ width: "32px" }} />
+                        }
+                    </Box>
                 </Box>
             </AppBar>
 
-            <Grid container spacing={2}>
+            <Box sx={{ px: "30px" }}>
+                <Typography sx={{ fontSize: "18pt", color: `${theme.text.color}`, my: "20px" }}>
+                    {updates[index].version} - <i>{updates[index].name}</i>
+                </Typography>
 
-                {
-                    // NEW CHARACTERS
-                    characters.length > 0 &&
-                    <Grid xs={6}>
-                        <Box sx={{ mx: "30px", my: "20px" }}>
-                            <Typography variant="h6" component="p" sx={{ fontWeight: "bold", mb: "30px", ml: "-10px" }}>
-                                New Characters
-                            </Typography>
-                            <Box>
-                                <Grid container spacing={2}>
-                                    {
-                                        characters.sort((a, b) => a.id > b.id ? 1 : -1).map((char, index) => <CharacterCard key={index} character={char} />)
-                                    }
-                                </Grid>
-                            </Box>
-                        </Box>
+                <Grid container spacing={10}>
 
-                        {
-                            // NEW RELICS
-                            newRelics &&
-                            <Box sx={{ mx: "30px", my: "20px" }}>
-                                <Typography variant="h6" component="p" sx={{ fontWeight: "bold", mb: "30px", ml: "-10px" }}>
-                                    New Relics
-                                </Typography>
-                                <Box>
-                                    <Grid container spacing={2}>
-                                        {cavernRelics.map((relic, index) => <RelicCard key={index} relic={relic} />)}
-                                    </Grid>
-                                    <Grid container spacing={2}>
-                                        {planarOrnaments.map((relic, index) => <RelicCard key={index} relic={relic} />)}
-                                    </Grid>
-                                </Box>
-                            </Box>
-                        }
+                    {
+                        characters.length > 0 || newRelics ?
+                            <Grid size="grow">
+                                {
+                                    // NEW CHARACTERS
+                                    characters.length > 0 &&
+                                    <Box sx={{ mb: "25px" }}>
+                                        <CardHeader
+                                            avatar={<img src={`${process.env.REACT_APP_URL}/icons/Character.png`} alt="New Characters" style={{ width: "40px", marginRight: "-5px" }} />}
+                                            title={
+                                                <Typography variant="h6">
+                                                    New Characters
+                                                </Typography>
+                                            }
+                                            sx={{ p: 0, mb: "30px" }}
+                                        />
+                                        <Grid container spacing={2}>
+                                            {characters.sort((a, b) => a.id > b.id ? 1 : -1).map((char, index) => <CharacterCard key={index} character={char} />)}
+                                        </Grid>
+                                        <br />
+                                    </Box>
+                                }
 
-                    </Grid>
-                }
+                                {
+                                    // NEW RELICS
+                                    newRelics &&
+                                    <Box>
+                                        <CardHeader
+                                            avatar={<img src={`${process.env.REACT_APP_URL}/icons/Relic.png`} alt="New Relics" style={{ width: "40px", marginRight: "-5px" }} />}
+                                            title={
+                                                <Typography variant="h6">
+                                                    New Relics
+                                                </Typography>
+                                            }
+                                            sx={{ p: 0, mb: "30px" }}
+                                        />
+                                        <Grid container spacing={2}>
+                                            {cavernRelics.map((relic, index) => <RelicCard key={index} relic={relic} />)}
+                                        </Grid>
+                                        {cavernRelics.length > 0 && <br />}
+                                        <Grid container spacing={2}>
+                                            {planarOrnaments.map((relic, index) => <RelicCard key={index} relic={relic} />)}
+                                        </Grid>
+                                    </Box>
+                                }
 
-                {
-                    // NEW LIGHT CONES
-                    lightcones.length > 0 &&
-                    <Grid xs={6}>
-                        <Box sx={{ mx: "30px", my: "20px" }}>
-                            <Typography variant="h6" component="p" sx={{ fontWeight: "bold", mb: "30px", ml: "-10px" }}>
-                                New Light Cones
-                            </Typography>
-                            <Box>
-                                <Grid container spacing={2}>
-                                    {
-                                        lightcones.sort((a, b) => a.rarity < b.rarity ? 1 : -1).sort((a, b) => a.rarity < b.rarity ? 1 : -1).map((lc, index) => <LightconeCard key={index} lightcone={lc} />)
-                                    }
-                                </Grid>
-                            </Box>
-                        </Box>
-                    </Grid>
-                }
+                            </Grid>
+                            :
+                            null
+                    }
 
-            </Grid>
+                    {
+                        // NEW LIGHT CONES
+                        lightcones.length > 0 &&
+                        <Grid size={6}>
+                            <CardHeader
+                                avatar={<img src={`${process.env.REACT_APP_URL}/icons/Lightcone.png`} alt="New Lightcones" style={{ width: "40px", marginRight: "-5px" }} />}
+                                title={
+                                    <Typography variant="h6">
+                                        New Light Cones
+                                    </Typography>
+                                }
+                                sx={{ p: 0, mb: "30px" }}
+                            />
+                            <Grid container spacing={2}>
+                                {
+                                    lightcones.sort((a, b) => a.rarity < b.rarity ? 1 : -1).sort((a, b) => a.rarity < b.rarity ? 1 : -1).map((lc, index) => <LightconeCard key={index} lightcone={lc} />)
+                                }
+                            </Grid>
+                        </Grid>
+                    }
 
+                </Grid>
+            </Box>
+            <br />
         </Box>
     )
 

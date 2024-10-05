@@ -14,8 +14,6 @@ const LightconeCard = (props) => {
     return (
         <Card
             sx={{
-                mr: "18px",
-                mb: "20px",
                 width: "192px",
                 backgroundColor: `${theme.card.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,

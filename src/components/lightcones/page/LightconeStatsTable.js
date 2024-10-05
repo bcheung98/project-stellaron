@@ -22,8 +22,6 @@ const LightconeStatsTable = (props) => {
             sx={{
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
-                margin: "auto",
-                width: "95%",
             }}
         >
             <Table sx={{ backgroundColor: `${theme.table.body.backgroundColor}` }}>

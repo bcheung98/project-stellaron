@@ -29,17 +29,15 @@ const BannerList = (props) => {
     const rows = filterBanners(banners, searchValue).map(banner => createData(banner[0], banner[1], banner[2], banner[3], banner[4]));
 
     return (
-        <Box sx={{ width: "100%" }}>
+        <Box>
             <Paper
                 sx={{
                     border: `2px solid ${theme.border.color}`,
                     borderRadius: "5px",
                     backgroundColor: `${theme.paper.backgroundColor}`,
                     display: "flex",
-                    margin: "auto",
                     height: "40px",
-                    width: "90%",
-                    marginBottom: "10px",
+                    mb: "10px",
                 }}
             >
                 <InputBase
@@ -58,9 +56,6 @@ const BannerList = (props) => {
                     borderRadius: "5px",
                     backgroundColor: `${theme.paper.backgroundColor}`,
                     color: `${theme.text.color}`,
-                    display: "block",
-                    margin: "auto",
-                    mx: "20px",
                 }}
             >
                 <TableContainer>

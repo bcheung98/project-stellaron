@@ -3,7 +3,7 @@ import { exportComponentAsJPEG } from 'react-component-export-image';
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux"
 import { Box, Button, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { formatCalyxMats, formatCommonMats, formatWeeklyBossMats, formatXPMats } from "../../helpers/TooltipText";
 import * as Materials from "../../helpers/MaterialList";
@@ -45,8 +45,7 @@ const AscensionTotalCost = (props) => {
                     <Button
                         variant="contained"
                         sx={{
-                            mx: "20px",
-                            mb: "10px",
+                            my: "20px",
                             p: 1,
                         }}
                         onClick={() => exportComponentAsJPEG(componentRef, { fileName: "Materials" })}
@@ -58,9 +57,8 @@ const AscensionTotalCost = (props) => {
                             border: `1px solid ${theme.border.color}`,
                             borderRadius: "5px",
                             backgroundColor: `${theme.paper.backgroundColor}`,
-                            mx: "20px",
                             mb: "30px",
-                            p: 1,
+                            p: 2
                         }}
                         ref={componentRef}
                     >

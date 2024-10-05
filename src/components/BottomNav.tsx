@@ -21,13 +21,13 @@ function BottomNav() {
                     Honkai: Star Rail, images and data are registered trademarks of HoYoverse.
                 </Typography>
                 <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: "25px", my: "10px" }} />
-                <Box sx={{ mt: "10px", textAlign: "center", }}>
+                {/* <Box sx={{ mt: "10px", textAlign: "center", }}>
                     <Typography gutterBottom sx={{ fontSize: "10.5pt" }}>GitHub:</Typography>
                     <IconButton disableRipple href={"https://github.com/bcheung98/project-stellaron"} target="_blank" color="inherit">
                         <GitHubIcon sx={{ mb: "6px" }} />
                     </IconButton>
                 </Box>
-                <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: "25px", my: "10px" }} />
+                <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: "25px", my: "10px" }} /> */}
                 <Box sx={{ mt: "10px", textAlign: "center", }}>
                     <Typography gutterBottom sx={{ fontSize: "10.5pt" }}>Made with:</Typography>
                     <IconButton disableRipple href={"https://react.dev/"} target="_blank" color="inherit">

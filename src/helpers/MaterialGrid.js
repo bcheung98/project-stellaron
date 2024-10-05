@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid2";
 import { Box } from "@mui/material";
 import { CustomTooltip } from "./CustomTooltip";
 import { formatCommonMats, formatWeeklyBossMats } from "./TooltipText";
@@ -22,7 +22,7 @@ const MaterialGrid = (props) => {
     return (
         <Box>
             <Grid container spacing={1}>
-                <Grid>
+                <Grid size="auto">
                     <CustomTooltip title={calyxMat} arrow placement="top">
                         <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${calyxMat.split(" ").join("_")}3.png`} alt={calyxMat} style={imageStyle} onError={ErrorLoadingImage} />
                     </CustomTooltip>

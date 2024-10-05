@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography, CardHeader, ButtonBase } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
@@ -35,8 +35,6 @@ const CharacterAscensionCard = (props) => {
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 backgroundColor: `${theme.paper.backgroundColor}`,
-                mr: "30px",
-                mb: "30px",
                 p: 1,
             }}
         >
@@ -90,16 +88,16 @@ const CharacterAscensionCard = (props) => {
                 <AccordionDetails>
                     <CharacterAscensionLevel character={props.character} />
                     <Grid container spacing={2}>
-                        <Grid xs={6}>
+                        <Grid size={6}>
                             <CharacterAscensionBasicATK character={props.character} />
                         </Grid>
-                        <Grid xs={6}>
+                        <Grid size={6}>
                             <CharacterAscensionSkill character={props.character} />
                         </Grid>
-                        <Grid xs={6}>
+                        <Grid size={6}>
                             <CharacterAscensionUltimate character={props.character} />
                         </Grid>
-                        <Grid xs={6}>
+                        <Grid size={6}>
                             <CharacterAscensionTalent character={props.character} />
                         </Grid>
                     </Grid>

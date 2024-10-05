@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Box, Typography } from "@mui/material";
 import BannerList from "./BannerList";
+import Grid from "@mui/material/Grid2";
 
 const BannerArchive = (props) => {
 
@@ -19,32 +20,27 @@ const BannerArchive = (props) => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "left",
+                    mb: "20px",
+                    height: "30px",
                 }}
             >
                 <Typography
-                    variant="h4"
-                    noWrap
-                    component="a"
+                    variant="h5"
                     sx={{
-                        mx: "25px",
-                        my: "20px",
-                        display: { xs: "none", md: "flex" },
-                        fontWeight: "bold",
-                        letterSpacing: ".2rem",
+                        mr: "25px",
                         color: `${theme.text.color}`,
                         textDecoration: "none",
-                        textAlign: "center",
                     }}
                 >
-                    BANNER ARCHIVE
+                    Banner Archive
                 </Typography>
             </Box>
             {
                 banners.characterBanners.length > 0 && banners.lightconeBanners.length > 0 &&
-                <Box sx={{ display: "flex" }}>
+                <Grid container spacing={2}>
                     <BannerList banners={banners.characterBanners} type="character" />
                     <BannerList banners={banners.lightconeBanners} type="lightcone" />
-                </Box>
+                </Grid>
             }
         </React.Fragment>
     )

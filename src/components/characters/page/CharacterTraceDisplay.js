@@ -49,7 +49,6 @@ const CharacterTraceDisplay = (props) => {
     return (
         <Box
             sx={{
-                mx: "15px",
                 mt: "15px",
                 backgroundColor: `${theme.paper.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,

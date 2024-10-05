@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
-import { Box, Typography, Paper, InputBase, Stack, ToggleButtonGroup } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import { Box, Typography, Paper, InputBase, ToggleButtonGroup } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import ListSharpIcon from '@mui/icons-material/ListSharp';
 import { CustomToggleButton } from "../../helpers/CustomToggleButton";
@@ -38,59 +38,56 @@ const CharacterBrowser = (props) => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "left",
+                    mb: "20px",
+                    height: "30px",
                 }}
             >
-                <Typography variant="h4"
+                <Typography
+                    variant="h5"
                     sx={{
-                        mx: "25px",
-                        my: "20px",
-                        display: { xs: "none", md: "flex" },
-                        letterSpacing: ".2rem",
+                        mr: "25px",
                         color: `${theme.text.color}`,
                         textDecoration: "none",
-                        textAlign: "center",
                     }}
                 >
-                    CHARACTERS
+                    Characters
                 </Typography>
-                <Stack direction="row" spacing={4}>
-                    <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ border: `1px solid ${theme.border.color}` }}>
-                        <CustomToggleButton value="grid">
-                            <AppsSharpIcon sx={{ color: "white" }} />
-                        </CustomToggleButton>
-                        <CustomToggleButton value="list">
-                            <ListSharpIcon sx={{ color: "white" }} />
-                        </CustomToggleButton>
-                    </ToggleButtonGroup>
-                </Stack>
+                <ToggleButtonGroup value={view} exclusive onChange={handleView} sx={{ border: `1px solid ${theme.border.color}` }}>
+                    <CustomToggleButton value="grid" size="small">
+                        <AppsSharpIcon sx={{ color: `white` }} />
+                    </CustomToggleButton>
+                    <CustomToggleButton value="list" size="small">
+                        <ListSharpIcon sx={{ color: `white` }} />
+                    </CustomToggleButton>
+                </ToggleButtonGroup>
             </Box>
-            <Grid container sx={{ margin: "auto", width: "98%" }}>
-                <Grid xs={9}>
-                    <Grid container>
-                        {characters.characters.length > 0 &&
+            <Grid container spacing={3}>
+                <Grid size="grow">
+                    {
+                        characters.characters.length > 0 ?
                             <React.Fragment>
                                 {
                                     view === "grid" ?
-                                        filterCharacters(characters.characters, characterFilters, searchValue).map(char => <CharacterCard key={char.id} character={char} showMaterials />)
+                                        <Grid container spacing={2}>
+                                            {filterCharacters(characters.characters, characterFilters, searchValue).map(char => <CharacterCard key={char.id} character={char} showMaterials />)}
+                                        </Grid>
                                         :
                                         <CharacterList characters={filterCharacters(characters.characters, characterFilters, searchValue)} />
                                 }
                             </React.Fragment>
-                        }
-                    </Grid>
+                            :
+                            null
+                    }
                 </Grid>
-                <Grid xs={3}>
+                <Grid size={2.75}>
                     <Paper
                         sx={{
                             border: `2px solid ${theme.border.color}`,
                             borderRadius: "5px",
                             backgroundColor: `${theme.paper.backgroundColor}`,
                             display: "flex",
-                            margin: "auto",
                             height: "40px",
-                            width: "84.5%",
-                            marginBottom: "10px",
-                            marginLeft: "35px",
+                            mb: "10px",
                         }}
                     >
                         <InputBase

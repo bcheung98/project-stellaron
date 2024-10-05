@@ -24,8 +24,6 @@ const CharacterCard = (props) => {
     return (
         <Card
             sx={{
-                mr: "18px",
-                mb: "20px",
                 backgroundColor: `${theme.card.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px 25px 5px 5px",

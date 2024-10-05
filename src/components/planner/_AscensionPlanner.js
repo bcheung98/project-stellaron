@@ -2,7 +2,7 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { Box, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid2";
 import CharacterSelector from "./CharacterSelector";
 import LightconeSelector from "./LightconeSelector";
 import CharacterAscensionCard from "./_CharacterAscensionCard";
@@ -18,39 +18,42 @@ const AscensionPlanner = (props) => {
     document.title = `Ascension Planner ${process.env.REACT_APP_DOCUMENT_HEADER}`;
 
     return (
-        <Box>
-            <Typography variant="h4"
+        <React.Fragment>
+            <Box
                 sx={{
-                    mx: "25px",
-                    my: "20px",
-                    display: { xs: "none", md: "flex" },
-                    letterSpacing: ".2rem",
-                    color: `${theme.text.color}`,
-                    textDecoration: "none",
-                    textAlign: "center",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "left",
+                    mb: "20px",
+                    height: "30px",
                 }}
             >
-                ASCENSION PLANNER
-            </Typography>
-            <Box sx={{ display: "block", my: "30px" }}>
-                <Box sx={{ display: "flex" }}>
-                    <CharacterSelector />
-                    <LightconeSelector />
-                </Box>
+                <Typography
+                    variant="h5"
+                    sx={{
+                        mr: "25px",
+                        color: `${theme.text.color}`,
+                        textDecoration: "none",
+                    }}
+                >
+                    Ascension Planner
+                </Typography>
             </Box>
+            <Grid container spacing={2}>
+                <CharacterSelector />
+                <LightconeSelector />
+            </Grid>
             <AscensionTotalCost />
-            <Box sx={{ mx: "20px" }}>
-                <Grid container>
-                    <Grid>
-                        {characters.map(character => <CharacterAscensionCard key={character.id} character={character} />)}
-                    </Grid>
-                    <br />
-                    <Grid>
-                        {lightcones.map(lightcone => <LightconeAscensionCard key={lightcone.id} lightcone={lightcone} />)}
-                    </Grid>
+            <Grid container spacing={2}>
+                <Grid>
+                    {characters.map(character => <CharacterAscensionCard key={character.id} character={character} />)}
                 </Grid>
-            </Box>
-        </Box>
+                <br />
+                <Grid>
+                    {lightcones.map(lightcone => <LightconeAscensionCard key={lightcone.id} lightcone={lightcone} />)}
+                </Grid>
+            </Grid>
+        </React.Fragment>
     )
 
 }

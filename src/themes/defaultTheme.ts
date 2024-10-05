@@ -24,6 +24,14 @@ export const defaultTheme = {
                     borderColor: "rgb(168, 147, 105)"
                 }
             }
+        },
+        MuiMenu: {
+            styleOverrides: {
+                list: {
+                    backgroundColor: "rgb(32, 32, 32)",
+                    color: "white",
+                }
+            }
         }
     },
     appbar: {
@@ -60,5 +68,11 @@ export const defaultTheme = {
     button: {
         selected: "rgb(169, 142, 84)",
         hover: "rgb(125, 105, 62)",
+    },
+    menu: {
+        backgroundColor: "rgb(32, 32, 32)",
+        hover: "rgb(64, 64, 64)",
+        selected: "rgb(80, 80, 80)",
+        selectedHover: "rgb(96, 96, 96)"
     }
 }

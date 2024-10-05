@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid2";
 import { CustomTooltip } from "../../helpers/CustomTooltip";
 import { formatCalyxMats, formatCommonMats, formatWeeklyBossMats } from "../../helpers/TooltipText";
 import { Backgrounds } from "../../helpers/Backgrounds";

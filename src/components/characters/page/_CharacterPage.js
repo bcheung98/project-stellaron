@@ -2,9 +2,9 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Typography, Box, Avatar, CardHeader, AppBar } from "@mui/material";
+import { Typography, Box, CardHeader, AppBar, Table, TableContainer, TableBody, TableRow, TableCell } from "@mui/material";
 import { TabPanel, StyledTabs, StyledTab } from "../../../helpers/CustomTabs";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/Grid2";
 import { CustomTooltip } from "../../../helpers/CustomTooltip";
 import CharacterSkillDisplay from "./CharacterSkillDisplay";
 import CharacterTraceDisplay from "./CharacterTraceDisplay";
@@ -29,119 +29,129 @@ const CharacterPage = (props) => {
     if (character !== undefined) {
         let { name, element, path, rarity, description, faction, release, voiceActors } = character;
 
+        const rows = [
+            { key: "Faction", value: faction },
+            { key: "Release", value: `${release.date} (${release.version})` },
+            { key: "Voice Actor (EN)", value: voiceActors["en"] },
+            { key: "Voice Actor (JP)", value: voiceActors["jp"] },
+        ]
+
         if (character.displayName) document.title = `${character.displayName} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
         if (character.fullName) document.title = `${character.fullName} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
         if (!character.displayName && !character.fullName) document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
 
         return (
             <React.Fragment>
-                <Grid container sx={{ mb: "20px" }}>
-                    <Grid xs="auto">
-                        <Avatar src={(`${process.env.REACT_APP_URL}/characters/splash/${name.split(" ").join("_")}.png`)} alt={name}
-                            sx={{
+                <Grid container spacing={3} sx={{ mb: "20px" }}>
+                    <Grid size="auto">
+                        <img src={(`${process.env.REACT_APP_URL}/characters/splash/${name.split(" ").join("_")}.png`)} alt={name}
+                            style={{
                                 width: "35vw",
                                 height: "600px",
                                 objectFit: "contain",
-                                marginLeft: "15px",
-                                marginTop: "15px",
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
                                 backgroundColor: `${theme.paper.backgroundColor}`,
                                 // cursor: "pointer",
                             }}
-                        >
-                            <img src={(`${process.env.REACT_APP_URL}/images/Test_Character.png`)} alt="Unknown"
-                                style={{
-                                    width: "35vw",
-                                    height: "600px",
-                                    objectFit: "contain",
-                                    marginLeft: "15px",
-                                    marginTop: "15px",
-                                    backgroundColor: `${theme.paper.backgroundColor}`,
-                                    // cursor: "pointer",
-                                }}
-                                onError={ErrorLoadingImage}
-                            />
-                        </Avatar>
+                            onError={(e) => {
+                                e.target.src = `${process.env.REACT_APP_URL}/images/Test_Character.png`
+                                e.onError = null
+                            }}
+                        />
                         <Box
                             sx={{
-                                ml: "15px",
+                                py: "10px",
                                 mt: "10px",
-                                p: "10px",
-                                width: "34vw",
+                                width: "35vw",
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
                                 color: `${theme.text.color}`,
                                 backgroundColor: `${theme.paper.backgroundColor}`,
                             }}
                         >
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                }}>
-                                <Box sx={{ textAlign: "left" }}>
-                                    <Typography variant="subtitle2"><b>Faction</b></Typography>
-                                    <Typography variant="subtitle2"><b>Release Date</b></Typography>
-                                    <Typography variant="subtitle2"><b>Voice Actor (EN)</b></Typography>
-                                    <Typography variant="subtitle2"><b>Voice Actor (JP)</b></Typography>
-                                </Box>
-                                <Box sx={{ textAlign: "right" }}>
-                                    <Typography variant="subtitle2">{faction}</Typography>
-                                    <Typography variant="subtitle2">{`${release.date} (${release.version})`}</Typography>
-                                    <Typography variant="subtitle2">{voiceActors["en"]}</Typography>
-                                    <Typography variant="subtitle2">{voiceActors["jp"]}</Typography>
-                                </Box>
-                            </Box>
+                            <TableContainer>
+                                <Table size="small">
+                                    <TableBody>
+                                        {
+                                            rows.map((row) => (
+                                                <TableRow key={row.key}>
+                                                    <TableCell sx={{ color: `${theme.text.color}`, border: "none", py: "1.5px", fontFamily: "DIN, Roboto, Segoe UI" }}>
+                                                        <b>{row.key}</b>
+                                                    </TableCell>
+                                                    <TableCell align="right" sx={{ color: `${theme.text.color}`, border: "none", py: "1.5px", fontFamily: "DIN, Roboto, Segoe UI" }}>
+                                                        <b>{row.value}</b>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))
+                                        }
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
                         </Box>
                     </Grid>
-                    <Grid xs>
+                    <Grid size="grow" sx={{ mb: "20px" }}>
                         <Box
                             sx={{
                                 p: "5px",
-                                mx: "15px",
-                                marginTop: "15px",
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
                                 backgroundColor: `${theme.paper.backgroundColor}`,
                             }}
                         >
-                            <Box sx={{ display: "flex", my: "5px" }}>
-                                <CustomTooltip title={element} arrow placement="bottom">
-                                    <img style={{ marginLeft: "10px", marginRight: "10px", marginTop: "10px", height: "96px" }} src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={`${element}`} onError={ErrorLoadingImage} />
-                                </CustomTooltip>
-                                <Box sx={{ mt: "5px" }}>
-                                    <Typography sx={{ mb: "-15px", color: `${theme.text.color}`, fontWeight: "bolder" }} variant="h4">
-                                        {character.displayName && character.displayName}
-                                        {character.fullName && character.fullName}
-                                        {!character.displayName && !character.fullName && name}
-                                    </Typography>
-                                    <CardHeader
-                                        avatar={
-                                            <Avatar src={(`${process.env.REACT_APP_URL}/paths/The_${path}.png`)} alt={`${path}`} sx={{ height: "36px", width: "36px" }}>
-                                                <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "36px" }} />
-                                            </Avatar>
-                                        }
-                                        title={
-                                            <Typography sx={{ ml: "-10px", color: `${theme.text.color}`, fontWeight: "bold" }} variant="subtitle1">
-                                                The {path}
+                            <Grid container spacing={1}>
+                                <Grid size="auto">
+                                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                                        <CustomTooltip title={element} arrow placement="bottom">
+                                            <img src={(`${process.env.REACT_APP_URL}/elements/Element_${element}.png`)} alt={`${element}`}
+                                                style={{
+                                                    margin: "28px",
+                                                    height: "72px"
+                                                }}
+                                                onError={ErrorLoadingImage}
+                                            />
+                                        </CustomTooltip>
+                                        <Box>
+                                            <Typography
+                                                variant="h4"
+                                                noWrap
+                                                sx={{
+                                                    mt: "5px",
+                                                    display: "flex",
+                                                    color: `${theme.text.color}`,
+                                                    textDecoration: "none",
+                                                    textAlign: "center",
+                                                }}
+                                            >
+                                                {character.displayName && character.displayName}
+                                                {character.fullName && character.fullName}
+                                                {!character.displayName && !character.fullName && name}
                                             </Typography>
-                                        }
-                                        sx={{ ml: "-20px" }}
-                                    />
-                                    <Typography sx={{ mt: "-15px", color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }} variant="h4">
-                                        {[...Array(rarity).keys()].map(() => "✦")}
-                                    </Typography>
-                                </Box>
-                            </Box>
-                            <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "0px 15px 15px 15px" }} />
+                                            <CardHeader
+                                                avatar={
+                                                    <img src={`${process.env.REACT_APP_URL}/paths/The_${path}.png`} alt={path} style={{ height: "36px", marginLeft: "-5px" }} onError={ErrorLoadingImage} />
+                                                }
+                                                title={
+                                                    <Typography sx={{ ml: "-10px", mb: "3px", color: `${theme.text.color}` }} variant="subtitle1">
+                                                        The {path}
+                                                    </Typography>
+                                                }
+                                                sx={{ px: 0, py: 1 }}
+                                            />
+                                            <Typography sx={{ mt: "-10px", color: "rgb(255, 208, 112)", fontSize: "30px", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }}>
+                                                {[...Array(rarity).keys()].map(() => "✦")}
+                                            </Typography>
+                                        </Box>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                            <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "10px 15px 15px 15px" }} />
                             <Typography
                                 variant="body1"
                                 sx={{
                                     mb: "20px",
                                     mx: "25px",
                                     color: `${theme.text.color}`,
-                                    fontSize: "11.5pt"
                                 }}
                             >
                                 <i>{description}</i>
@@ -150,8 +160,7 @@ const CharacterPage = (props) => {
                         <Box
                             sx={{
                                 p: 0,
-                                mx: "15px",
-                                marginTop: "15px",
+                                mt: "15px",
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
                                 backgroundColor: `${theme.paper.backgroundColor}`,

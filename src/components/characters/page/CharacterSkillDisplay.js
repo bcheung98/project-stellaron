@@ -26,7 +26,6 @@ const CharacterSkillDisplay = (props) => {
     return (
         <Box
             sx={{
-                mx: "15px",
                 backgroundColor: `${theme.paper.backgroundColor}`,
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
