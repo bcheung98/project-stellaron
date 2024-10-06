@@ -68,14 +68,14 @@ function Nav() {
                                 title={
                                     <Typography
                                         sx={{
-                                            fontFamily: "Bungee, DIN, Roboto",
+                                            fontFamily: "Rowdies, DIN, Roboto",
                                             fontSize: "16pt",
                                             fontWeight: 400,
                                             letterSpacing: ".1rem",
                                             color: `white`
                                         }}
                                     >
-                                        Irminsul.GG
+                                        IRMINSUL.GG
                                     </Typography>
                                 }
                                 sx={{ px: 0 }}
