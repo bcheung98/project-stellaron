@@ -49,7 +49,7 @@ const AscensionPlanner = (props) => {
                     characters.length > 0 ?
                         <Grid size={6}>
                             <Grid container spacing={5}>
-                                {characters.map(character => <CharacterAscensionCard key={character.id} character={character} />)}
+                                {characters.map(character => <CharacterAscensionCard key={character.name} character={character} />)}
                             </Grid>
                         </Grid>
                         :
@@ -59,7 +59,7 @@ const AscensionPlanner = (props) => {
                     lightcones.length > 0 ?
                         <Grid size={6}>
                             <Grid container spacing={5}>
-                                {lightcones.map(lightcone => <LightconeAscensionCard key={lightcone.id} lightcone={lightcone} />)}
+                                {lightcones.map(lightcone => <LightconeAscensionCard key={lightcone.name} lightcone={lightcone} />)}
                             </Grid>
                         </Grid>
                         :
