@@ -27,7 +27,7 @@ const CharacterPage = (props) => {
     let character = characters.characters.find(char => char.name.split(" ").join("_").toLowerCase() === char_name);
 
     if (character !== undefined) {
-        let { name, element, path, rarity, description, faction, release, voiceActors } = character;
+        let { name, element, path, rarity, description, faction, splashArt, release, voiceActors } = character;
 
         const rows = [
             { key: "Faction", value: faction },
@@ -44,21 +44,28 @@ const CharacterPage = (props) => {
             <React.Fragment>
                 <Grid container spacing={3} sx={{ mb: "20px" }}>
                     <Grid size="auto">
-                        <img src={(`${process.env.REACT_APP_URL}/characters/splash/${name.split(" ").join("_")}.png`)} alt={name}
-                            style={{
-                                width: "35vw",
-                                height: "600px",
-                                objectFit: "contain",
+                        <Box
+                            sx={{
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
+                                width: "35vw",
+                                height: "600px",
                                 backgroundColor: `${theme.paper.backgroundColor}`,
-                                // cursor: "pointer",
+                                overflow: "clip",
                             }}
-                            onError={(e) => {
-                                e.target.src = `${process.env.REACT_APP_URL}/images/Test_Character.png`
-                                e.onError = null
-                            }}
-                        />
+                        >
+                            <img src={(`${process.env.REACT_APP_URL}/characters/splash/${name.split(" ").join("_")}.png`)} alt={name}
+                                style={{
+                                    width: "100%",
+                                    transform: `scale(${splashArt.scale}) translate(${splashArt.translate[0]}px, ${splashArt.translate[1]}px)`,
+                                    // cursor: "pointer",
+                                }}
+                                onError={(e) => {
+                                    e.target.src = `${process.env.REACT_APP_URL}/images/Test_Character.png`
+                                    e.onError = null
+                                }}
+                            />
+                        </Box>
                         <Box
                             sx={{
                                 py: "10px",
