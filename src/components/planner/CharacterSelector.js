@@ -93,7 +93,10 @@ const CharacterSelector = (props) => {
                                 renderTags={() => null}
                                 noOptionsText="No characters"
                                 renderOption={(props, option, { selected }) => (
-                                    <li {...props} style={{ backgroundColor: selected ? `${theme.table.body.hover}` : `${theme.paper.backgroundColor}`, borderLeft: `10px solid ${GetRarityColor(option.rarity)}` }}>
+                                    <li
+                                        {...props}
+                                        key={option.name}
+                                        style={{ backgroundColor: selected ? `${theme.table.body.hover}` : `${theme.paper.backgroundColor}`, borderLeft: `10px solid ${GetRarityColor(option.rarity)}` }}>
                                         <Box
                                             component={DoneIcon}
                                             sx={{ width: 17, height: 17, mr: "5px", ml: "-2px" }}
