@@ -45,13 +45,26 @@ const AscensionPlanner = (props) => {
             </Grid>
             <AscensionTotalCost />
             <Grid container spacing={2}>
-                <Grid>
-                    {characters.map(character => <CharacterAscensionCard key={character.id} character={character} />)}
-                </Grid>
-                <br />
-                <Grid>
-                    {lightcones.map(lightcone => <LightconeAscensionCard key={lightcone.id} lightcone={lightcone} />)}
-                </Grid>
+                {
+                    characters.length > 0 ?
+                        <Grid size="grow">
+                            <Grid container rowSpacing={5} columnSpacing={2}>
+                                {characters.map(character => <CharacterAscensionCard key={character.id} character={character} />)}
+                            </Grid>
+                        </Grid>
+                        :
+                        null
+                }
+                {
+                    lightcones.length > 0 ?
+                        <Grid size="grow">
+                            <Grid container rowSpacing={5} columnSpacing={2}>
+                                {lightcones.map(lightcone => <LightconeAscensionCard key={lightcone.id} lightcone={lightcone} />)}
+                            </Grid>
+                        </Grid>
+                        :
+                        null
+                }
             </Grid>
         </React.Fragment>
     )
