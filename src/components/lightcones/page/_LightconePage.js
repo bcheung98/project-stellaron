@@ -51,14 +51,23 @@ const LightconePage = (props) => {
             <React.Fragment>
                 <Grid container spacing={3} sx={{ mb: "20px" }}>
                     <Grid size="auto">
-                        <img src={(`${process.env.REACT_APP_URL}/lightcones/large/${name.split(" ").join("_")}.png`)} alt={name}
-                            style={{
+                        <Box
+                            sx={{
+                                border: `1px solid ${theme.border.color}`,
+                                borderRadius: "5px",
                                 width: "25vw",
                                 backgroundColor: `${theme.paper.backgroundColor}`,
-                                transform: "scale(1)"
+                                overflow: "clip",
                             }}
-                            onError={ErrorLoadingImage}
-                        />
+                        >
+                            <img src={(`${process.env.REACT_APP_URL}/lightcones/large/${name.split(" ").join("_")}.png`)} alt={name}
+                                style={{
+                                    width: "100%",
+                                    transform: "scale(1.04)"
+                                }}
+                                onError={ErrorLoadingImage}
+                            />
+                        </Box>
                         <Box
                             sx={{
                                 py: "10px",
