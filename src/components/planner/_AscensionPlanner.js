@@ -47,8 +47,8 @@ const AscensionPlanner = (props) => {
             <Grid container spacing={2}>
                 {
                     characters.length > 0 ?
-                        <Grid size="grow">
-                            <Grid container rowSpacing={5} columnSpacing={2}>
+                        <Grid size={6}>
+                            <Grid container spacing={5}>
                                 {characters.map(character => <CharacterAscensionCard key={character.id} character={character} />)}
                             </Grid>
                         </Grid>
@@ -57,8 +57,8 @@ const AscensionPlanner = (props) => {
                 }
                 {
                     lightcones.length > 0 ?
-                        <Grid size="grow">
-                            <Grid container rowSpacing={5} columnSpacing={2}>
+                        <Grid size={6}>
+                            <Grid container spacing={5}>
                                 {lightcones.map(lightcone => <LightconeAscensionCard key={lightcone.id} lightcone={lightcone} />)}
                             </Grid>
                         </Grid>
