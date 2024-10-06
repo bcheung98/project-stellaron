@@ -62,10 +62,10 @@ const AscensionTotalCost = (props) => {
                         }}
                         ref={componentRef}
                     >
-                        <Typography variant="h6" sx={{ color: `${theme.text.color}`, ml: "15px", my: "15px" }}>
+                        <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
                             Total Materials Required
                         </Typography>
-                        <Grid container sx={{ mx: "15px", mt: "10px" }}>
+                        <Grid container rowSpacing={1} columnSpacing={0} sx={{ mt: "15px" }}>
                             {
                                 Object.keys(totalCost).map((material, index) => {
                                     return (
