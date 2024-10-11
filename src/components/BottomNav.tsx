@@ -1,11 +1,13 @@
 // MUI imports
 import { useTheme } from "@mui/material/styles"
-import { AppBar, Toolbar, Box, Typography, Divider, IconButton, createSvgIcon } from "@mui/material"
+import { useMediaQuery, AppBar, Toolbar, Box, Typography, Divider, IconButton, createSvgIcon } from "@mui/material"
 import GitHubIcon from "@mui/icons-material/GitHub"
 
 function BottomNav() {
 
     const theme = useTheme()
+
+    const matches = useMediaQuery(theme.breakpoints.down("sm"))
 
     return (
         <AppBar position="static"
@@ -15,27 +17,85 @@ function BottomNav() {
                 borderTop: `1px solid ${theme.border.color}`,
             }}
         >
-            <Toolbar sx={{ justifyContent: "center" }}>
-                <Typography sx={{ fontSize: "10.5pt" }}>
-                    Irminsul.GG is not affiliated with HoYoverse.<br />
-                    Honkai: Star Rail, images and data are registered trademarks of HoYoverse.
+            <Toolbar
+                sx={{
+                    justifyContent: "center",
+                    display: { xs: "block", sm: "flex" },
+                    my: "15px"
+                }}
+            >
+                <Typography sx={{ fontSize: { xs: "8pt", sm: "10.5pt" } }}>
+                    IRMINSUL.GG is not affiliated with HoYoverse.<br />
+                    Game contents are trademarks and copyrights of HoYoverse.
                 </Typography>
-                <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: "25px", my: "10px" }} />
-                {/* <Box sx={{ mt: "10px", textAlign: "center", }}>
-                    <Typography gutterBottom sx={{ fontSize: "10.5pt" }}>GitHub:</Typography>
-                    <IconButton disableRipple href={"https://github.com/bcheung98/project-stellaron"} target="_blank" color="inherit">
-                        <GitHubIcon sx={{ mb: "6px" }} />
-                    </IconButton>
-                </Box>
-                <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: "25px", my: "10px" }} /> */}
-                <Box sx={{ mt: "10px", textAlign: "center", }}>
-                    <Typography gutterBottom sx={{ fontSize: "10.5pt" }}>Made with:</Typography>
-                    <IconButton disableRipple href={"https://react.dev/"} target="_blank" color="inherit">
-                        <ReactIcon sx={{ fontSize: 32 }} />
-                    </IconButton>
-                    <IconButton disableRipple href={"https://mui.com/"} target="_blank" color="inherit">
-                        <MuiIcon sx={{ fontSize: 32 }} />
-                    </IconButton>
+                <Box sx={{ display: { xs: "block", sm: "flex" } }}>
+                    <Divider
+                        orientation={!matches ? "vertical" : "horizontal"}
+                        variant="middle"
+                        flexItem
+                        sx={{
+                            mx: { xs: 0, sm: "25px" },
+                            my: { xs: "10px", sm: 0 }
+                        }}
+                    />
+                    <Box sx={{ display: "flex" }}>
+                        <Box
+                            sx={{
+                                textAlign: "center",
+                                alignItems: "center",
+                                display: { xs: "flex", sm: "block" }
+                            }}
+                        >
+                            <Typography gutterBottom sx={{ fontSize: { xs: "8pt", sm: "10.5pt" } }}>GitHub:</Typography>
+                            <IconButton
+                                disableRipple
+                                href="https://github.com/bcheung98/project-stellaron"
+                                target="_blank"
+                                color="inherit"
+                                sx={{ pr: { xs: "0px", sm: "8px" } }}
+                            >
+                                <GitHubIcon sx={{ fontSize: { xs: 20, sm: 28 }, mt: { xs: "-2.5px", sm: 0 } }} />
+                            </IconButton>
+                        </Box>
+                        <Divider
+                            orientation="vertical"
+                            variant="middle"
+                            flexItem
+                            sx={{
+                                mx: { xs: "10px", sm: "25px" },
+                                my: 0
+                            }}
+                        />
+                        <Box
+                            sx={{
+                                textAlign: "center",
+                                alignItems: "center",
+                                display: { xs: "flex", sm: "block" }
+                            }}
+                        >
+                            <Typography gutterBottom sx={{ fontSize: { xs: "8pt", sm: "10.5pt" } }}>Made with:</Typography>
+                            <Box sx={{ display: "flex" }}>
+                                <IconButton
+                                    disableRipple
+                                    href="https://react.dev/"
+                                    target="_blank"
+                                    color="inherit"
+                                    sx={{ pr: { xs: "0px", sm: "8px" } }}
+                                >
+                                    <ReactIcon sx={{ fontSize: { xs: 24, sm: 32 }, mt: { xs: "2.5px", sm: 0 } }} />
+                                </IconButton>
+                                <IconButton
+                                    disableRipple
+                                    href="https://mui.com/"
+                                    target="_blank"
+                                    color="inherit"
+                                    sx={{ pr: { xs: "0px", sm: "8px" } }}
+                                >
+                                    <MuiIcon sx={{ fontSize: { xs: 24, sm: 32 }, mt: { xs: "2.5px", sm: 0 } }} />
+                                </IconButton>
+                            </Box>
+                        </Box>
+                    </Box>
                 </Box>
             </Toolbar>
         </AppBar>
