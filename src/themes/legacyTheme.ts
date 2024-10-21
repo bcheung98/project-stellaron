@@ -1,13 +1,13 @@
 const fontNormal = "DIN, Roboto, Segoe UI"
-const fontNormalWeight = "bold"
+const fontNormalWeight = 400
 
 const fontStyled = "DIN, Roboto, Segoe UI"
-const fontStyledWeight = "bold"
+const fontStyledWeight = 300
 
-export const defaultTheme = {
+export const legacyTheme = {
     palette: {
         background: {
-            default: "rgb(26, 22, 24)"
+            default: "rgb(0, 30, 60)"
         }
     },
     components: {
@@ -24,39 +24,38 @@ export const defaultTheme = {
                 noOptions: {
                     color: "white",
                     fontFamily: fontStyled,
-                    fontWeight: fontStyledWeight,
-                    backgroundColor: "rgb(30, 30, 30)",
+                    backgroundColor: "rgb(0, 23, 47)",
                 }
             }
         },
         MuiButton: {
             styleOverrides: {
                 root: {
-                    backgroundColor: "rgb(169, 142, 84)"
+                    backgroundColor: "rgb(0, 101, 202)"
                 }
             }
         },
         MuiDialog: {
             styleOverrides: {
                 paper: {
-                    backgroundColor: "rgb(30, 30, 30)"
+                    backgroundColor: "rgb(0, 23, 47)"
                 }
             }
         },
         MuiDivider: {
             styleOverrides: {
                 root: {
-                    borderColor: "rgb(168, 147, 105)"
+                    borderColor: "rgb(30, 73, 118)"
                 }
             }
         },
         MuiMenu: {
             styleOverrides: {
                 paper: {
-                    backgroundColor: "rgb(30, 30, 30)"
+                    backgroundColor: "rgb(0, 23, 47)"
                 },
                 list: {
-                    backgroundColor: "rgb(30, 30, 30)",
+                    backgroundColor: "rgb(0, 23, 47)",
                     color: "white",
                 }
             }
@@ -73,47 +72,47 @@ export const defaultTheme = {
         }
     },
     appbar: {
-        backgroundColor: "rgb(15, 15, 15)",
+        backgroundColor: "rgb(0, 16, 32)",
     },
     border: {
-        color: "rgb(168, 147, 105)",
+        color: "rgb(30, 73, 118)",
         colorAlt: "rgb(30, 73, 118)"
     },
     paper: {
-        backgroundColor: "rgb(30, 30, 30)",
+        backgroundColor: "rgb(0, 23, 47)",
     },
     card: {
-        backgroundColor: "rgb(30, 30, 30)",
+        backgroundColor: "rgb(0, 23, 47)",
     },
     table: {
         header: {
-            backgroundColor: "rgb(15, 15, 15)",
+            backgroundColor: "rgb(0, 20, 40)",
         },
         body: {
-            backgroundColor: "rgb(26, 22, 24)",
-            hover: "rgb(50, 50, 50)",
+            backgroundColor: "rgb(0, 30, 60)",
+            hover: "rgb(19, 47, 76)",
         },
     },
     toolbar: {
-        backgroundColor: "rgb(15, 15, 15)",
+        backgroundColor: "rgb(0, 16, 32)",
     },
     materialImage: {
-        backgroundColor: "rgb(20, 20, 20)",
+        backgroundColor: "rgb(0, 30, 60)",
     },
     text: {
         color: "white",
         colorAlt: "rgb(218, 219, 222)",
-        selected: "rgb(202, 166, 112)",
-        appbar: "white"
+        selected: "rgb(25, 118, 210)",
+        appbar: "white",
     },
     button: {
-        selected: "rgb(169, 142, 84)",
-        hover: "rgb(125, 105, 62)",
+        selected: "rgb(0, 101, 202)",
+        hover: "rgb(0, 94, 188)",
     },
     menu: {
-        backgroundColor: "rgb(32, 32, 32)",
-        hover: "rgb(64, 64, 64)",
-        selected: "rgb(80, 80, 80)",
-        selectedHover: "rgb(96, 96, 96)"
+        backgroundColor: "rgb(0, 23, 47)",
+        hover: "rgb(0, 46, 94)",
+        selected: "rgb(0, 66, 114)",
+        selectedHover: "rgb(0, 86, 134)"
     }
 }
