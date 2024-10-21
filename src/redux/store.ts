@@ -1,15 +1,15 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension"
-import thunk from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit"
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux"
+import { combineReducers } from "redux"
 
-import CharacterReducer from "./reducers/CharacterReducer";
-import CharacterFilterReducer from "./reducers/CharacterFilterReducer";
-import LightconeReducer from "./reducers/LightconeReducer";
-import LightconeFilterReducer from "./reducers/LightconeFilterReducer";
-import RelicReducer from "./reducers/RelicReducer";
-import AscensionPlannerReducer from "./reducers/AscensionPlannerReducer";
-import BannerReducer from "./reducers/BannerReducer";
-import CharacterTraceStatReducer from "./reducers/CharacterTraceStatReducer";
+import CharacterReducer from "./reducers/CharacterReducer"
+import CharacterFilterReducer from "./reducers/CharacterFilterReducer"
+import LightconeReducer from "./reducers/LightconeReducer"
+import LightconeFilterReducer from "./reducers/LightconeFilterReducer"
+import RelicReducer from "./reducers/RelicReducer"
+import AscensionPlannerReducer from "./reducers/AscensionPlannerReducer"
+import BannerReducer from "./reducers/BannerReducer"
+import CharacterTraceStatReducer from "./reducers/CharacterTraceStatReducer"
 
 const rootReducer = combineReducers({
     characters: CharacterReducer,
@@ -22,11 +22,13 @@ const rootReducer = combineReducers({
     traceStats: CharacterTraceStatReducer
 })
 
-const composedEnhancer = composeWithDevTools(
-    applyMiddleware(thunk)
-)
+const store = configureStore({
+    reducer: rootReducer
+})
 
-export default createStore(
-    rootReducer,
-    composedEnhancer
-)
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch: () => AppDispatch = useDispatch
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
+
+export default store
