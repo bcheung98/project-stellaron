@@ -48,7 +48,7 @@ export const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
         fontFamily: "DIN, Roboto, Segoe UI",
         fontWeight: "bold",
         "&.Mui-selected": {
-            color: `${theme.text.highlight}`,
+            color: `${theme.text.selected}`,
         },
     }),
 );
