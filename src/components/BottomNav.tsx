@@ -39,7 +39,7 @@ function BottomNav() {
                         }}
                     />
                     <Box sx={{ display: "flex" }}>
-                        <Box
+                        {/* <Box
                             sx={{
                                 textAlign: "center",
                                 alignItems: "center",
@@ -65,7 +65,7 @@ function BottomNav() {
                                 mx: { xs: "10px", sm: "25px" },
                                 my: 0
                             }}
-                        />
+                        /> */}
                         <Box
                             sx={{
                                 textAlign: "center",
