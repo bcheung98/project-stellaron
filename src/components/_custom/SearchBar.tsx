@@ -35,6 +35,7 @@ function SearchBar({
                     backgroundColor: `${theme.table.header.backgroundColor}`,
                     color: `${theme.text.color}`,
                     fontFamily: `${theme.font.styled.family}`,
+                    fontWeight: `${theme.font.styled.weight}`,
                     "& fieldset": {
                         borderColor: `${theme.border.color}`,
                         borderWidth: "1px",
