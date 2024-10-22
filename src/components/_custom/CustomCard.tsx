@@ -8,38 +8,73 @@ import { useTheme, SxProps, Typography, ButtonBase, Box, Card } from "@mui/mater
 
 // Helper imports
 import { GetRarityColor, GetBackgroundColor } from "../../helpers/RarityColors"
+import zoomImageOnHover from "../../helpers/zoomImageOnHover"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 interface CustomCardProps {
     name: string,
-    displayName?: string | undefined,
+    id?: string,
+    displayName?: string,
     type: "character" | "lightcone" | "relic",
-    rarity?: number | undefined,
-    size?: string,
+    rarity?: 5 | 4 | 3 | 2 | 1,
     variant?: "icon" | "avatar",
-    showInfo?: boolean,
+    size?: string,
+    showName?: boolean,
     info?: {
         element?: string,
         path?: string
     },
     disableTooltip?: boolean,
-    disableLink?: boolean
+    disableLink?: boolean,
+    disableZoomOnHover?: boolean
 }
 
 function CustomCard({
     name,
+    id = name.toLowerCase(),
     displayName = name,
     type,
-    rarity = 1,
-    size = "64px",
+    rarity = 3,
     variant = "icon",
-    showInfo = false,
+    size = variant === "icon" ? "64px" : "188px",
+    showName = variant === "avatar" ? true : false,
     info,
-    disableTooltip = showInfo,
+    disableTooltip = showName,
     disableLink = false,
+    disableZoomOnHover = false
 }: CustomCardProps) {
 
     const theme = useTheme()
+
+    const aspectRatio = () => {
+        if (variant === "icon") {
+            return "1 / 1"
+        }
+        else {
+            if (type === "character") {
+                return "374 / 512"
+            }
+            else {
+                return "348 / 408"
+            }
+        }
+    }
+
+    const backgroundColor = () => {
+        const baseBG = theme.materialImage.backgroundColor
+        if (variant === "icon") {
+            return baseBG
+        }
+        else {
+            let opacity
+            type === "character" ? opacity = 0.45 : opacity = 0.75
+            return `linear-gradient(${baseBG} 60%, ${GetBackgroundColor(rarity, opacity)} 100%)`
+        }
+    }
+
+    const handleHover = (direction: "enter" | "leave") => {
+        !disableZoomOnHover && zoomImageOnHover(direction, `${id}-card-image`, cardImageStyle.transform)
+    }
 
     let imageURL
     if (type === "character") { imageURL = `${process.env.REACT_APP_URL}/characters/${variant}s/${name.split(" ").join("_")}.png` }
@@ -50,9 +85,10 @@ function CustomCard({
     const cardStyle: SxProps = {
         width: size,
         height: "auto",
-        backgroundColor: `${theme.table.body.backgroundColor}`,
-        background: variant === "icon" ? "none" : `linear-gradient(transparent 60%, ${GetBackgroundColor(rarity, type === "character" ? 0.45 : 0.75)} 100%)`,
-        border: `1px solid ${variant === "icon" ? GetRarityColor(rarity) : theme.border.color}`,
+        background: backgroundColor(),
+        border: "solid",
+        borderWidth: variant === "icon" ? "2px" : "1px",
+        borderColor: variant === "icon" ? GetRarityColor(rarity) : theme.border.color,
         borderRadius: variant === "icon" ? "5px" : "5px 25px 5px 5px",
         boxSizing: "content-box",
         containerType: "inline-size",
@@ -62,6 +98,7 @@ function CustomCard({
     const cardImageStyle: React.CSSProperties = {
         width: size,
         height: variant === "icon" ? size : "auto",
+        aspectRatio: aspectRatio(),
         boxSizing: "content-box",
         boxShadow: variant === "icon" ? `inset 0 0 30px 5px ${GetBackgroundColor(rarity)}` : "none",
         transform: variant === "avatar" && type === "character" ? "translate(0px, -10px)" : "translate(0px, 0px)",
@@ -72,7 +109,7 @@ function CustomCard({
         height: `calc(${size} / 5.25)`,
         minWidth: "16px",
         minHeight: "16px",
-        backgroundColor: `${theme.materialImage.backgroundColor}`,
+        backgroundColor: theme.paper.backgroundColor,
         border: `1px solid ${theme.border.color}`,
         borderRadius: "32px",
         marginBottom: "10px",
@@ -83,41 +120,39 @@ function CustomCard({
     return (
         <Card
             sx={cardStyle}
-            onMouseEnter={() => zoomOnHover("enter", name, cardImageStyle.transform)}
-            onMouseLeave={() => zoomOnHover("leave", name, cardImageStyle.transform)}
+            onMouseEnter={() => handleHover("enter")}
+            onMouseLeave={() => handleHover("leave")}
         >
             {
-                showInfo && info ?
-                    <Box
-                        sx={{
-                            display: "grid",
-                            position: "absolute",
-                            zIndex: 5,
-                            top: "10px",
-                            left: "10px",
-                        }}
-                    >
-                        {
-                            info.element !== undefined &&
-                            <CustomTooltip title={info.element} arrow placement="top">
-                                <img style={smallIconStyle} src={`${process.env.REACT_APP_URL}/elements/Element_${info.element}.png`} alt={info.element} onError={ErrorLoadingImage} />
-                            </CustomTooltip>
-                        }
-                        {
-                            info.path !== undefined &&
-                            <CustomTooltip title={info.path} arrow placement="top">
-                                <img style={smallIconStyle} src={`${process.env.REACT_APP_URL}/paths/The_${info.path}.png`} alt={info.path} onError={ErrorLoadingImage} />
-                            </CustomTooltip>
-                        }
-                    </Box>
-                    :
-                    null
+                info &&
+                <Box
+                    sx={{
+                        display: "grid",
+                        position: "absolute",
+                        zIndex: 5,
+                        top: "10px",
+                        left: "10px",
+                    }}
+                >
+                    {
+                        info.element !== undefined &&
+                        <CustomTooltip title={info.element} arrow placement="top">
+                            <img style={smallIconStyle} src={`${process.env.REACT_APP_URL}/elements/Element_${info.element}.png`} alt={info.element} onError={ErrorLoadingImage} />
+                        </CustomTooltip>
+                    }
+                    {
+                        info.path !== undefined &&
+                        <CustomTooltip title={info.path} arrow placement="top">
+                            <img style={smallIconStyle} src={`${process.env.REACT_APP_URL}/paths/The_${info.path}.png`} alt={info.path} onError={ErrorLoadingImage} />
+                        </CustomTooltip>
+                    }
+                </Box>
             }
             <ButtonBase disableRipple href={href} target="_blank">
                 <CustomTooltip title={!disableTooltip ? displayName : ""} arrow placement="top">
                     <img
                         src={imageURL} alt={name}
-                        id={`${name.toLowerCase()}-image`}
+                        id={`${id}-card-image`}
                         style={cardImageStyle}
                         loading="lazy"
                         onError={ErrorLoadingImage}
@@ -131,7 +166,7 @@ function CustomCard({
                 }}
             >
                 {
-                    showInfo &&
+                    showName &&
                     <Box>
                         <ButtonBase disableRipple href={href} target="_blank"
                             sx={{
@@ -176,17 +211,3 @@ function CustomCard({
 }
 
 export default CustomCard
-
-function zoomOnHover(mouseDirection: "enter" | "leave", name: string, translate: string | undefined) {
-    let image = document.getElementById(`${name.toLowerCase()}-image`)
-    if (image !== null) {
-        if (mouseDirection === "enter") {
-            image.style.transition = "all 100ms ease-in"
-            image.style.transform = `scale(1.1) ${translate}`
-        }
-        else {
-            image.style.transition = "all 100ms ease-out"
-            image.style.transform = `scale(1) ${translate}`
-        }
-    }
-}

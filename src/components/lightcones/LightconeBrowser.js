@@ -69,7 +69,7 @@ const LightconeBrowser = (props) => {
                             {
                                 view === "grid" ?
                                     <Grid container spacing={2}>
-                                        {filterLightcones(lightcones.lightcones, lightconeFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(lightcone => <CustomCard key={lightcone.id} name={lightcone.name} displayName={lightcone.displayName} type="lightcone" variant="avatar" rarity={lightcone.rarity} size="192px" showInfo info={{ path: lightcone.path }} />)}
+                                        {filterLightcones(lightcones.lightcones, lightconeFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(lightcone => <CustomCard key={lightcone.id} name={lightcone.name} displayName={lightcone.displayName} type="lightcone" variant="avatar" rarity={lightcone.rarity} info={{ path: lightcone.path }} />)}
                                     </Grid>
                                     :
                                     <LightconeList lightcones={filterLightcones(lightcones.lightcones, lightconeFilters, searchValue)} />

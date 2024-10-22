@@ -69,7 +69,7 @@ const CharacterBrowser = (props) => {
                                 {
                                     view === "grid" ?
                                         <Grid container spacing={2}>
-                                            {filterCharacters(characters.characters, characterFilters, searchValue).map(char => <CustomCard key={char.id} name={char.name} displayName={char.displayName} type="character" variant="avatar" rarity={char.rarity} size="192px" showInfo info={{ element: char.element, path: char.path }} disableTooltip />)}
+                                            {filterCharacters(characters.characters, characterFilters, searchValue).map(char => <CustomCard key={char.id} name={char.name} displayName={char.displayName} type="character" variant="avatar" rarity={char.rarity} info={{ element: char.element, path: char.path }} disableTooltip />)}
                                         </Grid>
                                         :
                                         <CharacterList characters={filterCharacters(characters.characters, characterFilters, searchValue)} />
