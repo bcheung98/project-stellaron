@@ -92,6 +92,7 @@ export const defaultTheme = {
         body: {
             backgroundColor: "rgb(26, 22, 24)",
             hover: "rgb(50, 50, 50)",
+            selected: "rgb(90, 85, 80)",
         },
     },
     toolbar: {
