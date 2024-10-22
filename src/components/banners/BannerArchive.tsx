@@ -1,17 +1,30 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Box, Typography } from "@mui/material";
-import BannerList from "./BannerList";
-import Grid from "@mui/material/Grid2";
+import * as React from "react"
+import { connect } from "react-redux"
 
-const BannerArchive = (props) => {
+// Component imports
+import BannerList from "./BannerList"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme, useMediaQuery, Typography, Radio, RadioGroup, FormControlLabel, Box } from "@mui/material"
+import Grid from "@mui/material/Grid2"
 
-    let { banners } = props;
+// Type imports
+import { RootState } from "../../redux/store"
 
-    document.title = `Banner Archive ${process.env.REACT_APP_DOCUMENT_HEADER}`;
+function BannerArchive(props: any) {
+
+    const theme = useTheme()
+
+    const matches = useMediaQuery(theme.breakpoints.down("md"))
+
+    let { banners } = props
+
+    const [value, setValue] = React.useState("character")
+    const handleRadioChange = (event: React.BaseSyntheticEvent) => {
+        setValue(event.target.value)
+    }
+
+    document.title = `Banner Archive ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
         <React.Fragment>
@@ -35,22 +48,76 @@ const BannerArchive = (props) => {
                     Banner Archive
                 </Typography>
             </Box>
+            <RadioGroup
+                value={value}
+                onChange={handleRadioChange}
+                sx={{
+                    mb: "30px",
+                    display: { xs: "block", md: "none" }
+                }}
+            >
+                <FormControlLabel
+                    value="character"
+                    control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />}
+                    label={
+                        <Typography sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: "13.5px", color: `${theme.text.color}` }}>
+                            Character Event Wish
+                        </Typography>
+                    }
+                />
+                <FormControlLabel
+                    value="weapon"
+                    control={<Radio size="small" sx={{ color: `${theme.text.color}` }} />}
+                    label={
+                        <Typography sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: "13.5px", color: `${theme.text.color}` }}>
+                            Weapon Event Wish
+                        </Typography>
+                    }
+                />
+            </RadioGroup>
             {
-                banners.characterBanners.length > 0 && banners.lightconeBanners.length > 0 &&
-                <Grid container spacing={2}>
-                    <BannerList banners={banners.characterBanners} type="character" />
-                    <BannerList banners={banners.lightconeBanners} type="lightcone" />
-                </Grid>
+                !matches ?
+                    <Grid container spacing={5} columns={{ xs: 1, md: 12 }}>
+                        <Grid size={5}>
+                            <Typography
+                                sx={{
+                                    fontFamily: `${theme.font.styled.family}`,
+                                    fontSize: "20px",
+                                    color: `${theme.text.color}`,
+                                    mb: "20px"
+                                }}
+                            >
+                                Character Banner
+                            </Typography>
+                            <BannerList banners={banners.characterBanners} type="character" />
+                        </Grid>
+                        <Grid size={5}>
+                            <Typography
+                                sx={{
+                                    fontFamily: `${theme.font.styled.family}`,
+                                    fontSize: "20px",
+                                    color: `${theme.text.color}`,
+                                    mb: "20px"
+                                }}
+                            >
+                                Light Cone Banner
+                            </Typography>
+                            <BannerList banners={banners.lightconeBanners} type="lightcone" />
+                        </Grid>
+                    </Grid>
+                    :
+                    <React.Fragment>
+                        {value === "character" && <BannerList banners={banners.characterBanners} type="character" />}
+                        {value === "weapon" && <BannerList banners={banners.lightconeBanners} type="lightcone" />}
+                    </React.Fragment>
             }
         </React.Fragment>
     )
 
 }
 
-const mapStateToProps = (state) => {
-    return {
-        banners: state.banners
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    banners: state.banners
+})
 
-export default connect(mapStateToProps)(BannerArchive);
+export default connect(mapStateToProps)(BannerArchive)

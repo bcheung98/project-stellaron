@@ -1,65 +1,123 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Box, Table, TableBody, TableContainer, Paper, InputBase } from "@mui/material";
-import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable";
-import CharacterBannerRow from "./CharacterBannerRow";
-import LightconeBannerRow from "./LightconeBannerRow";
+import * as React from "react"
 
-const BannerList = (props) => {
+// Component imports
+import { CustomTooltip } from "../_custom/CustomTooltip"
+import { CustomMenuItem } from "../_custom/CustomMenu"
+import SearchBar from "../_custom/SearchBar"
+import BannerRow from "./BannerRow"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme, useMediaQuery, Box, Table, TableBody, TableContainer, Paper, Autocomplete, Typography } from "@mui/material"
+import HelpIcon from "@mui/icons-material/Help"
 
-    const [order, setOrder] = React.useState("desc");
-    const [orderBy, setOrderBy] = React.useState("subVersion");
+// Helper imports
+import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable"
+import { isTBA } from "../../helpers/isTBA"
+import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === "asc";
-        setOrder(isAsc ? "desc" : "asc");
-        setOrderBy(property);
-    };
+// Type imports
+import { BannerData } from "../../types/banner/BannerData"
+import { CustomSwitch } from "../_custom/CustomSwitch"
 
-    const [searchValue, setSearchValue] = React.useState("");
+function BannerList(props: any) {
 
-    const handleInputChange = (e) => {
-        setSearchValue(e.target.value);
+    const theme = useTheme()
+
+    const matches = useMediaQuery(theme.breakpoints.down("md"))
+
+    let { type, banners } = props
+
+    let URL = type === "character" ? "characters/icons" : "lightcones/small"
+
+    const [rows, setRows] = React.useState<any[]>([])
+    const [values, setValue] = React.useState<string[]>([])
+
+    const [order, setOrder] = React.useState("desc")
+    const [orderBy, setOrderBy] = React.useState("subVersion")
+
+    const handleRequestSort = (event: React.BaseSyntheticEvent, property: "asc" | "desc") => {
+        const isAsc = orderBy === property && order === "asc"
+        setOrder(isAsc ? "desc" : "asc")
+        setOrderBy(property)
     }
 
-    let banners = [];
-    props.banners.forEach(version => Object.keys(version).slice(1).forEach(phase => banners.push([version.version, `${version.version}.${phase.slice(-1)}`, version[phase].startDate, version[phase].endDate, version[phase].banner])));
-    const rows = filterBanners(banners, searchValue).map(banner => createData(banner[0], banner[1], banner[2], banner[3], banner[4]));
+    const [selected, setSelected] = React.useState(true)
+    const handleSelect = () => {
+        setSelected(!selected)
+    }
+
+    const options = createOptions(banners)
+
+    React.useEffect(() => {
+        setRows(filterBanners(banners, values, selected))
+    }, [banners, values, selected])
 
     return (
         <Box>
-            <Paper
-                sx={{
-                    border: `2px solid ${theme.border.color}`,
-                    borderRadius: "5px",
-                    backgroundColor: `${theme.paper.backgroundColor}`,
-                    display: "flex",
-                    height: "40px",
-                    mb: "10px",
+            <Autocomplete
+                multiple
+                autoComplete
+                options={options}
+                getOptionLabel={(option: string) => option}
+                filterSelectedOptions
+                noOptionsText={type === "character" ? "No Characters" : "No Light Cones"}
+                value={values}
+                onChange={(event: any, newValue: string[] | null) => {
+                    setValue(newValue as string[])
                 }}
-            >
-                <InputBase
-                    sx={{
-                        marginLeft: "10px",
-                        flex: 1,
+                ChipProps={{
+                    sx: {
                         color: `${theme.text.color}`,
-                    }}
-                    placeholder="Search"
-                    onChange={handleInputChange}
-                />
-            </Paper>
+                        fontFamily: `${theme.font.styled.family}`,
+                        backgroundColor: `${theme.button.selected}`,
+                        "& .MuiChip-deleteIcon": {
+                            color: `${theme.text.color}`,
+                            ":hover": {
+                                color: `${theme.text.colorAlt}`
+                            }
+                        },
+                    }
+                }}
+                ListboxProps={{
+                    sx: { backgroundColor: `${theme.paper.backgroundColor}` }
+                }}
+                renderInput={(params) => (
+                    <SearchBar params={params} placeholder={type === "character" ? "Characters" : "Light Cones"} />
+                )}
+                renderOption={(props, option) => (
+                    <CustomMenuItem
+                        {...props}
+                        key={option}
+                    >
+                        <Box sx={{ display: "flex", alignItems: "center", p: 0, width: "100%" }}>
+                            <img alt={option} src={`${process.env.REACT_APP_URL}/${URL}/${option.split(" ").join("_")}.png`} style={{ width: matches ? "42px" : "48px", marginRight: "20px", border: type === "character" ? `2px solid ${theme.border.color}` : "none", borderRadius: matches ? "42px" : "48px" }} onError={ErrorLoadingImage} />
+                            <Typography noWrap sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: { xs: "14px", md: "16px" }, color: `${theme.text.color}` }}>
+                                {option}
+                            </Typography>
+                        </Box>
+                    </CustomMenuItem>
+                )}
+            />
+            <Box sx={{ display: "flex", alignItems: "center", my: "10px" }}>
+                <CustomSwitch checked={selected} onChange={handleSelect} />
+                <Typography sx={{ color: `${theme.text.color}`, fontFamily: `${theme.font.styled.family}`, fontSize: "13.5px" }}>
+                    Toggle "AND" Filter
+                </Typography>
+                <CustomTooltip title="If toggled, will filter banners that only contain all selected items." arrow placement="top">
+                    <HelpIcon sx={{ color: `${theme.text.color}`, cursor: "pointer", mx: "10px" }} />
+                </CustomTooltip>
+            </Box>
             <Paper
                 sx={{
                     border: `2px solid ${theme.border.color}`,
                     borderRadius: "5px",
                     backgroundColor: `${theme.paper.backgroundColor}`,
                     color: `${theme.text.color}`,
+                    overflow: "hidden"
                 }}
             >
                 <TableContainer>
-                    <Table>
+                    <Table sx={{ backgroundColor: `${theme.table.header.backgroundColor}` }}>
                         <EnhancedTableHead
                             order={order}
                             orderBy={orderBy}
@@ -67,37 +125,43 @@ const BannerList = (props) => {
                             rowCount={rows.length}
                             headCells={headCells}
                         />
-                        <TableBody>
+                        <TableBody sx={{ backgroundColor: `${theme.paper.backgroundColor}` }}>
                             {
                                 stableSort(rows, getComparator(order, orderBy))
-                                    .map((row, index) => {
-                                        return (
-                                            props.type === "character" ? <CharacterBannerRow key={index} row={row} /> : <LightconeBannerRow key={index} row={row} />
-
-                                        )
-                                    })
+                                    .map((row, index) => <BannerRow type={type} key={index} row={row as unknown as BannerData} />)
                             }
                         </TableBody>
                     </Table>
                 </TableContainer>
             </Paper>
         </Box>
-    );
+    )
 }
 
-export default BannerList;
+export default BannerList
 
 const headCells = [
     { id: "subVersion", label: "Version" },
-];
+]
 
-const createData = (version, subVersion, startDate, endDate, banner) => {
-    return { version, subVersion, startDate, endDate, banner };
+const filterBanners = (banners: BannerData[], searchValue: string[], unique: boolean) => {
+    if (searchValue.length > 0) {
+        banners = banners.filter((banner: BannerData) => {
+            if (unique) {
+                return searchValue.every((item) => banner.fiveStars.concat(banner.fourStars).includes(item))
+            }
+            else {
+                return searchValue.some((item) => banner.fiveStars.concat(banner.fourStars).includes(item))
+            }
+        })
+    }
+    return banners
 }
 
-const filterBanners = (banners, searchValue) => {
-    if (searchValue !== "") {
-        banners = banners.filter(banner => banner[4].map(char => char.toLowerCase()).join("|").includes(searchValue.toLowerCase()))
-    }
-    return banners;
+const createOptions = (banners: BannerData[]) => {
+    return [...new Set(banners
+        .map((banner: BannerData) => banner.fiveStars.concat(banner.fourStars))
+        .flat().filter((item: string) => !isTBA(item))
+        .sort((a: string, b: string) => a.localeCompare(b)))
+    ]
 }
