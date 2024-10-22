@@ -12,7 +12,7 @@ import { fetchCharacters, fetchLightcones, fetchRelics, fetchBanners } from "./r
 // Component imports
 import Nav from "./components/Nav"
 import BottomNav from "./components/BottomNav"
-import VersionHighlights from "./components/VersionHighlights"
+import Home from "./components/Home"
 import CharacterBrowser from "./components/characters/CharacterBrowser"
 import CharacterPage from "./components/characters/page/_CharacterPage"
 import LightconeBrowser from "./components/lightcones/LightconeBrowser"
@@ -48,7 +48,7 @@ function App(props) {
                     <Nav />
                     <Box sx={{ mx: "20px", mt: "100px", minHeight: "90vh", minWidth: "30vw", width: "95vw" }}>
                         <Switch>
-                            <Route exact path="/" component={VersionHighlights} />
+                            <Route exact path="/" component={Home} />
                             <Route exact path="/characters" component={CharacterBrowser} />
                             <Route path="/characters/:char_name" children={<CharacterPage />} />
                             <Route exact path="/lightcones" component={LightconeBrowser} />
@@ -63,7 +63,6 @@ function App(props) {
                 <ScrollTopFab />
             </Router>
         </ThemeProvider>
-
     )
 }
 
