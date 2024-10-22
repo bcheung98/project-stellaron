@@ -47,10 +47,10 @@ const CharacterPage = (props) => {
                             sx={{
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
-                                width: "35vw",
-                                height: "600px",
+                                width: "30vw",
+                                height: "auto",
                                 backgroundColor: `${theme.paper.backgroundColor}`,
-                                overflow: "clip",
+                                overflow: "hidden",
                             }}
                         >
                             <img src={(`${process.env.REACT_APP_URL}/characters/splash/${name.split(" ").join("_")}.png`)} alt={name}
@@ -69,7 +69,7 @@ const CharacterPage = (props) => {
                             sx={{
                                 py: "10px",
                                 mt: "10px",
-                                width: "35vw",
+                                width: "30vw",
                                 border: `1px solid ${theme.border.color}`,
                                 borderRadius: "5px",
                                 color: `${theme.text.color}`,
