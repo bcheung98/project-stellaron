@@ -1,39 +1,29 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import CharacterCard from "./characters/CharacterCard";
-import LightconeCard from "./lightcones/LightconeCard";
-import RelicCard from "./relics/RelicCard";
-import { Box, Typography, Select, AppBar, CardHeader, IconButton } from "@mui/material";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import Grid from "@mui/material/Grid2";
+import * as React from "react"
+import { connect } from "react-redux"
+
+// Component imports
+import CharacterCard from "./characters/CharacterCard"
+import LightconeCard from "./lightcones/LightconeCard"
+import RelicCard from "./relics/RelicCard"
 import { CustomInput } from "../helpers/CustomInput"
-import { CustomMenuItem } from "../helpers/CustomMenu";
+import { CustomMenuItem } from "../helpers/CustomMenu"
+
+// MUI imports
+import { useTheme, Box, Typography, Select, AppBar, CardHeader, IconButton } from "@mui/material"
+import Grid from "@mui/material/Grid2"
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft"
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight"
+
+// Helper imports
+import { updates } from "../data/versions"
 
 const VersionHighlights = (props) => {
 
-    const theme = useTheme();
+    const theme = useTheme()
 
-    // MAKE SURE TO CHANGE THIS EVERY UPDATE!
-    let updates = [
-        { version: "2.5", name: "Flying Aureus Shot to Lupine Rue" },
-        { version: "2.4", name: "Finest Duel Under the Pristine Blue" },
-        { version: "2.3", name: "Farewell, Penacony" },
-        { version: "2.2", name: "Then Wake to Weep" },
-        { version: "2.1", name: "Into the Yawning Chasm" },
-        { version: "2.0", name: "If One Dreams at Midnight" },
-        { version: "1.6", name: "Crown of the Mundane and Divine" },
-        { version: "1.5", name: "The Crepuscule Zone" },
-        { version: "1.4", name: "Jolted Awake From A Winter Dream" },
-        { version: "1.3", name: "Celestial Eyes Above Mortal Ruins" },
-        { version: "1.2", name: "Even Immortality Ends" },
-        { version: "1.1", name: "Galactic Roaming" },
-        { version: "1.0", name: "The Rail Unto the Stars" }
-    ]
-    const [index, setIndex] = React.useState(0);
+    const [index, setIndex] = React.useState(0)
     const handleIndexChange = (event) => {
-        setIndex(Number(event.target.value));
+        setIndex(Number(event.target.value))
     }
     const handleIndexChangeLeft = () => {
         if (index + 1 < updates.length) setIndex(index + 1)
@@ -44,13 +34,13 @@ const VersionHighlights = (props) => {
 
     let version = updates[index].version
 
-    let characters = props.characters.characters.filter(char => char.release.version === version);
-    let lightcones = props.lightcones.lightcones.filter(lc => lc.release.version === version);
-    let cavernRelics = [];
-    let planarOrnaments = [];
-    if (props.relics.relics[0] !== undefined) { cavernRelics = props.relics.relics[0]["cavernRelics"].filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name)) };
-    if (props.relics.relics[0] !== undefined) { planarOrnaments = props.relics.relics[0]["planarOrnaments"].filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name)) };
-    let newRelics = cavernRelics.length > 0 || planarOrnaments.length > 0;
+    let characters = props.characters.characters.filter(char => char.release.version === version)
+    let lightcones = props.lightcones.lightcones.filter(lc => lc.release.version === version)
+    let cavernRelics = []
+    let planarOrnaments = []
+    if (props.relics.relics[0] !== undefined) { cavernRelics = props.relics.relics[0]["cavernRelics"].filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name)) }
+    if (props.relics.relics[0] !== undefined) { planarOrnaments = props.relics.relics[0]["planarOrnaments"].filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name)) }
+    let newRelics = cavernRelics.length > 0 || planarOrnaments.length > 0
 
     document.title = `Honkai: Star Rail ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
@@ -213,12 +203,10 @@ const VersionHighlights = (props) => {
 
 }
 
-const mapStateToProps = (state) => {
-    return {
-        characters: state.characters,
-        lightcones: state.lightcones,
-        relics: state.relics,
-    }
-}
+const mapStateToProps = (state) => ({
+    characters: state.characters,
+    lightcones: state.lightcones,
+    relics: state.relics,
+})
 
-export default connect(mapStateToProps)(VersionHighlights);
+export default connect(mapStateToProps)(VersionHighlights)
