@@ -3,6 +3,7 @@ import { useTheme } from "@mui/material/styles";
 import { Box, Table, TableBody, TableContainer, Toolbar, Typography, Paper } from "@mui/material";
 import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable"
 import CharacterRow from "./CharacterRow";
+import { createDateObject } from "../../helpers/dates";
 
 const CharacterList = (props) => {
 
@@ -16,7 +17,7 @@ const CharacterList = (props) => {
         setOrderBy(property);
     };
 
-    const rows = props.characters.map(char => createData(char.name, char.displayName, char.rarity, char.element, char.path, char.world, char.release.date, char.release.version, char.id));
+    const rows = props.characters.map(char => createData(char.name, char.displayName, char.rarity, char.element, char.path, char.world, createDateObject(char.release.date).date, char.release.version, char.id));
 
     return (
         <Box sx={{ width: "100%" }}>

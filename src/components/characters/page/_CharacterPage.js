@@ -12,6 +12,7 @@ import CharacterEidolonDisplay from "./CharacterEidolonDisplay";
 import CharacterStatsTable from "./CharacterStatsTable";
 import CharacterAscension from "./CharacterAscension";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+import { createDateObject } from "../../../helpers/dates";
 
 const CharacterPage = (props) => {
 
@@ -31,7 +32,7 @@ const CharacterPage = (props) => {
 
         const rows = [
             { key: "Faction", value: faction },
-            { key: "Release", value: `${release.date} (${release.version})` },
+            { key: "Release", value: `${release.date !== "" ? createDateObject(release.date).date : ""} (${release.version})` },
             { key: "Voice Actor (EN)", value: voiceActors["en"] },
             { key: "Voice Actor (JP)", value: voiceActors["jp"] },
         ]
