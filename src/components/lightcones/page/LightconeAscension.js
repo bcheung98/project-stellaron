@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Box } from "@mui/material";
-import { CustomSlider } from "../../../helpers/CustomSlider";
+import { CustomSlider } from "../../_custom/CustomSlider";
 import LightconeAscensionMaterials from "./LightconeAscensionMaterials";
 
 const LightconeAscension = (props) => {

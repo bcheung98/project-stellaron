@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Card, CardMedia, CardContent, ButtonBase, Box } from "@mui/material";
-import { CustomTooltip } from "../../helpers/CustomTooltip";
+import { CustomTooltip } from "../_custom/CustomTooltip";
 import { GetBackgroundColor, GetRarityColor } from "../../helpers/RarityColors";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 

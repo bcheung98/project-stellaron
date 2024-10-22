@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, ButtonBase, CardHeader, Typography, Avatar } from "@mui/material";
-import { StyledTableRows, StyledTableCellNoVert } from "../../helpers/CustomTable";
+import { StyledTableRows, StyledTableCellNoVert } from "../_custom/CustomTable";
 import { GetBackgroundColor } from "../../helpers/RarityColors";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 

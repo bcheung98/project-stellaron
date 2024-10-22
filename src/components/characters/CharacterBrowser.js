@@ -5,7 +5,7 @@ import { Box, Typography, Paper, InputBase, ToggleButtonGroup } from "@mui/mater
 import Grid from "@mui/material/Grid2";
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import ListSharpIcon from '@mui/icons-material/ListSharp';
-import { CustomToggleButton } from "../../helpers/CustomToggleButton";
+import { CustomToggleButton } from "../_custom/CustomToggleButton";
 import CharacterCard from "./CharacterCard";
 import CharacterList from "./CharacterList";
 import CharacterFilters from "./filters/_CharacterFilters";

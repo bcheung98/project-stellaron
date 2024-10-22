@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { CustomTooltip } from "../../../helpers/CustomTooltip";
+import { CustomTooltip } from "../../_custom/CustomTooltip";
 import { formatWeeklyBossMats } from "../../../helpers/TooltipText";
-import { WeeklyBossMats } from "../../../helpers/MaterialList";
+import { WeeklyBossMats } from "../../../data/MaterialList";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const CharacterWeeklyBossMatFilter = (props) => {

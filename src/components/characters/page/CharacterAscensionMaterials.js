@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
-import { CustomTooltip } from "../../../helpers/CustomTooltip";
+import { CustomTooltip } from "../../_custom/CustomTooltip";
 import { formatCommonMats } from "../../../helpers/TooltipText";
 import { Backgrounds } from "../../../helpers/Backgrounds";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";

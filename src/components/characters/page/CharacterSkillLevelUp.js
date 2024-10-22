@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Box } from "@mui/material";
-import { CustomSlider } from "../../../helpers/CustomSlider";
-import { Accordion, AccordionDetails, AccordionSummary } from "../../../helpers/CustomAccordion";
+import { CustomSlider } from "../../_custom/CustomSlider";
+import { Accordion, AccordionDetails, AccordionSummary } from "../../_custom/CustomAccordion";
 import CharacterSkillLevelUpMaterials from "./CharacterSkillLevelUpMaterials";
 
 const CharacterSkillLevelUp = (props) => {

@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
-import { CustomSlider } from "../../helpers/CustomSlider";
+import { CustomSlider } from "../_custom/CustomSlider";
 
 const LightconeAscensionLevel = (props) => {
 

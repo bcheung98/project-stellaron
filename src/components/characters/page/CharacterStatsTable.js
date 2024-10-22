@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Table, TableBody, TableContainer, TableHead, Paper, Typography } from "@mui/material";
-import { StyledTableCell, StyledTableRows } from "../../../helpers/CustomTable";
+import { StyledTableCell, StyledTableRows } from "../../_custom/CustomTable";
 
 const CharacterStatsTable = (props) => {
 

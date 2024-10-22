@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { CustomTooltip } from "../../../helpers/CustomTooltip";
+import { CustomTooltip } from "../../_custom/CustomTooltip";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const Worlds = ["Astral Express", "Stellaron Hunters", "Herta Space Station", "Jarilo-VI", "The Xianzhou Alliance", "Penacony", "Interastral Peace Corporation", "Cosmic"]

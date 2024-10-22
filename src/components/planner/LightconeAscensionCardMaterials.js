@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { CustomTooltip } from "../../helpers/CustomTooltip";
+import { CustomTooltip } from "../_custom/CustomTooltip";
 import { formatCalyxMats, formatCommonMats } from "../../helpers/TooltipText";
 import { Backgrounds } from "../../helpers/Backgrounds";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";

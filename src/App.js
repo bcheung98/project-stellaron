@@ -20,14 +20,11 @@ import LightconePage from "./components/lightcones/page/_LightconePage"
 import RelicBrowser from "./components/relics/RelicBrowser"
 import AscensionPlanner from "./components/planner/_AscensionPlanner"
 import BannerArchive from "./components/banners/BannerArchive"
+import ScrollTopFab from "./components/_custom/ScrollTopFab"
 
 // MUI imports
 import theme from "./themes/theme"
-import { ThemeProvider } from "@mui/material/styles"
-import { Box } from "@mui/material"
-
-// Helper imports
-import ScrollTopFab from "./helpers/ScrollTopFab"
+import { Box, ThemeProvider } from "@mui/material"
 
 function App(props) {
 

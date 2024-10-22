@@ -5,8 +5,8 @@ import { connect } from "react-redux"
 import CharacterCard from "./characters/CharacterCard"
 import LightconeCard from "./lightcones/LightconeCard"
 import RelicCard from "./relics/RelicCard"
-import { CustomInput } from "../helpers/CustomInput"
-import { CustomMenuItem } from "../helpers/CustomMenu"
+import { CustomInput } from "./_custom/CustomInput"
+import { CustomMenuItem } from "./_custom/CustomMenu"
 
 // MUI imports
 import { useTheme, Box, Typography, Select, AppBar, CardHeader, IconButton } from "@mui/material"

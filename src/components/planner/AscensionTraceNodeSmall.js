@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import parse from "html-react-parser";
 import { Typography, Avatar } from "@mui/material";
-import { CustomTooltip } from "../../helpers/CustomTooltip";
+import { CustomTooltip } from "../_custom/CustomTooltip";
 
 const AscensionTraceNodeSmall = (props) => {
 

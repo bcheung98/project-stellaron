@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Table, TableBody, TableContainer, Toolbar, Typography, Paper } from "@mui/material";
-import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable";
+import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable"
 import CharacterRow from "./CharacterRow";
 
 const CharacterList = (props) => {

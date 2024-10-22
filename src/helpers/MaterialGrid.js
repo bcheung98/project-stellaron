@@ -2,7 +2,7 @@ import React from "react";
 import { useTheme } from "@mui/material/styles";
 import Grid from "@mui/material/Grid2";
 import { Box } from "@mui/material";
-import { CustomTooltip } from "./CustomTooltip";
+import { CustomTooltip } from "../components/_custom/CustomTooltip";
 import { formatCommonMats, formatWeeklyBossMats } from "./TooltipText";
 import ErrorLoadingImage from "./ErrorLoadingImage";
 

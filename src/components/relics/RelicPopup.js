@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, AppBar, Typography, Avatar } from "@mui/material";
-import { TabPanel, StyledTabs, StyledTab } from "../../helpers/CustomTabs";
+import { TabPanel, StyledTabs, StyledTab } from "../_custom/CustomTabs";
 import { GetRarityColor } from "../../helpers/RarityColors";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 

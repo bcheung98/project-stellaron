@@ -5,8 +5,8 @@ import { Box, Typography, Autocomplete, ClickAwayListener, CardHeader } from "@m
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import CloseIcon from "@mui/icons-material/Close";
 import DoneIcon from "@mui/icons-material/Done";
-import { Button, PopperComponent, StyledPopper, StyledInput } from "../../helpers/CustomAutocomplete";
-import { CustomTooltip } from "../../helpers/CustomTooltip";
+import { Button, PopperComponent, StyledPopper, StyledInput } from "../_custom/CustomAutocomplete";
+import { CustomTooltip } from "../_custom/CustomTooltip";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 
 const CharacterSelector = (props) => {

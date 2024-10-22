@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { CustomTooltip } from "../../../helpers/CustomTooltip";
-import { BossMats } from "../../../helpers/MaterialList";
+import { CustomTooltip } from "../../_custom/CustomTooltip";
+import { BossMats } from "../../../data/MaterialList";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const BossMatFilter = (props) => {

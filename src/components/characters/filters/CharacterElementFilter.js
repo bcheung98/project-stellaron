@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { CustomTooltip } from "../../../helpers/CustomTooltip";
+import { CustomTooltip } from "../../_custom/CustomTooltip";
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
 
 const Elements = ["Physical", "Fire", "Ice", "Lightning", "Wind", "Quantum", "Imaginary"]

@@ -2,8 +2,8 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography } from "@mui/material";
-import { CustomSlider } from "../../helpers/CustomSlider";
-import { CustomSwitch } from "../../helpers/CustomSwitch";
+import { CustomSlider } from "../_custom/CustomSlider";
+import { CustomSwitch } from "../_custom/CustomSwitch";
 
 const CharacterAscensionLevel = (props) => {
 

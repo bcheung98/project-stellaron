@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Typography, Paper } from "@mui/material";
-import { Accordion, AccordionDetails, AccordionSummary } from "../../../helpers/CustomAccordion";
+import { Accordion, AccordionDetails, AccordionSummary } from "../../_custom/CustomAccordion";
 import LightconePathFilter from "./LightconePathFilter";
 import LightconeRarityFilter from "./LightconeRarityFilter";
 import LightconeCalyxMatFilter from "./LightconeCalyxMatFilter";

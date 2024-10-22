@@ -2,8 +2,8 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import parse from "html-react-parser";
 import { Typography, Box, Dialog } from "@mui/material";
-import { CustomSlider } from "../../../helpers/CustomSlider";
-import Keywords from "../../../helpers/Keywords";
+import { CustomSlider } from "../../_custom/CustomSlider";
+import Keywords from "../../../data/Keywords";
 import CharacterSkillLevelUp from "./CharacterSkillLevelUp";
 
 const CharacterSkillTab = (props) => {

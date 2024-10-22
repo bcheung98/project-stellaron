@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Table, TableBody, TableContainer, Toolbar, Typography, Paper } from "@mui/material";
-import { EnhancedTableHead, getComparator, stableSort } from "../../helpers/CustomSortTable";
+import { EnhancedTableHead, getComparator, stableSort } from "../_custom/CustomSortTable";
 import LightconeRow from "./LightconeRow";
-import { LightconeStats } from "../../helpers/LightconeStats";
+import { LightconeStats } from "../../data/LightconeStats";
 
 const LightconeList = (props) => {
 

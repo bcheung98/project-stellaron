@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography, CardHeader, ButtonBase } from "@mui/material";
-import { CustomTooltip } from "../../helpers/CustomTooltip";
-import { Accordion, AccordionDetails, AccordionSummary } from "../../helpers/CustomAccordion";
+import { CustomTooltip } from "../_custom/CustomTooltip";
+import { Accordion, AccordionDetails, AccordionSummary } from "../_custom/CustomAccordion";
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
 import LightconeAscensionCardMaterials from "./LightconeAscensionCardMaterials";
 import LightconeAscensionLevel from "./LightconeAscensionLevel";
