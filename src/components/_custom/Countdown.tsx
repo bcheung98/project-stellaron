@@ -36,6 +36,12 @@ function Countdown(props: { date: { obj: Date, date: string, time: string } }) {
     let minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60))
     let seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000)
 
+    const countdownArr = []
+    days > 0 && countdownArr.push(`${days}d`)
+    days + hours > 0 && countdownArr.push(`${hours}h`)
+    days + hours + minutes > 0 && countdownArr.push(`${minutes}m`)
+    countdownArr.push(`${seconds}s`)
+
     return (
         <Typography sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: "14px", my: "10px" }}>
             {
@@ -43,7 +49,7 @@ function Countdown(props: { date: { obj: Date, date: string, time: string } }) {
                     <React.Fragment>
                         {`Ends in `}
                         <CustomTooltip title={`${props.date.date} ${props.date.time}`} arrow placement="bottom">
-                            <span style={{ textDecoration: "underline dotted", cursor: "help" }}>{`${days}d ${hours}h ${minutes}m ${seconds}s`}</span>
+                            <span style={{ textDecoration: "underline dotted", cursor: "help" }}>{countdownArr.join(" ")}</span>
                         </CustomTooltip>
                     </React.Fragment>
                     :
