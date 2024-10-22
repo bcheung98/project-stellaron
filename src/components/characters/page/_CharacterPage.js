@@ -36,9 +36,7 @@ const CharacterPage = (props) => {
             { key: "Voice Actor (JP)", value: voiceActors["jp"] },
         ]
 
-        if (character.displayName) document.title = `${character.displayName} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
-        if (character.fullName) document.title = `${character.fullName} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
-        if (!character.displayName && !character.fullName) document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
+        character.displayName ? document.title = `${character.displayName} ${process.env.REACT_APP_DOCUMENT_HEADER}` : document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
 
         return (
             <React.Fragment>
@@ -120,32 +118,26 @@ const CharacterPage = (props) => {
                                         </CustomTooltip>
                                         <Box>
                                             <Typography
-                                                variant="h4"
-                                                noWrap
                                                 sx={{
-                                                    mt: "5px",
-                                                    display: "flex",
+                                                    fontFamily: `${theme.font.styled.family}`,
+                                                    fontSize: { xs: "26px", sm: "34px" },
                                                     color: `${theme.text.color}`,
-                                                    textDecoration: "none",
-                                                    textAlign: "center",
                                                 }}
                                             >
-                                                {character.displayName && character.displayName}
-                                                {character.fullName && character.fullName}
-                                                {!character.displayName && !character.fullName && name}
+                                                {character.displayName ? character.displayName : name}
                                             </Typography>
                                             <CardHeader
                                                 avatar={
-                                                    <img src={`${process.env.REACT_APP_URL}/paths/The_${path}.png`} alt={path} style={{ height: "36px", marginLeft: "-5px" }} onError={ErrorLoadingImage} />
+                                                    <img src={`${process.env.REACT_APP_URL}/paths/The_${path}.png`} alt={path} style={{ width: "40px", height: "40px" }} onError={ErrorLoadingImage} />
                                                 }
                                                 title={
-                                                    <Typography sx={{ ml: "-10px", mb: "3px", color: `${theme.text.color}` }} variant="subtitle1">
+                                                    <Typography sx={{ color: `${theme.text.color}`, fontSize: { xs: "16px", sm: "18px" } }} >
                                                         The {path}
                                                     </Typography>
                                                 }
                                                 sx={{ px: 0, py: 1 }}
                                             />
-                                            <Typography sx={{ mt: "-10px", color: "rgb(255, 208, 112)", fontSize: "30px", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }}>
+                                            <Typography sx={{ mt: "-5px", color: "rgb(255, 208, 112)", fontSize: "30px", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }}>
                                                 {[...Array(rarity).keys()].map(() => "✦")}
                                             </Typography>
                                         </Box>
@@ -154,10 +146,10 @@ const CharacterPage = (props) => {
                             </Grid>
                             <hr style={{ border: `0.5px solid ${theme.border.color}`, margin: "10px 15px 15px 15px" }} />
                             <Typography
-                                variant="body1"
                                 sx={{
                                     mb: "20px",
                                     mx: "25px",
+                                    fontSize: { xs: "13px", sm: "15px" },
                                     color: `${theme.text.color}`,
                                 }}
                             >

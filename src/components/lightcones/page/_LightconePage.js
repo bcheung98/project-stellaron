@@ -96,30 +96,26 @@ const LightconePage = (props) => {
                             <Box sx={{ display: "flex", alignItems: "center" }}>
                                 <Box sx={{ ml: "10px", mt: "5px" }}>
                                     <Typography
-                                        variant="h4"
-                                        noWrap
                                         sx={{
-                                            mt: "5px",
-                                            display: "flex",
+                                            fontFamily: `${theme.font.styled.family}`,
+                                            fontSize: { xs: "26px", sm: "34px" },
                                             color: `${theme.text.color}`,
-                                            textDecoration: "none",
-                                            textAlign: "center",
                                         }}
                                     >
                                         {lightcone.displayName ? lightcone.displayName : name}
                                     </Typography>
                                     <CardHeader
                                         avatar={
-                                            <img src={`${process.env.REACT_APP_URL}/paths/The_${path}.png`} alt={path} style={{ height: "36px", marginLeft: "-5px" }} onError={ErrorLoadingImage} />
+                                            <img src={`${process.env.REACT_APP_URL}/paths/The_${path}.png`} alt={path} style={{ width: "40px", height: "40px" }} onError={ErrorLoadingImage} />
                                         }
                                         title={
-                                            <Typography sx={{ ml: "-10px", mb: "3px", color: `${theme.text.color}` }} variant="subtitle1">
+                                            <Typography sx={{ color: `${theme.text.color}`, fontSize: { xs: "16px", sm: "18px" } }} >
                                                 The {path}
                                             </Typography>
                                         }
                                         sx={{ px: 0, py: 1 }}
                                     />
-                                    <Typography sx={{ mt: "-10px", color: "rgb(255, 208, 112)", fontSize: "30px", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }}>
+                                    <Typography sx={{ mt: "-5px", color: "rgb(255, 208, 112)", fontSize: "30px", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }}>
                                         {[...Array(rarity).keys()].map(() => "✦")}
                                     </Typography>
                                 </Box>
@@ -136,17 +132,17 @@ const LightconePage = (props) => {
                                 color: `${theme.text.color}`,
                             }}
                         >
-                            <Typography sx={{ mx: "15px" }} variant="body2">
+                            <Typography sx={{ mx: "15px", fontSize: "15px" }}>
                                 <i>The following effects only work on characters of the Path of The {path}.</i>
                             </Typography>
-                            <Typography sx={{ mx: "15px", mt: "20px" }} variant="h5">
+                            <Typography sx={{ mx: "15px", mt: "20px", fontSize: "24px" }}>
                                 {passive.name}
                             </Typography>
-                            <Typography sx={{ mx: "15px", mt: "10px" }} variant="body1">
+                            <Typography sx={{ mx: "15px", mt: "10px" }} >
                                 {parse(passive.effect)}
                             </Typography>
                             <Box sx={{ display: "flex", alignItems: "center", width: "20%", mt: "15px", mx: "15px", }}>
-                                <Typography variant="h6" sx={{ color: `${theme.text.color}`, minWidth: "50px" }}>
+                                <Typography sx={{ color: `${theme.text.color}`, minWidth: "50px", fontSize: "20px" }}>
                                     S{sliderValue}
                                 </Typography>
                                 <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} />
