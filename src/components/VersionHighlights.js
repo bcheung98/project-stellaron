@@ -2,8 +2,7 @@ import * as React from "react"
 import { connect } from "react-redux"
 
 // Component imports
-import CharacterCard from "./characters/CharacterCard"
-import LightconeCard from "./lightcones/LightconeCard"
+import CustomCard from "./_custom/CustomCard"
 import RelicCard from "./relics/RelicCard"
 import { CustomInput } from "./_custom/CustomInput"
 import { CustomMenuItem } from "./_custom/CustomMenu"
@@ -17,7 +16,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight"
 // Helper imports
 import { updates } from "../data/versions"
 
-const VersionHighlights = (props) => {
+function VersionHighlights(props) {
 
     const theme = useTheme()
 
@@ -121,35 +120,27 @@ const VersionHighlights = (props) => {
                     {updates[index].version} - <i>{updates[index].name}</i>
                 </Typography>
 
-                <Grid container spacing={10}>
-
+                <Grid container spacing={5}>
                     {
+                        // NEW CHARACTERS
                         characters.length > 0 || newRelics ?
-                            <Grid size="grow">
-                                {
-                                    // NEW CHARACTERS
-                                    characters.length > 0 &&
-                                    <Box sx={{ mb: "25px" }}>
-                                        <CardHeader
-                                            avatar={<img src={`${process.env.REACT_APP_URL}/icons/Character.png`} alt="New Characters" style={{ width: "40px", marginRight: "-5px" }} />}
-                                            title={
-                                                <Typography variant="h6">
-                                                    New Characters
-                                                </Typography>
-                                            }
-                                            sx={{ p: 0, mb: "30px" }}
-                                        />
-                                        <Grid container spacing={2}>
-                                            {characters.sort((a, b) => a.id > b.id ? 1 : -1).map((char, index) => <CharacterCard key={index} character={char} />)}
-                                        </Grid>
-                                        <br />
-                                    </Box>
-                                }
-
+                            <Grid size={{ sm: 12, md: 6 }}>
+                                <CardHeader
+                                    avatar={<img src={`${process.env.REACT_APP_URL}/icons/Character.png`} alt="New Characters" style={{ width: "40px", marginRight: "-5px" }} />}
+                                    title={
+                                        <Typography variant="h6">
+                                            New Characters
+                                        </Typography>
+                                    }
+                                    sx={{ p: 0, mb: "30px" }}
+                                />
+                                <Grid container spacing={2}>
+                                    {characters.sort((a, b) => a.id > b.id ? 1 : -1).map((char, index) => <CustomCard key={index} name={char.name} displayName={char.displayName} type="character" variant="avatar" rarity={char.rarity} size="192px" showInfo info={{ element: char.element, path: char.path }} />)}
+                                </Grid>
                                 {
                                     // NEW RELICS
                                     newRelics &&
-                                    <Box>
+                                    <Box sx={{ mt: characters.length > 0 ? "50px" : "0px" }}>
                                         <CardHeader
                                             avatar={<img src={`${process.env.REACT_APP_URL}/icons/Relic.png`} alt="New Relics" style={{ width: "40px", marginRight: "-5px" }} />}
                                             title={
@@ -168,16 +159,14 @@ const VersionHighlights = (props) => {
                                         </Grid>
                                     </Box>
                                 }
-
                             </Grid>
                             :
                             null
                     }
-
                     {
                         // NEW LIGHT CONES
                         lightcones.length > 0 &&
-                        <Grid size={6}>
+                        <Grid size={{ sm: 12, md: "grow" }}>
                             <CardHeader
                                 avatar={<img src={`${process.env.REACT_APP_URL}/icons/Lightcone.png`} alt="New Lightcones" style={{ width: "40px", marginRight: "-5px" }} />}
                                 title={
@@ -189,12 +178,11 @@ const VersionHighlights = (props) => {
                             />
                             <Grid container spacing={2}>
                                 {
-                                    lightcones.sort((a, b) => a.rarity < b.rarity ? 1 : -1).sort((a, b) => a.rarity < b.rarity ? 1 : -1).map((lc, index) => <LightconeCard key={index} lightcone={lc} />)
+                                    lightcones.sort((a, b) => a.rarity < b.rarity ? 1 : -1).sort((a, b) => a.rarity < b.rarity ? 1 : -1).map((lc, index) => <CustomCard key={index} name={lc.name} displayName={lc.displayName} type="lightcone" variant="avatar" rarity={lc.rarity} size="192px" showInfo info={{ path: lc.path }} />)
                                 }
                             </Grid>
                         </Grid>
                     }
-
                 </Grid>
             </Box>
             <br />

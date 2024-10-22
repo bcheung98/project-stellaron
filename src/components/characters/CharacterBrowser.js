@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid2";
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import ListSharpIcon from '@mui/icons-material/ListSharp';
 import { CustomToggleButton } from "../_custom/CustomToggleButton";
-import CharacterCard from "./CharacterCard";
+import CustomCard from "../_custom/CustomCard";
 import CharacterList from "./CharacterList";
 import CharacterFilters from "./filters/_CharacterFilters";
 import { filterCharacters } from "../../helpers/FilterCharacters";
@@ -69,7 +69,7 @@ const CharacterBrowser = (props) => {
                                 {
                                     view === "grid" ?
                                         <Grid container spacing={2}>
-                                            {filterCharacters(characters.characters, characterFilters, searchValue).map(char => <CharacterCard key={char.id} character={char} showMaterials />)}
+                                            {filterCharacters(characters.characters, characterFilters, searchValue).map(char => <CustomCard key={char.id} name={char.name} displayName={char.displayName} type="character" variant="avatar" rarity={char.rarity} size="192px" showInfo info={{ element: char.element, path: char.path }} disableTooltip />)}
                                         </Grid>
                                         :
                                         <CharacterList characters={filterCharacters(characters.characters, characterFilters, searchValue)} />

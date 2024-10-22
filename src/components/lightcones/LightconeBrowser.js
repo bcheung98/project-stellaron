@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid2";
 import AppsSharpIcon from '@mui/icons-material/AppsSharp';
 import ListSharpIcon from '@mui/icons-material/ListSharp';
 import { CustomToggleButton } from "../_custom/CustomToggleButton";
-import LightconeCard from "./LightconeCard";
+import CustomCard from "../_custom/CustomCard";
 import LightconeFilters from "./filters/_LightconeFilters";
 import { filterLightcones } from "../../helpers/FilterLightcones";
 import LightconeList from "./LightconeList";
@@ -69,7 +69,7 @@ const LightconeBrowser = (props) => {
                             {
                                 view === "grid" ?
                                     <Grid container spacing={2}>
-                                        {filterLightcones(lightcones.lightcones, lightconeFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(lightcone => <LightconeCard key={lightcone.id} lightcone={lightcone} />)}
+                                        {filterLightcones(lightcones.lightcones, lightconeFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(lightcone => <CustomCard key={lightcone.id} name={lightcone.name} displayName={lightcone.displayName} type="lightcone" variant="avatar" rarity={lightcone.rarity} size="192px" showInfo info={{ path: lightcone.path }} />)}
                                     </Grid>
                                     :
                                     <LightconeList lightcones={filterLightcones(lightcones.lightcones, lightconeFilters, searchValue)} />
