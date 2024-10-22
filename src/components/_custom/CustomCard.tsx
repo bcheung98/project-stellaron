@@ -8,6 +8,7 @@ import { useTheme, SxProps, Typography, ButtonBase, Box, Card } from "@mui/mater
 
 // Helper imports
 import { GetRarityColor, GetBackgroundColor } from "../../helpers/RarityColors"
+import { formatCommonMats, formatWeeklyBossMats } from "../../helpers/TooltipText"
 import zoomImageOnHover from "../../helpers/zoomImageOnHover"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
@@ -24,6 +25,12 @@ interface CustomCardProps {
         element?: string,
         path?: string
     },
+    materials?: {
+        calyxMat?: string,
+        commonMat?: string,
+        bossMat?: string,
+        weeklyBossMat?: string
+    },
     disableTooltip?: boolean,
     disableLink?: boolean,
     disableZoomOnHover?: boolean
@@ -39,6 +46,7 @@ function CustomCard({
     size = variant === "icon" ? "64px" : "188px",
     showName = variant === "avatar" ? true : false,
     info,
+    materials,
     disableTooltip = showName,
     disableLink = false,
     disableZoomOnHover = false
@@ -85,7 +93,7 @@ function CustomCard({
     const cardStyle: SxProps = {
         width: size,
         height: "auto",
-        background: backgroundColor(),
+        background: theme.materialImage.backgroundColor,
         border: "solid",
         borderWidth: variant === "icon" ? "2px" : "1px",
         borderColor: variant === "icon" ? GetRarityColor(rarity) : theme.border.color,
@@ -104,6 +112,15 @@ function CustomCard({
         transform: variant === "avatar" && type === "character" ? "translate(0px, -10px)" : "translate(0px, 0px)",
     }
 
+    const materialImageStyle: React.CSSProperties = {
+        width: `calc(${size} / 5.5)`,
+        border: `1px solid ${theme.border.color}`,
+        borderRadius: "5px",
+        backgroundColor: `${theme.paper.backgroundColor}`,
+        padding: "2px",
+        boxSizing: "border-box",
+    }
+
     const smallIconStyle: React.CSSProperties = {
         width: `calc(${size} / 5.25)`,
         height: `calc(${size} / 5.25)`,
@@ -118,93 +135,133 @@ function CustomCard({
     }
 
     return (
-        <Card
-            sx={cardStyle}
-            onMouseEnter={() => handleHover("enter")}
-            onMouseLeave={() => handleHover("leave")}
-        >
-            {
-                info &&
+        <Card sx={cardStyle}>
+            <Box
+                sx={{ background: backgroundColor() }}
+                onMouseEnter={() => handleHover("enter")}
+                onMouseLeave={() => handleHover("leave")}
+            >
+                {
+                    info &&
+                    <Box
+                        sx={{
+                            display: "grid",
+                            position: "absolute",
+                            zIndex: 5,
+                            top: "10px",
+                            left: "10px",
+                        }}
+                    >
+                        {
+                            info.element !== undefined &&
+                            <CustomTooltip title={info.element} arrow placement="top">
+                                <img style={smallIconStyle} src={`${process.env.REACT_APP_URL}/elements/Element_${info.element}.png`} alt={info.element} onError={ErrorLoadingImage} />
+                            </CustomTooltip>
+                        }
+                        {
+                            info.path !== undefined &&
+                            <CustomTooltip title={info.path} arrow placement="top">
+                                <img style={smallIconStyle} src={`${process.env.REACT_APP_URL}/paths/The_${info.path}.png`} alt={info.path} onError={ErrorLoadingImage} />
+                            </CustomTooltip>
+                        }
+                    </Box>
+                }
+                <ButtonBase disableRipple href={href} target="_blank">
+                    <CustomTooltip title={!disableTooltip ? displayName : ""} arrow placement="top">
+                        <img
+                            src={imageURL} alt={name}
+                            id={`${id}-card-image`}
+                            style={cardImageStyle}
+                            loading="lazy"
+                            onError={ErrorLoadingImage}
+                        />
+                    </CustomTooltip>
+                </ButtonBase>
                 <Box
                     sx={{
-                        display: "grid",
-                        position: "absolute",
-                        zIndex: 5,
-                        top: "10px",
-                        left: "10px",
+                        mt: variant === "avatar" && type === "lightcone" ? "50px" : "0px",
+                        borderBottom: variant === "icon" ? "none" : `calc(${size} / 25) solid ${GetRarityColor(rarity)}`,
+                        position: "relative"
                     }}
                 >
                     {
-                        info.element !== undefined &&
-                        <CustomTooltip title={info.element} arrow placement="top">
-                            <img style={smallIconStyle} src={`${process.env.REACT_APP_URL}/elements/Element_${info.element}.png`} alt={info.element} onError={ErrorLoadingImage} />
+                        showName &&
+                        <Box>
+                            <ButtonBase disableRipple href={href} target="_blank"
+                                sx={{
+                                    position: "absolute",
+                                    bottom: "50%",
+                                    left: "50%",
+                                    transform: "translate(-50%, 0%)",
+                                    width: "95%"
+                                }}
+                            >
+                                <Typography
+                                    sx={{
+                                        color: `white`,
+                                        fontSize: type === "character" ? "20px" : "16.5px",
+                                        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                                        textAlign: "center",
+                                    }}
+                                >
+                                    {displayName}
+                                    <br />
+                                    <Typography
+                                        component="span"
+                                        sx={{
+                                            color: `rgb(255, 208, 112)`,
+                                            fontSize: "20px",
+                                            textShadow: "#e3721b 1px 1px 10px",
+                                            userSelect: "none",
+                                            textAlign: "center"
+                                        }}
+                                    >
+                                        {[...Array(rarity).keys()].map(() => "✦")}
+                                    </Typography>
+                                </Typography>
+                            </ButtonBase>
+                        </Box>
+                    }
+                </Box>
+            </Box>
+            {
+                materials !== undefined &&
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "space-evenly",
+                        height: `calc(${size} / 5.5)`,
+                        px: 1,
+                        py: 1.5,
+                        overflow: "hidden",
+                    }}
+                >
+                    {
+                        materials.calyxMat &&
+                        <CustomTooltip title={materials.calyxMat} arrow placement="top">
+                            <img src={`${process.env.REACT_APP_URL}/materials/calyx_mats/${materials.calyxMat.split(" ").join("_")}3.png`} alt={materials.calyxMat} style={materialImageStyle} onError={ErrorLoadingImage} />
                         </CustomTooltip>
                     }
                     {
-                        info.path !== undefined &&
-                        <CustomTooltip title={info.path} arrow placement="top">
-                            <img style={smallIconStyle} src={`${process.env.REACT_APP_URL}/paths/The_${info.path}.png`} alt={info.path} onError={ErrorLoadingImage} />
+                        materials.commonMat &&
+                        <CustomTooltip title={formatCommonMats(materials.commonMat)} arrow placement="top">
+                            <img src={`${process.env.REACT_APP_URL}/materials/common_mats/${materials.commonMat.split(" ").join("_")}3.png`} alt={materials.commonMat} style={materialImageStyle} onError={ErrorLoadingImage} />
+                        </CustomTooltip>
+                    }
+                    {
+                        materials.bossMat &&
+                        <CustomTooltip title={materials.bossMat} arrow placement="top">
+                            <img src={`${process.env.REACT_APP_URL}/materials/boss_mats/${materials.bossMat.split(" ").join("_")}.png`} alt={materials.bossMat} style={materialImageStyle} onError={ErrorLoadingImage} />
+                        </CustomTooltip>
+                    }
+                    {
+                        materials.weeklyBossMat &&
+                        <CustomTooltip title={formatWeeklyBossMats(materials.weeklyBossMat)} arrow placement="top">
+                            <img src={`${process.env.REACT_APP_URL}/materials/weekly_boss_mats/${materials.weeklyBossMat.split(" ").join("_")}.png`} alt={materials.weeklyBossMat} style={materialImageStyle} onError={ErrorLoadingImage} />
                         </CustomTooltip>
                     }
                 </Box>
             }
-            <ButtonBase disableRipple href={href} target="_blank">
-                <CustomTooltip title={!disableTooltip ? displayName : ""} arrow placement="top">
-                    <img
-                        src={imageURL} alt={name}
-                        id={`${id}-card-image`}
-                        style={cardImageStyle}
-                        loading="lazy"
-                        onError={ErrorLoadingImage}
-                    />
-                </CustomTooltip>
-            </ButtonBase>
-            <Box
-                sx={{
-                    mt: variant === "icon" ? "0px" : `${type === "character" ? "-10px" : "50px"}`,
-                    borderBottom: variant === "icon" ? "none" : `calc(${size} / 25) solid ${GetRarityColor(rarity)}`,
-                }}
-            >
-                {
-                    showName &&
-                    <Box>
-                        <ButtonBase disableRipple href={href} target="_blank"
-                            sx={{
-                                position: "absolute",
-                                bottom: "3%",
-                                left: "50%",
-                                transform: "translate(-50%, 0%)",
-                                width: "95%"
-                            }}
-                        >
-                            <Typography
-                                sx={{
-                                    color: `white`,
-                                    fontSize: type === "character" ? "20px" : "16.5px",
-                                    textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                                    textAlign: "center",
-                                }}
-                            >
-                                {displayName}
-                                <br />
-                                <Typography
-                                    component="span"
-                                    sx={{
-                                        color: `rgb(255, 208, 112)`,
-                                        fontSize: "20px",
-                                        textShadow: "#e3721b 1px 1px 10px",
-                                        userSelect: "none",
-                                        textAlign: "center"
-                                    }}
-                                >
-                                    {[...Array(rarity).keys()].map(() => "✦")}
-                                </Typography>
-                            </Typography>
-                        </ButtonBase>
-
-                    </Box>
-                }
-            </Box>
         </Card>
     )
 
