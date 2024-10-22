@@ -33,8 +33,8 @@ function BannerRow(props: {
                     {`${version} Phase ${subVersion.split(".")[2]}: ${start.date} — ${end.date}`}
                 </Typography>
                 <Grid container spacing={0.75}>
-                    {fiveStars.map((item: string, index: number) => <CustomCard key={index} type={type} name={item} variant="icon" rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
-                    {fourStars.map((item: string, index: number) => <CustomCard key={index} type={type} name={item} variant="icon" rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
+                    {fiveStars.map((item: string, index: number) => <CustomCard key={index} id={`${item}-${subVersion}`.toLowerCase()} name={item} type={type} variant="icon" rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
+                    {fourStars.map((item: string, index: number) => <CustomCard key={index} id={`${item}-${subVersion}`.toLowerCase()} name={item} type={type} variant="icon" rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
                 </Grid>
             </StyledTableCellNoVert>
         </TableRow>
