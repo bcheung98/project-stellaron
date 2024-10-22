@@ -19,7 +19,7 @@ const CharacterRow = (props) => {
                     <CardHeader
                         avatar={
                             <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${row.name.split(" ").join("_").toLowerCase()}`} target="_blank">
-                                <img alt={row.name} src={(`${process.env.REACT_APP_URL}/characters/icons/${row.name.split(" ").join("_")}.png`)} style={{ width: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
+                                <img alt={row.name} src={(`${process.env.REACT_APP_URL}/characters/icons/${row.name.split(" ").join("_")}.png`)} style={{ width: "48px", borderRadius: "48px", cursor: "pointer" }} onError={ErrorLoadingImage} />
                             </ButtonBase>
                         }
                         title={

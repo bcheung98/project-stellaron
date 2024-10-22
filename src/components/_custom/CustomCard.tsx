@@ -42,7 +42,7 @@ function CustomCard({
     const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
     let imageURL
-    if (type === "character") { imageURL = `${process.env.REACT_APP_URL}/characters/avatars/${name.split(" ").join("_")}.png` }
+    if (type === "character") { imageURL = `${process.env.REACT_APP_URL}/characters/icons/${name.split(" ").join("_")}.png` }
     if (type === "lightcone") { imageURL = `${process.env.REACT_APP_URL}/lightcones/${lightconeSize}/${name.split(" ").join("_")}.png` }
 
     const href = disableLink ? "" : `${process.env.REACT_APP_BASENAME}/${type}s/${name.split(" ").join("_").toLowerCase()}`
@@ -65,7 +65,6 @@ function CustomCard({
         boxSizing: "content-box",
         boxShadow: variant === "icon" ? `inset 0 0 30px 5px ${GetBackgroundColor(rarity)}` : "none",
         objectFit: "contain",
-        transform: variant === "icon" && type === "character" ? `scale(2.75) translate(0px, 14px)` : "none"
     }
 
     return (
