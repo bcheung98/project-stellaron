@@ -75,8 +75,8 @@ function CurrentBanners(props: any) {
                                         Character Event Wish
                                     </Typography>
                                     <Grid container spacing={0.75}>
-                                        {currentCharacterBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
-                                        {currentCharacterBanners[0].fourStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
+                                        {currentCharacterBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} id={`${item}-currentBanner`} type="character" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
+                                        {currentCharacterBanners[0].fourStars.map((item: string, index: number) => <CustomCard key={index} id={`${item}-currentBanner`} type="character" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
                                     </Grid>
                                     <Countdown date={createDateObject(currentCharacterBanners[0].end)} />
                                 </Grid>
@@ -88,8 +88,8 @@ function CurrentBanners(props: any) {
                                         Weapon Event Wish
                                     </Typography>
                                     <Grid container spacing={0.75}>
-                                        {currentlightconeBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} type="lightcone" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
-                                        {currentlightconeBanners[0].fourStars.map((item: string, index: number) => <CustomCard key={index} type="lightcone" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
+                                        {currentlightconeBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} id={`${item}-currentBanner`} type="lightcone" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
+                                        {currentlightconeBanners[0].fourStars.map((item: string, index: number) => <CustomCard key={index} id={`${item}-currentBanner`} type="lightcone" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
                                     </Grid>
                                     <Countdown date={createDateObject(currentlightconeBanners[0].end)} />
                                 </Grid>

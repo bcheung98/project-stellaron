@@ -38,7 +38,7 @@ interface CustomCardProps {
 
 function CustomCard({
     name,
-    id = name.toLowerCase(),
+    id = name,
     displayName = name,
     type,
     rarity = 3,
@@ -53,6 +53,8 @@ function CustomCard({
 }: CustomCardProps) {
 
     const theme = useTheme()
+
+    id = id.split(" ").join("")
 
     const aspectRatio = () => {
         if (variant === "icon") {
