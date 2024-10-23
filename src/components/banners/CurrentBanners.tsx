@@ -6,7 +6,7 @@ import CustomCard from "../_custom/CustomCard"
 import Countdown from "../_custom/Countdown"
 
 // MUI imports
-import { useTheme, Box, Typography, AppBar, CircularProgress } from "@mui/material"
+import { useTheme, Box, Typography, AppBar, LinearProgress } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
@@ -96,14 +96,17 @@ function CurrentBanners(props: any) {
                             }
                         </Grid>
                         :
-                        <Box sx={{ m: "15px" }}>
-                            <Box sx={{ display: "flex", alignItems: "center", height: "40px" }}>
-                                <CircularProgress
+                        <Box>
+                            <Box sx={{ display: "flex", alignItems: "center" }}>
+                                <Box
                                     sx={{
                                         display: loading ? "block" : "none",
-                                        color: theme.border.color,
+                                        width: "100%",
+                                        color: theme.button.selected
                                     }}
-                                />
+                                >
+                                    <LinearProgress color="inherit" />
+                                </Box>
                                 <Typography
                                     sx={{
                                         display: !loading && !activeBanners ? "block" : "none",
