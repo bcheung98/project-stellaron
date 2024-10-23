@@ -3,9 +3,10 @@ import { connect } from "react-redux"
 
 // Component imports
 import CustomCard from "../_custom/CustomCard"
+import Countdown from "../_custom/Countdown"
 
 // MUI imports
-import { useTheme, Box, Typography, AppBar } from "@mui/material"
+import { useTheme, Box, Typography, AppBar, CircularProgress } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports
@@ -15,7 +16,6 @@ import { isTBA } from "../../helpers/isTBA"
 // Type imports
 import { RootState } from "../../redux/store"
 import { BannerData } from "../../types/banner/BannerData"
-import Countdown from "../_custom/Countdown"
 
 function CurrentBanners(props: any) {
 
@@ -27,6 +27,19 @@ function CurrentBanners(props: any) {
     const currentlightconeBanners = lightconeBanners.filter((banner: BannerData) => isCurrentBanner(createDateObject(banner.start).obj, createDateObject(banner.end).obj))
 
     const activeBanners = currentCharacterBanners.concat(currentlightconeBanners).length > 0
+    const [loading, setLoading] = React.useState(true)
+
+    React.useEffect(() => {
+        if (!activeBanners) {
+            const timer = setTimeout(() => {
+                setLoading(false)
+                clearTimeout(timer)
+            }, 5000)
+        }
+        else {
+            setLoading(false)
+        }
+    }, [activeBanners, setLoading])
 
     return (
         <Box
@@ -54,48 +67,63 @@ function CurrentBanners(props: any) {
             <Box sx={{ p: 2 }}>
                 {
                     activeBanners ?
-                        <React.Fragment>
-                            <Grid container rowSpacing={1} columnSpacing={5}>
-                                {
-                                    currentCharacterBanners.length > 0 &&
-                                    <Grid size={{ xs: 12, lg: "auto" }}>
-                                        <Typography sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: "20px", mb: "10px" }}>
-                                            Character Event Wish
-                                        </Typography>
-                                        <Grid container spacing={0.75}>
-                                            {currentCharacterBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
-                                            {currentCharacterBanners[0].fourStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
-                                        </Grid>
-                                        <Countdown date={createDateObject(currentCharacterBanners[0].end)} />
+                        <Grid container rowSpacing={1} columnSpacing={5}>
+                            {
+                                currentCharacterBanners.length > 0 &&
+                                <Grid size={{ xs: 12, lg: "auto" }}>
+                                    <Typography sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: "20px", mb: "10px" }}>
+                                        Character Event Wish
+                                    </Typography>
+                                    <Grid container spacing={0.75}>
+                                        {currentCharacterBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
+                                        {currentCharacterBanners[0].fourStars.map((item: string, index: number) => <CustomCard key={index} type="character" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
                                     </Grid>
-                                }
-                                {
-                                    currentlightconeBanners.length > 0 &&
-                                    <Grid size={{ xs: 12, lg: "grow" }}>
-                                        <Typography sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: "20px", mb: "10px" }}>
-                                            Weapon Event Wish
-                                        </Typography>
-                                        <Grid container spacing={0.75}>
-                                            {currentlightconeBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} type="lightcone" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
-                                            {currentlightconeBanners[0].fourStars.map((item: string, index: number) => <CustomCard key={index} type="lightcone" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
-                                        </Grid>
-                                        <Countdown date={createDateObject(currentlightconeBanners[0].end)} />
+                                    <Countdown date={createDateObject(currentCharacterBanners[0].end)} />
+                                </Grid>
+                            }
+                            {
+                                currentlightconeBanners.length > 0 &&
+                                <Grid size={{ xs: 12, lg: "grow" }}>
+                                    <Typography sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: "20px", mb: "10px" }}>
+                                        Weapon Event Wish
+                                    </Typography>
+                                    <Grid container spacing={0.75}>
+                                        {currentlightconeBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} type="lightcone" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
+                                        {currentlightconeBanners[0].fourStars.map((item: string, index: number) => <CustomCard key={index} type="lightcone" name={item} rarity={!isTBA(item) ? 4 : 1} disableLink={isTBA(item)} />)}
                                     </Grid>
-                                }
-                            </Grid>
-                        </React.Fragment>
+                                    <Countdown date={createDateObject(currentlightconeBanners[0].end)} />
+                                </Grid>
+                            }
+                        </Grid>
                         :
-                        // <React.Fragment>
-                        //     <Typography sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: "20px", mb: "10px" }}>
-                        //         There are no active banners
-                        //     </Typography>
-                        //     <img
-                        //         src={`${process.env.REACT_APP_URL}/emotes/error9.png`}
-                        //         alt="No Banners"
-                        //         style={{ width: "150px" }}
-                        //     />
-                        // </React.Fragment>
-                        null
+                        <Box sx={{ m: "15px" }}>
+                            <Box sx={{ display: "flex", alignItems: "center", height: "40px" }}>
+                                <CircularProgress
+                                    sx={{
+                                        display: loading ? "block" : "none",
+                                        color: theme.border.color,
+                                    }}
+                                />
+                                <Typography
+                                    sx={{
+                                        display: !loading && !activeBanners ? "block" : "none",
+                                        fontFamily: theme.font.styled.family,
+                                        fontSize: "18px",
+                                    }}
+                                >
+                                    There are no active banners.
+                                </Typography>
+                            </Box>
+                            <img
+                                src={`${process.env.REACT_APP_URL}/emotes/Pom-Pom_16.png`}
+                                alt="No banners"
+                                style={{
+                                    display: !loading && !activeBanners ? "block" : "none",
+                                    height: "128px",
+                                    marginTop: "20px",
+                                }}
+                            />
+                        </Box>
                 }
             </Box>
         </Box>
