@@ -8,21 +8,23 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 interface MaterialImageProps {
     name: string,
-    rarity: string,
-    cost: string,
-    img: string,
+    rarity: string | number | undefined,
+    cost: string | number,
+    img: string | undefined,
     size?: string
 }
 
 function MaterialImage({
     name,
-    rarity,
+    rarity = 1,
     cost,
-    img,
+    img = `${process.env.REACT_APP_URL}/images/Unknown.png`,
     size = "72px"
 }: MaterialImageProps) {
 
     const theme = useTheme()
+
+    const URL = `${process.env.REACT_APP_URL}/materials/${img}.png`
 
     const cardStyle: SxProps = {
         width: size,
@@ -48,7 +50,7 @@ function MaterialImage({
             <Box sx={{ height: size, overflow: "hidden" }}>
                 <CustomTooltip title={name} arrow placement="top">
                     <img
-                        src={`${process.env.REACT_APP_URL}/materials/${img}.png`} alt={name}
+                        src={URL} alt={name}
                         style={cardImageStyle}
                         loading="lazy"
                         onError={ErrorLoadingImage}

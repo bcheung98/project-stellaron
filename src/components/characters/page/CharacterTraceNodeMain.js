@@ -77,10 +77,10 @@ const CharacterTraceNodeMain = (props) => {
                         borderRadius: "5px",
                     }}
                 >
-                    <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
+                    <Typography variant="h6" sx={{ color: `${theme.text.color}`, mb: "15px" }}>
                         Cost to Unlock Trace Node
                     </Typography>
-                    <CharacterTraceLevelUpMaterials main rarity={rarity} materials={materials} unlock={traces.unlock} />
+                    <CharacterTraceLevelUpMaterials type="main" rarity={rarity} materials={materials} unlock={traces.unlock} />
                 </Box>
             </Dialog>
         </Box>
