@@ -135,7 +135,7 @@ function VersionHighlights(props) {
                                     sx={{ p: 0, mb: "30px" }}
                                 />
                                 <Grid container spacing={2}>
-                                    {characters.sort((a, b) => a.id > b.id ? 1 : -1).map((char, index) => <CustomCard key={index} name={char.name} displayName={char.displayName} type="character" variant="avatar" rarity={char.rarity} info={{ element: char.element, path: char.path }} />)}
+                                    {characters.sort((a, b) => a.id > b.id ? 1 : -1).map((char, index) => <CustomCard key={index} id={`${char.name}-currentBanner`} name={char.name} displayName={char.displayName} type="character" variant="avatar" rarity={char.rarity} info={{ element: char.element, path: char.path }} />)}
                                 </Grid>
                                 {
                                     // NEW RELICS
@@ -178,7 +178,7 @@ function VersionHighlights(props) {
                             />
                             <Grid container spacing={2}>
                                 {
-                                    lightcones.sort((a, b) => a.rarity < b.rarity ? 1 : -1).sort((a, b) => a.rarity < b.rarity ? 1 : -1).map((lc, index) => <CustomCard key={index} name={lc.name} displayName={lc.displayName} type="lightcone" variant="avatar" rarity={lc.rarity} info={{ path: lc.path }} />)
+                                    lightcones.sort((a, b) => a.rarity < b.rarity ? 1 : -1).sort((a, b) => a.rarity < b.rarity ? 1 : -1).map((lc, index) => <CustomCard key={index} id={`${lc.name}-currentBanner`} name={lc.name} displayName={lc.displayName} type="lightcone" variant="avatar" rarity={lc.rarity} info={{ path: lc.path }} />)
                                 }
                             </Grid>
                         </Grid>
