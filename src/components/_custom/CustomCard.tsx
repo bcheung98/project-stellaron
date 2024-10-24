@@ -162,38 +162,38 @@ function CustomCard({
 
     return (
         <Card sx={cardStyle}>
-            <Box
-                sx={{ background: backgroundColor() }}
-                onMouseEnter={() => handleHover("enter")}
-                onMouseLeave={() => handleHover("leave")}
-            >
-                {
-                    info &&
-                    <Box
-                        sx={{
-                            display: "grid",
-                            position: "absolute",
-                            zIndex: 5,
-                            top: "10px",
-                            left: "10px",
-                        }}
-                    >
-                        {
-                            info.element !== undefined &&
-                            <CustomTooltip title={info.element} arrow placement="top">
-                                <img style={smallIconStyle} src={`${process.env.REACT_APP_URL}/elements/Element_${info.element}.png`} alt={info.element} onError={ErrorLoadingImage} />
-                            </CustomTooltip>
-                        }
-                        {
-                            info.path !== undefined &&
-                            <CustomTooltip title={info.path} arrow placement="top">
-                                <img style={smallIconStyle} src={`${process.env.REACT_APP_URL}/paths/The_${info.path}.png`} alt={info.path} onError={ErrorLoadingImage} />
-                            </CustomTooltip>
-                        }
-                    </Box>
-                }
-                <ButtonBase disableRipple href={href} target="_blank">
-                    <CustomTooltip title={!disableTooltip ? displayName : ""} arrow placement="top">
+            <CustomTooltip title={!disableTooltip ? displayName : ""} arrow placement="top">
+                <Box
+                    sx={{ background: backgroundColor() }}
+                    onMouseEnter={() => handleHover("enter")}
+                    onMouseLeave={() => handleHover("leave")}
+                >
+                    {
+                        info &&
+                        <Box
+                            sx={{
+                                display: "grid",
+                                position: "absolute",
+                                zIndex: 5,
+                                top: "10px",
+                                left: "10px",
+                            }}
+                        >
+                            {
+                                info.element !== undefined &&
+                                <CustomTooltip title={info.element} arrow placement="top">
+                                    <img style={smallIconStyle} src={`${process.env.REACT_APP_URL}/elements/Element_${info.element}.png`} alt={info.element} onError={ErrorLoadingImage} />
+                                </CustomTooltip>
+                            }
+                            {
+                                info.path !== undefined &&
+                                <CustomTooltip title={info.path} arrow placement="top">
+                                    <img style={smallIconStyle} src={`${process.env.REACT_APP_URL}/paths/The_${info.path}.png`} alt={info.path} onError={ErrorLoadingImage} />
+                                </CustomTooltip>
+                            }
+                        </Box>
+                    }
+                    <ButtonBase disableRipple href={href} target="_blank">
                         <img
                             src={imageURL} alt={name}
                             id={`${id}-card-image`}
@@ -202,51 +202,51 @@ function CustomCard({
                             onError={ErrorLoadingImage}
                             onClick={handleClick}
                         />
-                    </CustomTooltip>
-                </ButtonBase>
-                <Box
-                    sx={{
-                        mt: variant === "avatar" && type === "lightcone" ? "50px" : variant === "avatar" && type === "relic" ? "55px" : "0px",
-                        borderBottom: variant === "icon" ? "none" : `calc(${size} / 25) solid ${GetRarityColor(rarity)}`,
-                        position: "relative"
-                    }}
-                >
-                    <ButtonBase disableRipple href={href} target="_blank"
+                    </ButtonBase>
+                    <Box
                         sx={{
-                            position: "absolute",
-                            bottom: "50%",
-                            left: "50%",
-                            transform: "translate(-50%, 0%)",
-                            width: type === "relic" ? "90%" : "95%"
+                            mt: variant === "avatar" && type === "lightcone" ? "50px" : variant === "avatar" && type === "relic" ? "55px" : "0px",
+                            borderBottom: variant === "icon" ? "none" : `calc(${size} / 25) solid ${GetRarityColor(rarity)}`,
+                            position: "relative"
                         }}
                     >
-                        <Typography
+                        <ButtonBase disableRipple href={href} target="_blank"
                             sx={{
-                                color: `white`,
-                                fontSize: type === "character" ? "20px" : type === "lightcone" ? "16.5px" : "14px",
-                                textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                                textAlign: "center",
-                                mb: showStars ? "0px" : "10px"
+                                position: "absolute",
+                                bottom: "50%",
+                                left: "50%",
+                                transform: "translate(-50%, 0%)",
+                                width: type === "relic" ? "90%" : "95%"
                             }}
-                            onClick={handleClick}
                         >
-                            {showName && displayName}
-                            <br />
                             <Typography
-                                component="span"
                                 sx={{
-                                    color: `rgb(255, 208, 112)`,
-                                    fontSize: "20px",
-                                    textShadow: "#e3721b 1px 1px 10px",
-                                    userSelect: "none",
+                                    color: `white`,
+                                    fontSize: type === "character" ? "20px" : type === "lightcone" ? "16.5px" : "14px",
+                                    textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                                    textAlign: "center",
+                                    mb: showStars ? "0px" : "10px"
                                 }}
+                                onClick={handleClick}
                             >
-                                {showStars && [...Array(rarity).keys()].map(() => "✦")}
+                                {showName && displayName}
+                                <br />
+                                <Typography
+                                    component="span"
+                                    sx={{
+                                        color: `rgb(255, 208, 112)`,
+                                        fontSize: "20px",
+                                        textShadow: "#e3721b 1px 1px 10px",
+                                        userSelect: "none",
+                                    }}
+                                >
+                                    {showStars && [...Array(rarity).keys()].map(() => "✦")}
+                                </Typography>
                             </Typography>
-                        </Typography>
-                    </ButtonBase>
+                        </ButtonBase>
+                    </Box>
                 </Box>
-            </Box>
+            </CustomTooltip>
             {
                 materials !== undefined &&
                 <Box
