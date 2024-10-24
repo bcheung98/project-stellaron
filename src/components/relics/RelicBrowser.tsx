@@ -1,50 +1,49 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { Box, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid2";
-import RelicCard from "./RelicCard";
+import * as React from "react"
+import { useSelector } from "react-redux"
 
-const RelicBrowser = (props) => {
+// Component imports
+import CustomCard from "../_custom/CustomCard"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme, Typography } from "@mui/material"
+import Grid from "@mui/material/Grid2"
 
-    let { relics } = props;
+// Type imports
+import { RootState } from "../../redux/store"
+import RelicPopup from "./RelicPopup"
 
-    document.title = `Relics ${process.env.REACT_APP_DOCUMENT_HEADER}`;
+function RelicBrowser() {
+
+    const theme = useTheme()
+
+    const relics = useSelector((state: RootState) => state.relics)
+
+    document.title = `Relics ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
     return (
         <React.Fragment>
-            <Box
+            <Typography
                 sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "left",
                     mb: "20px",
-                    height: "30px",
+                    fontFamily: `${theme.font.styled.family}`,
+                    fontSize: "24px",
+                    color: `${theme.text.color}`,
+                    lineHeight: "40px"
                 }}
             >
-                <Typography
-                    variant="h5"
-                    sx={{
-                        mr: "25px",
-                        color: `${theme.text.color}`,
-                        textDecoration: "none",
-                    }}
-                >
-                    Relics
-                </Typography>
-            </Box>
+                Relics
+            </Typography>
             <Grid container spacing={2}>
                 {
-                    relics.relics.length > 0 ?
-                        <React.Fragment>
-                            {relics.relics[0].cavernRelics.sort((a, b) => a.name.localeCompare(b.name)).map((relic, index) => <RelicCard key={index} relic={relic} />)}
-                            <hr style={{ border: `.5px solid ${theme.border.color}`, width: "100%" }} />
-                            {relics.relics[0].planarOrnaments.sort((a, b) => a.name.localeCompare(b.name)).map((relic, index) => <RelicCard key={index} relic={relic} />)}
-                        </React.Fragment>
-                        :
-                        null
+                    relics.cavernRelics.map((relic, index) =>
+                        <CustomCard key={index} id={`${relic.name}-relicBrowser`} name={relic.name} displayName={relic.displayName} type="relic" rarity={5} variant="avatar" size="128px" showStars={false} relic={relic} popup={<RelicPopup relic={relic} functions={[]} />} disableLink />
+                    )
+                }
+                <hr style={{ border: `.5px solid ${theme.border.color}`, width: "100%" }} />
+                {
+                    relics.planarOrnaments.map((relic, index) =>
+                        <CustomCard key={index} id={`${relic.name}-relicBrowser`} name={relic.name} displayName={relic.displayName} type="relic" rarity={5} variant="avatar" size="128px" showStars={false} relic={relic} popup={<RelicPopup relic={relic} functions={[]} />} disableLink />
+                    )
                 }
             </Grid>
         </React.Fragment>
@@ -52,10 +51,4 @@ const RelicBrowser = (props) => {
 
 }
 
-const mapStateToProps = (state) => {
-    return {
-        relics: state.relics
-    }
-}
-
-export default connect(mapStateToProps)(RelicBrowser);
+export default RelicBrowser

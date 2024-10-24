@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 
 // Component imports
 import CustomCard from "./_custom/CustomCard"
-import RelicCard from "./relics/RelicCard"
+import RelicPopup from "./relics/RelicPopup"
 import { CustomInput } from "./_custom/CustomInput"
 import { CustomMenuItem } from "./_custom/CustomMenu"
 
@@ -33,13 +33,11 @@ function VersionHighlights(props) {
 
     let version = updates[index].version
 
-    let characters = props.characters.characters.filter(char => char.release.version === version)
-    let lightcones = props.lightcones.lightcones.filter(lc => lc.release.version === version)
-    let cavernRelics = []
-    let planarOrnaments = []
-    if (props.relics.relics[0] !== undefined) { cavernRelics = props.relics.relics[0]["cavernRelics"].filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name)) }
-    if (props.relics.relics[0] !== undefined) { planarOrnaments = props.relics.relics[0]["planarOrnaments"].filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name)) }
-    let newRelics = cavernRelics.length > 0 || planarOrnaments.length > 0
+    let characters = props.characters.characters.filter(char => char.release.version === version).sort((a, b) => b.rarity - a.rarity)
+    let lightcones = props.lightcones.lightcones.filter(lc => lc.release.version === version).sort((a, b) => b.rarity - a.rarity)
+    let cavernRelics = props.relics.cavernRelics.filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
+    let planarOrnaments = props.relics.planarOrnaments.filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
+    let newRelics = cavernRelics.concat(planarOrnaments).length > 0
 
     document.title = `Honkai: Star Rail ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
@@ -135,7 +133,7 @@ function VersionHighlights(props) {
                                     sx={{ p: 0, mb: "30px" }}
                                 />
                                 <Grid container spacing={2}>
-                                    {characters.sort((a, b) => a.id > b.id ? 1 : -1).map((char, index) => <CustomCard key={index} id={`${char.name}-versionHighlights`} name={char.name} displayName={char.displayName} type="character" variant="avatar" rarity={char.rarity} info={{ element: char.element, path: char.path }} />)}
+                                    {characters.map((char, index) => <CustomCard key={index} id={`${char.name}-versionHighlights`} name={char.name} displayName={char.displayName} type="character" variant="avatar" rarity={char.rarity} info={{ element: char.element, path: char.path }} />)}
                                 </Grid>
                                 {
                                     // NEW RELICS
@@ -151,11 +149,19 @@ function VersionHighlights(props) {
                                             sx={{ p: 0, mb: "30px" }}
                                         />
                                         <Grid container spacing={2}>
-                                            {cavernRelics.map((relic, index) => <RelicCard key={index} relic={relic} />)}
+                                            {
+                                                cavernRelics.map((relic, index) =>
+                                                    <CustomCard key={index} id={`${relic.name}-versionHighlights`} name={relic.name} displayName={relic.displayName} type="relic" rarity={5} variant="avatar" size="128px" showStars={false} relic={relic} popup={<RelicPopup relic={relic} functions={[]} />} disableLink />
+                                                )
+                                            }
                                         </Grid>
                                         {cavernRelics.length > 0 && <br />}
                                         <Grid container spacing={2}>
-                                            {planarOrnaments.map((relic, index) => <RelicCard key={index} relic={relic} />)}
+                                            {
+                                                planarOrnaments.map((relic, index) =>
+                                                    <CustomCard key={index} id={`${relic.name}-versionHighlights`} name={relic.name} displayName={relic.displayName} type="relic" rarity={5} variant="avatar" size="128px" showStars={false} relic={relic} popup={<RelicPopup relic={relic} functions={[]} />} disableLink />
+                                                )
+                                            }
                                         </Grid>
                                     </Box>
                                 }
@@ -178,7 +184,7 @@ function VersionHighlights(props) {
                             />
                             <Grid container spacing={2}>
                                 {
-                                    lightcones.sort((a, b) => a.rarity < b.rarity ? 1 : -1).sort((a, b) => a.rarity < b.rarity ? 1 : -1).map((lc, index) => <CustomCard key={index} id={`${lc.name}-versionHighlights`} name={lc.name} displayName={lc.displayName} type="lightcone" variant="avatar" rarity={lc.rarity} info={{ path: lc.path }} />)
+                                    lightcones.map((lc, index) => <CustomCard key={index} id={`${lc.name}-versionHighlights`} name={lc.name} displayName={lc.displayName} type="lightcone" variant="avatar" rarity={lc.rarity} info={{ path: lc.path }} />)
                                 }
                             </Grid>
                         </Grid>
