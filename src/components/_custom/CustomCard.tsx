@@ -4,7 +4,7 @@ import React from "react"
 import { CustomTooltip } from "../_custom/CustomTooltip"
 
 // MUI imports
-import { useTheme, SxProps, Typography, ButtonBase, Box, Card } from "@mui/material"
+import { useTheme, useMediaQuery, SxProps, Typography, ButtonBase, Box, Card, Dialog } from "@mui/material"
 
 // Helper imports
 import { GetRarityColor, GetBackgroundColor } from "../../helpers/RarityColors"
@@ -12,27 +12,33 @@ import { formatCommonMats, formatWeeklyBossMats } from "../../helpers/TooltipTex
 import zoomImageOnHover from "../../helpers/zoomImageOnHover"
 import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
+// Type imports
+import { Relic } from "../../types/relic/relic"
+
 interface CustomCardProps {
-    name: string,
-    id?: string,
-    displayName?: string,
-    type: "character" | "lightcone" | "relic",
-    rarity?: number,
-    variant?: "icon" | "avatar",
-    size?: string,
-    showName?: boolean,
+    name: string
+    id?: string
+    displayName?: string
+    type: "character" | "lightcone" | "relic"
+    rarity?: number
+    variant?: "icon" | "avatar"
+    size?: string
+    showName?: boolean
+    showStars?: boolean
     info?: {
-        element?: string,
+        element?: string
         path?: string
-    },
+    }
     materials?: {
-        calyxMat?: string,
-        commonMat?: string,
-        bossMat?: string,
+        calyxMat?: string
+        commonMat?: string
+        bossMat?: string
         weeklyBossMat?: string
-    },
-    disableTooltip?: boolean,
-    disableLink?: boolean,
+    }
+    relic?: Relic
+    popup?: React.JSX.Element
+    disableTooltip?: boolean
+    disableLink?: boolean
     disableZoomOnHover?: boolean
 }
 
@@ -45,8 +51,11 @@ function CustomCard({
     variant = "icon",
     size = variant === "icon" ? "64px" : "188px",
     showName = variant === "avatar" ? true : false,
+    showStars = variant === "avatar" ? true : false,
     info,
     materials,
+    relic,
+    popup,
     disableTooltip = showName,
     disableLink = false,
     disableZoomOnHover = false
@@ -54,10 +63,21 @@ function CustomCard({
 
     const theme = useTheme()
 
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
+
+    const [open, setOpen] = React.useState(false)
+    const handleClick = () => type !== "relic" ? null : handleClickOpen()
+    const handleClickOpen = () => {
+        setOpen(true)
+    }
+    const handleClose = () => {
+        setOpen(false)
+    }
+
     id = id.split(" ").join("")
 
     const aspectRatio = () => {
-        if (variant === "icon") {
+        if (variant === "icon" || type === "relic") {
             return "1 / 1"
         }
         else {
@@ -72,7 +92,7 @@ function CustomCard({
 
     const backgroundColor = () => {
         const baseBG = theme.materialImage.backgroundColor
-        if (variant === "icon") {
+        if (variant === "icon" || !showStars) {
             return baseBG
         }
         else {
@@ -89,8 +109,11 @@ function CustomCard({
     let imageURL
     if (type === "character") { imageURL = `${process.env.REACT_APP_URL}/characters/${variant}s/${name.split(" ").join("_")}.png` }
     if (type === "lightcone") { imageURL = `${process.env.REACT_APP_URL}/lightcones/${variant === "icon" ? "small" : "medium"}/${name.split(" ").join("_")}.png` }
+    if (type === "relic") { imageURL = `${process.env.REACT_APP_URL}/relics/sets/${name.split(" ").join("_")}/${relic?.pieces[0].type}.png` }
 
     const href = disableLink ? "" : `${process.env.REACT_APP_BASENAME}/${type}s/${name.split(" ").join("_").toLowerCase()}`
+
+    popup && popup.props.functions?.push(handleClose)
 
     const cardStyle: SxProps = {
         width: size,
@@ -109,7 +132,8 @@ function CustomCard({
         width: size,
         height: variant === "icon" ? size : "auto",
         aspectRatio: aspectRatio(),
-        boxSizing: "content-box",
+        padding: type === "relic" ? "10px" : "0px",
+        boxSizing: "border-box",
         boxShadow: variant === "icon" ? `inset 0 0 30px 5px ${GetBackgroundColor(rarity)}` : "none",
         transform: variant === "avatar" && type === "character" ? "translate(0px, -10px)" : "translate(0px, 0px)",
     }
@@ -176,54 +200,51 @@ function CustomCard({
                             style={cardImageStyle}
                             loading="lazy"
                             onError={ErrorLoadingImage}
+                            onClick={handleClick}
                         />
                     </CustomTooltip>
                 </ButtonBase>
                 <Box
                     sx={{
-                        mt: variant === "avatar" && type === "lightcone" ? "50px" : "0px",
+                        mt: variant === "avatar" && type === "lightcone" ? "50px" : variant === "avatar" && type === "relic" ? "55px" : "0px",
                         borderBottom: variant === "icon" ? "none" : `calc(${size} / 25) solid ${GetRarityColor(rarity)}`,
                         position: "relative"
                     }}
                 >
-                    {
-                        showName &&
-                        <Box>
-                            <ButtonBase disableRipple href={href} target="_blank"
+                    <ButtonBase disableRipple href={href} target="_blank"
+                        sx={{
+                            position: "absolute",
+                            bottom: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, 0%)",
+                            width: "95%"
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                color: `white`,
+                                fontSize: type === "character" ? "20px" : type === "lightcone" ? "16.5px" : "14.5px",
+                                textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
+                                textAlign: "center",
+                                mb: showStars ? "0px" : "10px"
+                            }}
+                            onClick={handleClick}
+                        >
+                            {showName && displayName}
+                            <br />
+                            <Typography
+                                component="span"
                                 sx={{
-                                    position: "absolute",
-                                    bottom: "50%",
-                                    left: "50%",
-                                    transform: "translate(-50%, 0%)",
-                                    width: "95%"
+                                    color: `rgb(255, 208, 112)`,
+                                    fontSize: "20px",
+                                    textShadow: "#e3721b 1px 1px 10px",
+                                    userSelect: "none",
                                 }}
                             >
-                                <Typography
-                                    sx={{
-                                        color: `white`,
-                                        fontSize: type === "character" ? "20px" : "16.5px",
-                                        textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                                        textAlign: "center",
-                                    }}
-                                >
-                                    {displayName}
-                                    <br />
-                                    <Typography
-                                        component="span"
-                                        sx={{
-                                            color: `rgb(255, 208, 112)`,
-                                            fontSize: "20px",
-                                            textShadow: "#e3721b 1px 1px 10px",
-                                            userSelect: "none",
-                                            textAlign: "center"
-                                        }}
-                                    >
-                                        {[...Array(rarity).keys()].map(() => "✦")}
-                                    </Typography>
-                                </Typography>
-                            </ButtonBase>
-                        </Box>
-                    }
+                                {showStars && [...Array(rarity).keys()].map(() => "✦")}
+                            </Typography>
+                        </Typography>
+                    </ButtonBase>
                 </Box>
             </Box>
             {
@@ -263,6 +284,17 @@ function CustomCard({
                         </CustomTooltip>
                     }
                 </Box>
+            }
+            {
+                popup !== undefined &&
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    maxWidth={false}
+                    fullScreen={!matches}
+                >
+                    {popup}
+                </Dialog>
             }
         </Card>
     )
