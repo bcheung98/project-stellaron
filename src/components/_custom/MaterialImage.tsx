@@ -41,7 +41,7 @@ function MaterialImage({
         height: size,
         padding: "7.5px",
         backgroundSize: "contain",
-        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.webp)`,
+        backgroundImage: `url(${process.env.REACT_APP_URL}/backgrounds/Background_${rarity}_Star.png)`,
         boxSizing: "border-box",
     }
 
