@@ -17,7 +17,7 @@ interface CustomCardProps {
     id?: string,
     displayName?: string,
     type: "character" | "lightcone" | "relic",
-    rarity?: 5 | 4 | 3 | 2 | 1,
+    rarity?: number,
     variant?: "icon" | "avatar",
     size?: string,
     showName?: boolean,
