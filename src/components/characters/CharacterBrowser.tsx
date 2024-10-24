@@ -159,6 +159,7 @@ function CharacterBrowser() {
                                     borderTop: `2px solid ${theme.border.color}`,
                                     backgroundColor: `${theme.appbar.backgroundColor}`,
                                     height: "auto",
+                                    maxHeight: "88%"
                                 }
                             }}
                         >
