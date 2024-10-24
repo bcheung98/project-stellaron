@@ -20,8 +20,8 @@ function Nav() {
 
     const theme = useTheme()
 
-    let initialDrawerState = window.location.href.endsWith(".gg/") ? true : false
-    const [drawerOpen, setDrawerOpen] = React.useState(initialDrawerState)
+    const onHomePage = window.location.pathname === "/" ? true : false
+    const [drawerOpen, setDrawerOpen] = React.useState(onHomePage)
     const toggleDrawerState = () => {
         setDrawerOpen(!drawerOpen)
     }
@@ -51,37 +51,35 @@ function Nav() {
                                 <MenuOpenIcon sx={{ transform: "rotate(180deg)" }} />
                         }
                     </IconButton>
-                    <CustomTooltip title="Irminsul.GG Portal" arrow placement="right" enterDelay={250}>
-                        <ButtonBase disableRipple href="https://irminsul.gg/">
-                            <CardHeader
-                                avatar={
-                                    <Avatar
-                                        variant="square"
-                                        src="https://assets.irminsul.gg/main/icons/Irminsul.png"
-                                        alt="irminsul.gg"
-                                        sx={{
-                                            height: "48px",
-                                            width: "48px"
-                                        }}
-                                    />
-                                }
-                                title={
-                                    <Typography
-                                        sx={{
-                                            fontFamily: "Rowdies, DIN, Roboto",
-                                            fontSize: "16pt",
-                                            fontWeight: 400,
-                                            letterSpacing: ".1rem",
-                                            color: `white`
-                                        }}
-                                    >
-                                        IRMINSUL.GG
-                                    </Typography>
-                                }
-                                sx={{ px: 0 }}
-                            />
-                        </ButtonBase>
-                    </CustomTooltip>
+                    <ButtonBase disableRipple href={onHomePage ? "https://irminsul.gg/" : `${process.env.REACT_APP_BASENAME}/`}>
+                        <CardHeader
+                            avatar={
+                                <Avatar
+                                    variant="square"
+                                    src="https://assets.irminsul.gg/main/icons/Irminsul.png"
+                                    alt="irminsul.gg"
+                                    sx={{
+                                        height: "48px",
+                                        width: "48px"
+                                    }}
+                                />
+                            }
+                            title={
+                                <Typography
+                                    sx={{
+                                        fontFamily: "Rowdies, DIN, Roboto",
+                                        fontSize: "16pt",
+                                        fontWeight: 400,
+                                        letterSpacing: ".1rem",
+                                        color: `white`
+                                    }}
+                                >
+                                    IRMINSUL.GG
+                                </Typography>
+                            }
+                            sx={{ px: 0 }}
+                        />
+                    </ButtonBase>
                 </Toolbar>
             </AppBar>
             <Drawer
