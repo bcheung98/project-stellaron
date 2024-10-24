@@ -77,7 +77,7 @@ export const defaultTheme = {
     },
     border: {
         color: "rgb(168, 147, 105)",
-        colorAlt: "rgb(30, 73, 118)"
+        colorAlt: "rgb(168, 147, 105)"
     },
     paper: {
         backgroundColor: "rgb(30, 30, 30)",
