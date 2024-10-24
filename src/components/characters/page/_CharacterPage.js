@@ -1,34 +1,34 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Typography, Box, CardHeader, AppBar, Table, TableContainer, TableBody, TableRow, TableCell } from "@mui/material";
-import { TabPanel, StyledTabs, StyledTab } from "../../_custom/CustomTabs";
-import Grid from "@mui/material/Grid2";
-import { CustomTooltip } from "../../_custom/CustomTooltip";
-import CharacterSkillDisplay from "./CharacterSkillDisplay";
-import CharacterTraceDisplay from "./CharacterTraceDisplay";
-import CharacterEidolonDisplay from "./CharacterEidolonDisplay";
-import CharacterStatsTable from "./CharacterStatsTable";
-import CharacterAscension from "./CharacterAscension";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
-import { createDateObject } from "../../../helpers/dates";
+import * as React from "react"
+import { useTheme } from "@mui/material/styles"
+import { connect } from "react-redux"
+import { useParams } from "react-router-dom"
+import { Typography, Box, CardHeader, AppBar, Table, TableContainer, TableBody, TableRow, TableCell } from "@mui/material"
+import { TabPanel, StyledTabs, StyledTab } from "../../_custom/CustomTabs"
+import Grid from "@mui/material/Grid2"
+import { CustomTooltip } from "../../_custom/CustomTooltip"
+import CharacterSkillDisplay from "./CharacterSkillDisplay"
+import CharacterTraceDisplay from "./CharacterTraceDisplay"
+import CharacterEidolonDisplay from "./CharacterEidolonDisplay"
+import CharacterStatsTable from "./CharacterStatsTable"
+import CharacterAscension from "./CharacterAscension"
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
+import { createDateObject } from "../../../helpers/dates"
 
 const CharacterPage = (props) => {
 
-    const theme = useTheme();
+    const theme = useTheme()
 
-    const [tabValue, setTabValue] = React.useState(0);
+    const [tabValue, setTabValue] = React.useState(0)
     const handleTabChange = (event, newValue) => {
-        setTabValue(newValue);
-    };
+        setTabValue(newValue)
+    }
 
-    let { char_name } = useParams();
-    let { characters } = props;
-    let character = characters.characters.find(char => char.name.split(" ").join("_").toLowerCase() === char_name);
+    let { char_name } = useParams()
+    let { characters } = props
+    let character = characters.characters.find(char => char.name.split(" ").join("_").toLowerCase() === char_name)
 
     if (character !== undefined) {
-        let { name, element, path, rarity, description, faction, splashArt, release, voiceActors } = character;
+        let { name, element, path, rarity, description, faction, splashArt, release, voiceActors } = character
 
         const rows = [
             { key: "Faction", value: faction },
@@ -37,7 +37,7 @@ const CharacterPage = (props) => {
             { key: "Voice Actor (JP)", value: voiceActors["jp"] },
         ]
 
-        character.displayName ? document.title = `${character.displayName} ${process.env.REACT_APP_DOCUMENT_HEADER}` : document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
+        character.displayName ? document.title = `${character.displayName} ${process.env.REACT_APP_DOCUMENT_HEADER}` : document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
         return (
             <React.Fragment>
@@ -193,6 +193,11 @@ const CharacterPage = (props) => {
             </React.Fragment>
         )
     }
+    else {
+        return (
+            <></>
+        )
+    }
 
 }
 
@@ -202,4 +207,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(CharacterPage);
+export default connect(mapStateToProps)(CharacterPage)

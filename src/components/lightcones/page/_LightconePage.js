@@ -1,51 +1,51 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
-import parse from "html-react-parser";
-import { Typography, Box, CardHeader, AppBar } from "@mui/material";
-import { TabPanel, StyledTabs, StyledTab } from "../../_custom/CustomTabs";
-import Grid from "@mui/material/Grid2";
-import { CustomSlider } from "../../_custom/CustomSlider";
-import LightconeStatsTable from "./LightconeStatsTable";
-import LightconeAscension from "./LightconeAscension";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+import * as React from "react"
+import { useTheme } from "@mui/material/styles"
+import { connect } from "react-redux"
+import { useParams } from "react-router-dom"
+import parse from "html-react-parser"
+import { Typography, Box, CardHeader, AppBar } from "@mui/material"
+import { TabPanel, StyledTabs, StyledTab } from "../../_custom/CustomTabs"
+import Grid from "@mui/material/Grid2"
+import { CustomSlider } from "../../_custom/CustomSlider"
+import LightconeStatsTable from "./LightconeStatsTable"
+import LightconeAscension from "./LightconeAscension"
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 const LightconePage = (props) => {
 
-    const theme = useTheme();
+    const theme = useTheme()
 
-    let { lc_name } = useParams();
-    let { lightcones } = props;
-    let lightcone = lightcones.lightcones.find(lc => lc.name.split(" ").join("_").toLowerCase() === lc_name);
+    let { lc_name } = useParams()
+    let { lightcones } = props
+    let lightcone = lightcones.lightcones.find(lc => lc.name.split(" ").join("_").toLowerCase() === lc_name)
 
-    const [tabValue, setTabValue] = React.useState(0);
+    const [tabValue, setTabValue] = React.useState(0)
     const handleTabChange = (event, newValue) => {
-        setTabValue(newValue);
-    };
-
-    let maxValue = 5;
-    const [sliderValue, setSliderValue] = React.useState(1);
-    const handleSliderChange = (event, newValue) => {
-        setSliderValue(newValue);
-    };
-
-    let scaling;
-    if (lightcone !== undefined) {
-        scaling = lightcone.passive.scaling;
+        setTabValue(newValue)
     }
-    let targets = document.getElementsByClassName("text-value");
+
+    let maxValue = 5
+    const [sliderValue, setSliderValue] = React.useState(1)
+    const handleSliderChange = (event, newValue) => {
+        setSliderValue(newValue)
+    }
+
+    let scaling
+    if (lightcone !== undefined) {
+        scaling = lightcone.passive.scaling
+    }
+    let targets = document.getElementsByClassName("text-value")
     if (scaling !== undefined) {
         scaling.forEach((subScaling, index) => {
-            let target = targets[index];
-            if (target !== undefined) { target.innerHTML = subScaling[sliderValue - 1]; }
+            let target = targets[index]
+            if (target !== undefined) { target.innerHTML = subScaling[sliderValue - 1] }
         })
     }
 
     if (lightcone !== undefined) {
-        let { name, path, rarity, passive, description } = lightcone;
+        let { name, path, rarity, passive, description } = lightcone
 
-        document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`;
+        document.title = `${name} ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
         return (
             <React.Fragment>
@@ -181,6 +181,11 @@ const LightconePage = (props) => {
             </React.Fragment>
         )
     }
+    else {
+        return (
+            <></>
+        )
+    }
 
 }
 
@@ -190,4 +195,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(LightconePage);
+export default connect(mapStateToProps)(LightconePage)
