@@ -1,19 +1,22 @@
-export const filterLightcones = (lightcones, filters, searchValue) => {
-    let lc = [...lightcones];
-    if (filters.lc_path.length > 0) {
-        lc = lc.filter(lightcone => filters.lc_path.includes(lightcone.path));
+import { LightconeFilterState } from "../redux/reducers/LightconeFilterReducer"
+import { LightconeData } from "../types/lightcone/LightconeData"
+
+export const filterLightcones = (lightcones: LightconeData[], filters: LightconeFilterState, searchValue: string) => {
+    let lc = [...lightcones]
+    if (filters.path.length > 0) {
+        lc = lc.filter(lightcone => filters.path.includes(lightcone.path))
     }
-    if (filters.lc_rarity.length > 0) {
-        lc = lc.filter(lightcone => filters.lc_rarity.includes(lightcone.rarity));
+    if (filters.rarity.length > 0) {
+        lc = lc.filter(lightcone => filters.rarity.includes(lightcone.rarity))
     }
-    if (filters.lc_calyxMat.length > 0) {
-        lc = lc.filter(lightcone => filters.lc_calyxMat.includes(lightcone.materials.calyxMat));
+    if (filters.calyxMat.length > 0) {
+        lc = lc.filter(lightcone => filters.calyxMat.includes(lightcone.materials.calyxMat as string))
     }
-    if (filters.lc_commonMat.length > 0) {
-        lc = lc.filter(lightcone => filters.lc_commonMat.includes(lightcone.materials.commonMat));
+    if (filters.commonMat.length > 0) {
+        lc = lc.filter(lightcone => filters.commonMat.includes(lightcone.materials.commonMat as string))
     }
     if (searchValue !== "") {
-        lc = lc.filter(lightcone => lightcone.name.toLowerCase().includes(searchValue.toLowerCase()));
+        lc = lc.filter(lightcone => lightcone.name.toLowerCase().includes(searchValue.toLowerCase()))
     }
-    return lc;
+    return lc
 }

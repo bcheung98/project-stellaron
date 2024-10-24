@@ -1,13 +1,13 @@
+import { useEffect } from "react"
+import { connect, ConnectedProps } from "react-redux"
 import {
     BrowserRouter as Router,
     Switch,
     Route
 } from "react-router-dom"
-import { useEffect } from "react"
-import { connect } from "react-redux"
 
 // Fetch imports
-import { fetchCharacters, fetchLightcones, fetchRelics, fetchBanners } from "./redux/actions/fetch"
+import { fetchCharacters, fetchLightcones, fetchRelics, fetchCharacterBanners, fetchLightconeBanners } from "./redux/actions/fetch"
 
 // Component imports
 import Nav from "./components/Nav"
@@ -23,22 +23,33 @@ import BannerArchive from "./components/banners/BannerArchive"
 import ScrollTopFab from "./components/_custom/ScrollTopFab"
 
 // MUI imports
-import theme from "./themes/theme"
-import { Box, ThemeProvider } from "@mui/material"
+import { Box, CssBaseline, ThemeProvider } from "@mui/material"
 
-function App(props) {
+// Helper imports
+import theme from "./themes/theme"
+
+// Type imports
+import { AppDispatch } from "./redux/store"
+
+function App({
+    fetchCharacters,
+    fetchLightcones,
+    fetchRelics,
+    fetchCharacterBanners,
+    fetchLightconeBanners
+}: ConnectedProps<typeof connector>) {
 
     useEffect(() => {
         fetchCharacters()
         fetchLightcones()
         fetchRelics()
-        fetchBanners()
-    }, [])
-
-    let { fetchCharacters, fetchLightcones, fetchRelics, fetchBanners } = props
+        fetchCharacterBanners()
+        fetchLightconeBanners()
+    }, [fetchCharacters, fetchLightcones, fetchRelics, fetchCharacterBanners, fetchLightconeBanners])
 
     return (
         <ThemeProvider theme={theme}>
+            <CssBaseline />
             <Router basename={`${process.env.REACT_APP_BASENAME}`}>
                 <Box id="back-to-top-anchor" />
                 <Box sx={{ display: "flex" }}>
@@ -63,23 +74,14 @@ function App(props) {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        characters: state.characters,
-        lightcones: state.lightcones,
-        relics: state.relics,
-        characterBanners: state.characterBanners,
-        lightconeBanners: state.lightconeBanners,
-    }
-}
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+    fetchCharacters: () => dispatch(fetchCharacters()),
+    fetchLightcones: () => dispatch(fetchLightcones()),
+    fetchRelics: () => dispatch(fetchRelics()),
+    fetchCharacterBanners: () => dispatch(fetchCharacterBanners()),
+    fetchLightconeBanners: () => dispatch(fetchLightconeBanners())
+})
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchCharacters: () => dispatch(fetchCharacters()),
-        fetchLightcones: () => dispatch(fetchLightcones()),
-        fetchRelics: () => dispatch(fetchRelics()),
-        fetchBanners: () => dispatch(fetchBanners())
-    }
-}
+const connector = connect(null, mapDispatchToProps)
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connector(App)

@@ -1,123 +1,160 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Typography, Paper } from "@mui/material";
-import { Accordion, AccordionDetails, AccordionSummary } from "../../_custom/CustomAccordion";
+import * as React from "react"
+import { useSelector, useDispatch } from "react-redux"
 
-import CharacterElementFilter from "./CharacterElementFilter";
-import CharacterPathFilter from "./CharacterPathFilter";
-import CharacterRarityFilter from "./CharacterRarityFilter";
-import CharacterCalyxMatFilter from "./CharacterCalyxMatFilter";
-import CharacterCommonMatFilter from "./CharacterCommonMatFilter";
-import CharacterBossMatFilter from "./CharacterBossMatFilter";
-import CharacterWeeklyBossMatFilter from "./CharacterWeeklyBossMatFilter";
-import CharacterWorldFilter from "./CharacterWorldFilter";
+// Component imports
+import { Accordion, AccordionDetails, AccordionSummary } from "../_custom/CustomAccordion"
+import FilterButton from "../_custom/FilterButton"
 
-const CharacterFilters = () => {
+// MUI imports
+import { useTheme, Typography, Box, AppBar, IconButton } from "@mui/material"
+import Grid from "@mui/material/Grid2"
+import CloseIcon from "@mui/icons-material/Close"
 
-    const theme = useTheme();
+// Helper imports
+import { CharacterFilterState, setElement, setPath, setRarity, setCalyxMats, setCommonMats, setBossMats, setWeeklyBossMats, setWorld } from "../../redux/reducers/CharacterFilterReducer"
+import { CalyxMats, CommonMats, BossMats, WeeklyBossMats } from "../../data/MaterialList"
+import { formatCalyxMats, formatCommonMats, formatWeeklyBossMats } from "../../helpers/TooltipText"
+
+// Type imports
+import { RootState } from "../../redux/store"
+
+function CharacterFilters(props: {
+    handleClose?: (arg0: any) => void
+}) {
+
+    const theme = useTheme()
+    
+    const dispatch = useDispatch()
+
+    const characterFilters = useSelector((state: RootState) => state.characterFilters)
+
+    const filters: {
+        name: string,
+        tag: string,
+        component: React.ReactNode
+    }[] = [
+            {
+                name: "Combat Type",
+                tag: "element",
+                component:
+                    <Grid container spacing={1}>
+                        {["Physical", "Fire", "Ice", "Lightning", "Wind", "Quantum", "Imaginary"].map((element, index) => <FilterButton key={index} tag={element} img={`elements/Element_${element}`} active={characterFilters.element.includes(element)} onClick={() => dispatch(setElement(element))} />)}
+                    </Grid>
+            },
+            {
+                name: "Path",
+                tag: "path",
+                component:
+                    <Grid container spacing={1}>
+                        {["Destruction", "Hunt", "Erudition", "Harmony", "Nihility", "Preservation", "Abundance"].map((path, index) => <FilterButton key={index} tag={path} img={`paths/The_${path}`} active={characterFilters.path.includes(path)} onClick={() => dispatch(setPath(path))} />)}
+                    </Grid>
+            },
+            {
+                name: "Rarity",
+                tag: "rarity",
+                component:
+                    <Grid container spacing={1}>
+                        {[5, 4].map((rarity, index) => <FilterButton key={index} variant="text" tag={[...Array(rarity).keys()].map(() => "✦").join("")} active={characterFilters.rarity.includes(rarity)} onClick={() => dispatch(setRarity(rarity))} />)}
+                    </Grid>
+            },
+            {
+                name: "Calyx Material",
+                tag: "calyxMat",
+                component:
+                    <Grid container spacing={1}>
+                        {CalyxMats.map((material, index) => <FilterButton key={index} tag={formatCalyxMats(material)} img={`materials/calyx_mats/${material.split(" ").join("_")}3`} active={characterFilters.calyxMat.includes(material)} onClick={() => dispatch(setCalyxMats(material))} />)}
+                    </Grid>
+            },
+            {
+                name: "Common Material",
+                tag: "commonMat",
+                component:
+                    <Grid container spacing={1}>
+                        {CommonMats.map((material, index) => <FilterButton key={index} tag={formatCommonMats(material)} img={`materials/common_mats/${material.split(" ").join("_")}3`} active={characterFilters.commonMat.includes(material)} onClick={() => dispatch(setCommonMats(material))} />)}
+                    </Grid>
+            },
+            {
+                name: "Normal Boss",
+                tag: "bossMat",
+                component:
+                    <Grid container spacing={1}>
+                        {BossMats.map((material, index) => <FilterButton key={index} tag={material} img={`materials/boss_mats/${material.split(" ").join("_")}`} active={characterFilters.bossMat.includes(material)} onClick={() => dispatch(setBossMats(material))} />)}
+                    </Grid>
+            },
+            {
+                name: "Weekly Boss",
+                tag: "weeklyBossMat",
+                component:
+                    <Grid container spacing={1}>
+                        {WeeklyBossMats.map((material, index) => <FilterButton key={index} tag={formatWeeklyBossMats(material)} img={`materials/weekly_boss_mats/${material.split(" ").join("_")}`} active={characterFilters.bossMat.includes(material)} onClick={() => dispatch(setWeeklyBossMats(material))} />)}
+                    </Grid>
+            },
+            {
+                name: "World",
+                tag: "world",
+                component:
+                    <Grid container spacing={1}>
+                        {["Astral Express", "Stellaron Hunters", "Herta Space Station", "Jarilo-VI", "The Xianzhou Alliance", "Penacony", "Interastral Peace Corporation", "Cosmic"].map((world, index) => <FilterButton key={index} tag={world} img={`factions/${world.split(" ").join("_")}`} active={characterFilters.world.includes(world)} onClick={() => dispatch(setWorld(world))} />)}
+                    </Grid>
+            }
+        ]
 
     return (
-        <Paper
-            variant="outlined"
-            square
+        <Box
             sx={{
                 color: `${theme.text.color}`,
-                backgroundColor: `${theme.appbar.backgroundColor}`,
-                border: `2px solid ${theme.border.color}`,
+                backgroundColor: `${theme.card.backgroundColor}`,
+                border: { xs: "none", sm: `2px solid ${theme.border.color}` },
                 borderRadius: "5px",
+                width: "100%",
+                overflow: { xs: "none", sm: "hidden" }
             }}
         >
-            <Typography variant="h6"
+            <AppBar position="static"
                 sx={{
-                    ml: "15px",
-                    my: "10px",
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    borderBottom: `1px solid ${theme.border.color}`,
                 }}
             >
-                Filters
-            </Typography>
-
-            {/* ELEMENT */}
-            <Accordion>
-                <AccordionSummary>
-                    <Typography variant="body1" className="filter-text-off" id="element-filter-text" sx={{ color: `${theme.text.color}` }}>Combat Type</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <CharacterElementFilter />
-                </AccordionDetails>
-            </Accordion>
-
-            {/* PATH */}
-            <Accordion>
-                <AccordionSummary>
-                    <Typography variant="body1" className="filter-text-off" id="path-filter-text" sx={{ color: `${theme.text.color}` }}>Path</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <CharacterPathFilter />
-                </AccordionDetails>
-            </Accordion>
-
-            {/* RARITY */}
-            <Accordion>
-                <AccordionSummary>
-                    <Typography variant="body1" className="filter-text-off" id="rarity-filter-text" sx={{ color: `${theme.text.color}` }}>Rarity</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <CharacterRarityFilter />
-                </AccordionDetails>
-            </Accordion>
-
-            {/* CALYX MAT */}
-            <Accordion>
-                <AccordionSummary>
-                    <Typography variant="body1" className="filter-text-off" id="calyx-filter-text" sx={{ color: `${theme.text.color}` }}>Calyx Material</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <CharacterCalyxMatFilter />
-                </AccordionDetails>
-            </Accordion>
-
-            {/* COMMON MAT */}
-            <Accordion>
-                <AccordionSummary>
-                    <Typography variant="body1" className="filter-text-off" id="common-filter-text" sx={{ color: `${theme.text.color}` }}>Common Material</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <CharacterCommonMatFilter />
-                </AccordionDetails>
-            </Accordion>
-
-            {/* BOSS MAT */}
-            <Accordion>
-                <AccordionSummary>
-                    <Typography variant="body1" className="filter-text-off" id="boss-filter-text" sx={{ color: `${theme.text.color}` }}>Stagnant Shadow Material</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <CharacterBossMatFilter />
-                </AccordionDetails>
-            </Accordion>
-
-            {/* WEEKLY BOSS MAT */}
-            <Accordion>
-                <AccordionSummary>
-                    <Typography variant="body1" className="filter-text-off" id="weeklyboss-filter-text" sx={{ color: `${theme.text.color}` }}>Echo of War Material</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <CharacterWeeklyBossMatFilter />
-                </AccordionDetails>
-            </Accordion>
-
-            {/* WORLD */}
-            <Accordion>
-                <AccordionSummary>
-                    <Typography variant="body1" className="filter-text-off" id="world-filter-text" sx={{ color: `${theme.text.color}` }}>World</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <CharacterWorldFilter />
-                </AccordionDetails>
-            </Accordion>
-
-        </Paper>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Typography
+                        sx={{
+                            px: 2,
+                            py: 1.5,
+                            fontFamily: `${theme.font.styled.family}`,
+                            fontSize: "18px",
+                            flexGrow: 1
+                        }}
+                    >
+                        Filters
+                    </Typography>
+                    <IconButton onClick={props.handleClose}>
+                        <CloseIcon sx={{ color: `white` }} />
+                    </IconButton>
+                </Box>
+            </AppBar>
+            {
+                filters.map((filter, index) => (
+                    <Accordion key={index}>
+                        <AccordionSummary>
+                            <Typography
+                                sx={{
+                                    fontFamily: `${theme.font.styled.family}`,
+                                    color: characterFilters[filter.tag as keyof CharacterFilterState].length > 0 ? `gold` : `${theme.text.color}`
+                                }}
+                            >
+                                {filter.name}
+                            </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails sx={{ pl: 1 }}>
+                            {filter.component}
+                        </AccordionDetails>
+                    </Accordion>
+                ))
+            }
+        </Box>
     )
+
 }
 
-export default CharacterFilters;
+export default CharacterFilters

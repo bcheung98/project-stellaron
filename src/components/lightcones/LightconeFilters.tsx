@@ -1,76 +1,127 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Typography, Paper } from "@mui/material";
-import { Accordion, AccordionDetails, AccordionSummary } from "../../_custom/CustomAccordion";
-import LightconePathFilter from "./LightconePathFilter";
-import LightconeRarityFilter from "./LightconeRarityFilter";
-import LightconeCalyxMatFilter from "./LightconeCalyxMatFilter";
-import LightconeCommonMatFilter from "./LightconeCommonMatFilter";
+import * as React from "react"
+import { useSelector, useDispatch } from "react-redux"
 
-const LightconeFilters = () => {
+// Component imports
+import { Accordion, AccordionDetails, AccordionSummary } from "../_custom/CustomAccordion"
+import FilterButton from "../_custom/FilterButton"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme, Typography, Box, AppBar, IconButton } from "@mui/material"
+import Grid from "@mui/material/Grid2"
+import CloseIcon from "@mui/icons-material/Close"
+
+// Helper imports
+import { LightconeFilterState, setPath, setRarity, setCalyxMats, setCommonMats } from "../../redux/reducers/LightconeFilterReducer"
+import { CalyxMats, CommonMats } from "../../data/MaterialList"
+import { formatCalyxMats, formatCommonMats } from "../../helpers/TooltipText"
+
+// Type imports
+import { RootState } from "../../redux/store"
+
+function LightconeFilters(props: {
+    handleClose?: (arg0: any) => void
+}) {
+
+    const theme = useTheme()
+
+    const dispatch = useDispatch()
+
+    const lightconeFilters = useSelector((state: RootState) => state.lightconeFilters)
+
+    const filters: {
+        name: string,
+        tag: string,
+        component: React.ReactNode
+    }[] = [
+            {
+                name: "Path",
+                tag: "path",
+                component:
+                    <Grid container spacing={1}>
+                        {["Destruction", "Hunt", "Erudition", "Harmony", "Nihility", "Preservation", "Abundance"].map((path, index) => <FilterButton key={index} tag={path} img={`paths/The_${path}`} active={lightconeFilters.path.includes(path)} onClick={() => dispatch(setPath(path))} />)}
+                    </Grid>
+            },
+            {
+                name: "Rarity",
+                tag: "rarity",
+                component:
+                    <Grid container spacing={1}>
+                        {[5, 4, 3].map((rarity, index) => <FilterButton key={index} variant="text" tag={[...Array(rarity).keys()].map(() => "✦").join("")} active={lightconeFilters.rarity.includes(rarity)} onClick={() => dispatch(setRarity(rarity))} />)}
+                    </Grid>
+            },
+            {
+                name: "Calyx Material",
+                tag: "calyxMat",
+                component:
+                    <Grid container spacing={1}>
+                        {CalyxMats.map((material, index) => <FilterButton key={index} tag={formatCalyxMats(material)} img={`materials/calyx_mats/${material.split(" ").join("_")}3`} active={lightconeFilters.calyxMat.includes(material)} onClick={() => dispatch(setCalyxMats(material))} />)}
+                    </Grid>
+            },
+            {
+                name: "Common Material",
+                tag: "commonMat",
+                component:
+                    <Grid container spacing={1}>
+                        {CommonMats.map((material, index) => <FilterButton key={index} tag={formatCommonMats(material)} img={`materials/common_mats/${material.split(" ").join("_")}3`} active={lightconeFilters.commonMat.includes(material)} onClick={() => dispatch(setCommonMats(material))} />)}
+                    </Grid>
+            }
+        ]
 
     return (
-        <Paper variant="outlined" square
+        <Box
             sx={{
                 color: `${theme.text.color}`,
-                backgroundColor: `${theme.appbar.backgroundColor}`,
-                border: `2px solid ${theme.border.color}`,
+                backgroundColor: `${theme.card.backgroundColor}`,
+                border: { xs: "none", sm: `2px solid ${theme.border.color}` },
                 borderRadius: "5px",
+                width: "100%",
+                overflow: { xs: "none", sm: "hidden" }
             }}
         >
-            <Typography variant="h6"
+            <AppBar position="static"
                 sx={{
-                    ml: "15px",
-                    my: "10px",
+                    backgroundColor: `${theme.appbar.backgroundColor}`,
+                    borderBottom: `1px solid ${theme.border.color}`,
                 }}
             >
-                Filters
-            </Typography>
-
-            {/* PATH */}
-            <Accordion>
-                <AccordionSummary>
-                    <Typography variant="body1" className="filter-text-off" id="lc-path-filter-text" sx={{ color: `${theme.text.color}` }}>Path</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <LightconePathFilter />
-                </AccordionDetails>
-            </Accordion>
-
-            {/* RARITY */}
-            <Accordion>
-                <AccordionSummary>
-                    <Typography variant="body1" className="filter-text-off" id="lc-rarity-filter-text" sx={{ color: `${theme.text.color}` }}>Rarity</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <LightconeRarityFilter />
-                </AccordionDetails>
-            </Accordion>
-
-            {/* CALYX MAT */}
-            <Accordion>
-                <AccordionSummary>
-                    <Typography variant="body1" className="filter-text-off" id="lc-calyx-filter-text" sx={{ color: `${theme.text.color}` }}>Calyx Material</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <LightconeCalyxMatFilter />
-                </AccordionDetails>
-            </Accordion>
-
-            {/* COMMON MAT */}
-            <Accordion>
-                <AccordionSummary>
-                    <Typography variant="body1" className="filter-text-off" id="lc-common-filter-text" sx={{ color: `${theme.text.color}` }}>Common Material</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <LightconeCommonMatFilter />
-                </AccordionDetails>
-            </Accordion>
-
-        </Paper>
+                <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Typography
+                        sx={{
+                            px: 2,
+                            py: 1.5,
+                            fontFamily: `${theme.font.styled.family}`,
+                            fontSize: "18px",
+                            flexGrow: 1
+                        }}
+                    >
+                        Filters
+                    </Typography>
+                    <IconButton onClick={props.handleClose}>
+                        <CloseIcon sx={{ color: `white` }} />
+                    </IconButton>
+                </Box>
+            </AppBar>
+            {
+                filters.map((filter, index) => (
+                    <Accordion key={index}>
+                        <AccordionSummary>
+                            <Typography
+                                sx={{
+                                    fontFamily: `${theme.font.styled.family}`,
+                                    color: lightconeFilters[filter.tag as keyof LightconeFilterState].length > 0 ? `gold` : `${theme.text.color}`
+                                }}
+                            >
+                                {filter.name}
+                            </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails sx={{ pl: 1 }}>
+                            {filter.component}
+                        </AccordionDetails>
+                    </Accordion>
+                ))
+            }
+        </Box>
     )
 }
 
-export default LightconeFilters;
+export default LightconeFilters
