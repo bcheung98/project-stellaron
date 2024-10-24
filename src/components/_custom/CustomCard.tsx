@@ -217,13 +217,13 @@ function CustomCard({
                             bottom: "50%",
                             left: "50%",
                             transform: "translate(-50%, 0%)",
-                            width: "95%"
+                            width: type === "relic" ? "90%" : "95%"
                         }}
                     >
                         <Typography
                             sx={{
                                 color: `white`,
-                                fontSize: type === "character" ? "20px" : type === "lightcone" ? "16.5px" : "14.5px",
+                                fontSize: type === "character" ? "20px" : type === "lightcone" ? "16.5px" : "14px",
                                 textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                 textAlign: "center",
                                 mb: showStars ? "0px" : "10px"
