@@ -62,7 +62,7 @@ function CharacterFilters(props: {
                 tag: "calyxMat",
                 component:
                     <Grid container spacing={1}>
-                        {CalyxMats.map((material, index) => <FilterButton key={index} tag={formatCalyxMats(material)} img={`materials/calyx_mats/${material.split(" ").join("_")}3`} active={characterFilters.calyxMat.includes(material)} onClick={() => dispatch(setCalyxMats(material))} />)}
+                        {CalyxMats.map((material, index) => <FilterButton key={index} tag={formatCalyxMats(`${material}-filter`)} img={`materials/calyx_mats/${material.split(" ").join("_")}3`} active={characterFilters.calyxMat.includes(material)} onClick={() => dispatch(setCalyxMats(material))} />)}
                     </Grid>
             },
             {
@@ -74,7 +74,7 @@ function CharacterFilters(props: {
                     </Grid>
             },
             {
-                name: "Normal Boss",
+                name: "Stagnant Shadow Material",
                 tag: "bossMat",
                 component:
                     <Grid container spacing={1}>
@@ -82,7 +82,7 @@ function CharacterFilters(props: {
                     </Grid>
             },
             {
-                name: "Weekly Boss",
+                name: "Echo of War Material",
                 tag: "weeklyBossMat",
                 component:
                     <Grid container spacing={1}>

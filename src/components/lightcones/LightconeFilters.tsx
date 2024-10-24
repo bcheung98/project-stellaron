@@ -54,7 +54,7 @@ function LightconeFilters(props: {
                 tag: "calyxMat",
                 component:
                     <Grid container spacing={1}>
-                        {CalyxMats.map((material, index) => <FilterButton key={index} tag={formatCalyxMats(material)} img={`materials/calyx_mats/${material.split(" ").join("_")}3`} active={lightconeFilters.calyxMat.includes(material)} onClick={() => dispatch(setCalyxMats(material))} />)}
+                        {CalyxMats.map((material, index) => <FilterButton key={index} tag={formatCalyxMats(`${material}-filter`)} img={`materials/calyx_mats/${material.split(" ").join("_")}3`} active={lightconeFilters.calyxMat.includes(material)} onClick={() => dispatch(setCalyxMats(material))} />)}
                     </Grid>
             },
             {
