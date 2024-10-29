@@ -78,21 +78,18 @@ function LightconeAscensionLevel({ lightcone }: { lightcone: LightconeCostObject
     })
 
     return (
-        <Box
-            sx={{
-                mb: "15px",
-                mx: "15px",
-            }}
-        >
-            <Typography variant="h6" sx={{ color: `${theme.text.color}`, fontWeight: "bold", ml: "15px" }}>
-                Level
-            </Typography>
-            <Box sx={{ display: "flex", alignItems: "center", px: 2 }}>
-                <Typography variant="body1" sx={{ color: `${theme.text.color}`, mr: "25px", width: "70px", fontWeight: "bold" }}>
+        <Box sx={{ width: "100%" }}>
+            <Box sx={{ display: "flex", alignItems: "center", mb: "-10px", pb: "16px" }}>
+                <Typography sx={{ fontSize: { xs: "14px", sm: "16px" }, color: `${theme.text.color}` }}>
+                    Level
+                </Typography>
+            </Box>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography sx={{ fontSize: { xs: "12px", sm: "16px" }, color: `${theme.text.color}`, width: "90px" }}>
                     Lv. {levels[sliderValue[0] - 1]}
                 </Typography>
-                <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} disableSwap />
-                <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "25px", width: "70px", fontWeight: "bold" }}>
+                <CustomSlider value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} disableSwap size={matches ? "small" : "medium"} />
+                <Typography sx={{ fontSize: { xs: "12px", sm: "16px" }, color: `${theme.text.color}`, ml: "25px", width: "90px" }}>
                     Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
             </Box>

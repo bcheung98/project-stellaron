@@ -97,25 +97,19 @@ function CharacterAscensionLevel({ character }: { character: CharacterCostObject
     })
 
     return (
-        <Box
-            sx={{
-                mb: "15px",
-                mx: "15px",
-            }}
-            style={selected ? { opacity: "1" } : { opacity: "0.35" }}
-        >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-                <CustomSwitch checked={selected} onChange={handleSelect} element={element} />
-                <Typography variant="h6" sx={{ color: `${theme.text.color}`, fontWeight: "bold", ml: "15px" }}>
+        <Box sx={{ width: "100%", opacity: selected ? 1 : 0.35 }}>
+            <Box sx={{ display: "flex", alignItems: "center", mb: "-10px", pb: "16px" }}>
+                <CustomSwitch checked={selected} onChange={handleSelect} element={element} size="small" sx={{ ml: "-5px" }} />
+                <Typography sx={{ fontSize: { xs: "14px", sm: "16px" }, color: `${theme.text.color}`, ml: "15px" }}>
                     Level
                 </Typography>
             </Box>
-            <Box sx={{ display: "flex", alignItems: "center", px: 2 }}>
-                <Typography variant="body1" sx={{ color: `${theme.text.color}`, mr: "25px", width: "70px", fontWeight: "bold" }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography sx={{ fontSize: { xs: "12px", sm: "16px" }, color: `${theme.text.color}`, width: "90px" }}>
                     Lv. {levels[sliderValue[0] - 1]}
                 </Typography>
-                <CustomSlider disabled={!selected} value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={element} disableSwap />
-                <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "25px", width: "70px", fontWeight: "bold" }}>
+                <CustomSlider disabled={!selected} value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={element} disableSwap size={matches ? "small" : "medium"} />
+                <Typography sx={{ fontSize: { xs: "12px", sm: "16px" }, color: `${theme.text.color}`, ml: "25px", width: "90px" }}>
                     Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
             </Box>

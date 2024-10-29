@@ -14,7 +14,6 @@ import Grid from "@mui/material/Grid2"
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { CharacterCostObject, LightconeCostObject } from "../../types/costs"
 
 function AscensionPlanner() {
 
@@ -38,7 +37,7 @@ function AscensionPlanner() {
             >
                 Ascension Planner
             </Typography>
-            <Grid container spacing={5} sx={{ mb: "30px" }}>
+            <Grid container spacing={5}>
                 <Grid size={{ xs: 12, md: 5 }}>
                     <CharacterSelector />
                 </Grid>
@@ -48,19 +47,17 @@ function AscensionPlanner() {
             </Grid>
             <AscensionTotalCost />
             <Grid container spacing={5}>
-                <Grid size={{ xs: 12, md: 5 }}>
-                    <Grid container spacing={5}>
-                        {characters.map((character: CharacterCostObject) => <CharacterAscensionCard key={character.name} character={character} />)}
-                    </Grid>
-                </Grid>
-                <Grid size={{ xs: 12, md: 5 }}>
-                    <Grid container spacing={5}>
-                        {lightcones.map((lightcone: LightconeCostObject) => <LightconeAscensionCard key={lightcone.name} lightcone={lightcone} />)}
-                    </Grid>
-                </Grid>
+                {
+                    [...characters, ...lightcones].map(item =>
+                        <Grid key={item.name} size={{ xs: 12, md: 5 }}>
+                            {"element" in item ? <CharacterAscensionCard key={item.name} character={item} /> : <LightconeAscensionCard key={item.name} lightcone={item} />}
+                        </Grid>
+                    )
+                }
             </Grid>
         </React.Fragment>
     )
 
 }
+
 export default AscensionPlanner

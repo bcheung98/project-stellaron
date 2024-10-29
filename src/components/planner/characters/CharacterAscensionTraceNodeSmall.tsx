@@ -6,11 +6,12 @@ import parse from "html-react-parser"
 import { CustomTooltip } from "../../_custom/CustomTooltip"
 
 // MUI imports
-import { useTheme, Typography, Avatar } from "@mui/material"
+import { useTheme, Typography } from "@mui/material"
 
 // Helper imports
 import { updateCharacterCosts, updateTotalCosts } from "../../../redux/reducers/AscensionPlannerReducer"
 import { traceSmall } from "../../../data/levelUpCosts"
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 // Type imports
 import { AscensionTraceNodeProps } from "./CharacterAscensionTrace"
@@ -74,26 +75,30 @@ function CharacterAscensionTraceNodeSmall({ character, traces, id }: AscensionTr
         dispatch(updateTotalCosts())
     })
 
-    return (
-        <CustomTooltip arrow placement="top" title={<Typography variant="body2" sx={{ color: `${theme.text.color}` }}>
+    const tooltipText =
+        <Typography sx={{ fontSize: "13px" }}>
             {parse(traces.description)} ({traces.unlock})
-        </Typography>}
-        >
-            <Avatar alt={traces.type} src={(`${process.env.REACT_APP_URL}/stat_icons/${traces.type?.split(" ").join("_")}.png`)}
+        </Typography>
+
+    return (
+        <CustomTooltip arrow placement="top" title={tooltipText}>
+            <img
+                src={`${process.env.REACT_APP_URL}/stat_icons/${traces.type?.split(" ").join("_")}.png`}
+                alt={traces.name}
                 id={id}
-                sx={{
+                style={{
+                    display: "flex",
                     width: "32px",
                     height: "32px",
                     border: `2px solid ${theme.border.color}`,
-                    mx: "20px",
-                    my: "5px",
+                    borderRadius: "64px",
+                    margin: "5px 30px 5px 0px",
                     cursor: "pointer",
+                    opacity: selected ? 1 : 0.35
                 }}
-                style={selected ? { opacity: "1" } : { opacity: "0.35" }}
                 onClick={handleSelect}
-            >
-                <img src={`${process.env.REACT_APP_URL}/images/Unknown.png`} alt="Unknown" style={{ width: "48px", backgroundColor: `${theme.paper.backgroundColor}` }} />
-            </Avatar>
+                onError={ErrorLoadingImage}
+            />
         </CustomTooltip>
     )
 

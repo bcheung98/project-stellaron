@@ -1,23 +1,31 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Box, Typography, CardHeader, ButtonBase } from "@mui/material";
-import Grid from "@mui/material/Grid2";
-import { CustomTooltip } from "../../_custom/CustomTooltip";
-import { Accordion, AccordionDetails, AccordionSummary } from "../../_custom/CustomAccordion";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
-import CharacterAscensionCardMaterials from "./_CharacterAscensionCardMaterials";
-import CharacterAscensionLevel from "./CharacterAscensionLevel";
-import CharacterAscensionBasicATK from "./CharacterAscensionBasicATK";
-import CharacterAscensionSkill from "./CharacterAscensionSkill";
-import CharacterAscensionUltimate from "./CharacterAscensionUltimate";
-import CharacterAscensionTalent from "./CharacterAscensionTalent";
-import CharacterAscensionTrace from "./CharacterAscensionTrace";
+import * as React from "react"
 
-const CharacterAscensionCard = (props) => {
+// Component imports
+import CharacterAscensionCardMaterials from "./_CharacterAscensionCardMaterials"
+import CharacterAscensionLevel from "./CharacterAscensionLevel"
+import CharacterAscensionBasicATK from "./CharacterAscensionBasicATK"
+import CharacterAscensionSkill from "./CharacterAscensionSkill"
+import CharacterAscensionUltimate from "./CharacterAscensionUltimate"
+import CharacterAscensionTalent from "./CharacterAscensionTalent"
+import CharacterAscensionTrace from "./CharacterAscensionTrace"
+import { CustomTooltip } from "../../_custom/CustomTooltip"
+import { Accordion, AccordionDetails, AccordionSummary } from "../../_custom/CustomAccordion"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme, Box, Typography, CardHeader, ButtonBase } from "@mui/material"
+import Grid from "@mui/material/Grid2"
 
-    let { name, rarity, element, path } = props.character;
+// Helper imports
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
+
+// Type imports
+import { CharacterCostObject } from "../../../types/costs"
+
+function CharacterAscensionCard({ character }: { character: CharacterCostObject }) {
+
+    const theme = useTheme()
+
+    let { name, rarity, element, path } = character
 
     const smallIcon = {
         width: "24px",
@@ -26,12 +34,11 @@ const CharacterAscensionCard = (props) => {
         border: `1px solid ${theme.border.color}`,
         borderRadius: "24px",
         marginBottom: "10px",
-    };
+    }
 
     return (
         <Box
             sx={{
-                width: "750px",
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 backgroundColor: `${theme.paper.backgroundColor}`,
@@ -41,7 +48,7 @@ const CharacterAscensionCard = (props) => {
             <CardHeader
                 avatar={
                     <Box sx={{ position: "relative" }}>
-                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <img alt={name} src={(`${process.env.REACT_APP_URL}/characters/icons/${name.split(" ").join("_")}.png`)} style={{ width: "64px", border: `2px solid ${theme.border.color}`, borderRadius: "64px" }} onError={ErrorLoadingImage} />
                         </ButtonBase>
                         <Box sx={{ position: "absolute", top: "50px", left: "-5px" }}>
@@ -58,9 +65,9 @@ const CharacterAscensionCard = (props) => {
                 }
                 title={
                     <React.Fragment>
-                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
-                                {props.character.displayName ? props.character.displayName : name}
+                                {character.displayName ? character.displayName : name}
                             </Typography>
                         </ButtonBase>
                         <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }} variant="h6">
@@ -74,7 +81,7 @@ const CharacterAscensionCard = (props) => {
                 <Typography variant="body1" sx={{ color: `${theme.text.color}` }}>
                     Materials Required
                 </Typography>
-                <CharacterAscensionCardMaterials character={props.character} />
+                <CharacterAscensionCardMaterials character={character} />
             </Box>
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
             <Accordion>
@@ -83,24 +90,19 @@ const CharacterAscensionCard = (props) => {
                         Edit
                     </Typography>
                 </AccordionSummary>
-                <AccordionDetails>
-                    <CharacterAscensionLevel character={props.character} />
-                    <Grid container spacing={2}>
-                        <Grid size={6}>
-                            <CharacterAscensionBasicATK character={props.character} />
+                <AccordionDetails sx={{ mx: "10px", px: 0 }}>
+                    <CharacterAscensionLevel character={character} />
+                    <Grid container rowSpacing={0} columnSpacing={4}>
+                        <Grid size={{ xs: 12, sm: 6 }}>
+                            <CharacterAscensionBasicATK character={character} />
+                            <CharacterAscensionSkill character={character} />
+                            <CharacterAscensionUltimate character={character} />
+                            <CharacterAscensionTalent character={character} />
                         </Grid>
-                        <Grid size={6}>
-                            <CharacterAscensionSkill character={props.character} />
-                        </Grid>
-                        <Grid size={6}>
-                            <CharacterAscensionUltimate character={props.character} />
-                        </Grid>
-                        <Grid size={6}>
-                            <CharacterAscensionTalent character={props.character} />
+                        <Grid size={{ xs: 12, sm: 6 }}>
+                            <CharacterAscensionTrace character={character} />
                         </Grid>
                     </Grid>
-                    <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
-                    <CharacterAscensionTrace character={props.character} />
                 </AccordionDetails>
             </Accordion>
         </Box>
@@ -108,4 +110,4 @@ const CharacterAscensionCard = (props) => {
 
 }
 
-export default CharacterAscensionCard;
+export default CharacterAscensionCard

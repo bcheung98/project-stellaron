@@ -1,17 +1,25 @@
-import * as React from "react";
-import { useTheme } from "@mui/material/styles";
-import { Box, Typography, CardHeader, ButtonBase } from "@mui/material";
-import { CustomTooltip } from "../../_custom/CustomTooltip";
-import { Accordion, AccordionDetails, AccordionSummary } from "../../_custom/CustomAccordion";
-import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
-import LightconeAscensionCardMaterials from "./_LightconeAscensionCardMaterials";
-import LightconeAscensionLevel from "./LightconeAscensionLevel";
+import * as React from "react"
 
-const LightconeAscensionCard = (props) => {
+// Component imports
+import LightconeAscensionCardMaterials from "./_LightconeAscensionCardMaterials"
+import LightconeAscensionLevel from "./LightconeAscensionLevel"
+import { CustomTooltip } from "../../_custom/CustomTooltip"
+import { Accordion, AccordionDetails, AccordionSummary } from "../../_custom/CustomAccordion"
 
-    const theme = useTheme();
+// MUI imports
+import { useTheme, Box, Typography, CardHeader, ButtonBase } from "@mui/material"
 
-    let { name, rarity, path } = props.lightcone;
+// Helper imports
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
+
+// Type imports
+import { LightconeCostObject } from "../../../types/costs"
+
+function LightconeAscensionCard({ lightcone }: { lightcone: LightconeCostObject }) {
+
+    const theme = useTheme()
+
+    let { name, rarity, path } = lightcone
 
     const smallIcon = {
         width: "24px",
@@ -20,12 +28,11 @@ const LightconeAscensionCard = (props) => {
         border: `1px solid ${theme.border.color}`,
         borderRadius: "24px",
         marginBottom: "10px",
-    };
+    }
 
     return (
         <Box
             sx={{
-                width: "750px",
                 border: `1px solid ${theme.border.color}`,
                 borderRadius: "5px",
                 backgroundColor: `${theme.paper.backgroundColor}`,
@@ -35,7 +42,7 @@ const LightconeAscensionCard = (props) => {
             <CardHeader
                 avatar={
                     <Box sx={{ position: "relative" }}>
-                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/lightcones/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/lightcones/${lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <img alt={name} src={(`${process.env.REACT_APP_URL}/lightcones/small/${name.split(" ").join("_")}.png`)} style={{ width: "64px", height: "64px", border: `2px solid ${theme.border.color}`, borderRadius: "64px" }} onError={ErrorLoadingImage} />
                         </ButtonBase>
                         <Box sx={{ position: "absolute", top: "50px", left: "45px" }}>
@@ -47,7 +54,7 @@ const LightconeAscensionCard = (props) => {
                 }
                 title={
                     <React.Fragment>
-                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/lightcones/${props.lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
+                        <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/lightcones/${lightcone.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
                                 {name}
                             </Typography>
@@ -63,7 +70,7 @@ const LightconeAscensionCard = (props) => {
                 <Typography variant="body1" sx={{ color: `${theme.text.color}` }}>
                     Materials Required
                 </Typography>
-                <LightconeAscensionCardMaterials lightcone={props.lightcone} />
+                <LightconeAscensionCardMaterials lightcone={lightcone} />
             </Box>
             <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
             <Accordion>
@@ -72,8 +79,8 @@ const LightconeAscensionCard = (props) => {
                         Edit
                     </Typography>
                 </AccordionSummary>
-                <AccordionDetails>
-                    <LightconeAscensionLevel lightcone={props.lightcone} />
+                <AccordionDetails sx={{ mx: "10px", px: 0 }}>
+                    <LightconeAscensionLevel lightcone={lightcone} />
                 </AccordionDetails>
             </Accordion>
         </Box>
@@ -81,4 +88,4 @@ const LightconeAscensionCard = (props) => {
 
 }
 
-export default LightconeAscensionCard;
+export default LightconeAscensionCard

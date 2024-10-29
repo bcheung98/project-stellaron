@@ -100,29 +100,27 @@ function CharacterAscensionUltimate({ character }: { character: CharacterCostObj
     })
 
     return (
-        <Box
-            sx={{
-                mb: "15px",
-                mx: "15px",
-                width: "350px",
-            }}
-            style={selected ? { opacity: "1" } : { opacity: "0.35" }}
-        >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-                <CustomSwitch checked={selected} onChange={handleSelect} element={element} />
+        <Box sx={{ opacity: selected ? 1 : 0.35 }}>
+            <Box sx={{ display: "flex", alignItems: "center", mb: "-10px" }}>
+                <CustomSwitch checked={selected} onChange={handleSelect} element={element} size="small" sx={{ ml: "-5px" }} />
                 <CardHeader
-                    avatar={<img alt={name} src={(`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_ultimate.png`)} style={{ width: "48px", height: "48px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />}
-                    title={<Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
-                        Ultimate
-                    </Typography>}
-                    sx={{ ml: "-5px" }} />
+                    avatar={
+                        <img alt={name} src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_ultimate.png`} style={{ width: matches ? "32px" : "40px", border: `1px solid ${theme.border.color}`, borderRadius: "48px" }} onError={ErrorLoadingImage} />
+                    }
+                    title={
+                        <Typography sx={{ fontSize: { xs: "14px", sm: "16px" }, color: `${theme.text.color}` }}>
+                            Ultimate
+                        </Typography>
+                    }
+                    sx={{ ml: "-5px" }}
+                />
             </Box>
-            <Box sx={{ display: "flex", alignItems: "center", px: 2 }}>
-                <Typography variant="body1" sx={{ color: `${theme.text.color}`, mr: "25px", width: "80px", fontWeight: "bold" }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Typography sx={{ fontSize: { xs: "12px", sm: "16px" }, color: `${theme.text.color}`, mr: { xs: 0, sm: "11px" }, width: "90px" }}>
                     Lv. {levels[sliderValue[0] - 1]}
                 </Typography>
-                <CustomSlider disabled={!selected} value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={element} disableSwap />
-                <Typography variant="body1" sx={{ color: `${theme.text.color}`, ml: "25px", width: "80px", fontWeight: "bold" }}>
+                <CustomSlider disabled={!selected} value={sliderValue} step={1} min={1} max={maxValue} onChange={handleSliderChange} element={element} disableSwap size={matches ? "small" : "medium"} />
+                <Typography sx={{ fontSize: { xs: "12px", sm: "16px" }, color: `${theme.text.color}`, ml: "25px", width: "90px" }}>
                     Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
             </Box>
