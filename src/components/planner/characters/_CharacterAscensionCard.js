@@ -2,16 +2,16 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography, CardHeader, ButtonBase } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { CustomTooltip } from "../_custom/CustomTooltip";
-import { Accordion, AccordionDetails, AccordionSummary } from "../_custom/CustomAccordion";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
-import CharacterAscensionCardMaterials from "./CharacterAscensionCardMaterials";
+import { CustomTooltip } from "../../_custom/CustomTooltip";
+import { Accordion, AccordionDetails, AccordionSummary } from "../../_custom/CustomAccordion";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+import CharacterAscensionCardMaterials from "./_CharacterAscensionCardMaterials";
 import CharacterAscensionLevel from "./CharacterAscensionLevel";
 import CharacterAscensionBasicATK from "./CharacterAscensionBasicATK";
 import CharacterAscensionSkill from "./CharacterAscensionSkill";
 import CharacterAscensionUltimate from "./CharacterAscensionUltimate";
 import CharacterAscensionTalent from "./CharacterAscensionTalent";
-import CharacterAscensionTraces from "./CharacterAscensionTraces";
+import CharacterAscensionTrace from "./CharacterAscensionTrace";
 
 const CharacterAscensionCard = (props) => {
 
@@ -60,9 +60,7 @@ const CharacterAscensionCard = (props) => {
                     <React.Fragment>
                         <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${props.character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
-                                {props.character.displayName && props.character.displayName}
-                                {props.character.fullName && props.character.fullName}
-                                {!props.character.displayName && !props.character.fullName && name}
+                                {props.character.displayName ? props.character.displayName : name}
                             </Typography>
                         </ButtonBase>
                         <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }} variant="h6">
@@ -102,7 +100,7 @@ const CharacterAscensionCard = (props) => {
                         </Grid>
                     </Grid>
                     <hr style={{ border: `.5px solid ${theme.border.color}`, marginTop: "15px", marginBottom: "15px" }} />
-                    <CharacterAscensionTraces character={props.character} />
+                    <CharacterAscensionTrace character={props.character} />
                 </AccordionDetails>
             </Accordion>
         </Box>

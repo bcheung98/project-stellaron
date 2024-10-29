@@ -1,10 +1,10 @@
 import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Typography, CardHeader, ButtonBase } from "@mui/material";
-import { CustomTooltip } from "../_custom/CustomTooltip";
-import { Accordion, AccordionDetails, AccordionSummary } from "../_custom/CustomAccordion";
-import ErrorLoadingImage from "../../helpers/ErrorLoadingImage";
-import LightconeAscensionCardMaterials from "./LightconeAscensionCardMaterials";
+import { CustomTooltip } from "../../_custom/CustomTooltip";
+import { Accordion, AccordionDetails, AccordionSummary } from "../../_custom/CustomAccordion";
+import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage";
+import LightconeAscensionCardMaterials from "./_LightconeAscensionCardMaterials";
 import LightconeAscensionLevel from "./LightconeAscensionLevel";
 
 const LightconeAscensionCard = (props) => {
