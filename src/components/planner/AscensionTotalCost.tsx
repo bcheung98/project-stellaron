@@ -89,7 +89,7 @@ function AscensionTotalCost() {
                             {
                                 costData.map((material, index) => (
                                     material.cost !== 0 &&
-                                    <MaterialImage key={index} name={material.name} rarity={material.rarity} cost={material.cost.toLocaleString()} img={material.img} />
+                                    <MaterialImage key={index} name={material.name} rarity={material.rarity} cost={material.cost.toLocaleString()} img={material.img} size="64px" />
                                 ))
                             }
                         </Grid>

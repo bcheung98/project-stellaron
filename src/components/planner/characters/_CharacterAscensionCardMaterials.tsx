@@ -55,7 +55,7 @@ function CharacterAscensionCardMaterials({ character }: { character: CharacterCo
             {
                 costData.map((material, index) => (
                     costArray[index] !== 0 &&
-                    <MaterialImage key={index} name={material.name} rarity={material.rarity} cost={costArray[index].toLocaleString()} img={material.img} />
+                    <MaterialImage key={index} name={material.name} rarity={material.rarity} cost={costArray[index].toLocaleString()} img={material.img} size="64px" />
                 ))
             }
         </Grid>

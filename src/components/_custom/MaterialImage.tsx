@@ -30,7 +30,6 @@ function MaterialImage({
         width: size,
         height: "auto",
         background: `rgb(25, 25, 25)`,
-        border: `1px solid ${theme.border.color}`,
         borderRadius: "5px 15px 5px 5px",
         containerType: "inline-size",
         overflow: "hidden"
@@ -46,7 +45,7 @@ function MaterialImage({
     }
 
     return (
-        <Card sx={cardStyle}>
+        <Card sx={cardStyle} elevation={2}>
             <Box sx={{ height: size, overflow: "hidden" }}>
                 <CustomTooltip title={name} arrow placement="top">
                     <img
@@ -60,15 +59,14 @@ function MaterialImage({
             <Box
                 sx={{
                     textAlign: "center",
-                    p: 0,
+                    py: "2.5px"
                 }}
             >
                 <Typography
-                    gutterBottom
                     sx={{
                         fontFamily: `${theme.font.styled.family}`,
                         color: `rgb(208, 208, 208)`,
-                        fontSize: `14px`,
+                        fontSize: `calc(${size} / 5)`,
                     }}
                 >
                     {cost}
