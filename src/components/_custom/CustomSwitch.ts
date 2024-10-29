@@ -1,5 +1,6 @@
 import { alpha, styled } from "@mui/material/styles"
 import { Switch } from "@mui/material"
+import { elementalColors } from "../../helpers/elementalColors"
 
 interface CustomSwitchProps {
     element?: string | undefined
@@ -7,12 +8,12 @@ interface CustomSwitchProps {
 
 export const CustomSwitch = styled(Switch)<CustomSwitchProps>(({ element }) => ({
     "& .MuiSwitch-switchBase.Mui-checked": {
-        color: `rgb(169, 142, 84)`,
+        color: `${elementalColors(element)}`,
         "&:hover": {
-            backgroundColor: alpha(`rgb(169, 142, 84)`, 0),
+            backgroundColor: alpha(`${elementalColors(element)}`, 0),
         },
     },
     "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-        backgroundColor: `rgb(169, 142, 84)`,
+        backgroundColor: `${elementalColors(element)}`,
     },
 }))
