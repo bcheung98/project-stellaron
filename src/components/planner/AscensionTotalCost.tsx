@@ -105,8 +105,8 @@ export default AscensionTotalCost
 
 const getMaterialName = (type: string, material: string) => {
     switch (type) {
-        case "char_xp":
-        case "wep_xp":
+        case "characterXP":
+        case "lightconeXP":
             return formatXPMats(material)
         case "weeklyBossMat":
             return formatWeeklyBossMats(material)
