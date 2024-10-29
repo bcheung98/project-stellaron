@@ -1,6 +1,5 @@
 // MUI imports
-import { useTheme } from "@mui/material/styles"
-import { Box, Card, SxProps, Typography } from "@mui/material"
+import { useTheme, SxProps, Box, Card, Typography } from "@mui/material"
 
 // Helper imports
 import { CustomTooltip } from "./CustomTooltip"
@@ -29,7 +28,7 @@ function MaterialImage({
     const cardStyle: SxProps = {
         width: size,
         height: "auto",
-        background: `rgb(25, 25, 25)`,
+        background: `rgb(20, 20, 20)`,
         borderRadius: "5px 15px 5px 5px",
         containerType: "inline-size",
         overflow: "hidden"
@@ -66,7 +65,7 @@ function MaterialImage({
                     sx={{
                         fontFamily: `${theme.font.styled.family}`,
                         color: `rgb(208, 208, 208)`,
-                        fontSize: `calc(${size} / 5)`,
+                        fontSize: cost.toLocaleString().length < 11 ? `calc(${size} / 5)` : `calc(${size} / 6)`,
                     }}
                 >
                     {cost}
