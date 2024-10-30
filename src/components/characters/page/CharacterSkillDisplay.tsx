@@ -5,7 +5,7 @@ import CharacterSkillTab from "./CharacterSkillTab"
 import { TabPanel, StyledTabs, StyledTab } from "../../_custom/CustomTabs"
 
 // MUI imports
-import { useTheme, useMediaQuery, Typography, Box, AppBar, Card } from "@mui/material"
+import { useTheme, useMediaQuery, Typography, AppBar, Card } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 
 // Helper imports

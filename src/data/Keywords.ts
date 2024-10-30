@@ -1,11 +1,11 @@
-interface Keywords {
+interface IKeywords {
     [key: string]: {
         name: string,
         description: string
     }
 }
 
-const Keywords: Keywords= {
+const Keywords: IKeywords = {
     "action advanced": {
         name: "Action advanced",
         description: "Reduces the target's waiting interval before the next action."
