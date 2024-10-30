@@ -32,7 +32,7 @@ function CharacterPage() {
 
     const { char_name } = useParams<{ char_name: string }>()
     const characters = useSelector((state: RootState) => state.characters.characters)
-    const character = characters.find(char => char.name.split(" ").join("_").toLowerCase() === char_name)
+    const character = characters.find((char: CharacterData) => char.name.split(" ").join("_").toLowerCase() === char_name)
 
     const [tabValue, setTabValue] = React.useState(0)
     const handleTabChange = (event: React.BaseSyntheticEvent, newValue: number) => {
@@ -180,6 +180,8 @@ function CharacterInfoMain({ character }: { character: CharacterData }) {
 
     const theme = useTheme()
 
+    const matches = useMediaQuery(theme.breakpoints.up("sm"))
+
     const { name, rarity, element, path, description } = character
 
     return (
@@ -197,8 +199,8 @@ function CharacterInfoMain({ character }: { character: CharacterData }) {
                 <CustomTooltip title={element} arrow placement="bottom">
                     <img src={`${process.env.REACT_APP_URL}/elements/Element_${element}.png`} alt={`${element}`}
                         style={{
-                            margin: "auto 20px auto 20px",
-                            height: "90px"
+                            margin: matches ? "auto 20px auto 20px" : "auto 10px auto 10px",
+                            width: matches ? "90px" : "72px"
                         }}
                         onError={ErrorLoadingImage}
                     />
@@ -216,16 +218,16 @@ function CharacterInfoMain({ character }: { character: CharacterData }) {
                     <Box>
                         <CardHeader
                             avatar={
-                                <img src={`${process.env.REACT_APP_URL}/paths/The_${path}.png`} alt={path} style={{ width: "40px", height: "40px" }} onError={ErrorLoadingImage} />
+                                <img src={`${process.env.REACT_APP_URL}/paths/The_${path}.png`} alt={path} style={{ width: matches ? "40px" : "32px", }} onError={ErrorLoadingImage} />
                             }
                             title={
-                                <Typography sx={{ color: `${theme.text.color}`, fontSize: { xs: "16px", sm: "18px" }, ml: "-5px" }}>
+                                <Typography sx={{ color: `${theme.text.color}`, fontSize: { xs: "14px", sm: "18px" }, ml: "-5px" }}>
                                     The {path}
                                 </Typography>
                             }
                             sx={{ px: 0, py: 0.5 }}
                         />
-                        <Typography sx={{ mt: "-5px", color: `rgb(255, 208, 112)`, fontSize: "30px", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }}>
+                        <Typography sx={{ color: `rgb(255, 208, 112)`, fontSize: { xs: "24px", sm: "30px" }, textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }}>
                             {[...Array(rarity).keys()].map(() => "✦")}
                         </Typography>
                     </Box>
@@ -237,7 +239,7 @@ function CharacterInfoMain({ character }: { character: CharacterData }) {
                     mb: "20px",
                     mx: "25px",
                     fontFamily: `${theme.font.styled.family}`,
-                    fontSize: { xs: "12px", sm: "15px" },
+                    fontSize: { xs: "13.5px", sm: "15px" },
                     color: `${theme.text.color}`,
                 }}
             >

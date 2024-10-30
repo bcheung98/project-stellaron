@@ -41,7 +41,7 @@ function CharacterAscension({ character }: { character: CharacterData }) {
     return (
         <React.Fragment>
             <CharacterAscensionMaterials materials={{ commonMat: character.materials.commonMat as string, bossMat: character.materials.bossMat as string }} rarity={character.rarity.toString() as "5" | "4"} values={sliderValue} />
-            <Box sx={{ display: "flex", alignItems: "center", flexWrap: "wrap", mt: "10px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", width: "40%", flexWrap: "wrap", mt: "10px" }}>
                 <Typography sx={{ color: theme.text.color, fontSize: "16px", minWidth: "125px" }}>
                     Lv. {levels[sliderValue[0] - 1]} → Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
@@ -53,7 +53,8 @@ function CharacterAscension({ character }: { character: CharacterData }) {
                     onChange={handleSliderChange}
                     element={character.element}
                     disableSwap
-                    sx={{ minWidth: "80px", width: "80%", ml: "10px" }} />
+                    sx={{ minWidth: "200px", ml: "10px" }}
+                />
             </Box>
         </React.Fragment>
     )

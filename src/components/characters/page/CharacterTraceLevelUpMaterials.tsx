@@ -6,21 +6,22 @@ import MaterialImage from "../../_custom/MaterialImage"
 import { formatCommonMats, formatCalyxMats, formatWeeklyBossMats } from "../../../helpers/TooltipText"
 import { totalCosts, traceLevelUpMaterialsMain, traceLevelUpMaterialsSmall } from "../../../data/traceLevelUpCosts"
 
+// Type imports
+import { MaterialsData } from "../../../types/MaterialsData"
+
 interface CharacterTraceLevelUpMaterialsProps {
-    rarity: "5" | "4",
-    unlock: string,
+    rarity: number,
+    unlock?: string,
     type: "total" | "main" | "small",
-    materials: {
-        calyxMat: string,
-        commonMat: string,
-        weeklyBossMat: string
-    }
+    size?: string,
+    materials: MaterialsData
 }
 
 function CharacterTraceLevelUpMaterials({
     rarity,
-    unlock,
+    unlock = "Lv. 1",
     type,
+    size = "72px",
     materials
 }: CharacterTraceLevelUpMaterialsProps) {
 
@@ -47,17 +48,17 @@ function CharacterTraceLevelUpMaterials({
         if (key.slice(0, -1) === "calyx") {
             name = formatCalyxMats(`${calyxMat}${keyNum}`)
             rarity = Number(keyNum) + 1
-            img = `calyx_mats/${calyxMat.split(" ").join("_")}${keyNum}`
+            img = `calyx_mats/${calyxMat?.split(" ").join("_")}${keyNum}`
         }
         if (key.slice(0, -1) === "common") {
             name = formatCommonMats(`${commonMat}${keyNum}`)
             rarity = Number(keyNum) + 1
-            img = `common_mats/${commonMat.split(" ").join("_")}${keyNum}`
+            img = `common_mats/${commonMat?.split(" ").join("_")}${keyNum}`
         }
         if (key === "weeklyBossMat") {
             name = formatWeeklyBossMats(weeklyBossMat)
             rarity = 4
-            img = `weekly_boss_mats/${weeklyBossMat.split(" ").join("_")}`
+            img = `weekly_boss_mats/${weeklyBossMat?.split(" ").join("_")}`
         }
         if (key === "tracksOfDestiny") {
             name = "Tracks of Destiny"
@@ -71,7 +72,7 @@ function CharacterTraceLevelUpMaterials({
         <Grid container rowSpacing={1} columnSpacing={2}>
             {
                 costData.map((material, index) => (
-                    <MaterialImage key={index} name={material.name} rarity={material.rarity} cost={material.cost} img={material.img} size={type === "total" ? "72px" : "64px"} />
+                    <MaterialImage key={index} name={material.name} rarity={material.rarity} cost={material.cost} img={material.img} size={size} />
                 ))
             }
         </Grid>
