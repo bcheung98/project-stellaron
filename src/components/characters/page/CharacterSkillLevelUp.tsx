@@ -54,15 +54,15 @@ function CharacterSkillLevelUp({
     return (
         <Accordion sx={{ ml: "-15px" }}>
             <AccordionSummary>
-                <Typography sx={{ color: `${theme.text.color}`, fontSize: "20px" }}>
+                <Typography sx={{ color: `${theme.text.color}`, fontSize: "18px" }}>
                     Level Up Cost
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
-                <Box sx={{ ml: "10px" }}>
+                <Box sx={{ ml: "5px" }}>
                     <CharacterSkillLevelUpMaterials skillKey={skillKey} materials={materials} rarity={rarity.toString() as "5" | "4"} values={sliderValue} />
-                    <Box sx={{ display: "flex", alignItems: "center", width: "40%", flexWrap: "wrap", mt: "10px" }}>
-                        <Typography sx={{ color: theme.text.color, fontSize: "16px", minWidth: "125px", mb: "10px" }}>
+                    <Box sx={{ display: { xs: "block", sm: "flex" }, alignItems: "center", width: skillKey === "attack" ? "30%" : "40%", mt: "10px" }}>
+                        <Typography sx={{ color: theme.text.color, fontSize: "18px", minWidth: "125px" }}>
                             Lv. {sliderValue[0]} → Lv. {sliderValue[1]}
                         </Typography>
                         <CustomSlider
@@ -78,7 +78,7 @@ function CharacterSkillLevelUp({
                     </Box>
                 </Box>
             </AccordionDetails>
-        </Accordion>
+        </Accordion >
     )
 
 }

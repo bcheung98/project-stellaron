@@ -21,6 +21,11 @@ export interface CharacterData {
     gender: string,
     faction: string,
     world: string,
+    keywords: {
+        tag: string,
+        name: string,
+        description: string
+    },
     splashArt: {
         scale: number,
         translate: number[]
