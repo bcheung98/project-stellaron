@@ -1,5 +1,5 @@
 import * as React from "react"
-import { connect } from "react-redux"
+import { useSelector } from "react-redux"
 
 // Component imports
 import CustomCard from "./_custom/CustomCard"
@@ -8,7 +8,7 @@ import { CustomInput } from "./_custom/CustomInput"
 import { CustomMenuItem } from "./_custom/CustomMenu"
 
 // MUI imports
-import { useTheme, Box, Typography, Select, AppBar, CardHeader, IconButton } from "@mui/material"
+import { useTheme, Box, Typography, Select, AppBar, CardHeader, IconButton, SelectChangeEvent } from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft"
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight"
@@ -16,12 +16,15 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight"
 // Helper imports
 import { updates } from "../data/versions"
 
-function VersionHighlights(props) {
+// Type imports
+import { RootState } from "../redux/store"
+
+function VersionHighlights() {
 
     const theme = useTheme()
 
     const [index, setIndex] = React.useState(0)
-    const handleIndexChange = (event) => {
+    const handleIndexChange = (event: SelectChangeEvent) => {
         setIndex(Number(event.target.value))
     }
     const handleIndexChangeLeft = () => {
@@ -33,11 +36,15 @@ function VersionHighlights(props) {
 
     let version = updates[index].version
 
-    let characters = props.characters.characters.filter(char => char.release.version === version).sort((a, b) => b.rarity - a.rarity)
-    let lightcones = props.lightcones.lightcones.filter(lc => lc.release.version === version).sort((a, b) => b.rarity - a.rarity)
-    let cavernRelics = props.relics.cavernRelics.filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
-    let planarOrnaments = props.relics.planarOrnaments.filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
-    let newRelics = [...cavernRelics, ...planarOrnaments].length > 0
+    const characters = useSelector((state: RootState) => state.characters.characters)
+    const lightcones = useSelector((state: RootState) => state.lightcones.lightcones)
+    const relics = useSelector((state: RootState) => state.relics)
+
+    let currentCharacters = characters.filter(char => char.release.version === version).sort((a, b) => b.rarity - a.rarity)
+    let currentLightcones = lightcones.filter(lc => lc.release.version === version).sort((a, b) => b.rarity - a.rarity)
+    let currentCavernRelics = relics.cavernRelics.filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
+    let currentPlanarOrnaments = relics.planarOrnaments.filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
+    let newRelics = [...currentCavernRelics, ...currentPlanarOrnaments].length > 0
 
     document.title = `Honkai: Star Rail ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
@@ -120,10 +127,12 @@ function VersionHighlights(props) {
                 <Grid container spacing={5}>
                     {
                         // NEW CHARACTERS
-                        characters.length > 0 || newRelics ?
+                        currentCharacters.length > 0 || newRelics ?
                             <Grid size={{ sm: 12, md: 6 }}>
                                 <CardHeader
-                                    avatar={<img src={`${process.env.REACT_APP_URL}/icons/Character.png`} alt="New Characters" style={{ width: "40px", marginRight: "-5px" }} />}
+                                    avatar={
+                                        <img src={`${process.env.REACT_APP_URL}/icons/Character.png`} alt="New Characters" style={{ width: "40px", marginRight: "-5px" }} />
+                                    }
                                     title={
                                         <Typography variant="h6">
                                             New Characters
@@ -132,14 +141,29 @@ function VersionHighlights(props) {
                                     sx={{ p: 0, mb: "30px" }}
                                 />
                                 <Grid container spacing={2}>
-                                    {characters.map((char, index) => <CustomCard key={index} id={`${char.name}-versionHighlights`} name={char.name} displayName={char.displayName} type="character" variant="avatar" rarity={char.rarity} info={{ element: char.element, path: char.path }} />)}
+                                    {
+                                        currentCharacters.map((char, index) =>
+                                            <CustomCard
+                                                key={index}
+                                                id={`${char.name}-versionHighlights`}
+                                                name={char.name}
+                                                displayName={char.displayName}
+                                                type="character"
+                                                variant="avatar"
+                                                rarity={char.rarity}
+                                                info={{ element: char.element, path: char.path }}
+                                            />
+                                        )
+                                    }
                                 </Grid>
                                 {
                                     // NEW RELICS
                                     newRelics &&
-                                    <Box sx={{ mt: characters.length > 0 ? "50px" : "0px" }}>
+                                    <Box sx={{ mt: currentCharacters.length > 0 ? "50px" : "0px" }}>
                                         <CardHeader
-                                            avatar={<img src={`${process.env.REACT_APP_URL}/icons/Relic.png`} alt="New Relics" style={{ width: "40px", marginRight: "-5px" }} />}
+                                            avatar={
+                                                <img src={`${process.env.REACT_APP_URL}/icons/Relic.png`} alt="New Relics" style={{ width: "40px", marginRight: "-5px" }} />
+                                            }
                                             title={
                                                 <Typography variant="h6">
                                                     New Relics
@@ -149,16 +173,42 @@ function VersionHighlights(props) {
                                         />
                                         <Grid container spacing={2}>
                                             {
-                                                cavernRelics.map((relic, index) =>
-                                                    <CustomCard key={index} id={`${relic.name}-versionHighlights`} name={relic.name} displayName={relic.displayName} type="relic" rarity={5} variant="avatar" size="128px" showStars={false} relic={relic} popup={<RelicPopup relic={relic} functions={[]} />} disableLink />
+                                                currentCavernRelics.map((relic, index) =>
+                                                    <CustomCard
+                                                        key={index}
+                                                        id={`${relic.name}-versionHighlights`}
+                                                        name={relic.name}
+                                                        displayName={relic.displayName}
+                                                        type="relic"
+                                                        rarity={5}
+                                                        variant="avatar"
+                                                        size="128px"
+                                                        showStars={false}
+                                                        relic={relic}
+                                                        popup={<RelicPopup relic={relic} functions={[]} />}
+                                                        disableLink
+                                                    />
                                                 )
                                             }
                                         </Grid>
-                                        {cavernRelics.length > 0 && <br />}
+                                        {currentCavernRelics.length > 0 && <br />}
                                         <Grid container spacing={2}>
                                             {
-                                                planarOrnaments.map((relic, index) =>
-                                                    <CustomCard key={index} id={`${relic.name}-versionHighlights`} name={relic.name} displayName={relic.displayName} type="relic" rarity={5} variant="avatar" size="128px" showStars={false} relic={relic} popup={<RelicPopup relic={relic} functions={[]} />} disableLink />
+                                                currentPlanarOrnaments.map((relic, index) =>
+                                                    <CustomCard
+                                                        key={index}
+                                                        id={`${relic.name}-versionHighlights`}
+                                                        name={relic.name}
+                                                        displayName={relic.displayName}
+                                                        type="relic"
+                                                        rarity={5}
+                                                        variant="avatar"
+                                                        size="128px"
+                                                        showStars={false}
+                                                        relic={relic}
+                                                        popup={<RelicPopup relic={relic} functions={[]} />}
+                                                        disableLink
+                                                    />
                                                 )
                                             }
                                         </Grid>
@@ -170,10 +220,12 @@ function VersionHighlights(props) {
                     }
                     {
                         // NEW LIGHT CONES
-                        lightcones.length > 0 &&
+                        currentLightcones.length > 0 &&
                         <Grid size={{ sm: 12, md: "grow" }}>
                             <CardHeader
-                                avatar={<img src={`${process.env.REACT_APP_URL}/icons/Lightcone.png`} alt="New Lightcones" style={{ width: "40px", marginRight: "-5px" }} />}
+                                avatar={
+                                    <img src={`${process.env.REACT_APP_URL}/icons/Lightcone.png`} alt="New Lightcones" style={{ width: "40px", marginRight: "-5px" }} />
+                                }
                                 title={
                                     <Typography variant="h6">
                                         New Light Cones
@@ -183,7 +235,18 @@ function VersionHighlights(props) {
                             />
                             <Grid container spacing={2}>
                                 {
-                                    lightcones.map((lc, index) => <CustomCard key={index} id={`${lc.name}-versionHighlights`} name={lc.name} displayName={lc.displayName} type="lightcone" variant="avatar" rarity={lc.rarity} info={{ path: lc.path }} />)
+                                    currentLightcones.map((lc, index) =>
+                                        <CustomCard
+                                            key={index}
+                                            id={`${lc.name}-versionHighlights`}
+                                            name={lc.name}
+                                            displayName={lc.displayName}
+                                            type="lightcone"
+                                            variant="avatar"
+                                            rarity={lc.rarity}
+                                            info={{ path: lc.path }}
+                                        />
+                                    )
                                 }
                             </Grid>
                         </Grid>
@@ -196,10 +259,4 @@ function VersionHighlights(props) {
 
 }
 
-const mapStateToProps = (state) => ({
-    characters: state.characters,
-    lightcones: state.lightcones,
-    relics: state.relics,
-})
-
-export default connect(mapStateToProps)(VersionHighlights)
+export default VersionHighlights
