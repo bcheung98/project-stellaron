@@ -37,7 +37,7 @@ function VersionHighlights(props) {
     let lightcones = props.lightcones.lightcones.filter(lc => lc.release.version === version).sort((a, b) => b.rarity - a.rarity)
     let cavernRelics = props.relics.cavernRelics.filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
     let planarOrnaments = props.relics.planarOrnaments.filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
-    let newRelics = cavernRelics.concat(planarOrnaments).length > 0
+    let newRelics = [...cavernRelics, ...planarOrnaments].length > 0
 
     document.title = `Honkai: Star Rail ${process.env.REACT_APP_DOCUMENT_HEADER}`
 
@@ -56,29 +56,28 @@ function VersionHighlights(props) {
                     borderBottom: `1px solid ${theme.border.color}`,
                     borderRadius: "5px 5px 0px 0px",
                     p: "10px",
-                    height: "70px"
+                    minHeight: "70px"
                 }}
             >
                 <Box
                     sx={{
                         display: "flex",
-                        justifyContent: "space-between"
+                        flexWrap: "wrap",
+                        justifyContent: "space-between",
                     }}
                 >
-                    <Typography variant="h6" component="p" sx={{ fontWeight: "bold", ml: "5px", lineHeight: "45px" }}>
-                        {`Version Highlights`}
+                    <Typography sx={{ fontSize: "20px", ml: "5px", lineHeight: "45px" }}>
+                        Version Highlights
                     </Typography>
                     <Box sx={{ display: "flex" }}>
-                        {
-                            index < updates.length - 1 ?
-                                <Box sx={{ width: "32px" }}>
-                                    <IconButton onClick={handleIndexChangeLeft}>
-                                        <KeyboardArrowLeftIcon sx={{ color: `${theme.text.color}`, mt: "2px", ml: "-10px" }} />
-                                    </IconButton>
-                                </Box>
-                                :
-                                <Box sx={{ width: "32px" }} />
-                        }
+                        <Box sx={{ width: "24px" }}>
+                            {
+                                index < updates.length - 1 &&
+                                <IconButton onClick={handleIndexChangeLeft} sx={{ px: 0 }}>
+                                    <KeyboardArrowLeftIcon sx={{ color: `${theme.text.color}`, mt: "2px", mr: 0 }} />
+                                </IconButton>
+                            }
+                        </Box>
                         <Select
                             value={index.toString()}
                             label="Version"
@@ -87,34 +86,34 @@ function VersionHighlights(props) {
                             sx={{
                                 width: "75px",
                                 "& .MuiSelect-icon": {
-                                    color: `${theme.text.color}`
+                                    color: "white"
                                 }
                             }}
                         >
                             {
                                 updates.map((version, index) => (
                                     <CustomMenuItem key={index} value={index}>
-                                        <Typography sx={{ fontWeight: "bold" }}>{version.version}</Typography>
+                                        <Typography sx={{ fontSize: { xs: "14px", sm: "16px" }, color: `${theme.text.color}` }}>
+                                            {version.version}
+                                        </Typography>
                                     </CustomMenuItem>
                                 ))
                             }
                         </Select>
-                        {
-                            index > 0 ?
-                                <Box sx={{ width: "32px" }}>
-                                    <IconButton onClick={handleIndexChangeRight}>
-                                        <KeyboardArrowRightIcon sx={{ color: `${theme.text.color}`, mt: "2px" }} />
-                                    </IconButton>
-                                </Box>
-                                :
-                                <Box sx={{ width: "32px" }} />
-                        }
+                        <Box sx={{ width: "24px" }}>
+                            {
+                                index > 0 &&
+                                <IconButton onClick={handleIndexChangeRight} sx={{ px: 0 }}>
+                                    <KeyboardArrowRightIcon sx={{ color: `${theme.text.color}`, mt: "2px" }} />
+                                </IconButton>
+                            }
+                        </Box>
                     </Box>
                 </Box>
             </AppBar>
 
             <Box sx={{ px: "30px" }}>
-                <Typography sx={{ fontSize: "18pt", color: `${theme.text.color}`, my: "20px" }}>
+                <Typography sx={{ fontSize: { xs: "20px", sm: "24px" }, color: `${theme.text.color}`, my: "20px" }}>
                     {updates[index].version} - <i>{updates[index].name}</i>
                 </Typography>
 
