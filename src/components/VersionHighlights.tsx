@@ -34,19 +34,17 @@ function VersionHighlights() {
         if (index - 1 >= 0) setIndex(index - 1)
     }
 
-    let version = updates[index].version
+    const version = updates[index].version
 
     const characters = useSelector((state: RootState) => state.characters.characters)
     const lightcones = useSelector((state: RootState) => state.lightcones.lightcones)
     const relics = useSelector((state: RootState) => state.relics)
 
-    let currentCharacters = characters.filter(char => char.release.version === version).sort((a, b) => b.rarity - a.rarity)
-    let currentLightcones = lightcones.filter(lc => lc.release.version === version).sort((a, b) => b.rarity - a.rarity)
-    let currentCavernRelics = relics.cavernRelics.filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
-    let currentPlanarOrnaments = relics.planarOrnaments.filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
-    let newRelics = [...currentCavernRelics, ...currentPlanarOrnaments].length > 0
-
-    document.title = `Honkai: Star Rail ${process.env.REACT_APP_DOCUMENT_HEADER}`
+    const currentCharacters = characters.filter(char => char.release.version === version).sort((a, b) => b.rarity - a.rarity)
+    const currentLightcones = lightcones.filter(lc => lc.release.version === version).sort((a, b) => b.rarity - a.rarity)
+    const currentCavernRelics = relics.cavernRelics.filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
+    const currentPlanarOrnaments = relics.planarOrnaments.filter(relic => relic.release.version === version).sort((a, b) => a.name.localeCompare(b.name))
+    const newRelics = [...currentCavernRelics, ...currentPlanarOrnaments].length > 0
 
     return (
         <Box
