@@ -46,7 +46,7 @@ function LightconeAscensionMaterials({
             {
                 costData.map((material, index) => (
                     costs[index] !== 0 &&
-                    <MaterialImage key={index} name={material.name} rarity={material.rarity} cost={costs[index]} img={material.img} />
+                    <MaterialImage key={index} name={material.name} rarity={material.rarity} cost={costs[index].toLocaleString()} img={material.img} />
                 ))
             }
         </Grid>
@@ -54,34 +54,4 @@ function LightconeAscensionMaterials({
 
 }
 
-export default LightconeAscensionMaterials;
-
-const Materials = {
-    "5": [
-        [0, 5000, 10000, 20000, 50000, 100000, 200000],
-        [0, 0, 4, 0, 0, 0, 0],
-        [0, 0, 0, 4, 8, 0, 0],
-        [0, 0, 0, 0, 0, 5, 10],
-        [0, 8, 12, 0, 0, 0, 0],
-        [0, 0, 0, 8, 12, 0, 0],
-        [0, 0, 0, 0, 0, 6, 8]
-    ],
-    "4": [
-        [0, 4000, 8000, 16000, 40000, 80000, 160000],
-        [0, 0, 3, 0, 0, 0, 0],
-        [0, 0, 0, 3, 6, 0, 0],
-        [0, 0, 0, 0, 0, 4, 8],
-        [0, 5, 10, 0, 0, 0, 0],
-        [0, 0, 0, 6, 9, 0, 0],
-        [0, 0, 0, 0, 0, 5, 7]
-    ],
-    "3": [
-        [0, 3000, 6000, 12000, 30000, 60000, 120000],
-        [0, 0, 2, 0, 0, 0, 0],
-        [0, 0, 0, 2, 4, 0, 0],
-        [0, 0, 0, 0, 0, 3, 6],
-        [0, 4, 8, 0, 0, 0, 0],
-        [0, 0, 0, 4, 6, 0, 0],
-        [0, 0, 0, 0, 0, 3, 5]
-    ]
-}
+export default LightconeAscensionMaterials
