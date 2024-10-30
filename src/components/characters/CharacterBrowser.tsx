@@ -20,6 +20,7 @@ import { CustomToggleButton } from "../_custom/CustomToggleButton"
 
 // Type imports
 import { RootState } from "../../redux/store"
+import { CharacterFilterState } from "../../redux/reducers/CharacterFilterReducer"
 
 function CharacterBrowser() {
 
@@ -30,10 +31,17 @@ function CharacterBrowser() {
     const characters = useSelector((state: RootState) => state.characters)
     const characterFilters = useSelector((state: RootState) => state.characterFilters)
 
+    const activeFilters = Object.keys(characterFilters).filter((filter) => characterFilters[filter as keyof CharacterFilterState].length).length > 0
+
     const [searchValue, setSearchValue] = React.useState("")
     const handleInputChange = (event: React.BaseSyntheticEvent) => {
         setSearchValue(event.target.value)
     }
+
+    const currentCharacters = React.useMemo(() =>
+        filterCharacters(characters.characters, characterFilters, searchValue),
+        [characters.characters, characterFilters, searchValue]
+    )
 
     const defaultView = "grid"
     const [view, setView] = React.useState(defaultView)
@@ -99,7 +107,11 @@ function CharacterBrowser() {
                             onClick={matches ? () => handleDialogOpen() : toggleDrawer(true)}
                             variant="contained"
                             startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
-                            sx={{ px: 3, mr: "25px" }}
+                            sx={{
+                                px: 3,
+                                mr: "25px",
+                                backgroundColor: activeFilters ? `rgb(211, 47, 47)` : "none"
+                            }}
                         >
                             <Typography sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: { xs: "12px", sm: "14px" } }}>
                                 Filters
@@ -112,20 +124,31 @@ function CharacterBrowser() {
             <Grid container spacing={3}>
                 <Grid size="grow">
                     {
-                        characters.characters.length > 0 ?
+                        currentCharacters.length > 0 ?
                             <React.Fragment>
                                 {
                                     view === "grid" &&
                                     <Grid container spacing={2}>
                                         {
-                                            filterCharacters(characters.characters, characterFilters, searchValue)
-                                                .map(char => <CustomCard key={char.id} id={`${char.name}-characterBrowser`} name={char.name} displayName={char.displayName} type="character" variant="avatar" rarity={char.rarity} info={{ element: char.element, path: char.path }} materials={char.materials} disableTooltip />)
+                                            currentCharacters.map(char =>
+                                                <CustomCard
+                                                    key={char.id}
+                                                    id={`${char.name}-characterBrowser`}
+                                                    name={char.name}
+                                                    displayName={char.displayName}
+                                                    type="character"
+                                                    variant="avatar"
+                                                    rarity={char.rarity}
+                                                    info={{ element: char.element, path: char.path }}
+                                                    materials={char.materials}
+                                                />
+                                            )
                                         }
                                     </Grid>
                                 }
                                 {
                                     view === "list" &&
-                                    <CharacterList characters={filterCharacters(characters.characters, characterFilters, searchValue)} />
+                                    <CharacterList characters={currentCharacters} />
                                 }
                             </React.Fragment>
                             :

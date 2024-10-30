@@ -20,6 +20,7 @@ import { CustomToggleButton } from "../_custom/CustomToggleButton"
 
 // Type imports
 import { RootState } from "../../redux/store"
+import { LightconeFilterState } from "../../redux/reducers/LightconeFilterReducer"
 
 function LightconeBrowser() {
 
@@ -30,10 +31,17 @@ function LightconeBrowser() {
     const lightcones = useSelector((state: RootState) => state.lightcones)
     const lightconeFilters = useSelector((state: RootState) => state.lightconeFilters)
 
+    const activeFilters = Object.keys(lightconeFilters).filter((filter) => lightconeFilters[filter as keyof LightconeFilterState].length).length > 0
+
     const [searchValue, setSearchValue] = React.useState("")
     const handleInputChange = (event: React.BaseSyntheticEvent) => {
         setSearchValue(event.target.value)
     }
+
+    const currentLightcones = React.useMemo(() =>
+        filterLightcones(lightcones.lightcones, lightconeFilters, searchValue),
+        [lightcones.lightcones, lightconeFilters, searchValue]
+    )
 
     const defaultView = "grid"
     const [view, setView] = React.useState(defaultView)
@@ -99,7 +107,11 @@ function LightconeBrowser() {
                             onClick={matches ? () => handleDialogOpen() : toggleDrawer(true)}
                             variant="contained"
                             startIcon={<FilterAltIcon sx={{ color: `${theme.text.color}` }} />}
-                            sx={{ px: 3, mr: "25px" }}
+                            sx={{
+                                px: 3,
+                                mr: "25px",
+                                backgroundColor: activeFilters ? `rgb(211, 47, 47)` : "none"
+                            }}
                         >
                             <Typography sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: { xs: "12px", sm: "14px" } }}>
                                 Filters
@@ -112,17 +124,31 @@ function LightconeBrowser() {
             <Grid container spacing={3}>
                 <Grid size="grow">
                     {
-                        lightcones.lightcones.length > 0 &&
-                        <React.Fragment>
-                            {
-                                view === "grid" ?
-                                    <Grid container spacing={2}>
-                                        {filterLightcones(lightcones.lightcones, lightconeFilters, searchValue).sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(lightcone => <CustomCard key={lightcone.id} name={lightcone.name} displayName={lightcone.displayName} type="lightcone" variant="avatar" rarity={lightcone.rarity} info={{ path: lightcone.path }} />)}
-                                    </Grid>
-                                    :
-                                    <LightconeList lightcones={filterLightcones(lightcones.lightcones, lightconeFilters, searchValue)} />
-                            }
-                        </React.Fragment>
+                        currentLightcones.length > 0 ?
+                            <React.Fragment>
+                                {
+                                    view === "grid" ?
+                                        <Grid container spacing={2}>
+                                            {
+                                                currentLightcones.sort((a, b) => a.rarity > b.rarity ? -1 : 1).map(lightcone =>
+                                                    <CustomCard
+                                                        key={lightcone.id}
+                                                        id={`${lightcone.name}-lightconeBrowser`}
+                                                        name={lightcone.name}
+                                                        displayName={lightcone.displayName}
+                                                        type="lightcone"
+                                                        variant="avatar"
+                                                        rarity={lightcone.rarity}
+                                                        info={{ path: lightcone.path }}
+                                                    />
+                                                )}
+                                        </Grid>
+                                        :
+                                        <LightconeList lightcones={currentLightcones} />
+                                }
+                            </React.Fragment>
+                            :
+                            null
                     }
                 </Grid>
                 {/* {
