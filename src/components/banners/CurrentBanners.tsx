@@ -72,7 +72,7 @@ function CurrentBanners(props: any) {
                                 currentCharacterBanners.length > 0 &&
                                 <Grid size={{ xs: 12, lg: "auto" }}>
                                     <Typography sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: "20px", mb: "10px" }}>
-                                        Character Event Wish
+                                        Character Banner
                                     </Typography>
                                     <Grid container spacing={0.75}>
                                         {currentCharacterBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} id={`${item}-currentBanner`} type="character" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
@@ -85,7 +85,7 @@ function CurrentBanners(props: any) {
                                 currentlightconeBanners.length > 0 &&
                                 <Grid size={{ xs: 12, lg: "grow" }}>
                                     <Typography sx={{ fontFamily: `${theme.font.styled.family}`, fontSize: "20px", mb: "10px" }}>
-                                        Weapon Event Wish
+                                        Light Cone Banner
                                     </Typography>
                                     <Grid container spacing={0.75}>
                                         {currentlightconeBanners[0].fiveStars.map((item: string, index: number) => <CustomCard key={index} id={`${item}-currentBanner`} type="lightcone" name={item} rarity={!isTBA(item) ? 5 : 1} disableLink={isTBA(item)} />)}
