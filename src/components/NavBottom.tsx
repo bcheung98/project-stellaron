@@ -24,7 +24,7 @@ function BottomNav() {
                     my: "15px"
                 }}
             >
-                <Typography sx={{ fontSize: { xs: "8pt", sm: "10.5pt" } }}>
+                <Typography sx={{ fontSize: { xs: "11px", sm: "12px" }, fontFamily: `${theme.font.styled.family}` }}>
                     IRMINSUL.GG is not affiliated with HoYoverse.<br />
                     Game contents are trademarks and copyrights of HoYoverse.
                 </Typography>
@@ -39,14 +39,14 @@ function BottomNav() {
                         }}
                     />
                     <Box sx={{ display: "flex" }}>
-                        {/* <Box
+                        <Box
                             sx={{
                                 textAlign: "center",
                                 alignItems: "center",
                                 display: { xs: "flex", sm: "block" }
                             }}
                         >
-                            <Typography gutterBottom sx={{ fontSize: { xs: "8pt", sm: "10.5pt" } }}>GitHub:</Typography>
+                            <Typography gutterBottom sx={{ fontSize: { xs: "11px", sm: "12px" } }}>GitHub:</Typography>
                             <IconButton
                                 disableRipple
                                 href="https://github.com/bcheung98/project-stellaron"
@@ -65,7 +65,7 @@ function BottomNav() {
                                 mx: { xs: "10px", sm: "25px" },
                                 my: 0
                             }}
-                        /> */}
+                        />
                         <Box
                             sx={{
                                 textAlign: "center",
@@ -73,7 +73,7 @@ function BottomNav() {
                                 display: { xs: "flex", sm: "block" }
                             }}
                         >
-                            <Typography gutterBottom sx={{ fontSize: { xs: "8pt", sm: "10.5pt" } }}>Made with:</Typography>
+                            <Typography gutterBottom sx={{ fontSize: { xs: "11px", sm: "12px" } }}>Made with:</Typography>
                             <Box sx={{ display: "flex" }}>
                                 <IconButton
                                     disableRipple
