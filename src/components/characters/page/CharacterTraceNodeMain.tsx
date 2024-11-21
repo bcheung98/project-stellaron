@@ -24,7 +24,7 @@ function CharacterTraceNodeMain({
 
     const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
-    let { name, rarity, materials } = character
+    const { name, rarity, materials } = character
 
     const [open, setOpen] = React.useState(false)
     const handleClickOpen = () => {
@@ -55,6 +55,7 @@ function CharacterTraceNodeMain({
                     alt={traces.name}
                     style={{
                         width: "48px",
+                        height: "48px",
                         padding: "2px",
                         border: `2px solid ${theme.border.color}`,
                         borderRadius: "64px",
@@ -97,6 +98,7 @@ function CharacterTraceNodeMain({
                                 alt={traces.name}
                                 style={{
                                     width: "48px",
+                                    height: "48px",
                                     padding: "2px",
                                     border: `2px solid ${theme.border.color}`,
                                     borderRadius: "64px",

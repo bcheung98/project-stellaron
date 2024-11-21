@@ -5,17 +5,16 @@ import CharacterSkillTab from "./CharacterSkillTab"
 import { TabPanel, StyledTabs, StyledTab } from "../../_custom/CustomTabs"
 
 // MUI imports
-import { useTheme, useMediaQuery, Typography, AppBar, Card } from "@mui/material"
-import Grid from "@mui/material/Grid2"
+import { useTheme, useMediaQuery, Box, Typography, AppBar, Card } from "@mui/material"
 
 // Helper imports
 import { elementalColors } from "../../../helpers/elementalColors"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 // Type imports
-import { CharacterData } from "../../../types/character/CharacterData"
+import { CharacterProps } from "../../../types/character"
 
-function CharacterSkillDisplay({ character }: { character: CharacterData }) {
+function CharacterSkillDisplay({ character }: CharacterProps) {
 
     const theme = useTheme()
 
@@ -69,58 +68,52 @@ function CharacterSkillDisplay({ character }: { character: CharacterData }) {
                     Skills
                 </Typography>
             </AppBar>
-            <Grid container>
-                <Grid size="auto" sx={{ width: { xs: "100%", sm: "96px" } }}>
-                    <StyledTabs
-                        orientation={matches ? "vertical" : "horizontal"}
-                        variant="scrollable"
-                        value={tabValue}
-                        onChange={handleTabChange}
-                        scrollButtons="auto"
-                        allowScrollButtonsMobile={!matches}
-                        sx={{
-                            height: "100%",
-                            backgroundColor: `${theme.materialImage.backgroundColor}`,
-                            "& .MuiTabScrollButton-root": {
-                                color: `${theme.text.color}`,
-                                backgroundColor: `${theme.table.header.backgroundColor}`,
-                            },
-                            ".MuiTabs-scrollButtons.Mui-disabled": {
-                                opacity: 0.3
-                            },
-                            "& .MuiTabs-indicatorSpan": {
-                                width: "100%",
-                                backgroundColor: elementalColors(element),
-                            },
-                        }}
-                    >
-                        {
-                            Object.keys(skills).map((key, index) => (
-                                <StyledTab
-                                    key={key}
-                                    label={
-                                        <img
-                                            src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_${key}.png`}
-                                            style={skillIcon(index)}
-                                            alt={key}
-                                            onError={ErrorLoadingImage}
-                                        />
-                                    }
-                                />
-                            ))
-                        }
-                    </StyledTabs>
-                </Grid>
-                <Grid size={{ xs: 12, sm: "grow" }}>
+            <Box>
+                <StyledTabs
+                    variant="scrollable"
+                    value={tabValue}
+                    onChange={handleTabChange}
+                    scrollButtons="auto"
+                    allowScrollButtonsMobile={!matches}
+                    sx={{
+                        height: "100%",
+                        "& .MuiTabScrollButton-root": {
+                            color: `${theme.text.color}`,
+                            backgroundColor: `${theme.table.header.backgroundColor}`,
+                        },
+                        ".MuiTabs-scrollButtons.Mui-disabled": {
+                            opacity: 0.3
+                        },
+                        "& .MuiTabs-indicatorSpan": {
+                            width: "100%",
+                            backgroundColor: elementalColors(element),
+                        },
+                    }}
+                >
                     {
                         Object.keys(skills).map((key, index) => (
-                            <TabPanel key={key} index={index} value={tabValue}>
-                                <CharacterSkillTab skillKey={key} skills={skills} rarity={rarity} element={element} materials={character.materials} keywords={character.keywords} />
-                            </TabPanel>
+                            <StyledTab
+                                key={key}
+                                label={
+                                    <img
+                                        src={`${process.env.REACT_APP_URL}/characters/skills/${name.split(" ").join("_").toLowerCase()}_${key}.png`}
+                                        style={skillIcon(index)}
+                                        alt={key}
+                                        onError={ErrorLoadingImage}
+                                    />
+                                }
+                            />
                         ))
                     }
-                </Grid>
-            </Grid>
+                </StyledTabs>
+            </Box>
+            {
+                Object.keys(skills).map((key, index) => (
+                    <TabPanel key={key} index={index} value={tabValue}>
+                        <CharacterSkillTab skillKey={key} skills={skills} rarity={rarity} element={element} materials={character.materials} keywords={character.keywords} />
+                    </TabPanel>
+                ))
+            }
         </Card>
     )
 

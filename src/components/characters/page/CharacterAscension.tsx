@@ -8,9 +8,9 @@ import { CustomSlider } from "../../_custom/CustomSlider"
 import { useTheme, Typography, Box } from "@mui/material"
 
 // Type imports
-import { CharacterData } from "../../../types/character/CharacterData"
+import { CharacterProps } from "../../../types/character"
 
-function CharacterAscension({ character }: { character: CharacterData }) {
+function CharacterAscension({ character }: CharacterProps) {
 
     const theme = useTheme()
 

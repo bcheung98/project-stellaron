@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { CharacterData } from "../../types/character/CharacterData"
+import { Character } from "../../types/character"
 import { LightconeData } from "../../types/lightcone/LightconeData"
 import { RelicData } from "../../types/relic/relic"
 import { BannerData } from "../../types/banner/BannerData"
 
 // https://api.irminsul.gg/hsr/characters.json
-const charactersURL = "https://api.irminsul.gg/hsr/characters.json"
+const charactersURL = "https://api.irminsul.gg/hsr/characters-v2.json"
 
 // https://api.irminsul.gg/hsr/lightcones.json
 const lightconesURL = "https://api.irminsul.gg/hsr/lightcones.json"
@@ -16,7 +16,7 @@ const relicsURL = "https://api.irminsul.gg/hsr/relics-v2.json"
 const characterBannerURL = "https://api.irminsul.gg/hsr/character-banners.json"
 const lightconeBannerURL = "https://api.irminsul.gg/hsr/lightcone-banners.json"
 
-export const fetchCharacters = createAsyncThunk("GET/characters", async (): Promise<CharacterData[]> => {
+export const fetchCharacters = createAsyncThunk("GET/characters", async (): Promise<Character[]> => {
     const response = await fetch(charactersURL)
     return await response.json()
 })

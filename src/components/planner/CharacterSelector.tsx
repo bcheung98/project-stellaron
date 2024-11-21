@@ -16,7 +16,7 @@ import ErrorLoadingImage from "../../helpers/ErrorLoadingImage"
 
 // Type imports
 import { RootState } from "../../redux/store"
-import { CharacterData } from "../../types/character/CharacterData"
+import { Character } from "../../types/character"
 
 function CharacterSelector() {
 
@@ -28,7 +28,7 @@ function CharacterSelector() {
 
     const characters = useSelector((state: RootState) => state.characters.characters)
 
-    const [values, setValues] = React.useState<CharacterData[]>([])
+    const [values, setValues] = React.useState<Character[]>([])
 
     React.useEffect(() => {
         dispatch(setPlannerCharacters(values))
@@ -51,8 +51,8 @@ function CharacterSelector() {
                 filterSelectedOptions
                 noOptionsText="No Characters"
                 value={values}
-                onChange={(event: any, newValue: CharacterData[] | null) => {
-                    setValues(newValue as CharacterData[])
+                onChange={(event: any, newValue: Character[] | null) => {
+                    setValues(newValue as Character[])
                 }}
                 ChipProps={{
                     sx: {

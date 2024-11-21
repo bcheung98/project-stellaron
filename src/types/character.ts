@@ -40,26 +40,30 @@ export interface Character {
     release: Version
 }
 
+export type CharacterSkillsKeys = keyof CharacterSkills
+
 export interface CharacterSkills {
     attack: CharacterSkill[],
     skill: CharacterSkill[],
     ultimate: CharacterSkill[],
-    talent: CharacterSkill[],
-    technique: CharacterSkill[]
+    talent: CharacterTalent[],
+    technique: CharacterTechnique[]
 }
 
 export interface CharacterSkill extends SkillWithScaling {
-    tag: string,
-    cost: number,
-    resource: string,
-    energy?: {
-        generation: number,
-        cost?: number
+    tag?: string,
+    cost: {
+        value: number,
+        type: string
     },
-    break: {
+    regen?: number,
+    break?: {
         [key: string]: number
     }
 }
+
+export type CharacterTalent = Omit<CharacterSkill, "resource">
+export type CharacterTechnique = Omit<CharacterSkill, "resource" | "scaling">
 
 export interface CharacterTraces {
     name?: string,

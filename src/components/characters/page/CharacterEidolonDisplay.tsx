@@ -8,17 +8,15 @@ import Grid from "@mui/material/Grid2"
 import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 // Type imports
-import { CharacterData } from "../../../types/character/CharacterData"
-import { CharacterEidolonData } from "../../../types/character/CharacterEidolonData"
-import { SkillData } from "../../../types/SkillData"
+import { CharacterEidolons, CharacterProps } from "../../../types/character"
 
-function CharacterEidolonDisplay({ character }: { character: CharacterData }) {
+function CharacterEidolonDisplay({ character }: CharacterProps) {
 
     const theme = useTheme()
 
     const matches = useMediaQuery(theme.breakpoints.up("sm"))
 
-    let { name, eidolon } = character
+    const { name, eidolon } = character
 
     return (
         <Box
@@ -54,7 +52,7 @@ function CharacterEidolonDisplay({ character }: { character: CharacterData }) {
                             <Box sx={{ display: "flex", alignItems: "center", mb: "10px" }}>
                                 <img
                                     src={`${process.env.REACT_APP_URL}/characters/eidolons/${name.split(" ").join("_").toLowerCase()}_${key}.png`}
-                                    alt={(eidolon[key as keyof CharacterEidolonData] as SkillData).name}
+                                    alt={(eidolon[key as keyof CharacterEidolons]).name}
                                     style={{
                                         width: matches ? "48px" : "40px",
                                         padding: "2px",
@@ -65,7 +63,7 @@ function CharacterEidolonDisplay({ character }: { character: CharacterData }) {
                                 />
                                 <Box sx={{ ml: "15px" }}>
                                     <Typography sx={{ color: `${theme.text.color}`, fontSize: { xs: "16px", sm: "20px" } }}>
-                                        {(eidolon[key as keyof CharacterEidolonData] as SkillData).name}
+                                        {(eidolon[key as keyof CharacterEidolons]).name}
                                     </Typography>
                                     <Typography sx={{ color: `${theme.text.color}`, fontSize: { xs: "13.5px", sm: "16px" } }}>
                                         <i>{key.toUpperCase()}</i>
@@ -73,7 +71,7 @@ function CharacterEidolonDisplay({ character }: { character: CharacterData }) {
                                 </Box>
                             </Box>
                             <Typography sx={{ color: `${theme.text.color}`, fontSize: { xs: "13.5px", sm: "16px" } }}>
-                                {parse((eidolon[key as keyof CharacterEidolonData] as SkillData).description as string)}
+                                {parse((eidolon[key as keyof CharacterEidolons]).description as string)}
                             </Typography>
                             <br />
                             {/* {index !== 5 && <hr style={{ border: `.5px solid ${theme.border.color}` }} />} */}

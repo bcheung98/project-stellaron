@@ -1,7 +1,7 @@
 import { CharacterFilterState } from "../redux/reducers/CharacterFilterReducer"
-import { CharacterData } from "../types/character/CharacterData"
+import { Character } from "../types/character"
 
-export function filterCharacters(characters: CharacterData[], filters: CharacterFilterState, searchValue: string) {
+export function filterCharacters(characters: Character[], filters: CharacterFilterState, searchValue: string) {
     let chars = [...characters]
     if (filters.element.length > 0) {
         chars = chars.filter(char => filters.element.includes(char.element))

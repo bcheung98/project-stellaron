@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import { CharacterData } from "../../types/character/CharacterData"
+import { Character } from "../../types/character"
 import { LightconeData } from "../../types/lightcone/LightconeData"
 import { CharacterCost, CharacterCostObject, CostArray, CostNumber, LightconeCost, LightconeCostObject, PayloadCostObject, TotalCostObject } from "../../types/costs"
 
@@ -43,8 +43,8 @@ export const PlannerSlice = createSlice({
     name: "ascension_planner",
     initialState,
     reducers: {
-        setPlannerCharacters: (state, action: PayloadAction<CharacterData[]>) => {
-            let characterCostsDraft = action.payload.map((char: CharacterData) => {
+        setPlannerCharacters: (state, action: PayloadAction<Character[]>) => {
+            let characterCostsDraft = action.payload.map((char: Character) => {
                 let currentCharacter = state.characterCosts.find((c: CharacterCostObject) => char.name === c.name)
                 // If the character is not already in the list, initialize the trace ID array and material array
                 if (currentCharacter === undefined) {

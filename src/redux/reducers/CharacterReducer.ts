@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { fetchCharacters } from "../actions/fetch"
-import { CharacterData } from "../../types/character/CharacterData"
+import { Character } from "../../types/character"
 
 export interface CharacterState {
     loading: boolean,
-    characters: CharacterData[]
+    characters: Character[]
 }
 
 const initialState: CharacterState = {

@@ -15,12 +15,12 @@ import ErrorLoadingImage from "../../../helpers/ErrorLoadingImage"
 
 // Type imports
 import { RootState } from "../../../redux/store"
-import { CharacterData } from "../../../types/character/CharacterData"
 import { CharacterTraceData } from "../../../types/character/CharacterTraceData"
+import { Character, CharacterProps } from "../../../types/character"
 
 export interface TraceNodeProps {
     id: string,
-    character: CharacterData,
+    character: Character,
     traces: CharacterTraceData
 }
 
@@ -112,7 +112,7 @@ function ShowTraces({
 
 }
 
-function CharacterTraceDisplay({ character }: { character: CharacterData }) {
+function CharacterTraceDisplay({ character }: CharacterProps) {
 
     const theme = useTheme()
 

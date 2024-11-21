@@ -6,37 +6,35 @@ import CharacterSkillLevelUp from "./CharacterSkillLevelUp"
 import { CustomSlider } from "../../_custom/CustomSlider"
 
 // MUI imports
-import { useTheme, Typography, Box, Dialog, Button } from "@mui/material"
+import { useTheme, SxProps, Typography, Box, Dialog, Button, TableContainer, Table, TableBody, TableRow, TableCell, useMediaQuery } from "@mui/material"
 
 // Helper imports
 import Keywords from "../../../data/Keywords"
 
 // Type imports
-import { MaterialsData } from "../../../types/MaterialsData"
-import { CharacterSkillData } from "../../../types/character/CharacterSkillData"
+import { CharacterMaterials } from "../../../types/materials"
+import { CharacterSkills, CharacterSkillsKeys } from "../../../types/character"
 
 function CharacterSkillTab(props: {
     skillKey: string,
-    skills: CharacterSkillData,
+    skills: CharacterSkills,
     keywords: {
         tag: string,
         name: string,
         description: string
     },
     element: string,
-    materials: MaterialsData,
+    materials: CharacterMaterials,
     rarity: number
 }) {
 
     const theme = useTheme()
+    const matches_sm_up = useMediaQuery(theme.breakpoints.up("sm"))
 
-    let key = props.skillKey
-    let skills = props.skills
-    let scaling = skills[key as keyof CharacterSkillData].scaling
+    const key = props.skillKey as CharacterSkillsKeys
+    const skills = props.skills
 
-    let maxValue
-    if (key === "attack") { maxValue = 7 } else { maxValue = 12 }
-
+    const maxValue = key === "attack" ? 7 : 12
     const [sliderValue, setSliderValue] = React.useState(1)
     const handleSliderChange = (event: Event, newValue: number | number[]) => {
         setSliderValue(newValue as number)
@@ -53,6 +51,14 @@ function CharacterSkillTab(props: {
     }
 
     // Dynamically changes the values of the skill attributes
+    const scaling = skills[key].map((skill) => {
+        if ("scaling" in skill) {
+            return skill.scaling
+        }
+        else {
+            return []
+        }
+    }).flat()
     let targets = document.getElementsByClassName("text-value")
     if (scaling !== undefined) {
         scaling.forEach((subScaling: string[], index: number) => {
@@ -95,17 +101,103 @@ function CharacterSkillTab(props: {
         keywordDescription = props.keywords.description
     }
 
+    const tableRowStyle: SxProps = {
+        "&:last-child td, &:last-child th": {
+            border: 0,
+        },
+    }
+
+    const tableCellStyle: SxProps = {
+        color: theme.text.color,
+        border: { xs: "auto", md: "none" },
+        borderColor: theme.border.color,
+        px: "5px",
+        py: "2px"
+    }
+
     return (
         <Box sx={{ width: "100%" }}>
             <Typography sx={{ fontSize: "16px" }}>
                 <i>{FormatSkillKey(key)}</i>
             </Typography>
-            <Typography sx={{ fontSize: "34px", mb: "5px" }}>
-                <b>{skills[key as keyof CharacterSkillData].name}</b>
-            </Typography>
-            <Typography sx={{ fontSize: "16px", mb: "15px" }}>
-                {parse(skills[key as keyof CharacterSkillData].description as string, options)}
-            </Typography>
+            {
+                skills[key].map((skill, index) => {
+                    const rows = []
+                    if ("cost" in skill) {
+                        const skillCost = getSkillCost(skill.cost.type, skill.cost.value, matches_sm_up)
+                        rows.push({
+                            key: skillCost.cost,
+                            value: skillCost.value
+                        })
+                    }
+                    skill.regen &&
+                        rows.push({
+                            key:
+                                <span style={{ color: `rgb(225, 225, 225)` }}>
+                                    {`Energy Generation`}
+                                </span>,
+                            value:
+                                <span style={{ color: `rgb(220, 196, 145)` }}>
+                                    {skill.regen}
+                                </span>
+                        })
+                    skill.break &&
+                        rows.push({
+                            key:
+                                <span style={{ color: `rgb(225, 225, 225)` }}>
+                                    {`Toughness Reduction`}
+                                </span>,
+                            value:
+                                Object.entries(skill.break).map(([key, value], index) =>
+                                    <React.Fragment key={index}>
+                                        <span style={{ color: `rgb(225, 225, 225)` }}>
+                                            {`${key}: `}
+                                        </span>
+                                        <span style={{ color: `rgb(220, 196, 145)` }}>
+                                            {value}
+                                        </span>
+                                        {index !== Object.entries(skill.break as {}).length - 1 && <span style={{ margin: "0 5px 0 5px" }}>/</span>}
+                                    </React.Fragment>
+                                )
+                        })
+                    return (
+                        <Box key={index} sx={{ mb: "20px" }}>
+                            <Box sx={{ mb: "10px" }}>
+                                <Typography sx={{ fontSize: "28px" }}>
+                                    {skill.name}
+                                </Typography>
+                                {
+                                    skill.tag &&
+                                    <Typography sx={{ fontSize: "16px", color: `rgb(242, 158, 56)` }}>
+                                        [{skill.tag}]
+                                    </Typography>
+                                }
+                            </Box>
+                            <TableContainer sx={[{ minWidth: { xs: "100%", md: "300px" }, width: { xs: "100%", md: "60%", lg: "30%" } }, rows.length > 0 && { backgroundColor: theme.table.body.hover, borderRadius: "5px", mb: "10px" }]}>
+                                <Table size="small">
+                                    <TableBody>
+                                        {
+                                            rows.map((row, index) => (
+                                                <TableRow key={index} sx={tableRowStyle}>
+                                                    <TableCell sx={tableCellStyle}>
+                                                        <Typography sx={{ fontSize: { xs: "13.5px", sm: "16px" } }}>{row.key}</Typography>
+                                                    </TableCell>
+                                                    <TableCell align="right" sx={tableCellStyle}>
+                                                        <Typography sx={{ fontSize: { xs: "13.5px", sm: "16px" } }}>{row.value}</Typography>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))
+                                        }
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                            <Typography sx={{ fontSize: { xs: "13.5px", sm: "16px" } }}>
+                                {parse(skill.description, options)}
+                            </Typography>
+                        </Box>
+                    )
+                })
+            }
             {
                 key !== "technique" &&
                 <React.Fragment>
@@ -155,12 +247,50 @@ function CharacterSkillTab(props: {
                     </Box>
                 </Dialog>
             }
-        </Box>
+        </Box >
     )
 
 }
 
 export default CharacterSkillTab
+
+function getSkillCost(type: string, cost: number, matches: boolean) {
+
+    const costType = type === "SP" || type === "Energy" ? `${type}` : "Ability"
+    let costValue
+    if (type === "SP") {
+        costValue =
+            [...Array(cost).keys()].map((index) =>
+                <img key={index} src={`${process.env.REACT_APP_URL}/icons/SkillPoint.png`} alt="SP" style={{ height: matches ? "18px" : "14px", marginBottom: matches ? "-4px" : "-2px", pointerEvents: "none" }} />
+            )
+    }
+    else if (type === "Energy") {
+        costValue =
+            <span style={{ color: `rgb(220, 196, 145)` }}>
+                {cost}
+            </span>
+    }
+    else {
+        costValue =
+            <>
+                <span style={{ color: `rgb(242, 158, 56)` }}>
+                    {cost}
+                </span>
+                <span style={{ color: `rgb(220, 196, 145)` }}>
+                    {` points of ${type}`}
+                </span>
+            </>
+    }
+
+    return {
+        cost:
+            <span style={{ color: `rgb(225, 225, 225)` }}>
+                {`${costType} Cost`}
+            </span>,
+        value: costValue
+    }
+
+}
 
 const FormatSkillKey = (key: string) => {
     switch (key) {

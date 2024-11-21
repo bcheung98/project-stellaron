@@ -21,7 +21,7 @@ import { createDateObject } from "../../../helpers/dates"
 
 // Type imports
 import { RootState } from "../../../redux/store"
-import { CharacterData } from "../../../types/character/CharacterData"
+import { Character, CharacterProps } from "../../../types/character"
 
 function CharacterPage() {
 
@@ -32,7 +32,7 @@ function CharacterPage() {
 
     const { char_name } = useParams<{ char_name: string }>()
     const characters = useSelector((state: RootState) => state.characters.characters)
-    const character = characters.find((char: CharacterData) => char.name.split(" ").join("_").toLowerCase() === char_name)
+    const character = characters.find((char: Character) => char.name.split(" ").join("_").toLowerCase() === char_name)
 
     const [tabValue, setTabValue] = React.useState(0)
     const handleTabChange = (event: React.BaseSyntheticEvent, newValue: number) => {
@@ -176,7 +176,7 @@ function CharacterPage() {
 
 export default CharacterPage
 
-function CharacterInfoMain({ character }: { character: CharacterData }) {
+function CharacterInfoMain({ character }: CharacterProps) {
 
     const theme = useTheme()
 
