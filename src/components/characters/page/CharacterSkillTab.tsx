@@ -12,17 +12,13 @@ import { useTheme, SxProps, Typography, Box, Dialog, Button, TableContainer, Tab
 import Keywords from "../../../data/Keywords"
 
 // Type imports
+import { Character, CharacterSkills, CharacterSkillsKeys } from "../../../types/character"
 import { CharacterMaterials } from "../../../types/materials"
-import { CharacterSkills, CharacterSkillsKeys } from "../../../types/character"
 
 function CharacterSkillTab(props: {
     skillKey: string,
     skills: CharacterSkills,
-    keywords: {
-        tag: string,
-        name: string,
-        description: string
-    },
+    keywords: Character["keywords"],
     element: string,
     materials: CharacterMaterials,
     rarity: number
@@ -51,14 +47,7 @@ function CharacterSkillTab(props: {
     }
 
     // Dynamically changes the values of the skill attributes
-    const scaling = skills[key].map((skill) => {
-        if ("scaling" in skill) {
-            return skill.scaling
-        }
-        else {
-            return []
-        }
-    }).flat()
+    const scaling = skills[key].map((skill) => "scaling" in skill ? skill.scaling : []).flat()
     let targets = document.getElementsByClassName("text-value")
     if (scaling !== undefined) {
         scaling.forEach((subScaling: string[], index: number) => {
@@ -109,16 +98,16 @@ function CharacterSkillTab(props: {
 
     const tableCellStyle: SxProps = {
         color: theme.text.color,
-        border: { xs: "auto", md: "none" },
+        border: { xs: "auto", sm: "none" },
         borderColor: theme.border.color,
         px: "5px",
-        py: "2px"
+        py: "2.5px"
     }
 
     return (
         <Box sx={{ width: "100%" }}>
             <Typography sx={{ fontSize: "16px" }}>
-                <i>{FormatSkillKey(key)}</i>
+                <i>{formatSkillKey(key)}</i>
             </Typography>
             {
                 skills[key].map((skill, index) => {
@@ -163,12 +152,12 @@ function CharacterSkillTab(props: {
                     return (
                         <Box key={index} sx={{ mb: "20px" }}>
                             <Box sx={{ mb: "10px" }}>
-                                <Typography sx={{ fontSize: "28px" }}>
+                                <Typography sx={{ fontSize: { xs: "24px", sm: "28px" } }}>
                                     {skill.name}
                                 </Typography>
                                 {
                                     skill.tag &&
-                                    <Typography sx={{ fontSize: "16px", color: `rgb(242, 158, 56)` }}>
+                                    <Typography sx={{ fontSize: { xs: "13.5px", sm: "16px" }, color: `rgb(242, 158, 56)` }}>
                                         [{skill.tag}]
                                     </Typography>
                                 }
@@ -180,10 +169,10 @@ function CharacterSkillTab(props: {
                                             rows.map((row, index) => (
                                                 <TableRow key={index} sx={tableRowStyle}>
                                                     <TableCell sx={tableCellStyle}>
-                                                        <Typography sx={{ fontSize: { xs: "13.5px", sm: "16px" } }}>{row.key}</Typography>
+                                                        <Typography sx={{ fontSize: { xs: "13.5px", sm: "14.5px" } }}>{row.key}</Typography>
                                                     </TableCell>
                                                     <TableCell align="right" sx={tableCellStyle}>
-                                                        <Typography sx={{ fontSize: { xs: "13.5px", sm: "16px" } }}>{row.value}</Typography>
+                                                        <Typography sx={{ fontSize: { xs: "13.5px", sm: "14.5px" } }}>{row.value}</Typography>
                                                     </TableCell>
                                                 </TableRow>
                                             ))
@@ -292,7 +281,7 @@ function getSkillCost(type: string, cost: number, matches: boolean) {
 
 }
 
-const FormatSkillKey = (key: string) => {
+function formatSkillKey(key: string) {
     switch (key) {
         case "attack":
             key = "Basic ATK"
