@@ -15,6 +15,6 @@ export function elementalColors(element: string | undefined) {
         case "Imaginary":
             return `#e5b909`
         default:
-            return `#1976d2`
+            return `rgb(202, 166, 112)`
     }
 }
