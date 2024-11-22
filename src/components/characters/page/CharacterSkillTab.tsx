@@ -190,8 +190,8 @@ function CharacterSkillTab(props: {
             {
                 key !== "technique" &&
                 <React.Fragment>
-                    <Box sx={{ display: { xs: "block", sm: "flex" }, alignItems: "center", width: key === "attack" ? "30%" : "40%", mt: "20px", mb: "10px" }}>
-                        <Typography sx={{ color: theme.text.color, fontSize: "18px", minWidth: "75px" }}>
+                    <Box sx={{ display: { xs: "block", md: "flex" }, alignItems: "center", width: key === "attack" ? "30%" : "35%", mt: "15px", mb: "10px" }}>
+                        <Typography sx={{ color: theme.text.color, fontSize: "16px", minWidth: "75px" }}>
                             Lv. {sliderValue}
                         </Typography>
                         <CustomSlider

@@ -67,7 +67,7 @@ function CharacterAscensionCard({ character }: { character: CharacterCostObject 
                     <React.Fragment>
                         <ButtonBase disableRipple href={`${process.env.REACT_APP_BASENAME}/characters/${character.name.split(" ").join("_").toLowerCase()}`} target="_blank">
                             <Typography variant="h6" sx={{ color: `${theme.text.color}` }}>
-                                {character.displayName ? character.displayName : name}
+                                {character.displayName}
                             </Typography>
                         </ButtonBase>
                         <Typography sx={{ color: "rgb(255, 208, 112)", textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }} variant="h6">
@@ -93,16 +93,16 @@ function CharacterAscensionCard({ character }: { character: CharacterCostObject 
                 <AccordionDetails sx={{ mx: "10px", px: 0 }}>
                     <CharacterAscensionLevel character={character} />
                     <Grid container rowSpacing={0} columnSpacing={4}>
-                        <Grid size={{ xs: 12, sm: 6 }}>
+                        <Grid size={{ xs: 12, lg: 6 }}>
                             <CharacterAscensionBasicATK character={character} />
-                            <CharacterAscensionSkill character={character} />
                             <CharacterAscensionUltimate character={character} />
+                        </Grid>
+                        <Grid size={{ xs: 12, lg: 6 }}>
+                            <CharacterAscensionSkill character={character} />
                             <CharacterAscensionTalent character={character} />
                         </Grid>
-                        <Grid size={{ xs: 12, sm: 6 }}>
-                            <CharacterAscensionTrace character={character} />
-                        </Grid>
                     </Grid>
+                    <CharacterAscensionTrace character={character} />
                 </AccordionDetails>
             </Accordion>
         </Box>

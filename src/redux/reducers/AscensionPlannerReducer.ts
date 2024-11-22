@@ -78,6 +78,7 @@ export const PlannerSlice = createSlice({
                     }
                     return {
                         name: char.name,
+                        displayName: char.displayName ? char.displayName : char.name,
                         rarity: char.rarity,
                         element: char.element,
                         path: char.path,

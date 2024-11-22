@@ -36,8 +36,8 @@ function LightconeAscension({ lightcone }: { lightcone: LightconeData }) {
     return (
         <React.Fragment>
             <LightconeAscensionMaterials materials={lightcone.materials} rarity={lightcone.rarity.toString() as "5" | "4" | "3"} values={sliderValue} />
-            <Box sx={{ display: { xs: "block", sm: "flex" }, alignItems: "center", width: "50%", mt: "10px" }}>
-                <Typography sx={{ color: theme.text.color, fontSize: "18px", minWidth: "125px", mr: "20px" }}>
+            <Box sx={{ display: { xs: "block", md: "flex" }, alignItems: "center", width: "50%", mt: "10px" }}>
+                <Typography sx={{ color: theme.text.color, fontSize: "16px", minWidth: "150px" }}>
                     Lv. {levels[sliderValue[0] - 1]} → Lv. {levels[sliderValue[1] - 1]}
                 </Typography>
                 <CustomSlider

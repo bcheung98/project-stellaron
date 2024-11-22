@@ -94,7 +94,7 @@ function LightconePage() {
                                 backgroundColor: `${theme.paper.backgroundColor}`,
                             }}
                         >
-                            <Typography sx={{ px: 1.5, color: `${theme.text.color}` }} variant="body2">
+                            <Typography sx={{ px: 1.5, color: `${theme.text.color}`, fontSize: { xs: "12px", sm: "14px" } }}>
                                 {parse(description)}
                             </Typography>
                         </Box>
@@ -113,7 +113,7 @@ function LightconePage() {
                                     <Typography
                                         sx={{
                                             fontFamily: `${theme.font.styled.family}`,
-                                            fontSize: { xs: "24px", sm: "34px" },
+                                            fontSize: { xs: "24px", sm: "32px" },
                                             color: `${theme.text.color}`,
                                         }}
                                     >
@@ -130,7 +130,7 @@ function LightconePage() {
                                         }
                                         sx={{ px: 0, py: 0.5 }}
                                     />
-                                    <Typography sx={{ color: `rgb(255, 208, 112)`, fontSize: { xs: "24px", sm: "30px" }, textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }}>
+                                    <Typography sx={{ color: `rgb(255, 208, 112)`, fontSize: { xs: "24px", sm: "28px" }, textShadow: "#e3721b 1px 1px 10px", userSelect: "none" }}>
                                         {[...Array(rarity).keys()].map(() => "✦")}
                                     </Typography>
                                 </Box>
@@ -146,17 +146,17 @@ function LightconePage() {
                                 color: `${theme.text.color}`,
                             }}
                         >
-                            <Typography sx={{ fontSize: { xs: "13.5px", sm: "15px" } }}>
+                            <Typography sx={{ fontSize: { xs: "13.5px", sm: "16px" } }}>
                                 <i>The following effects only work on characters of the Path of The {path}.</i>
                             </Typography>
                             <Typography sx={{ mt: "20px", fontSize: { xs: "20px", sm: "24px" } }}>
                                 {passive.name}
                             </Typography>
-                            <Typography sx={{ mt: "10px", fontSize: { xs: "14px", sm: "16px" } }}>
+                            <Typography sx={{ mt: "10px", fontSize: { xs: "13.5px", sm: "16px" } }}>
                                 {parse(passive.effect as string)}
                             </Typography>
-                            <Box sx={{ display: { xs: "block", sm: "flex" }, alignItems: "center", width: "40%", mt: "20px", mb: "10px" }}>
-                                <Typography sx={{ color: theme.text.color, fontSize: "18px", minWidth: "50px", mb: "2.5px" }}>
+                            <Box sx={{ display: { xs: "block", md: "flex" }, alignItems: "center", width: "40%", mt: "20px", mb: "10px" }}>
+                                <Typography sx={{ color: theme.text.color, fontSize: "18px", minWidth: "50px" }}>
                                     S{sliderValue}
                                 </Typography>
                                 <CustomSlider
@@ -165,7 +165,7 @@ function LightconePage() {
                                     min={1}
                                     max={maxValue}
                                     onChange={handleSliderChange}
-                                    sx={{ minWidth: "200px", ml: "10px" }}
+                                    sx={{ minWidth: "100px", ml: "10px" }}
                                 />
                             </Box>
                         </Box>

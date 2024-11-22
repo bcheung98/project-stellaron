@@ -38,10 +38,10 @@ function AscensionPlanner() {
                 Ascension Planner
             </Typography>
             <Grid container spacing={5}>
-                <Grid size={{ xs: 12, md: 5 }}>
+                <Grid size={{ xs: 12, md: 6, xl: 5 }}>
                     <CharacterSelector />
                 </Grid>
-                <Grid size={{ xs: 12, md: 5 }}>
+                <Grid size={{ xs: 12, md: 6, xl: 5 }}>
                     <LightconeSelector />
                 </Grid>
             </Grid>
@@ -49,7 +49,7 @@ function AscensionPlanner() {
             <Grid container spacing={5}>
                 {
                     [...characters, ...lightcones].map(item =>
-                        <Grid key={item.name} size={{ xs: 12, md: 5 }}>
+                        <Grid key={item.name} size={{ xs: 12, md: 6, xl: 5 }}>
                             {"element" in item ? <CharacterAscensionCard key={item.name} character={item} /> : <LightconeAscensionCard key={item.name} lightcone={item} />}
                         </Grid>
                     )
