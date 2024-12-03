@@ -33,8 +33,11 @@ interface ScrollTopProps {
 }
 
 const ScrollTop: React.FC<ScrollTopProps> = (props) => {
+
+    const theme = useTheme()
+
     const { children } = props
-    const trigger = useScrollTrigger({ threshold: 600 })
+    const trigger = useScrollTrigger({ disableHysteresis: true, threshold: 600 })
 
     const handleClick = (event: React.BaseSyntheticEvent) => {
         const anchor = (event.target.ownerDocument || document).querySelector("#back-to-top-anchor")
@@ -49,7 +52,7 @@ const ScrollTop: React.FC<ScrollTopProps> = (props) => {
         <Fade in={trigger}>
             <Box
                 onClick={handleClick}
-                sx={{ position: "fixed", bottom: 128, right: 16 }}
+                sx={{ position: "fixed", bottom: 128, right: 16, zIndex: theme.zIndex.fab, }}
             >
                 {children}
             </Box>
