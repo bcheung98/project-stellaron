@@ -31,7 +31,8 @@ function CharacterSkillTab(props: {
     const skills = props.skills
 
     const maxValue = key === "attack" ? 7 : 12
-    const [sliderValue, setSliderValue] = React.useState(1)
+    const defaultLevel = key === "attack" ? 6 : 10
+    const [sliderValue, setSliderValue] = React.useState(defaultLevel)
     const handleSliderChange = (event: Event, newValue: number | number[]) => {
         setSliderValue(newValue as number)
     }
