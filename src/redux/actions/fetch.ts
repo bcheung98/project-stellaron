@@ -5,13 +5,13 @@ import { RelicData } from "../../types/relic/relic"
 import { BannerData } from "../../types/banner/BannerData"
 
 // https://api.irminsul.gg/hsr/characters.json
-const charactersURL = "https://api.irminsul.gg/hsr/characters-v2.json"
+const charactersURL = "https://api.irminsul.gg/hsr/characters.json"
 
 // https://api.irminsul.gg/hsr/lightcones.json
 const lightconesURL = "https://api.irminsul.gg/hsr/lightcones.json"
 
 // https://api.irminsul.gg/hsr/relics.json
-const relicsURL = "https://api.irminsul.gg/hsr/relics-v2.json"
+const relicsURL = "https://api.irminsul.gg/hsr/relics.json"
 
 const characterBannerURL = "https://api.irminsul.gg/hsr/character-banners.json"
 const lightconeBannerURL = "https://api.irminsul.gg/hsr/lightcone-banners.json"
