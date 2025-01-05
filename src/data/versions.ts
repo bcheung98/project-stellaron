@@ -14,5 +14,5 @@ export const updates = [
     { version: "1.3", name: "Celestial Eyes Above Mortal Ruins" },
     { version: "1.2", name: "Even Immortality Ends" },
     { version: "1.1", name: "Galactic Roaming" },
-    { version: "1.0", name: "The Rail Unto the Stars" }
-]
+    { version: "1.0", name: "The Rail Unto the Stars" },
+];
