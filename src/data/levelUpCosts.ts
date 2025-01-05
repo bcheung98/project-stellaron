@@ -178,6 +178,18 @@ export const traceTotalCosts = {
     },
 };
 
+interface CharacterTraceCost {
+    credits: [number, number];
+    calyxMat1: [number, number];
+    calyxMat2: [number, number];
+    calyxMat3: [number, number];
+    commonMat1: [number, number];
+    commonMat2: [number, number];
+    commonMat3: [number, number];
+    weeklyBossMat: [number, number];
+    tracksOfDestiny: [number, number];
+}
+
 export const characterTraceMain = (
     node: Extract<CharacterUnlockKeys, "A2" | "A4" | "A6">
 ) => {
@@ -190,19 +202,19 @@ export const characterTraceMainCosts = {
         credits: [4000, 5000],
         calyxMat1: [2, 3],
         weeklyBossMat: [1, 1],
-    },
+    } as CharacterTraceCost,
     A4: {
         credits: [16000, 2000],
         calyxMat2: [4, 5],
         weeklyBossMat: [1, 1],
         tracksOfDestiny: [1, 1],
-    },
+    } as CharacterTraceCost,
     A6: {
         credits: [128000, 160000],
         calyxMat3: [6, 8],
         weeklyBossMat: [1, 1],
         tracksOfDestiny: [1, 1],
-    },
+    } as CharacterTraceCost,
 };
 
 export const characterTraceSmall = (node: CharacterUnlockKeys) => {
@@ -215,41 +227,41 @@ export const characterTraceSmallCosts = {
         credits: [4000, 5000],
         calyxMat1: [2, 3],
         commonMat1: [4, 6],
-    },
+    } as CharacterTraceCost,
     A3: {
         credits: [8000, 10000],
         calyxMat2: [2, 3],
         commonMat2: [2, 3],
-    },
+    } as CharacterTraceCost,
     A4: {
         credits: [16000, 20000],
         calyxMat2: [4, 5],
         commonMat2: [3, 4],
-    },
+    } as CharacterTraceCost,
     A5: {
         credits: [36000, 45000],
         calyxMat3: [2, 3],
         commonMat3: [2, 3],
-    },
+    } as CharacterTraceCost,
     A6: {
         credits: [128000, 160000],
         calyxMat3: [6, 8],
         commonMat3: [6, 8],
-    },
+    } as CharacterTraceCost,
     "Lv. 1": {
         credits: [2000, 2500],
         commonMat1: [2, 2],
-    },
+    } as CharacterTraceCost,
     "Lv. 75": {
         credits: [128000, 160000],
         calyxMat3: [6, 8],
         commonMat3: [6, 8],
-    },
+    } as CharacterTraceCost,
     "Lv. 80": {
         credits: [128000, 160000],
         calyxMat3: [6, 8],
         commonMat3: [6, 8],
-    },
+    } as CharacterTraceCost,
 };
 
 export const weaponLevel = (rarity: Extract<Rarity, 5 | 4 | 3>) => {
