@@ -27,6 +27,7 @@ export interface TotalCostObject {
     weaponXP: Record<WeaponXPMaterial, number>;
     bossMat: Record<BossMaterial, number>;
     weeklyBossMat: Record<WeeklyBossMaterial, number>;
+    tracksOfDestiny: Record<"Tracks of Destiny", number>;
     calyxMat: Record<CalyxMaterial, number>;
     commonMat: Record<CommonMaterial, number>;
 }
@@ -69,6 +70,7 @@ export interface CharacterCost {
     characterXP: Record<CharacterXPMaterial, number[]>;
     bossMat: Record<BossMaterial, number[]>;
     weeklyBossMat: Record<WeeklyBossMaterial, number[]>;
+    tracksOfDestiny: Record<"Tracks of Destiny", number[]>;
     calyxMat: Record<CalyxMaterial, number[]>;
     commonMat: Record<CommonMaterial, number[]>;
 }
