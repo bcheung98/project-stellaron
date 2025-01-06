@@ -110,7 +110,7 @@ function CharacterBrowser() {
             >
                 <Grid size="auto">
                     <TextStyled variant="h5-styled" sx={{ lineHeight: "36px" }}>
-                        Agents
+                        Characters
                     </TextStyled>
                 </Grid>
                 <Grid size={{ xs: 6, sm: "auto" }}>
