@@ -33,8 +33,8 @@ const initialState: PlannerState = {
         },
         bossMat: {},
         weeklyBossMat: {},
-        ascensionMat: {},
-        forgeryMat: {},
+        tracksOfDestiny: {},
+        calyxMat: {},
         commonMat: {},
     } as TotalCostObject,
     characters: [],
@@ -128,8 +128,8 @@ export const plannerSlice = createSlice({
                     },
                     bossMat: {},
                     weeklyBossMat: {},
-                    ascensionMat: {},
-                    forgeryMat: {},
+                    tracksOfDestiny: {},
+                    calyxMat: {},
                     commonMat: {},
                 } as TotalCostObject;
                 state.characters.forEach((character) => {
