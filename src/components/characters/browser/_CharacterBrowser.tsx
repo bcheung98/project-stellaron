@@ -12,6 +12,7 @@ import { TextStyled } from "styled/StyledTypography";
 // MUI imports
 import { useTheme, useMediaQuery, Button, Drawer } from "@mui/material";
 import Grid from "@mui/material/Grid2";
+import ViewCompactIcon from "@mui/icons-material/ViewCompact";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import TableRowsIcon from "@mui/icons-material/TableRows";
 import TuneIcon from "@mui/icons-material/Tune";
@@ -28,8 +29,8 @@ import {
 import { isRightDrawerOpen, toggleRightDrawer } from "reducers/layout";
 
 function CharacterBrowser() {
-    const documentTitle = `Agents ${import.meta.env.VITE_DOCUMENT_TITLE}`;
-    const documentDesc = `A list of all Zenless Zone Zero Agents`;
+    const documentTitle = `Characters ${import.meta.env.VITE_DOCUMENT_TITLE}`;
+    const documentDesc = `A list of all Honkai: Star Rail Characters`;
     document.title = documentTitle;
     document
         .querySelector('meta[property="og:title"]')
@@ -74,14 +75,18 @@ function CharacterBrowser() {
         setMobileDrawerOpen(false);
     };
 
-    type View = "card" | "table";
-    const [view, setView] = useState<View>("card");
+    type View = "icon" | "card" | "table";
+    const [view, setView] = useState<View>("icon");
     const handleView = (_: BaseSyntheticEvent, newView: View) => {
         if (newView !== null) {
             setView(newView);
         }
     };
     const buttons: CustomToggleButtonProps[] = [
+        {
+            value: "icon",
+            icon: <ViewCompactIcon />,
+        },
         {
             value: "card",
             icon: <ViewModuleIcon />,
@@ -155,8 +160,8 @@ function CharacterBrowser() {
                     </Button>
                 </Grid>
             </Grid>
-            {view === "card" && (
-                <Grid container spacing={2}>
+            {view === "icon" && (
+                <Grid container spacing={3}>
                     {currentCharacters.map((char) => (
                         <InfoCard
                             key={char.id}
@@ -169,6 +174,26 @@ function CharacterBrowser() {
                                 element: char.element,
                                 path: char.path,
                             }}
+                        />
+                    ))}
+                </Grid>
+            )}
+            {view === "card" && (
+                <Grid container spacing={3}>
+                    {currentCharacters.map((char) => (
+                        <InfoCard
+                            key={char.id}
+                            variant="material-card"
+                            id={`${char.name}-characterBrowser`}
+                            name={char.name}
+                            displayName={char.fullName}
+                            type="character"
+                            rarity={char.rarity}
+                            info={{
+                                element: char.element,
+                                path: char.path,
+                            }}
+                            materials={char.materials}
                         />
                     ))}
                 </Grid>
