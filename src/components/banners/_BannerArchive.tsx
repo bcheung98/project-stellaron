@@ -48,8 +48,8 @@ function BannerArchive() {
     };
 
     const buttons: CustomToggleButtonProps[] = [
-        { value: "character", label: "Resonator" },
-        { value: "weapon", label: "Weapon" },
+        { value: "character", label: "Character" },
+        { value: "weapon", label: "Light Cone" },
     ];
 
     return (
