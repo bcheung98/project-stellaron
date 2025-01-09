@@ -7,10 +7,10 @@ import { RelicData } from "types/relic";
 export type LoadingStatus = "idle" | "pending" | "success" | "error";
 
 // https://api.irminsul.gg/hsr/characters.json
-const charactersURL = "http://localhost:3000/characters";
+const charactersURL = "https://api.irminsul.gg/hsr/characters.json";
 
 // https://api.irminsul.gg/hsr/lightcones.json
-const weaponsURL = "http://localhost:3001/lightcones";
+const weaponsURL = "https://api.irminsul.gg/hsr/lightcones.json";
 
 // https://api.irminsul.gg/hsr/relics.json
 const relicsURL = "https://api.irminsul.gg/hsr/relics.json";
