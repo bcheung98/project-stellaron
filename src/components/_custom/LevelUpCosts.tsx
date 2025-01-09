@@ -12,10 +12,12 @@ import Grid from "@mui/material/Grid2";
 
 // Helper imports
 import { range } from "helpers/utils";
-import { getElementColor } from "helpers/elementalColors";
+import { getElementColor } from "helpers/elementColors";
 import {
     getCharacterLevelCost,
     getCharacterSkillCost,
+    getCharacterTraceMain,
+    getCharacterTraceSmall,
     getWeaponLevelCost,
 } from "helpers/getLevelUpCosts";
 import { createMaterialCostData } from "helpers/createMaterialCostData";
@@ -31,32 +33,33 @@ import {
     Materials,
     WeeklyBossMaterial,
 } from "types/materials";
+import { CharacterUnlockKeys } from "types/character";
 
 export type LevelUpCostSkillKeys = keyof typeof CostObjectSourceIndex;
 
 interface LevelUpCostsProps {
     type: "character" | "weapon";
     skillKey: LevelUpCostSkillKeys;
-    name: string;
     rarity?: Rarity;
     element?: Element;
     mats: Materials;
+    unlock?: CharacterUnlockKeys;
     threshold?: string;
 }
 
 function LevelUpCosts({
     type,
     skillKey,
-    name,
     rarity = 3,
     element,
     mats,
+    unlock,
     threshold = "@100",
 }: LevelUpCostsProps) {
     const theme = useTheme();
     const matches_sm_dn = useMediaQuery(theme.breakpoints.down("sm"));
 
-    const levels = getLevels(skillKey, type, rarity);
+    const levels = getLevels(skillKey);
     const minDistance = 1;
     const maxValue = levels.length;
     const [values, setValues] = useState([1, maxValue]);
@@ -103,10 +106,10 @@ function LevelUpCosts({
     const costs = getCosts({
         type,
         skillKey,
-        name,
         rarity,
         values,
         mats,
+        unlock,
     });
 
     return (
@@ -137,7 +140,7 @@ function LevelUpCosts({
                         disableSwap
                         size={matches_sm_dn ? "small" : "medium"}
                         sx={{
-                            color: getElementColor(theme, element),
+                            color: getElementColor({ element }),
                         }}
                     />
                 </LevelUpSliderContainer>
@@ -148,24 +151,18 @@ function LevelUpCosts({
 
 export default LevelUpCosts;
 
-function getLevels(
-    skillKey: LevelUpCostsProps["skillKey"],
-    type: "character" | "weapon",
-    rarity: Rarity
-) {
+function getLevels(skillKey: LevelUpCostsProps["skillKey"]) {
     switch (skillKey) {
         case "level":
-            if (type === "weapon" && rarity < 3) {
-                return ["20", "40", "50", "60", "70"];
-            } else {
-                return ["20", "40", "50", "60", "70", "80", "90"];
-            }
-        case "basic":
+            return ["20", "30", "40", "50", "60", "70", "80"];
+        case "attack":
+            return range(1, 6);
         case "skill":
         case "ultimate":
         case "talent":
-        case "trace":
             return range(1, 10);
+        case "traceMain":
+        case "traceSmall":
         default:
             return [];
     }
@@ -174,28 +171,29 @@ function getLevels(
 function getCosts({
     type,
     skillKey,
-    name,
     rarity,
     values,
     mats,
+    unlock = "A2",
 }: {
     type: "character" | "weapon";
     skillKey: LevelUpCostSkillKeys;
-    name: string;
     rarity: Rarity;
     values: number[];
     mats: Materials;
+    unlock?: CharacterUnlockKeys;
 }) {
     let costs, levelUpCost;
     switch (skillKey) {
         case "level":
             if (type === "character") {
-                levelUpCost = getCharacterLevelCost(
-                    values,
-                    true,
-                    false,
-                    rarity
-                );
+                levelUpCost = getCharacterLevelCost({
+                    start: values[0],
+                    stop: values[1],
+                    selected: true,
+                    withXP: false,
+                    rarity: rarity,
+                });
                 costs = {
                     credits: {
                         Credit: levelUpCost.credits.Credit,
@@ -203,14 +201,6 @@ function getCosts({
                     bossMat: {
                         [`${mats.bossMat}` as BossMaterial]:
                             levelUpCost.bossMat.bossMat,
-                    },
-                    calyxMat: {
-                        [`${mats.calyxMat}1` as CalyxMaterial]:
-                            levelUpCost.calyxMat.calyxMat1,
-                        [`${mats.calyxMat}2` as CalyxMaterial]:
-                            levelUpCost.calyxMat.calyxMat2,
-                        [`${mats.calyxMat}3` as CalyxMaterial]:
-                            levelUpCost.calyxMat.calyxMat3,
                     },
                     commonMat: {
                         [`${mats.commonMat}1` as CommonMaterial]:
@@ -222,7 +212,13 @@ function getCosts({
                     },
                 } as TotalCostObject;
             } else {
-                levelUpCost = getWeaponLevelCost(values, true, false, rarity);
+                levelUpCost = getWeaponLevelCost({
+                    start: values[0],
+                    stop: values[1],
+                    selected: true,
+                    withXP: false,
+                    rarity: rarity,
+                });
                 costs = {
                     credits: {
                         Credit: levelUpCost.credits.Credit,
@@ -246,18 +242,20 @@ function getCosts({
                 } as TotalCostObject;
             }
             break;
-        case "basic":
+        case "attack":
         case "skill":
         case "ultimate":
         case "talent":
-            levelUpCost = getCharacterSkillCost(values, true, rarity, skillKey);
+            levelUpCost = getCharacterSkillCost({
+                start: values[0],
+                stop: values[1],
+                selected: true,
+                skillKey: skillKey,
+                rarity: rarity,
+            });
             costs = {
                 credits: {
                     Credit: levelUpCost.credits.Credit,
-                },
-                weeklyBossMat: {
-                    [`${mats.weeklyBossMat}` as WeeklyBossMaterial]:
-                        levelUpCost.weeklyBossMat.weeklyBossMat,
                 },
                 calyxMat: {
                     [`${mats.calyxMat}1` as CalyxMaterial]:
@@ -275,13 +273,65 @@ function getCosts({
                     [`${mats.commonMat}3` as CommonMaterial]:
                         levelUpCost.commonMat.commonMat3,
                 },
+                weeklyBossMat: {
+                    [`${mats.weeklyBossMat}` as WeeklyBossMaterial]:
+                        levelUpCost.weeklyBossMat.weeklyBossMat,
+                },
+                tracksOfDestiny: {
+                    "Tracks of Destiny":
+                        levelUpCost.tracksOfDestiny.tracksOfDestiny,
+                },
             } as TotalCostObject;
             break;
-        case "trace":
-            levelUpCost = getCharacterSkillCost(values, true, rarity, skillKey);
+        case "traceMain":
+            levelUpCost = getCharacterTraceMain(
+                unlock as "A2" | "A4" | "A6",
+                rarity,
+                true
+            );
             costs = {
                 credits: {
                     Credit: levelUpCost.credits.Credit,
+                },
+                calyxMat: {
+                    [`${mats.calyxMat}1` as CalyxMaterial]:
+                        levelUpCost.calyxMat.calyxMat1,
+                    [`${mats.calyxMat}2` as CalyxMaterial]:
+                        levelUpCost.calyxMat.calyxMat2,
+                    [`${mats.calyxMat}3` as CalyxMaterial]:
+                        levelUpCost.calyxMat.calyxMat3,
+                },
+                weeklyBossMat: {
+                    [`${mats.weeklyBossMat}` as WeeklyBossMaterial]:
+                        levelUpCost.weeklyBossMat.weeklyBossMat,
+                },
+                tracksOfDestiny: {
+                    "Tracks of Destiny":
+                        levelUpCost.tracksOfDestiny.tracksOfDestiny,
+                },
+            } as TotalCostObject;
+            break;
+        case "traceSmall":
+            levelUpCost = getCharacterTraceSmall(unlock, rarity, true);
+            costs = {
+                credits: {
+                    Credit: levelUpCost.credits.Credit,
+                },
+                calyxMat: {
+                    [`${mats.calyxMat}1` as CalyxMaterial]:
+                        levelUpCost.calyxMat.calyxMat1,
+                    [`${mats.calyxMat}2` as CalyxMaterial]:
+                        levelUpCost.calyxMat.calyxMat2,
+                    [`${mats.calyxMat}3` as CalyxMaterial]:
+                        levelUpCost.calyxMat.calyxMat3,
+                },
+                commonMat: {
+                    [`${mats.commonMat}1` as CommonMaterial]:
+                        levelUpCost.commonMat.commonMat1,
+                    [`${mats.commonMat}2` as CommonMaterial]:
+                        levelUpCost.commonMat.commonMat2,
+                    [`${mats.commonMat}3` as CommonMaterial]:
+                        levelUpCost.commonMat.commonMat3,
                 },
             } as TotalCostObject;
             break;
