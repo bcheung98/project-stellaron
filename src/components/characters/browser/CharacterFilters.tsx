@@ -28,8 +28,14 @@ import {
     setWorld,
 } from "reducers/characterFilters";
 import { elements, paths, rarities, worlds } from "data/common";
-import { calyxMaterials } from "data/materials/calyxMaterials";
-import { commonMaterials } from "data/materials/commonMaterials";
+import {
+    calyxMaterials,
+    formatCalyxMaterials,
+} from "data/materials/calyxMaterials";
+import {
+    commonMaterials,
+    formatCommonMaterials,
+} from "data/materials/commonMaterials";
 import { bossMatNames } from "data/materials/bossMaterials";
 import {
     formatWeeklyBossMaterials,
@@ -41,7 +47,9 @@ import { Element, Path, Rarity, World } from "types/_common";
 import {
     BossMaterial,
     CalyxMaterial,
+    CalyxMaterialKeys,
     CommonMaterial,
+    CommonMaterialKeys,
     WeeklyBossMaterial,
 } from "types/materials";
 
@@ -208,10 +216,12 @@ function createButtons<T>(items: readonly T[], url: string) {
 
 function getTooltip<T>(item: T, url: string) {
     let tooltip;
-    if (url.startsWith("materials/weekly")) {
+    if (url.startsWith("materials/common")) {
+        tooltip = formatCommonMaterials(item as CommonMaterialKeys);
+    } else if (url.startsWith("materials/calyx")) {
+        tooltip = formatCalyxMaterials(item as CalyxMaterialKeys);
+    } else if (url.startsWith("materials/weekly")) {
         tooltip = `${formatWeeklyBossMaterials(item as WeeklyBossMaterial)}`;
-    } else if (url.startsWith("ranks")) {
-        tooltip = "";
     } else {
         tooltip = `${item}`;
     }
