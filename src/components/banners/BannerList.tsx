@@ -77,7 +77,7 @@ function BannerList({ type }: BannerListProps) {
 
     const headColumns: HeadColumn[] = [{ id: "subVersion", label: "Version" }];
 
-    const smallIconStyle = { width: "20px", height: "20px" };
+    const smallIconStyle = { width: "16px", height: "16px" };
 
     useEffect(() => {}, [characters, weapons]);
 
@@ -163,7 +163,15 @@ function BannerList({ type }: BannerListProps) {
                         }}
                     >
                         <Stack spacing={2} direction="row" alignItems="center">
-                            <Stack spacing={1}>
+                            <Stack
+                                spacing={1}
+                                sx={{
+                                    p: "4px",
+                                    borderRadius: "16px",
+                                    backgroundColor:
+                                        theme.appbar.backgroundColor,
+                                }}
+                            >
                                 {option.element && (
                                     <Image
                                         src={`elements/${option.element}`}
