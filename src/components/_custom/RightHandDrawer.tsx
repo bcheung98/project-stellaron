@@ -34,14 +34,14 @@ function RightHandDrawer() {
 
     const location = useLocation().pathname;
     const isOpen =
-        ["/characters/", "/weapons/"].includes(location) && matches_md_up;
+        ["/characters/", "/lightcones/"].includes(location) && matches_md_up;
 
     let component: React.ReactNode;
     switch (location) {
         case "/characters/":
             component = <CharacterFilters handleClose={handleDrawerClose} />;
             break;
-        case "/weapons/":
+        case "/lightcones/":
             component = <WeaponFilters handleClose={handleDrawerClose} />;
             break;
         default:
