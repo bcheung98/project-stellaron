@@ -20,7 +20,6 @@ function Nav() {
     const matches_up_md = useMediaQuery(theme.breakpoints.up("md"));
 
     const [websites, setWebsites] = useState<Website[]>([]);
-
     useEffect(() => {
         fetch("https://api.irminsul.gg/main/websites.json")
             .then((response) => response.json())
@@ -36,7 +35,7 @@ function Nav() {
             site.tag !== CURRENTGAME &&
             site.enabled &&
             linkItems.push({
-                icon: `https://assets.irminsul.gg/main/game-icons/${site.tag}`,
+                icon: `https://assets.irminsul.gg/main/game-icons/${site.tag}.png`,
                 text: site.title,
                 link: `https://${site.tag.toLowerCase()}.irminsul.gg/`,
             })
@@ -75,7 +74,7 @@ const navItems: NavItem[] = [
     {
         icon: "icons/Character",
         text: "Characters",
-        link: "/agents/",
+        link: "/characters/",
     },
     {
         icon: "icons/Lightcone",
@@ -83,7 +82,7 @@ const navItems: NavItem[] = [
         link: "/lightcones/",
     },
     {
-        icon: "icons/Relics",
+        icon: "icons/Relic",
         text: "Relics",
         link: "/relics/",
     },
