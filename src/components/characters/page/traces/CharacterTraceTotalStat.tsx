@@ -69,10 +69,7 @@ function CharacterTraceTotalStat({
                             width: "40px",
                             height: "40px",
                             padding: "4px",
-                            border: `2px solid ${getElementColor(
-                                theme,
-                                element
-                            )}`,
+                            border: `2px solid ${getElementColor({ element })}`,
                             borderRadius: "64px",
                             backgroundColor: theme.appbar.backgroundColor,
                         }}

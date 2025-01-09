@@ -22,7 +22,7 @@ function CharacterSkills({ character }: CharacterProps) {
 
     const { name, rarity, element, skills, materials, keywords } = character;
 
-    const elementColor = getElementColor(theme, element);
+    const elementColor = getElementColor({ element });
 
     const [tabValue, setTabValue] = useState(0);
     const handleTabChange = (_: BaseSyntheticEvent, newValue: number) => {

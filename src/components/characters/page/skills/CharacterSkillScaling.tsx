@@ -66,7 +66,7 @@ function CharacterSkillScaling({
                     minWidth: "100px",
                     maxWidth: "500px",
                     ml: "8px",
-                    color: getElementColor(theme, element),
+                    color: getElementColor({ element }),
                 }}
             />
         </FlexBox>

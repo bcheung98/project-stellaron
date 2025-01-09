@@ -99,10 +99,9 @@ function CharacterTraceNode({ id, character, trace }: CharacterTraceNodeProps) {
                                     width: imgSize,
                                     height: imgSize,
                                     padding: "4px",
-                                    border: `2px solid ${getElementColor(
-                                        theme,
-                                        character.element
-                                    )}`,
+                                    border: `2px solid ${getElementColor({
+                                        element: character.element,
+                                    })}`,
                                     borderRadius: "64px",
                                     backgroundColor:
                                         theme.appbar.backgroundColor,
