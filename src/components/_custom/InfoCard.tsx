@@ -7,14 +7,24 @@ import { StyledTooltip } from "styled/StyledTooltip";
 import { TextStyled } from "styled/StyledTypography";
 
 // MUI imports
-import { useTheme, SxProps, Box, Card, Skeleton } from "@mui/material";
+import { useTheme, SxProps, Box, Card, Stack, Skeleton } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 
 // Helper imports
-import { getBackgroundColor, getRarityColor } from "helpers/rarityColors";
+import { getRarityColor } from "helpers/rarityColors";
 import { zoomImageOnHover } from "helpers/utils";
+import { formatWeeklyBossMaterials } from "data/materials/weeklyBossMaterials";
+import { formatCalyxMaterials } from "data/materials/calyxMaterials";
+import { formatCommonMaterials } from "data/materials/commonMaterials";
 
 // Type imports
 import { Element, Rarity, Path } from "types/_common";
+import {
+    CalyxMaterialKeys,
+    CommonMaterialKeys,
+    Materials,
+    WeeklyBossMaterial,
+} from "types/materials";
 
 interface InfoCardProps {
     name: string;
@@ -22,13 +32,15 @@ interface InfoCardProps {
     id?: string;
     type: "character" | "weapon" | "relic";
     rarity?: Rarity;
-    variant?: "icon" | "card";
+    variant?: "icon" | "avatar" | "material-card";
     size?: string;
     showName?: boolean;
     info?: {
         element?: Element;
         path?: Path;
     };
+    materials?: Materials;
+    backgroundColor?: string;
     disableTooltip?: boolean;
     disableLink?: boolean;
     disableZoomOnHover?: boolean;
@@ -41,61 +53,51 @@ function InfoCard({
     id = displayName,
     type,
     rarity = 3,
-    variant = "card",
-    size = variant === "card" ? "160px" : "64px",
-    showName = variant === "card",
+    variant = "avatar",
+    size,
+    showName = variant !== "icon",
     info,
+    materials,
+    backgroundColor,
     disableTooltip = showName,
     disableLink = false,
-    disableZoomOnHover = false,
+    disableZoomOnHover = variant === "material-card",
     loading = false,
 }: InfoCardProps) {
     const theme = useTheme();
 
-    id = `${id.split(" ").join("")}-${variant}-displayCard`;
+    id = `${id.split(" ").join("")}-${variant}-infoCard`;
 
-    const aspectRatio = () => {
-        if (variant === "icon") {
-            return "1 / 1";
-        } else {
-            if (type === "character") {
-                return "752 / 1024";
-            } else {
-                return "1 / 1";
-            }
-        }
-    };
+    const borderWidth = variant !== "icon" ? theme.displayCard.borderWidth : 2;
+    const borderRadius = variant === "icon" ? "4px" : "16px";
+    const borderColor =
+        variant === "icon"
+            ? getRarityColor(rarity)
+            : theme.border.color.primary;
 
-    const backgroundColor = () => {
-        const baseBG = theme.displayCard.backgroundColor;
-        if (variant === "icon") {
-            return baseBG;
-        } else {
-            let gradient;
-            type === "character" ? (gradient = "50%") : (gradient = "75%");
-            return `linear-gradient(${baseBG} ${gradient}, ${getBackgroundColor(
-                rarity,
-                0.6
-            )} 100%)`;
-        }
-    };
+    size =
+        variant === "icon" ? "64px" : variant === "avatar" ? "128px" : "96px";
+    const imgSize =
+        variant === "icon" ? `calc(${size} - ${borderWidth * 2}px)` : size;
 
-    const borderWidth = variant === "card" ? theme.displayCard.borderWidth : 2;
-    const imgSize = `calc(${size} - ${borderWidth * 2}px)`;
-
+    let scale = 1;
     let imgSrc = "",
         route;
     switch (type) {
         case "character":
-            imgSrc = `characters/${variant}s/${name}`;
-            route = "resonators";
+            imgSrc = `characters/icons/${name}`;
+            route = "characters";
             break;
         case "weapon":
-            imgSrc = `weapons/${name}`;
-            route = "weapons";
+            imgSrc =
+                variant === "icon"
+                    ? `lightcones/small/${name}`
+                    : `lightcones/medium/${name}`;
+            scale = variant === "avatar" ? 1.05 : 1;
+            route = "lightcones";
             break;
         case "relic":
-            imgSrc = `relics/icons/${name}`;
+            imgSrc = `relics/sets/${name.split(" ").join("_")}/_icon`;
             route = "relics";
             break;
     }
@@ -104,145 +106,222 @@ function InfoCard({
         : "";
 
     const handleHover = (direction: "enter" | "leave") => {
-        !disableZoomOnHover && zoomImageOnHover(direction, `${id}-img`, 1.05);
+        !disableZoomOnHover &&
+            zoomImageOnHover({
+                direction,
+                id: `${id}-img`,
+                baseScale: scale,
+                zoom: scale + 0.05,
+            });
     };
 
     const rootStyle: SxProps = {
         position: "relative",
-        width: size,
-        height: variant === "card" ? "auto" : size,
-        background: theme.displayCard.backgroundColor,
-        border: "solid",
+        overflow: "visible",
+        width: variant !== "material-card" ? size : "auto",
+        height: variant !== "icon" ? "auto" : size,
+        borderRadius: borderRadius,
+        background: `linear-gradient(to bottom, transparent, ${
+            backgroundColor || theme.appbar.backgroundColor
+        })`,
+    };
+
+    const cardStyle: SxProps = {
+        borderStyle: "solid",
         borderWidth: borderWidth,
-        borderColor:
-            variant === "card"
-                ? theme.border.color.primary
-                : getRarityColor(rarity),
-        borderRadius: "4px",
+        borderColor: borderColor,
+        borderRadius: borderRadius,
+        backgroundColor: "transparent",
     };
 
-    const mainImageStyle: CSSProperties = {
+    const imageContainerStyle: SxProps = {
+        display: "flex",
+        overflow: "clip",
+        width:
+            variant === "material-card"
+                ? `calc(${imgSize} * 8 / 3.25)`
+                : "auto",
+        backgroundImage: `url(https://assets.irminsul.gg/wuwa/backgrounds/Background_${rarity}_Star.png)`,
+        backgroundSize: "contain",
+        // backgroundRepeat: "no-repeat",
+    };
+
+    const imageStyle: CSSProperties = {
         width: imgSize,
-        height: variant === "card" ? "auto" : imgSize,
-        padding: variant === "card" && type !== "character" ? "16px" : "0px",
-        aspectRatio: aspectRatio(),
-        boxShadow:
-            variant === "icon"
-                ? `inset 0 0 32px 4px ${getBackgroundColor(rarity)}`
-                : "none",
+        height: "100%",
+        transform: `scale(${scale})`,
+        padding: variant !== "icon" && type !== "character" ? "4px" : "0px",
     };
 
-    const smallIconStyle: CSSProperties = {
-        boxSizing: "border-box",
-        width: `calc(${size} / 10 + 14px)`,
-        height: `calc(${size} / 10 + 14px)`,
-        minWidth: "16px",
-        minHeight: "16px",
-        backgroundColor: theme.icon.backgroundColor,
-        border: `2px solid ${theme.border.color.primary}`,
-        borderRadius: "16px",
+    const infoIconStyle: CSSProperties = {
+        width: `calc(${imgSize} / 8 + 12px)`,
+        height: `calc(${imgSize} / 8 + 12px)`,
+        minWidth: "28px",
+        minHeight: "28px",
         padding: "4px",
     };
 
     return (
-        <Card sx={rootStyle}>
+        <Card sx={rootStyle} elevation={2}>
             {!loading ? (
-                <StyledTooltip
-                    title={!disableTooltip ? displayName : ""}
-                    arrow
-                    placement="top"
-                >
-                    <Box
-                        sx={{ background: backgroundColor() }}
-                        onMouseEnter={() => handleHover("enter")}
-                        onMouseLeave={() => handleHover("leave")}
-                    >
-                        {info && (
+                <>
+                    <Card elevation={0} sx={cardStyle}>
+                        <StyledTooltip
+                            title={!disableTooltip ? displayName : ""}
+                            arrow
+                            placement="top"
+                        >
                             <Box
-                                sx={{
-                                    display: "grid",
-                                    position: "absolute",
-                                    zIndex: 5,
-                                    top: "10px",
-                                    left: "10px",
-                                }}
+                                onMouseEnter={() => handleHover("enter")}
+                                onMouseLeave={() => handleHover("leave")}
+                                sx={imageContainerStyle}
                             >
-                                {info.element !== undefined && (
+                                <RouterLink to={href}>
                                     <Image
-                                        src={`elements/${info.element}`}
-                                        alt={info.element}
-                                        style={smallIconStyle}
-                                        tooltip={info.element}
+                                        src={imgSrc}
+                                        alt={name}
+                                        id={`${id}-img`}
+                                        style={imageStyle}
                                     />
-                                )}
-                                {info.element && info.path && (
-                                    <Box sx={{ my: "4px" }} />
-                                )}
-                                {info.path !== undefined && (
-                                    <Image
-                                        src={`specialties/${info.path}`}
-                                        alt={info.path}
-                                        style={smallIconStyle}
-                                        tooltip={info.path}
+                                </RouterLink>
+                                {variant === "material-card" && materials && (
+                                    <MaterialGrid
+                                        materials={materials}
+                                        size={imgSize}
                                     />
                                 )}
                             </Box>
-                        )}
-                        <RouterLink to={href}>
-                            <Image
-                                src={imgSrc}
-                                alt={name}
-                                id={`${id}-img`}
-                                style={mainImageStyle}
-                            />
-                        </RouterLink>
-                        <Box
-                            sx={{
-                                position: "relative",
-                                mt:
-                                    variant === "icon"
-                                        ? "0px"
-                                        : type === "character"
-                                        ? "0px"
-                                        : "24px",
-                                borderBottom:
-                                    variant === "icon"
-                                        ? "none"
-                                        : `calc(${size} / 25) solid ${getRarityColor(
-                                              rarity
-                                          )}`,
-                            }}
-                        >
-                            <RouterLink
-                                to={href}
+                        </StyledTooltip>
+                        {showName && (
+                            <Box
                                 sx={{
-                                    position: "absolute",
-                                    bottom: "50%",
-                                    left: "50%",
-                                    transform: "translate(-50%, 0%)",
-                                    width: "90%",
+                                    display: "flex",
+                                    p: "8px",
+                                    borderTop:
+                                        variant === "icon"
+                                            ? "none"
+                                            : `calc(${imgSize} / 25) solid ${getRarityColor(
+                                                  rarity
+                                              )}`,
                                 }}
                             >
-                                <TextStyled
-                                    sx={{
-                                        textShadow:
-                                            "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
-                                        textAlign: "center",
-                                        mb: "4px",
-                                        color: "white",
-                                    }}
-                                >
-                                    {showName && displayName}
-                                </TextStyled>
-                            </RouterLink>
-                        </Box>
-                    </Box>
-                </StyledTooltip>
+                                <RouterLink to={href} sx={{ mx: "auto" }}>
+                                    <TextStyled
+                                        onMouseEnter={() =>
+                                            handleHover("enter")
+                                        }
+                                        onMouseLeave={() =>
+                                            handleHover("leave")
+                                        }
+                                        sx={{
+                                            color: theme.appbar.color,
+                                            textAlign: "center",
+                                        }}
+                                        variant={
+                                            variant === "material-card"
+                                                ? "body1-styled"
+                                                : "body2-styled"
+                                        }
+                                    >
+                                        {showName && displayName}
+                                    </TextStyled>
+                                </RouterLink>
+                            </Box>
+                        )}
+                    </Card>
+                    {info && (
+                        <Stack
+                            sx={{
+                                position: "absolute",
+                                zIndex: 5,
+                                top: "-4px",
+                                left: "-12px",
+                                backgroundColor: theme.appbar.backgroundColor,
+                                borderRadius: "16px",
+                            }}
+                        >
+                            {info.element !== undefined && (
+                                <Image
+                                    src={`elements/${info.element}`}
+                                    alt={info.element}
+                                    style={infoIconStyle}
+                                    tooltip={info.element}
+                                />
+                            )}
+                            {info.path !== undefined && (
+                                <Image
+                                    src={`paths/${info.path}`}
+                                    alt={info.path}
+                                    style={infoIconStyle}
+                                    tooltip={info.path}
+                                />
+                            )}
+                        </Stack>
+                    )}
+                </>
             ) : (
-                <Skeleton variant="rounded" width={size} height={size} />
+                <Skeleton
+                    variant="rounded"
+                    width={size}
+                    height={size}
+                    sx={{ borderRadius: borderRadius }}
+                />
             )}
         </Card>
     );
 }
 
 export default InfoCard;
+
+function MaterialGrid({
+    materials,
+    size,
+}: {
+    materials: Materials;
+    size: string;
+}) {
+    const theme = useTheme();
+
+    const { calyxMat, commonMat, bossMat, weeklyBossMat } = materials;
+
+    const images = [
+        {
+            src: `materials/calyx/${calyxMat}3`,
+            tag: formatCalyxMaterials(calyxMat as CalyxMaterialKeys),
+        },
+        {
+            src: `materials/common/${commonMat}3`,
+            tag: formatCommonMaterials(commonMat as CommonMaterialKeys),
+        },
+        {
+            src: `materials/boss/${bossMat}`,
+            tag: bossMat,
+        },
+        {
+            src: `materials/weekly/${weeklyBossMat}`,
+            tag: formatWeeklyBossMaterials(weeklyBossMat as WeeklyBossMaterial),
+        },
+    ];
+
+    return (
+        <Box sx={{ px: "16px", py: "8px", height: size }}>
+            <Grid container spacing={1}>
+                {images.map((img) => (
+                    <Image
+                        key={img.tag}
+                        src={img.src}
+                        alt={img.tag}
+                        style={{
+                            width: `calc(${size} / (8 / 3.25))`,
+                            border: `1px solid ${theme.border.color.primary}`,
+                            borderRadius: "4px",
+                            backgroundColor: theme.icon.backgroundColor,
+                            padding: "4px",
+                        }}
+                        tooltip={img.tag}
+                    />
+                ))}
+            </Grid>
+        </Box>
+    );
+}
