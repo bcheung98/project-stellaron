@@ -1,8 +1,7 @@
-import { characterStatBonusStats } from "data/characterBonusStats";
+import { characterBonusStats } from "data/characterBonusStats";
 import { Element, Path, Rarity, World } from "./_common";
 import { CharacterMaterials } from "./materials";
-import { Skill, SkillWithScaling } from "./skill";
-import { Stats } from "./stats";
+import { Skill, SkillKeywords, SkillWithScaling } from "./skill";
 import { VersionWithDate } from "./version";
 
 export interface CharacterProps {
@@ -26,12 +25,7 @@ export interface Character {
     gender: "Male" | "Female" | "Adaptive";
     faction: string;
     world: World;
-    keywords?: {
-        [tag: string]: {
-            name: string;
-            description: string;
-        };
-    };
+    keywords?: SkillKeywords;
     splashArt: {
         scale: number;
         translate: [number, number];
@@ -43,7 +37,7 @@ export interface Character {
     release: VersionWithDate;
 }
 
-export type CharacterSkillsKeys = keyof CharacterSkills;
+export type CharacterSkillKey = keyof CharacterSkills;
 export interface CharacterSkills {
     attack: CharacterSkill[];
     skill: CharacterSkill[];
@@ -75,7 +69,7 @@ export interface CharacterSkill extends SkillWithScaling {
 export type CharacterTalent = Omit<CharacterSkill, "cost">;
 export type CharacterTechnique = Omit<CharacterSkill, "cost" | "scaling">;
 
-export type BonusStat = keyof typeof characterStatBonusStats;
+export type BonusStat = keyof typeof characterBonusStats;
 
 export type CharacterUnlockKeys =
     | "Lv. 1"
@@ -109,7 +103,10 @@ export interface CharacterEidolons {
     e6: Skill;
 }
 
-export interface CharacterStats extends Stats {
+export interface CharacterStats {
+    hp: number[];
+    atk: number[];
+    def: number[];
     speed: number[];
     taunt: number[];
 }

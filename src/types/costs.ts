@@ -39,30 +39,19 @@ export type PayloadCostObject = Record<
 
 export enum CostObjectSourceIndex {
     level,
-    basic,
+    attack,
     skill,
     ultimate,
     talent,
-    trace,
-    // "A2 Passive",
-    // "A4 Passive",
-    // "A6 Passive",
-    // "A2 Trace",
-    // "A3 Trace 1",
-    // "A3 Trace 2",
-    // "A4 Trace",
-    // "A5 Trace 1",
-    // "A5 Trace 2",
-    // "A6 Trace",
-    // "Lv. 1 Trace",
-    // "Lv. 75 Trace",
-    // "Lv. 80 Trace",
+    traceMain,
+    traceSmall,
 }
 
 export interface UpdateCostsPayload {
     name: string;
     type: keyof typeof CostObjectSourceIndex;
     costs: PayloadCostObject;
+    traceID?: string;
 }
 
 export interface CharacterCost {
@@ -81,6 +70,7 @@ export interface CharacterCostObject
         "name" | "fullName" | "rarity" | "element" | "path"
     > {
     costs: CharacterCost;
+    traceIDs: string[];
 }
 
 export interface WeaponCost {

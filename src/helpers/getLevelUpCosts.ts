@@ -9,13 +9,30 @@ import {
 } from "data/levelUpCosts";
 import { Rarity } from "types/_common";
 import { CharacterUnlockKeys } from "types/character";
+import { LevelUpCostSkillKeys } from "custom/LevelUpCosts";
 
-export function getCharacterLevelCost(
-    [start, stop]: number[],
-    selected: boolean,
-    withXP = true,
-    rarity: Extract<Rarity, 5 | 4>
-) {
+export interface GetLevelUpCostsProps {
+    start?: number;
+    stop?: number;
+    selected?: boolean;
+    withXP?: boolean;
+    rarity?: Rarity;
+    skillKey?: LevelUpCostSkillKeys;
+    node?: CharacterUnlockKeys;
+}
+
+export function getCharacterLevelCost({
+    start,
+    stop,
+    selected,
+    rarity,
+    withXP,
+}: Required<
+    Pick<
+        GetLevelUpCostsProps,
+        "start" | "stop" | "selected" | "rarity" | "withXP"
+    >
+>) {
     const costs = { ...characterLevel(rarity) };
     if (!withXP) {
         objectKeys(costs).forEach((material) => {
@@ -65,13 +82,18 @@ export function getCharacterLevelCost(
         },
     } as PayloadCostObject;
 }
-
-export function getCharacterSkillCost(
-    [start, stop]: number[],
-    selected: boolean,
-    rarity: Extract<Rarity, 5 | 4>,
-    skillKey: "attack" | "skill"
-) {
+export function getCharacterSkillCost({
+    start,
+    stop,
+    selected,
+    rarity,
+    skillKey,
+}: Required<
+    Pick<
+        GetLevelUpCostsProps,
+        "start" | "stop" | "selected" | "rarity" | "skillKey"
+    >
+>) {
     const costs = { ...characterSkill(rarity, skillKey) };
     let [
         credits,
@@ -122,7 +144,7 @@ export function getCharacterSkillCost(
 
 export function getCharacterTraceMain(
     node: Extract<CharacterUnlockKeys, "A2" | "A4" | "A6">,
-    rarity: Extract<Rarity, 5 | 4>,
+    rarity: Rarity,
     selected: boolean
 ) {
     const costs = { ...characterTraceMainCosts[node] };
@@ -156,7 +178,7 @@ export function getCharacterTraceMain(
 
 export function getCharacterTraceSmall(
     node: CharacterUnlockKeys,
-    rarity: Extract<Rarity, 5 | 4>,
+    rarity: Rarity,
     selected: boolean
 ) {
     const costs = { ...characterTraceSmallCosts[node] };
@@ -187,12 +209,18 @@ export function getCharacterTraceSmall(
     } as PayloadCostObject;
 }
 
-export function getWeaponLevelCost(
-    [start, stop]: number[],
-    selected: boolean,
-    withXP = true,
-    rarity: Extract<Rarity, 5 | 4>
-) {
+export function getWeaponLevelCost({
+    start,
+    stop,
+    selected,
+    rarity,
+    withXP,
+}: Required<
+    Pick<
+        GetLevelUpCostsProps,
+        "start" | "stop" | "selected" | "rarity" | "withXP"
+    >
+>) {
     const costs = { ...weaponLevel(rarity) };
     if (!withXP) {
         objectKeys(costs).forEach((material) => {

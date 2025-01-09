@@ -67,7 +67,18 @@ export const plannerSlice = createSlice({
             if (charIndex !== -1) {
                 const characterCosts = state.characters[charIndex].costs;
                 const payloadCosts = action.payload.costs;
-                const index = CostObjectSourceIndex[action.payload.type];
+                let index = 0;
+                if (
+                    action.payload.type.startsWith("trace") &&
+                    action.payload.traceID
+                ) {
+                    index =
+                        state.characters[charIndex].traceIDs.indexOf(
+                            action.payload.traceID
+                        ) + 5;
+                } else {
+                    index = CostObjectSourceIndex[action.payload.type];
+                }
                 objectKeys(characterCosts).forEach((material) => {
                     if (payloadCosts[material] !== undefined) {
                         const characterSubCosts = characterCosts[material];

@@ -1,8 +1,11 @@
 import { Path, Rarity } from "./_common";
 import { WeaponMaterials } from "./materials";
 import { SkillWithScaling } from "./skill";
-import { Stats } from "./stats";
 import { Version } from "./version";
+
+export interface WeaponProps {
+    weapon: Weapon;
+}
 
 export interface Weapon {
     id: number;
@@ -10,9 +13,15 @@ export interface Weapon {
     displayName: string;
     rarity: Rarity;
     path: Path;
-    stats: Stats;
+    stats: WeaponStats;
     passive: SkillWithScaling;
     materials: WeaponMaterials;
     description: string;
     release: Version;
+}
+
+export interface WeaponStats {
+    hp: number;
+    atk: number;
+    def: number;
 }

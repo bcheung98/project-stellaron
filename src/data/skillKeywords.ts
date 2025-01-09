@@ -1,6 +1,6 @@
-export type SkillKeywords = keyof typeof skillKeywords;
+import { SkillKeywords } from "types/skill";
 
-export const skillKeywords = <const>{
+export const skillKeywords: SkillKeywords = {
     "action advanced": {
         name: "Action advanced",
         description:

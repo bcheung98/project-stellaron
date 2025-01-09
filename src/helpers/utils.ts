@@ -1,3 +1,4 @@
+import { updates } from "data/versions";
 import { Shade } from "types/theme";
 
 export function range(len: number): number[];
@@ -26,26 +27,38 @@ export function combineStyles(
     return style2 ? { ...style1, ...style2 } : style1;
 }
 
-export function zoomImageOnHover(
-    direction: "enter" | "leave",
-    id: string,
+export function zoomImageOnHover({
+    direction,
+    id,
+    baseScale = 1,
     zoom = 1.1,
-    translate = "translate(0px, 0px)"
-) {
+    translate = "translate(0px, 0px)",
+}: {
+    direction: "enter" | "leave";
+    id: string;
+    baseScale?: number;
+    zoom?: number;
+    translate?: string;
+}) {
     const image = document.getElementById(id);
     if (image !== null) {
         if (direction === "enter") {
-            image.style.transition = "all 125ms ease-in";
+            image.style.transition = "transform .2s";
             image.style.transform = `scale(${zoom}) ${translate}`;
         } else {
-            image.style.transition = "all 125ms ease-out";
-            image.style.transform = `scale(1) ${translate}`;
+            image.style.transition = "transform .2s";
+            image.style.transform = `scale(${baseScale}) ${translate}`;
         }
     }
 }
 
 export function isTBA(str: string) {
     return str === "TBA" || str === "To be announced";
+}
+
+export function isUnreleasedContent(version: string) {
+    const versions = updates.map((update) => update.version);
+    return versions.includes(version);
 }
 
 interface GetThemeBackgroundColorsProps {

@@ -33,17 +33,20 @@ export function filterCharacters(
     }
     if (filters.weeklyBossMat.length > 0) {
         chars = chars.filter((char) =>
-            filters.weeklyBossMat.includes(
-                char.materials.weeklyBossMat
-            )
+            filters.weeklyBossMat.includes(char.materials.weeklyBossMat)
         );
     }
     if (filters.world.length > 0) {
         chars = chars.filter((char) => filters.world.includes(char.world));
     }
-    if (searchValue !== "") {
-        chars = chars.filter((char) =>
-            char.name.toLowerCase().includes(searchValue.toLowerCase())
+    if (searchValue) {
+        chars = chars.filter(
+            (char) =>
+                char.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+                char.displayName
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase()) ||
+                char.fullName.toLowerCase().includes(searchValue.toLowerCase())
         );
     }
     return chars;

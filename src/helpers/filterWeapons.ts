@@ -1,31 +1,36 @@
+import { WeaponFilterState } from "reducers/weaponFilters";
 import { Weapon } from "types/weapon";
 
-export function filterLightcones(
+export function filterWeapons(
     weapons: Weapon[],
     filters: WeaponFilterState,
     searchValue: string
 ) {
-    let lc = [...weapons];
+    let weps = [...weapons];
     if (filters.path.length > 0) {
-        lc = lc.filter((weapon) => filters.path.includes(weapon.path));
+        weps = weps.filter((wep) => filters.path.includes(wep.path));
     }
     if (filters.rarity.length > 0) {
-        lc = lc.filter((weapon) => filters.rarity.includes(weapon.rarity));
+        weps = weps.filter((wep) => filters.rarity.includes(wep.rarity));
     }
     if (filters.calyxMat.length > 0) {
-        lc = lc.filter((weapon) =>
-            filters.calyxMat.includes(weapon.materials.calyxMat as string)
+        weps = weps.filter((wep) =>
+            filters.calyxMat.includes(wep.materials.calyxMat)
         );
     }
     if (filters.commonMat.length > 0) {
-        lc = lc.filter((weapon) =>
-            filters.commonMat.includes(weapon.materials.commonMat as string)
+        weps = weps.filter((wep) =>
+            filters.commonMat.includes(wep.materials.commonMat)
         );
     }
     if (searchValue !== "") {
-        lc = lc.filter((weapon) =>
-            weapon.name.toLowerCase().includes(searchValue.toLowerCase())
+        weps = weps.filter(
+            (wep) =>
+                wep.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+                wep.displayName
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase())
         );
     }
-    return lc;
+    return weps;
 }

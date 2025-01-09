@@ -4,7 +4,6 @@ import {
     characterXPMaterials,
     weaponXPMaterials,
 } from "data/materials/xpMaterials";
-import { formatBossMaterials } from "data/materials/bossMaterials";
 import { formatWeeklyBossMaterials } from "data/materials/weeklyBossMaterials";
 import { calyxMaterials } from "data/materials/calyxMaterials";
 import { commonMaterials } from "data/materials/commonMaterials";
@@ -14,7 +13,7 @@ import {
     TotalCostObject,
     TotalCostObjectKeys,
 } from "types/costs";
-import { BossMaterial, WeeklyBossMaterial } from "types/materials";
+import { WeeklyBossMaterial } from "types/materials";
 
 export interface MaterialCostData {
     name: string;
@@ -54,7 +53,7 @@ function getMaterialData(
 ): { name: string; rarity?: Rarity; img: string } {
     switch (key) {
         case "credits":
-            return { name: "Credits", img: "Credits" };
+            return { name: "Credits", img: "Credit" };
         case "characterXP":
             return {
                 name: characterXPMaterials[
@@ -71,7 +70,7 @@ function getMaterialData(
             };
         case "bossMat":
             return {
-                name: formatBossMaterials(material as BossMaterial),
+                name: material,
                 img: `boss/${material}`,
             };
         case "weeklyBossMat":
@@ -91,7 +90,7 @@ function getMaterialData(
                 ];
             return {
                 name: calyxMats[material as keyof typeof calyxMats],
-                img: `forgery/${material}`,
+                img: `calyx/${material}`,
             };
         case "commonMat":
             let commonMats =
@@ -122,6 +121,9 @@ export function reduceMaterialCosts(costs: CharacterCost) {
         },
         bossMat: {},
         weeklyBossMat: {},
+        tracksOfDestiny: {
+            "Tracks of Destiny": 0,
+        },
         calyxMat: {},
         commonMat: {},
     } as TotalCostObject;

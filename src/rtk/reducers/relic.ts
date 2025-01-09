@@ -10,12 +10,15 @@ export interface RelicState {
     planarOrnaments: Relic[];
 }
 
-const storedRelics = localStorage.getItem("data/relics/cavern") || "null";
+const storedCavernRelics = localStorage.getItem("data/relics/cavern") || "null";
+const storedPlanarRelics = localStorage.getItem("data/relics/planar") || "null";
 
 const initialState: RelicState = {
     status: "idle",
-    cavernRelics: [],
-    planarOrnaments: [],
+    cavernRelics:
+        storedCavernRelics !== "null" ? JSON.parse(storedCavernRelics) : [],
+    planarOrnaments:
+        storedPlanarRelics !== "null" ? JSON.parse(storedPlanarRelics) : [],
 };
 
 export const relicSlice = createSlice({
@@ -27,8 +30,10 @@ export const relicSlice = createSlice({
             state.status = "pending";
         });
         builder.addCase(fetchRelics.fulfilled, (state, action) => {
-            if (JSON.stringify(action.payload) !== storedRelics) {
+            if (JSON.stringify(action.payload) !== storedCavernRelics) {
                 state.cavernRelics = action.payload.cavernRelics;
+            }
+            if (JSON.stringify(action.payload) !== storedPlanarRelics) {
                 state.planarOrnaments = action.payload.planarOrnaments;
             }
             state.status = "success";
@@ -39,10 +44,6 @@ export const relicSlice = createSlice({
     },
 });
 
-export const selectRelics = (state: RootState): Relic[] => [
-    ...state.relics.cavernRelics,
-    ...state.relics.planarOrnaments,
-];
 export const selectCavernRelics = (state: RootState): Relic[] =>
     state.relics.cavernRelics;
 export const selectPlanarRelics = (state: RootState): Relic[] =>
@@ -53,9 +54,13 @@ export default relicSlice.reducer;
 startAppListening({
     actionCreator: fetchRelics.fulfilled,
     effect: (action) => {
-        const data = JSON.stringify(action.payload);
-        if (data !== storedRelics) {
-            localStorage.setItem("data/relics/", data);
+        const dataCavernRelics = JSON.stringify(action.payload.cavernRelics);
+        if (dataCavernRelics !== storedCavernRelics) {
+            localStorage.setItem("data/relics/cavern", dataCavernRelics);
+        }
+        const dataPlanarRelics = JSON.stringify(action.payload.planarOrnaments);
+        if (dataPlanarRelics !== storedCavernRelics) {
+            localStorage.setItem("data/relics/planar", dataPlanarRelics);
         }
     },
 });

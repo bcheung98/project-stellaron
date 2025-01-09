@@ -1,22 +1,23 @@
+import { BaseSyntheticEvent } from "react";
 import parse, {
     HTMLReactParserOptions,
     Element as DOMElement,
     domToReact,
     DOMNode,
 } from "html-react-parser";
-import { Text } from "styled/StyledTypography";
 import { useTheme, TypographyProps } from "@mui/material";
 
 export function parseSkillDescription({
     description,
-    textVariant = "body1",
     targetClassName = "text-value",
     newClassName,
+    onClick,
 }: {
     description: string;
     textVariant?: TypographyProps["variant"];
     targetClassName?: string;
     newClassName?: string;
+    onClick?: (event: BaseSyntheticEvent) => void;
 }) {
     const theme = useTheme();
     const options: HTMLReactParserOptions = {
@@ -26,15 +27,13 @@ export function parseSkillDescription({
                 if (className.split("-")[0].startsWith("text")) {
                     const tag = className.split("-")[1];
                     return (
-                        <Text
-                            variant={textVariant}
-                            component="span"
+                        <span
                             className={
                                 className === targetClassName
                                     ? newClassName
                                     : className
                             }
-                            sx={{
+                            style={{
                                 color: theme.text[
                                     tag as keyof typeof theme.text
                                 ],
@@ -45,7 +44,22 @@ export function parseSkillDescription({
                             }}
                         >
                             {domToReact(domNode.children as DOMNode[], options)}
-                        </Text>
+                        </span>
+                    );
+                }
+                if (className.split("-")[0].startsWith("tooltip")) {
+                    return (
+                        <span
+                            className={className}
+                            style={{
+                                color: theme.text.primary,
+                                textDecoration: "underline",
+                                cursor: "pointer",
+                            }}
+                            onClick={onClick}
+                        >
+                            {domToReact(domNode.children as DOMNode[], options)}
+                        </span>
                     );
                 }
             }

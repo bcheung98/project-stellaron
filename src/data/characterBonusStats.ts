@@ -1,4 +1,4 @@
-export const characterStatBonusStats = {
+export const characterBonusStats = {
     "CRIT DMG": {
         "Lv. 1": "5.3%",
         A2: "5.3%",

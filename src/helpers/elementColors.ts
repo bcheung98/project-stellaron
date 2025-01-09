@@ -1,7 +1,8 @@
-import { Theme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import { Element } from "types/_common";
 
-export function getElementColor(theme: Theme, element?: Element) {
+export function getElementColor({ element }: { element?: Element }) {
+    const theme = useTheme();
     return element
         ? theme.text[element.toLowerCase() as keyof typeof theme.text]
         : "";

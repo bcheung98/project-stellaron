@@ -1,7 +1,8 @@
+import { LevelUpCostSkillKeys } from "custom/LevelUpCosts";
 import { Rarity } from "types/_common";
 import { CharacterUnlockKeys } from "types/character";
 
-export const characterLevel = (rarity: Extract<Rarity, 5 | 4>) => {
+export const characterLevel = (rarity: Rarity) => {
     const index = rarity - 4;
     return {
         credits: characterLevelCosts.credits[index],
@@ -28,8 +29,8 @@ export const characterLevelCosts = {
         ],
     ],
     characterXP1: [
-        [0, 3, 0, 3, 0, 2, 0, 5, 0, 3, 0, 2, 0, 3, 0],
-        [0, 3, 0, 3, 0, 2, 0, 5, 0, 3, 0, 2, 0, 3, 0],
+        [0, 3, 0, 3, 0, 2, 0, 0, 0, 3, 0, 2, 0, 3, 0],
+        [0, 3, 0, 3, 0, 2, 0, 0, 0, 3, 0, 2, 0, 3, 0],
     ],
     characterXP2: [
         [0, 2, 0, 4, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
@@ -58,18 +59,21 @@ export const characterLevelCosts = {
 };
 
 export const characterSkill = (
-    rarity: Extract<Rarity, 5 | 4>,
-    skillKey: "attack" | "skill"
+    rarity: Rarity,
+    skillKey: LevelUpCostSkillKeys
 ) => {
     const index = rarity - 4;
+    const key = skillKey === "attack" ? "attack" : "skill";
     return {
-        credits: characterSkillCosts[skillKey].credits[index],
-        calyxMat1: characterSkillCosts[skillKey].calyxMat1[index],
-        calyxMat2: characterSkillCosts[skillKey].calyxMat2[index],
-        calyxMat3: characterSkillCosts[skillKey].calyxMat3[index],
-        commonMat1: characterSkillCosts[skillKey].commonMat1[index],
-        commonMat2: characterSkillCosts[skillKey].commonMat2[index],
-        commonMat3: characterSkillCosts[skillKey].commonMat3[index],
+        credits: characterSkillCosts[key].credits[index],
+        weeklyBossMat: characterSkillCosts[key].weeklyBossMat[index],
+        tracksOfDestiny: characterSkillCosts[key].tracksOfDestiny[index],
+        calyxMat1: characterSkillCosts[key].calyxMat1[index],
+        calyxMat2: characterSkillCosts[key].calyxMat2[index],
+        calyxMat3: characterSkillCosts[key].calyxMat3[index],
+        commonMat1: characterSkillCosts[key].commonMat1[index],
+        commonMat2: characterSkillCosts[key].commonMat2[index],
+        commonMat3: characterSkillCosts[key].commonMat3[index],
     };
 };
 
@@ -204,7 +208,7 @@ export const characterTraceMainCosts = {
         weeklyBossMat: [1, 1],
     } as CharacterTraceCost,
     A4: {
-        credits: [16000, 2000],
+        credits: [16000, 20000],
         calyxMat2: [4, 5],
         weeklyBossMat: [1, 1],
         tracksOfDestiny: [1, 1],
@@ -264,8 +268,8 @@ export const characterTraceSmallCosts = {
     } as CharacterTraceCost,
 };
 
-export const weaponLevel = (rarity: Extract<Rarity, 5 | 4 | 3>) => {
-    const index = rarity - 1;
+export const weaponLevel = (rarity: Rarity) => {
+    const index = rarity - 3;
     return {
         credits: weaponCosts.credits[index],
         weaponXP1: weaponCosts.weaponXP1[index],
