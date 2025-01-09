@@ -7,9 +7,6 @@ import { TextStyled } from "styled/StyledTypography";
 // MUI imports
 import { useTheme, Box, Card } from "@mui/material";
 
-// Helper imports
-import { getRarityColor } from "helpers/rarityColors";
-
 // Type imports
 import { Rarity } from "types/_common";
 
@@ -42,7 +39,7 @@ function MaterialImage({
         height: size,
         backgroundImage: `url(https://assets.irminsul.gg/hsr/backgrounds/Background_${rarity}_Star.png)`,
         backgroundSize: "contain",
-        borderBottom: `2px solid ${getRarityColor(rarity)}`,
+        padding: "4px",
     };
 
     const labelStyle: CSSProperties = {
