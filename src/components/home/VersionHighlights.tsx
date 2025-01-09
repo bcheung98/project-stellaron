@@ -151,7 +151,7 @@ function VersionHighlights() {
                                 New Characters
                             </TextStyled>
                         </FlexBox>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={3} sx={{ px: 2 }}>
                             {characters.map((char, index) => (
                                 <InfoCard
                                     key={index}
@@ -181,7 +181,7 @@ function VersionHighlights() {
                                 New Light Cones
                             </TextStyled>
                         </FlexBox>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={3} sx={{ px: 2 }}>
                             {weapons.map((weapon, index) => (
                                 <InfoCard
                                     key={index}
@@ -210,7 +210,7 @@ function VersionHighlights() {
                                 New Relic Sets
                             </TextStyled>
                         </FlexBox>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={3} sx={{ px: 2 }}>
                             {relics.map((relic, index) => (
                                 <InfoCard
                                     key={index}
