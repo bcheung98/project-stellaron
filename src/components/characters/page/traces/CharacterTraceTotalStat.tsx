@@ -4,7 +4,7 @@ import { TextStyled } from "styled/StyledTypography";
 import { FlexBox } from "styled/StyledBox";
 
 // MUI imports
-import { useTheme } from "@mui/material";
+import { useTheme, useMediaQuery } from "@mui/material";
 
 // Helper imports
 import { objectKeys } from "helpers/utils";
@@ -29,6 +29,7 @@ function CharacterTraceTotalStat({
     traces: (CharacterTraceNodeMain | CharacterTraceNodeSmall)[];
 }) {
     const theme = useTheme();
+    const matches_sm_dn = useMediaQuery(theme.breakpoints.down("sm"));
 
     const traceStats = {} as Record<BonusStat, number>;
 
@@ -66,8 +67,8 @@ function CharacterTraceTotalStat({
                         src={`stat_icons/${stat}`}
                         alt={stat}
                         style={{
-                            width: "40px",
-                            height: "40px",
+                            width: matches_sm_dn ? "32px" : "40px",
+                            height: matches_sm_dn ? "32px" : "40px",
                             padding: "4px",
                             border: `2px solid ${getElementColor({ element })}`,
                             borderRadius: "64px",

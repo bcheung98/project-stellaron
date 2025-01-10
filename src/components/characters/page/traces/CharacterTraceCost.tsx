@@ -37,7 +37,7 @@ function CharacterTraceCost({
                         <CloseIcon />
                     </IconButton>
                 }
-                contentProps={{ padding: "16px 16px 0 16px" }}
+                contentProps={{ padding: "16px" }}
             >
                 <LevelUpCosts
                     type="character"
