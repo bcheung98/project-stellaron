@@ -125,7 +125,7 @@ function StatNode({ mode, id, name, rarity, trace }: StatNodeProps) {
                                     showHead={false}
                                     path="grid"
                                     color={theme.text.description}
-                                    strokeWidth={3}
+                                    strokeWidth={2}
                                     startAnchor="right"
                                     endAnchor="left"
                                 />
