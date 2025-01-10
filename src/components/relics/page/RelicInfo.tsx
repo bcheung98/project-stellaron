@@ -49,16 +49,15 @@ function RelicInfo({ relic }: RelicProps) {
         };
     };
 
-    const pieceIcon: CSSProperties = {
+    const imageStyle: CSSProperties = {
         width: "128px",
         height: "128px",
         border: `2px solid ${theme.border.color}`,
         borderRadius: "16px",
         padding: "16px",
-        backgroundColor: theme.appbar.backgroundColor,
-        backgroundImage: `url(https://assets.irminsul.gg/wuwa/backgrounds/Background_${rarity}_Star.png)`,
+        backgroundImage: `url(https://assets.irminsul.gg/hsr/backgrounds/Background_${rarity}_Star.png)`,
         backgroundSize: "contain",
-        // backgroundRepeat: "no-repeat",
+        backgroundRepeat: "no-repeat",
     };
 
     return (
@@ -132,9 +131,9 @@ function RelicInfo({ relic }: RelicProps) {
                                             .split(" ")
                                             .join("_")}/${piece.type}`}
                                         alt={piece.name}
-                                        style={pieceIcon}
+                                        style={imageStyle}
                                     />
-                                    <Box sx={{ maxWidth: "640px" }}>
+                                    <Box sx={{ maxWidth: "720px" }}>
                                         {objectKeys(relic.setEffect).map(
                                             (pc) => (
                                                 <Text
