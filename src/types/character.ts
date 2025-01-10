@@ -81,6 +81,14 @@ export type CharacterUnlockKeys =
     | "Lv. 75"
     | "Lv. 80";
 
+export interface CharacterTraceNodeData {
+    id: string;
+    title: string;
+    description?: string;
+    unlock: CharacterUnlockKeys;
+    stat?: BonusStat;
+}
+
 export interface CharacterTraceNodeMain {
     name: string;
     description: string;
