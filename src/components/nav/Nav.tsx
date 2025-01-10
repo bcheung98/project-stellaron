@@ -67,7 +67,7 @@ export interface NavItem {
 
 const navItems: NavItem[] = [
     {
-        icon: "factions/Stellaron Hunters",
+        icon: "icons/Home",
         text: "Home",
         link: "/",
     },
