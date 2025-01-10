@@ -27,9 +27,7 @@ export interface Materials {
     weeklyBossMat?: WeeklyBossMaterial;
 }
 
-export type CharacterMaterials = Required<
-    Pick<Materials, "calyxMat" | "commonMat" | "bossMat" | "weeklyBossMat">
->;
+export type CharacterMaterials = Required<Materials>;
 export type WeaponMaterials = Required<
     Pick<Materials, "calyxMat" | "commonMat">
 >;

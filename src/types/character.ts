@@ -26,10 +26,6 @@ export interface Character {
     faction: string;
     world: World;
     keywords?: SkillKeywords;
-    splashArt: {
-        scale: number;
-        translate: [number, number];
-    };
     voiceActors: {
         en: string;
         jp: string;
