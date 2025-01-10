@@ -41,7 +41,7 @@ export function getTheme(name: string) {
                                     getContrastRatio(
                                         theme.palette.info.main,
                                         theme.appbar.color
-                                    ) > 4.5
+                                    ) > 3
                                         ? theme.appbar.color
                                         : theme.text.contrast,
                                 fontFamily: theme.font.styled.family,
@@ -50,7 +50,7 @@ export function getTheme(name: string) {
                                         getContrastRatio(
                                             theme.palette.info.main,
                                             theme.appbar.color
-                                        ) > 4.5
+                                        ) > 3
                                             ? theme.appbar.color
                                             : theme.text.contrast,
                                     ":hover": {
@@ -58,7 +58,7 @@ export function getTheme(name: string) {
                                             getContrastRatio(
                                                 theme.palette.info.main,
                                                 theme.appbar.color
-                                            ) > 4.5
+                                            ) > 3
                                                 ? "rgb(225, 225, 225)"
                                                 : "rgb(80, 80, 80)",
                                     },
