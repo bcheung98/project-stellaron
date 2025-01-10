@@ -77,9 +77,11 @@ function CharacterTraceTotalStat({
                     />
                     <TextStyled>
                         {parseSkillDescription({
-                            description: `${formatCharacterBonusStats(stat)} +${
-                                traceStats[stat]
-                            }${stat !== "SPD" ? "%" : ""}`,
+                            description: `${formatCharacterBonusStats(
+                                stat
+                            )} +${parseFloat(traceStats[stat].toFixed(1))}${
+                                stat !== "SPD" ? "%" : ""
+                            }`,
                         })}
                     </TextStyled>
                 </FlexBox>

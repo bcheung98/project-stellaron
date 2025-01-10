@@ -94,24 +94,22 @@ function CharacterTraceInfo({
                 >
                     <Stack spacing={2} divider={<Divider />}>
                         <Stack spacing={1}>
-                            <TextStyled variant="h6-styled" gutterBottom>
-                                {parse(title, options)}
-                            </TextStyled>
-                            {description && (
-                                <Text
-                                    component="span"
-                                    sx={{ color: theme.text.description }}
-                                >
-                                    {parse(description, options)}
-                                </Text>
-                            )}
+                            <TextStyled variant="h6-styled">{title}</TextStyled>
+                            <Text
+                                component="span"
+                                sx={{ color: theme.text.description }}
+                            >
+                                {parse(description, options)}
+                            </Text>
                         </Stack>
                         <Stack spacing={2}>
                             <TextStyled>Unlock Cost</TextStyled>
                             <LevelUpCosts
                                 type="character"
                                 skillKey={
-                                    description ? "traceMain" : "traceSmall"
+                                    trace.stat === undefined
+                                        ? "traceMain"
+                                        : "traceSmall"
                                 }
                                 rarity={character.rarity}
                                 mats={character.materials}
@@ -119,6 +117,7 @@ function CharacterTraceInfo({
                             />
                             <Box>
                                 <InfoChip
+                                    color="info"
                                     label={`Requires Character ${formatUnlock(
                                         unlock
                                     )}`}

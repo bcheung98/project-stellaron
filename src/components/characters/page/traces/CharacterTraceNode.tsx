@@ -4,11 +4,14 @@ import Xarrow from "react-xarrows";
 import Image from "custom/Image";
 
 // MUI imports
-import { useTheme, Box, Stack } from "@mui/material";
+import { useTheme, useMediaQuery, Box, Stack } from "@mui/material";
 
 // Helper imports
 import { characterBonusStats } from "data/characterBonusStats";
-import { formatCharacterBonusStats } from "helpers/formatCharacterBonusStats";
+import {
+    formatCharacterBonusStatDescription,
+    formatCharacterBonusStatTitle,
+} from "helpers/formatCharacterBonusStats";
 import { getElementColor } from "helpers/elementColors";
 
 // Type imports
@@ -35,6 +38,7 @@ function CharacterTraceNode({
     setTrace,
 }: CharacterTraceNodeProps) {
     const theme = useTheme();
+    const matches_sm_dn = useMediaQuery(theme.breakpoints.down("sm"));
 
     const { name, element } = character;
     const selected = id === selectedID;
@@ -43,6 +47,7 @@ function CharacterTraceNode({
     let unlock = trace.unlock;
     let title = "";
     let description = "";
+    let stat = undefined;
     let imgSrc = "";
     let imgSize = "";
 
@@ -50,13 +55,16 @@ function CharacterTraceNode({
         title = trace.name;
         description = trace.description;
         imgSrc = `characters/skills/${name.toLowerCase()}_${unlock.toLowerCase()}`;
-        imgSize = "48px";
+        imgSize = imgSize = matches_sm_dn ? "40px" : "48px";
     } else {
-        title = `${formatCharacterBonusStats(trace.stat)} +${
+        title = formatCharacterBonusStatTitle(trace.stat);
+        description = formatCharacterBonusStatDescription(
+            trace.stat,
             characterBonusStats[trace.stat][unlock]
-        }`;
+        );
+        stat = trace.stat;
         imgSrc = `stat_icons/${trace.stat}`;
-        imgSize = "36px";
+        imgSize = matches_sm_dn ? "28px" : "32px";
     }
 
     const traceNodeData: CharacterTraceNodeData = {
@@ -64,6 +72,7 @@ function CharacterTraceNode({
         title: title,
         description: description,
         unlock: unlock,
+        stat: stat,
     };
 
     return (
@@ -77,9 +86,9 @@ function CharacterTraceNode({
                     height: imgSize,
                     padding: "4px",
                     backgroundColor: theme.appbar.backgroundColor,
-                    borderWidth: selected ? "thick" : "2px",
-                    borderStyle: selected ? "double" : "solid",
-                    borderColor: elementColor,
+                    border: `2px solid ${
+                        selected ? elementColor : theme.border.color.primary
+                    }`,
                     borderRadius: "64px",
                     boxShadow: selected
                         ? `0 0 12px 4px ${elementColor}`
@@ -112,7 +121,7 @@ function CharacterTraceNode({
                                     showHead={false}
                                     path="grid"
                                     color={theme.text.description}
-                                    strokeWidth={3}
+                                    strokeWidth={2}
                                     startAnchor="right"
                                     endAnchor="left"
                                 />

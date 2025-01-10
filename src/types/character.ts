@@ -80,7 +80,7 @@ export type CharacterUnlockKeys =
 export interface CharacterTraceNodeData {
     id: string;
     title: string;
-    description?: string;
+    description: string;
     unlock: CharacterUnlockKeys;
     stat?: BonusStat;
 }

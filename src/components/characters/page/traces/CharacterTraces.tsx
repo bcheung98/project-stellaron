@@ -46,6 +46,15 @@ function CharacterTraces({ character }: CharacterProps) {
                                 />
                             ))}
                         </Stack>
+                        <Divider
+                            sx={{
+                                mt: 2,
+                                display: {
+                                    xs: currentTrace !== null ? "flex" : "none",
+                                    sm: "none",
+                                },
+                            }}
+                        />
                     </Grid>
                     <Grid size={{ xs: 12, sm: "grow" }}>
                         <CharacterTraceInfo
