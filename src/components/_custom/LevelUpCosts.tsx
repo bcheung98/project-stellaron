@@ -114,7 +114,11 @@ function LevelUpCosts({
 
     return (
         <Box sx={{ containerType: "inline-size" }}>
-            <Grid container spacing={2} sx={{ mb: "16px" }}>
+            <Grid
+                container
+                spacing={2}
+                sx={{ mb: levels.length > 0 ? "16px" : "0px" }}
+            >
                 {createMaterialCostData(costs).map((material, index) => (
                     <MaterialImage
                         key={index}
