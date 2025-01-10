@@ -1,5 +1,5 @@
 import { Character } from "types/character";
-import { CharacterFilterState } from "../redux/reducers/CharacterFilterReducer";
+import { CharacterFilterState } from "reducers/characterFilters";
 
 export function filterCharacters(
     characters: Character[],

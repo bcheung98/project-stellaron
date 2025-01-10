@@ -92,8 +92,7 @@ export const selectCharacterFilters = (
 ): CharacterFilterState => state.characterFilters;
 export const activeCharacterFilters = (state: RootState): boolean =>
     objectKeys(state.characterFilters).filter(
-        (filter) =>
-            filter !== "uniqueRoles" && state.characterFilters[filter].length
+        (filter) => state.characterFilters[filter].length
     ).length > 0;
 
 export default characterFilterSlice.reducer;
