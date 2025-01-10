@@ -1,15 +1,14 @@
 body {
     margin: 0;
-    background-color: rgb(26, 22, 24);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
+    background-color: rgb(32, 56, 96);
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
 
@@ -20,17 +19,17 @@ code {
 
 @font-face {
     font-family: "DIN Medium";
-    src: url("./fonts/DIN\ Medium.ttf");
+    src: url("./fonts/DIN Medium.ttf");
 }
 
 @font-face {
     font-family: "DIN Bold";
-    src: url("./fonts/DIN\ Bold.ttf");
+    src: url("./fonts/DIN Bold.ttf");
 }
 
 @font-face {
     font-family: "DIN Black";
-    src: url("./fonts/DIN\ Black.ttf");
+    src: url("./fonts/DIN Black.ttf");
 }
 
 ::-webkit-scrollbar {
@@ -43,90 +42,9 @@ code {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgb(168, 147, 105);
+    background: rgb(100, 100, 100);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(187, 163, 140);
-}
-
-.material-image {
-    width: 48px;
-    background-color: rgb(20, 20, 20);
-    background-size: contain;
-    border-radius: 5px 5px 0px 0px;
-}
-
-.material-image-big {
-    width: 72px;
-    background-color: rgb(20, 20, 20);
-    background-size: contain;
-    border-radius: 5px 5px 0px 0px;
-}
-
-.text-physical {
-    color: #a8a8a8;
-    font-weight: bold;
-}
-
-.text-fire {
-    color: #e62a29;
-    font-weight: bold;
-}
-
-.text-ice {
-    color: #07a0ff;
-    font-weight: bold;
-}
-
-.text-lightning {
-    color: #b54bd3;
-    font-weight: bold;
-}
-
-.text-wind {
-    color: #42c38c;
-    font-weight: bold;
-}
-
-.text-quantum {
-    color: #6778fd;
-    font-weight: bold;
-}
-
-.text-imaginary {
-    color: #e5b909;
-    font-weight: bold;
-}
-
-.text-highlight {
-    color: #f29e38;
-    font-weight: bold;
-}
-
-.text-value {
-    color: #f29e38;
-    font-weight: bold;
-}
-
-.sp-cost {
-    display: inline-flex;
-    align-items: center;
-    color: rgb(210, 210, 210);
-    font-size: 11pt;
-}
-
-.sp-icon {
-    height: 32px;
-    margin-left: 10px;
-    margin-right: -7.5px;
-    pointer-events: none;
-}
-
-.energy-cost {
-    color: rgb(210, 210, 210);
-}
-
-.energy-cost-number {
-    color: rgb(220, 196, 145);
+    background: rgb(125, 125, 125);
 }

@@ -1,89 +1,50 @@
-import { useEffect } from "react"
-import { connect, ConnectedProps } from "react-redux"
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-} from "react-router-dom"
-
-// Fetch imports
-import { fetchCharacters, fetchLightcones, fetchRelics, fetchCharacterBanners, fetchLightconeBanners } from "./redux/actions/fetch"
+import { useEffect } from "react";
+import { BrowserRouter } from "react-router";
+import "App.css";
 
 // Component imports
-import Nav from "./components/Nav"
-import BottomNav from "./components/NavBottom"
-import Home from "./components/Home"
-import CharacterBrowser from "./components/characters/CharacterBrowser"
-import CharacterPage from "./components/characters/page/_CharacterPage"
-import LightconeBrowser from "./components/lightcones/LightconeBrowser"
-import LightconePage from "./components/lightcones/page/_LightconePage"
-import RelicBrowser from "./components/relics/RelicBrowser"
-import AscensionPlanner from "./components/planner/_AscensionPlanner"
-import BannerArchive from "./components/banners/BannerArchive"
-import ScrollTopFab from "./components/_custom/ScrollTopFab"
+import RouteConfig from "components/nav/RouteConfig";
 
 // MUI imports
-import { Box, CssBaseline, ThemeProvider } from "@mui/material"
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
 // Helper imports
-import theme from "./themes/theme"
-
-// Type imports
-import { AppDispatch } from "./redux/store"
-
-function App({
+import {
     fetchCharacters,
-    fetchLightcones,
+    fetchWeapons,
     fetchRelics,
     fetchCharacterBanners,
-    fetchLightconeBanners
-}: ConnectedProps<typeof connector>) {
+    fetchWeaponBanners,
+} from "rtk/fetchData";
+import { useAppDispatch, useAppSelector } from "helpers/hooks";
+import { selectTheme, setTheme } from "reducers/settings";
+import { getTheme } from "themes/theme";
+
+function App() {
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
-        fetchCharacters()
-        fetchLightcones()
-        fetchRelics()
-        fetchCharacterBanners()
-        fetchLightconeBanners()
-    }, [fetchCharacters, fetchLightcones, fetchRelics, fetchCharacterBanners, fetchLightconeBanners])
+        dispatch(fetchCharacters());
+        dispatch(fetchWeapons());
+        dispatch(fetchRelics());
+        dispatch(fetchCharacterBanners());
+        dispatch(fetchWeaponBanners());
+    }, []);
+
+    const theme = useAppSelector(selectTheme);
+
+    useEffect(() => {
+        dispatch(setTheme(theme));
+    }, [theme]);
 
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Router basename={`${process.env.REACT_APP_BASENAME}`}>
-                <Box id="back-to-top-anchor" />
-                <Box sx={{ display: "flex" }}>
-                    <Nav />
-                    <Box sx={{ minWidth: "50vw", width: "100vw" }}>
-                        <Box sx={{ px: "20px", pt: "100px", pb: "50px", minHeight: "100vh" }}>
-                            <Switch>
-                                <Route exact path="/" component={Home} />
-                                <Route exact path="/characters" component={CharacterBrowser} />
-                                <Route path="/characters/:char_name" children={<CharacterPage />} />
-                                <Route exact path="/lightcones" component={LightconeBrowser} />
-                                <Route path="/lightcones/:lc_name" children={<LightconePage />} />
-                                <Route exact path="/relics" component={RelicBrowser} />
-                                <Route exact path="/planner" component={AscensionPlanner} />
-                                <Route exact path="/banners/" component={BannerArchive} />
-                            </Switch>
-                        </Box>
-                        <BottomNav />
-                    </Box>
-                </Box>
-                <ScrollTopFab />
-            </Router>
-        </ThemeProvider>
-    )
+        <BrowserRouter>
+            <ThemeProvider theme={getTheme(theme)}>
+                <CssBaseline />
+                <RouteConfig />
+            </ThemeProvider>
+        </BrowserRouter>
+    );
 }
 
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
-    fetchCharacters: () => dispatch(fetchCharacters()),
-    fetchLightcones: () => dispatch(fetchLightcones()),
-    fetchRelics: () => dispatch(fetchRelics()),
-    fetchCharacterBanners: () => dispatch(fetchCharacterBanners()),
-    fetchLightconeBanners: () => dispatch(fetchLightconeBanners())
-})
-
-const connector = connect(null, mapDispatchToProps)
-
-export default connector(App)
+export default App;

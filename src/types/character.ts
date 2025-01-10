@@ -1,88 +1,116 @@
-// import { Element, Path, Rarity } from "./_common"
-import { CharacterMaterials } from "./materials"
-import { Skill, SkillWithScaling } from "./skill"
-import { Stats } from "./stats"
-import { Version } from "./version"
+import { characterBonusStats } from "data/characterBonusStats";
+import { Element, Path, Rarity, World } from "./_common";
+import { CharacterMaterials } from "./materials";
+import { Skill, SkillKeywords, SkillWithScaling } from "./skill";
+import { VersionWithDate } from "./version";
 
 export interface CharacterProps {
-    character: Character
+    character: Character;
 }
 
 export interface Character {
-    id: number,
-    name: string,
-    displayName?: string,
-    rarity: number,
-    element: string,
-    path: string,
-    skills: CharacterSkills,
-    traces: CharacterTraces[],
-    eidolon: CharacterEidolons,
-    stats: CharacterStats,
-    materials: CharacterMaterials,
-    description: string,
-    gender: string,
-    faction: string,
-    world: string,
-    keywords: {
-        tag: string,
-        name: string,
-        description: string
-    },
-    splashArt: {
-        scale: number,
-        translate: number[]
-    },
+    id: number;
+    name: string;
+    displayName: string;
+    fullName: string;
+    rarity: Rarity;
+    element: Element;
+    path: Path;
+    skills: CharacterSkills;
+    traces: (CharacterTraceNodeMain | CharacterTraceNodeSmall)[];
+    eidolon: CharacterEidolons;
+    stats: CharacterStats;
+    materials: CharacterMaterials;
+    description: string;
+    gender: "Male" | "Female" | "Adaptive";
+    faction: string;
+    world: World;
+    keywords?: SkillKeywords;
     voiceActors: {
-        en: string,
-        jp: string
-    },
-    release: Version
+        en: string;
+        jp: string;
+    };
+    release: VersionWithDate;
 }
 
-export type CharacterSkillsKeys = keyof CharacterSkills
-
+export type CharacterSkillKey = keyof CharacterSkills;
 export interface CharacterSkills {
-    attack: CharacterSkill[],
-    skill: CharacterSkill[],
-    ultimate: CharacterSkill[],
-    talent: CharacterTalent[],
-    technique: CharacterTechnique[]
+    attack: CharacterSkill[];
+    skill: CharacterSkill[];
+    ultimate: CharacterSkill[];
+    talent: CharacterTalent[];
+    technique: CharacterTechnique[];
 }
+
+export type CharacterSkillTag =
+    | "Single Target"
+    | "Blast"
+    | "AoE"
+    | "Bounce"
+    | "Enhance"
+    | "Support"
+    | "Impair"
+    | "Restore"
+    | "Defense";
 
 export interface CharacterSkill extends SkillWithScaling {
-    tag?: string,
+    tag?: CharacterSkillTag;
     cost: {
-        value: number,
-        type: string
-    },
-    regen?: number,
-    break?: {
-        [key: string]: number
-    }
+        value: number;
+        type: string;
+    };
+    regen?: number;
+    break?: Record<"Single Target" | "Blast" | "AoE", number>;
+}
+export type CharacterTalent = Omit<CharacterSkill, "cost">;
+export type CharacterTechnique = Omit<CharacterSkill, "cost" | "scaling">;
+
+export type BonusStat = keyof typeof characterBonusStats;
+
+export type CharacterUnlockKeys =
+    | "Lv. 1"
+    | "A2"
+    | "A3"
+    | "A4"
+    | "A5"
+    | "A6"
+    | "Lv. 75"
+    | "Lv. 80";
+
+export interface CharacterTraceNodeData {
+    id: string;
+    title: string;
+    description: string;
+    unlock: CharacterUnlockKeys;
+    stat?: BonusStat;
 }
 
-export type CharacterTalent = Omit<CharacterSkill, "resource">
-export type CharacterTechnique = Omit<CharacterSkill, "resource" | "scaling">
+export interface CharacterTraceNodeMain {
+    name: string;
+    description: string;
+    unlock: CharacterUnlockKeys;
+    subTraces?: CharacterTraceNodeSmall[];
+}
 
-export interface CharacterTraces {
-    name?: string,
-    type?: string,
-    description: string,
-    unlock: string,
-    subTraces?: CharacterTraces[]
+export interface CharacterTraceNodeSmall {
+    stat: BonusStat;
+    unlock: CharacterUnlockKeys;
+    subTraces?: (CharacterTraceNodeMain | CharacterTraceNodeSmall)[];
 }
 
 export interface CharacterEidolons {
-    e1: Skill,
-    e2: Skill,
-    e3: Skill,
-    e4: Skill,
-    e5: Skill,
-    e6: Skill
+    e1: Skill;
+    e2: Skill;
+    e3: Skill;
+    e4: Skill;
+    e5: Skill;
+    e6: Skill;
 }
 
-export interface CharacterStats extends Stats {
-    speed: number[],
-    taunt: number[]
+export interface CharacterStats {
+    hp: number[];
+    atk: number[];
+    def: number[];
+    speed: number[];
+    taunt: number[];
 }
