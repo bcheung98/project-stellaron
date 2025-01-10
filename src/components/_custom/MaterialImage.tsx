@@ -7,6 +7,9 @@ import { TextStyled } from "styled/StyledTypography";
 // MUI imports
 import { useTheme, Box, Card } from "@mui/material";
 
+// Helper imports
+import { pxToInt } from "helpers/utils";
+
 // Type imports
 import { Rarity } from "types/_common";
 
@@ -24,10 +27,16 @@ function MaterialImage({
     rarity,
     cost,
     imgSrc,
-    size = "72px",
+    size = "64px",
     labelColor,
 }: MaterialImageProps) {
     const theme = useTheme();
+
+    const intSize = pxToInt(size) / 4;
+    const fontSize =
+        cost.toLocaleString().length < 8
+            ? intSize - 4
+            : intSize - (cost.toLocaleString().length - 4);
 
     const cardStyle: CSSProperties = {
         width: size,
@@ -43,7 +52,7 @@ function MaterialImage({
     };
 
     const labelStyle: CSSProperties = {
-        padding: "0px 2px 4px",
+        padding: "0px 0px 4px",
         textAlign: "center",
         backgroundColor: labelColor || theme.appbar.backgroundColor,
     };
@@ -59,10 +68,7 @@ function MaterialImage({
             <Box sx={labelStyle}>
                 <TextStyled
                     sx={{
-                        fontSize:
-                            cost.toLocaleString().length < 11
-                                ? `calc(${size} / 6) !important`
-                                : `calc(${size} / 7) !important`,
+                        fontSize: `${fontSize}px !important`,
                         color: theme.appbar.color,
                     }}
                 >
