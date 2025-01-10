@@ -86,7 +86,7 @@ function CharacterSkillTab({
                                 </TextStyled>
                                 {skill.tag && (
                                     <TextStyled
-                                        sx={{ color: `rgb(242, 158, 56)` }}
+                                        sx={{ color: theme.text.header }}
                                     >
                                         [{skill.tag}]
                                     </TextStyled>

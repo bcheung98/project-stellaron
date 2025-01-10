@@ -50,7 +50,7 @@ function CharacterSkillAdvancedStats({
         rows.push({
             key: <span>{`Energy Generation`}</span>,
             value: (
-                <span style={{ color: `rgb(220, 196, 145)` }}>
+                <span style={{ color: theme.text.highlight2 }}>
                     {skill.regen}
                 </span>
             ),
@@ -63,7 +63,7 @@ function CharacterSkillAdvancedStats({
                     <span>{`${key}: `}</span>
                     <span
                         style={{
-                            color: `rgb(220, 196, 145)`,
+                            color: theme.text.highlight2,
                         }}
                     >
                         {value}
@@ -150,6 +150,8 @@ function CharacterSkillAdvancedStats({
 export default CharacterSkillAdvancedStats;
 
 function getSkillCost(type: string, cost: number, matches: boolean) {
+    const theme = useTheme();
+
     const costType = type === "SP" || type === "Energy" ? `${type}` : "Ability";
     let costValue;
     if (type === "SP") {
@@ -166,12 +168,14 @@ function getSkillCost(type: string, cost: number, matches: boolean) {
             />
         ));
     } else if (type === "Energy") {
-        costValue = <span style={{ color: `rgb(220, 196, 145)` }}>{cost}</span>;
+        costValue = (
+            <span style={{ color: theme.text.highlight2 }}>{cost}</span>
+        );
     } else {
         costValue = (
             <>
-                <span style={{ color: `rgb(242, 158, 56)` }}>{cost}</span>
-                <span style={{ color: `rgb(220, 196, 145)` }}>
+                <span style={{ color: theme.text.header }}>{cost}</span>
+                <span style={{ color: theme.text.highlight2 }}>
                     {` points of ${type}`}
                 </span>
             </>
