@@ -12,8 +12,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
 // Helper imports
-import { objectKeys } from "helpers/utils";
 import { useAppDispatch, useAppSelector } from "helpers/hooks";
+import { selectUnreleasedContent } from "reducers/settings";
 import {
     activeCharacterFilters,
     clearFilters,
@@ -29,17 +29,17 @@ import {
 } from "reducers/characterFilters";
 import { elements, paths, rarities, worlds } from "data/common";
 import {
-    calyxMaterials,
+    filteredCalyxMaterials,
     formatCalyxMaterials,
 } from "data/materials/calyxMaterials";
 import {
-    commonMaterials,
+    filteredCommonMaterials,
     formatCommonMaterials,
 } from "data/materials/commonMaterials";
-import { bossMatNames } from "data/materials/bossMaterials";
+import { filteredBossMaterials } from "data/materials/bossMaterials";
 import {
+    filteredWeeklyBossMaterials,
     formatWeeklyBossMaterials,
-    weeklyBossMatNames,
 } from "data/materials/weeklyBossMaterials";
 
 // Type imports
@@ -62,6 +62,8 @@ function CharacterFilters({
 
     const filters = useAppSelector(selectCharacterFilters);
     const dispatch = useAppDispatch();
+
+    const showUnrelased = useAppSelector(selectUnreleasedContent);
 
     const filterGroups = [
         {
@@ -94,7 +96,7 @@ function CharacterFilters({
             onChange: (_: BaseSyntheticEvent, newValues: CalyxMaterial[]) =>
                 dispatch(setCalyxMat(newValues)),
             buttons: createButtons<CalyxMaterial>(
-                objectKeys(calyxMaterials),
+                filteredCalyxMaterials(showUnrelased),
                 "materials/calyx"
             ),
         },
@@ -104,7 +106,7 @@ function CharacterFilters({
             onChange: (_: BaseSyntheticEvent, newValues: CommonMaterial[]) =>
                 dispatch(setCommonMat(newValues)),
             buttons: createButtons<CommonMaterial>(
-                objectKeys(commonMaterials),
+                filteredCommonMaterials(showUnrelased),
                 "materials/common"
             ),
         },
@@ -114,7 +116,7 @@ function CharacterFilters({
             onChange: (_: BaseSyntheticEvent, newValues: BossMaterial[]) =>
                 dispatch(setBossMat(newValues)),
             buttons: createButtons<BossMaterial>(
-                bossMatNames.slice(1),
+                filteredBossMaterials(showUnrelased),
                 "materials/boss"
             ),
         },
@@ -126,7 +128,7 @@ function CharacterFilters({
                 newValues: WeeklyBossMaterial[]
             ) => dispatch(setWeeklyBossMat(newValues)),
             buttons: createButtons<WeeklyBossMaterial>(
-                weeklyBossMatNames,
+                filteredWeeklyBossMaterials(showUnrelased),
                 "materials/weekly"
             ),
         },

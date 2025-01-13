@@ -1,3 +1,4 @@
+import { objectKeys } from "helpers/utils";
 import { CalyxMaterialKeys } from "types/materials";
 
 export const calyxMaterials = {
@@ -85,6 +86,23 @@ export const calyxMaterials = {
         "Alien Tree2": "Nourishing Honey",
         "Alien Tree3": "Myriad Fruit",
     },
+    "Memory Cell": {
+        "Memory Cell0": "Memory Cell (Remembrance)",
+        "Memory Cell1": "Bīja of Consciousness",
+        "Memory Cell2": "Seedling of Manas",
+        "Memory Cell3": "Flower of Ālaya",
+    },
+};
+
+export const filteredCalyxMaterials = (showUnreleased = false) => {
+    if (showUnreleased) {
+        return objectKeys(calyxMaterials);
+    } else {
+        return objectKeys(calyxMaterials).filter(
+            (material) =>
+                !Object.keys(calyxMaterials[material]).includes("unreleased")
+        );
+    }
 };
 
 export const formatCalyxMaterials = (material: CalyxMaterialKeys): string => {

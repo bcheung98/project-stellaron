@@ -1,3 +1,4 @@
+import { objectKeys } from "helpers/utils";
 import { CommonMaterialKeys } from "types/materials";
 
 export const commonMaterials = {
@@ -49,6 +50,30 @@ export const commonMaterials = {
         Memoria2: "Fragments of Impression",
         Memoria3: "Shards of Desires",
     },
+    Titankin: {
+        Titankin0: "Titankin Fragment",
+        Titankin1: "Fear-Stomped Flesh",
+        Titankin2: "Courage-Torn Chest",
+        Titankin3: "Glory-Aspersed Torso",
+    },
+    "Black Tide": {
+        unreleased: true,
+        "Black Tide0": "Black Tide Fragment",
+        "Black Tide1": "Ethereal Omen",
+        "Black Tide2": "Echoing Wail",
+        "Black Tide3": "Eternal Lament",
+    },
+};
+
+export const filteredCommonMaterials = (showUnreleased = false) => {
+    if (showUnreleased) {
+        return objectKeys(commonMaterials);
+    } else {
+        return objectKeys(commonMaterials).filter(
+            (material) =>
+                !Object.keys(commonMaterials[material]).includes("unreleased")
+        );
+    }
 };
 
 export const formatCommonMaterials = (material: CommonMaterialKeys): string => {

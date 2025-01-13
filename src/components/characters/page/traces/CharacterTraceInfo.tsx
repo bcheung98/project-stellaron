@@ -85,7 +85,7 @@ function CharacterTraceInfo({
     };
 
     if (trace) {
-        const { title, description, unlock } = trace;
+        const { title, description = "", unlock } = trace;
 
         return (
             <>
@@ -111,7 +111,10 @@ function CharacterTraceInfo({
                                         ? "traceMain"
                                         : "traceSmall"
                                 }
+                                name={character.name}
+                                element={character.element}
                                 rarity={character.rarity}
+                                path={character.path}
                                 mats={character.materials}
                                 unlock={unlock}
                             />

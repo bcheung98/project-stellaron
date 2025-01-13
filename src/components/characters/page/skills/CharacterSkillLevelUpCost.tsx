@@ -8,8 +8,10 @@ import { getElementColor } from "helpers/elementColors";
 
 function CharacterSkillLevelUpCost({
     skillKey,
+    name,
     rarity,
     element,
+    path,
     materials,
 }: CharacterSkillLevelUpProps) {
     return (
@@ -21,8 +23,10 @@ function CharacterSkillLevelUpCost({
             <LevelUpCosts
                 type="character"
                 skillKey={skillKey}
-                rarity={rarity}
+                name={name}
                 element={element}
+                rarity={rarity}
+                path={path}
                 mats={materials}
                 threshold="@250"
             />

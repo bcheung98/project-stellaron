@@ -20,7 +20,8 @@ function CharacterSkills({ character }: CharacterProps) {
     const theme = useTheme();
     const matches_sm_up = useMediaQuery(theme.breakpoints.up("sm"));
 
-    const { name, rarity, element, skills, materials, keywords } = character;
+    const { name, rarity, element, path, skills, materials, keywords } =
+        character;
 
     const elementColor = getElementColor({ element });
 
@@ -32,8 +33,8 @@ function CharacterSkills({ character }: CharacterProps) {
     const skillIcon = (index: number): CSSProperties => {
         const selected = index === tabValue;
         return {
-            width: "48px",
-            height: "48px",
+            width: matches_sm_up ? "48px" : "40px",
+            height: matches_sm_up ? "48px" : "40px",
             margin: "4px 0",
             padding: "4px",
             backgroundColor: theme.appbar.backgroundColor,
@@ -90,6 +91,7 @@ function CharacterSkills({ character }: CharacterProps) {
                         skillKey={key}
                         skillData={skills[key]}
                         rarity={rarity}
+                        path={path}
                         element={element}
                         materials={materials}
                         keywords={keywords}

@@ -53,10 +53,10 @@ function CharacterSkillKeywordPopup({
                 }
                 contentProps={{ padding: "16px" }}
             >
-                <TextStyled variant="h6-styled">{keyword.name}</TextStyled>
+                <TextStyled variant="h6-styled">{keyword?.name || ""}</TextStyled>
                 <Text sx={{ color: theme.text.description }}>
                     {parseSkillDescription({
-                        description: keyword.description,
+                        description: keyword?.description || "",
                     })}
                 </Text>
             </MainContentBox>

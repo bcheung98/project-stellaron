@@ -13,7 +13,6 @@ import Grid from "@mui/material/Grid2";
 // Helper imports
 import { objectKeys } from "helpers/utils";
 import { parseSkillDescription } from "helpers/parseSkillDescription";
-import { getElementColor } from "helpers/elementColors";
 
 // Type imports
 import { CharacterProps } from "types/character";
@@ -58,17 +57,7 @@ function CharacterEidolon({ character }: CharacterProps) {
                                 <Image
                                     src={`characters/eidolons/${name.toLowerCase()}_${key}`}
                                     alt={key}
-                                    style={{
-                                        width: "48px",
-                                        height: "48px",
-                                        padding: "4px",
-                                        border: `2px solid ${getElementColor({
-                                            element,
-                                        })}`,
-                                        borderRadius: "64px",
-                                        backgroundColor:
-                                            theme.appbar.backgroundColor,
-                                    }}
+                                    style={theme.styles.skillIcon(element)}
                                 />
                                 <Box>
                                     <TextStyled variant="h6-styled">

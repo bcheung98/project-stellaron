@@ -10,6 +10,7 @@ import { TextStyled } from "styled/StyledTypography";
 import { useTheme, Autocomplete, Stack } from "@mui/material";
 
 // Helper imports
+import { range } from "helpers/utils";
 import { useAppDispatch, useAppSelector } from "helpers/hooks";
 import { selectCharacters } from "reducers/character";
 import { getSelectedCharacters, setPlannerCharacters } from "reducers/planner";
@@ -148,6 +149,7 @@ function CharacterSelector() {
 export default CharacterSelector;
 
 function createOptions(characters: Character[]) {
+    const costArray = range(0, 19, 0);
     return characters.map(
         (char) =>
             ({
@@ -159,73 +161,41 @@ function createOptions(characters: Character[]) {
                 traceIDs: characterTraceIDs[char.path],
                 costs: {
                     // Source of each material is mapped to a specific index in the array:
-                    // [Level, Basic ATK, Skill, Ultimate, Talent, ...Trace Nodes]
+                    // [Level, Basic ATK, Skill, Ultimate, Talent, Trace Nodes (5 - 17), Memosprite Skill, Memosprite Talent]
                     credits: {
-                        Credit: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0,
-                        ],
+                        Credit: costArray,
                     },
                     characterXP: {
-                        CharacterXP1: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0,
-                        ],
-                        CharacterXP2: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0,
-                        ],
-                        CharacterXP3: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0,
-                        ],
+                        CharacterXP1: costArray,
+                        CharacterXP2: costArray,
+                        CharacterXP3: costArray,
                     },
                     bossMat: {
-                        [`${char.materials.bossMat}` as BossMaterial]: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0,
-                        ],
+                        [`${char.materials.bossMat}` as BossMaterial]:
+                            costArray,
                     },
                     weeklyBossMat: {
                         [`${char.materials.weeklyBossMat}` as WeeklyBossMaterial]:
-                            [
-                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                0, 0,
-                            ],
+                            costArray,
                     },
                     tracksOfDestiny: {
-                        "Tracks of Destiny": [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0,
-                        ],
+                        "Tracks of Destiny": costArray,
                     },
                     calyxMat: {
-                        [`${char.materials.calyxMat}1` as CalyxMaterial]: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0,
-                        ],
-                        [`${char.materials.calyxMat}2` as CalyxMaterial]: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0,
-                        ],
-                        [`${char.materials.calyxMat}3` as CalyxMaterial]: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0,
-                        ],
+                        [`${char.materials.calyxMat}1` as CalyxMaterial]:
+                            costArray,
+                        [`${char.materials.calyxMat}2` as CalyxMaterial]:
+                            costArray,
+                        [`${char.materials.calyxMat}3` as CalyxMaterial]:
+                            costArray,
                     },
                     commonMat: {
-                        [`${char.materials.commonMat}1` as CommonMaterial]: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0,
-                        ],
-                        [`${char.materials.commonMat}2` as CommonMaterial]: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0,
-                        ],
-                        [`${char.materials.commonMat}3` as CommonMaterial]: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0,
-                        ],
+                        [`${char.materials.commonMat}1` as CommonMaterial]:
+                            costArray,
+                        [`${char.materials.commonMat}2` as CommonMaterial]:
+                            costArray,
+                        [`${char.materials.commonMat}3` as CommonMaterial]:
+                            costArray,
                     },
                 },
             } as CharacterCostObject)

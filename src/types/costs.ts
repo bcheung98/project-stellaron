@@ -45,6 +45,8 @@ export enum CostObjectSourceIndex {
     talent,
     traceMain,
     traceSmall,
+    memospriteSkill,
+    memospriteTalent,
 }
 
 export interface UpdateCostsPayload {

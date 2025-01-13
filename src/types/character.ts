@@ -17,6 +17,7 @@ export interface Character {
     element: Element;
     path: Path;
     skills: CharacterSkills;
+    memosprite?: CharacterMemosprite;
     traces: (CharacterTraceNodeMain | CharacterTraceNodeSmall)[];
     eidolon: CharacterEidolons;
     stats: CharacterStats;
@@ -51,7 +52,8 @@ export type CharacterSkillTag =
     | "Support"
     | "Impair"
     | "Restore"
-    | "Defense";
+    | "Defense"
+    | "Summon";
 
 export interface CharacterSkill extends SkillWithScaling {
     tag?: CharacterSkillTag;
@@ -114,3 +116,15 @@ export interface CharacterStats {
     speed: number[];
     taunt: number[];
 }
+
+export type CharacterMemospriteSkillKey = Exclude<
+    keyof CharacterMemosprite,
+    "name"
+>;
+export interface CharacterMemosprite {
+    name: string;
+    skill: MemospriteSkill[];
+    talent: MemospriteSkill[];
+}
+
+export type MemospriteSkill = Partial<CharacterSkill>;

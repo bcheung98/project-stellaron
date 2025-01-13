@@ -1,15 +1,16 @@
 import { LevelUpCostSkillKeys } from "custom/LevelUpCosts";
-import { Rarity } from "types/_common";
-import { CharacterUnlockKeys } from "types/character";
+import { Path, Rarity } from "types/_common";
 
-export const characterLevel = (rarity: Rarity) => {
+export const characterLevel = (rarity: Rarity, name?: string) => {
     const index = rarity - 4;
     return {
         credits: characterLevelCosts.credits[index],
         characterXP1: characterLevelCosts.characterXP1[index],
         characterXP2: characterLevelCosts.characterXP2[index],
         characterXP3: characterLevelCosts.characterXP3[index],
-        bossMat: characterLevelCosts.bossMat[index],
+        bossMat: name?.startsWith("Trailblazer")
+            ? [0, 0, 0, 0, 0, 0, 4, 0, 6, 0, 8, 0, 10, 0]
+            : characterLevelCosts.bossMat[index],
         commonMat1: characterLevelCosts.commonMat1[index],
         commonMat2: characterLevelCosts.commonMat2[index],
         commonMat3: characterLevelCosts.commonMat3[index],
@@ -60,20 +61,25 @@ export const characterLevelCosts = {
 
 export const characterSkill = (
     rarity: Rarity,
-    skillKey: LevelUpCostSkillKeys
+    skillKey: LevelUpCostSkillKeys,
+    path: Path
 ) => {
+    const costArray =
+        path === "Remembrance"
+            ? characterSkillCostsRemembrance
+            : characterSkillCosts;
     const index = rarity - 4;
     const key = skillKey === "attack" ? "attack" : "skill";
     return {
-        credits: characterSkillCosts[key].credits[index],
-        weeklyBossMat: characterSkillCosts[key].weeklyBossMat[index],
-        tracksOfDestiny: characterSkillCosts[key].tracksOfDestiny[index],
-        calyxMat1: characterSkillCosts[key].calyxMat1[index],
-        calyxMat2: characterSkillCosts[key].calyxMat2[index],
-        calyxMat3: characterSkillCosts[key].calyxMat3[index],
-        commonMat1: characterSkillCosts[key].commonMat1[index],
-        commonMat2: characterSkillCosts[key].commonMat2[index],
-        commonMat3: characterSkillCosts[key].commonMat3[index],
+        credits: costArray[key].credits[index],
+        weeklyBossMat: costArray[key].weeklyBossMat[index],
+        tracksOfDestiny: costArray[key].tracksOfDestiny[index],
+        calyxMat1: costArray[key].calyxMat1[index],
+        calyxMat2: costArray[key].calyxMat2[index],
+        calyxMat3: costArray[key].calyxMat3[index],
+        commonMat1: costArray[key].commonMat1[index],
+        commonMat2: costArray[key].commonMat2[index],
+        commonMat3: costArray[key].commonMat3[index],
     };
 };
 
@@ -151,35 +157,135 @@ export const characterSkillCosts = {
             [0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
         ],
         tracksOfDestiny: [
-            [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
         ],
     },
 };
 
-export const traceTotalCosts = {
-    "5": {
-        credits: 802500,
-        calyxMat1: 6,
-        calyxMat2: 16,
-        calyxMat3: 38,
-        commonMat1: 8,
-        commonMat2: 10,
-        commonMat3: 30,
-        weeklyBossMat: 3,
-        tracksOfDestiny: 2,
+// Costs for Remembrance characters
+// [4-Star Cost, 5-Star Cost]
+export const characterSkillCostsRemembrance = {
+    attack: {
+        credits: [
+            [0, 2800, 5600, 12800, 28000, 112000],
+            [0, 3500, 7000, 16000, 35000, 140000],
+        ],
+        calyxMat1: [
+            [0, 1, 0, 0, 0, 0],
+            [0, 2, 0, 0, 0, 0],
+        ],
+        calyxMat2: [
+            [0, 0, 1, 3, 0, 0],
+            [0, 0, 2, 4, 0, 0],
+        ],
+        calyxMat3: [
+            [0, 0, 0, 0, 2, 5],
+            [0, 0, 0, 0, 2, 6],
+        ],
+        commonMat1: [
+            [0, 3, 0, 0, 0, 0],
+            [0, 4, 0, 0, 0, 0],
+        ],
+        commonMat2: [
+            [0, 0, 1, 2, 0, 0],
+            [0, 0, 2, 3, 0, 0],
+        ],
+        commonMat3: [
+            [0, 0, 0, 0, 2, 2],
+            [0, 0, 0, 0, 2, 2],
+        ],
+        weeklyBossMat: [
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+        ],
+        tracksOfDestiny: [
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+        ],
     },
-    "4": {
-        credits: 642000,
-        calyxMat1: 4,
-        calyxMat2: 12,
-        calyxMat3: 28,
-        commonMat1: 6,
-        commonMat2: 7,
-        commonMat3: 22,
-        weeklyBossMat: 3,
-        tracksOfDestiny: 2,
+    skill: {
+        credits: [
+            [0, 2000, 2800, 5600, 12800, 20000, 28000, 56000, 112000, 192000],
+            [0, 2500, 3500, 7000, 16000, 25000, 35000, 70000, 140000, 240000],
+        ],
+        calyxMat1: [
+            [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 2, 0, 0, 0, 0, 0, 0, 0],
+        ],
+        calyxMat2: [
+            [0, 0, 0, 1, 3, 5, 0, 0, 0, 0],
+            [0, 0, 0, 2, 4, 6, 0, 0, 0, 0],
+        ],
+        calyxMat3: [
+            [0, 0, 0, 0, 0, 0, 2, 3, 5, 9],
+            [0, 0, 0, 0, 0, 0, 2, 5, 6, 13],
+        ],
+        commonMat1: [
+            [0, 2, 3, 0, 0, 0, 0, 0, 0, 0],
+            [0, 3, 4, 0, 0, 0, 0, 0, 0, 0],
+        ],
+        commonMat2: [
+            [0, 0, 0, 1, 2, 5, 0, 0, 0, 0],
+            [0, 0, 0, 2, 3, 6, 0, 0, 0, 0],
+        ],
+        commonMat3: [
+            [0, 0, 0, 0, 0, 0, 2, 2, 0, 0],
+            [0, 0, 0, 0, 0, 0, 2, 4, 0, 0],
+        ],
+        weeklyBossMat: [
+            [0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+            [0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+        ],
+        tracksOfDestiny: [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 1, 1],
+        ],
     },
+};
+
+export const characterMemosprite = (rarity: Rarity) => {
+    const index = rarity - 4;
+    return {
+        credits: characterMemospriteCosts.credits[index],
+        calyxMat1: characterMemospriteCosts.calyxMat1[index],
+        calyxMat2: characterMemospriteCosts.calyxMat2[index],
+        calyxMat3: characterMemospriteCosts.calyxMat3[index],
+        commonMat1: characterMemospriteCosts.commonMat1[index],
+        commonMat2: characterMemospriteCosts.commonMat2[index],
+        commonMat3: characterMemospriteCosts.commonMat3[index],
+    };
+};
+
+export const characterMemospriteCosts = {
+    credits: [
+        [0, 2800, 5600, 12800, 28000, 112000],
+        [0, 3500, 7000, 16000, 35000, 140000],
+    ],
+    calyxMat1: [
+        [0, 1, 0, 0, 0, 0],
+        [0, 2, 0, 0, 0, 0],
+    ],
+    calyxMat2: [
+        [0, 0, 1, 3, 0, 0],
+        [0, 0, 2, 4, 0, 0],
+    ],
+    calyxMat3: [
+        [0, 0, 0, 0, 2, 5],
+        [0, 0, 0, 0, 2, 6],
+    ],
+    commonMat1: [
+        [0, 3, 0, 0, 0, 0],
+        [0, 4, 0, 0, 0, 0],
+    ],
+    commonMat2: [
+        [0, 0, 1, 2, 0, 0],
+        [0, 0, 2, 3, 0, 0],
+    ],
+    commonMat3: [
+        [0, 0, 0, 0, 2, 2],
+        [0, 0, 0, 0, 2, 2],
+    ],
 };
 
 interface CharacterTraceCost {
@@ -193,12 +299,6 @@ interface CharacterTraceCost {
     weeklyBossMat: [number, number];
     tracksOfDestiny: [number, number];
 }
-
-export const characterTraceMain = (
-    node: Extract<CharacterUnlockKeys, "A2" | "A4" | "A6">
-) => {
-    return characterTraceMainCosts[node];
-};
 
 // [4-Star Cost, 5-Star Cost]
 export const characterTraceMainCosts = {
@@ -221,8 +321,26 @@ export const characterTraceMainCosts = {
     } as CharacterTraceCost,
 };
 
-export const characterTraceSmall = (node: CharacterUnlockKeys) => {
-    return characterTraceSmallCosts[node];
+// Costs for Remembrance characters
+// [4-Star Cost, 5-Star Cost]
+export const characterTraceMainCostsRemembrance = {
+    A2: {
+        credits: [4000, 5000],
+        calyxMat1: [2, 3],
+        weeklyBossMat: [1, 1],
+    } as CharacterTraceCost,
+    A4: {
+        credits: [16000, 20000],
+        calyxMat2: [5, 5],
+        weeklyBossMat: [1, 1],
+        tracksOfDestiny: [1, 1],
+    } as CharacterTraceCost,
+    A6: {
+        credits: [128000, 160000],
+        calyxMat3: [6, 8],
+        weeklyBossMat: [1, 1],
+        tracksOfDestiny: [1, 1],
+    } as CharacterTraceCost,
 };
 
 // [4-Star Cost, 5-Star Cost]
@@ -251,6 +369,50 @@ export const characterTraceSmallCosts = {
         credits: [128000, 160000],
         calyxMat3: [6, 8],
         commonMat3: [6, 8],
+    } as CharacterTraceCost,
+    "Lv. 1": {
+        credits: [2000, 2500],
+        commonMat1: [2, 2],
+    } as CharacterTraceCost,
+    "Lv. 75": {
+        credits: [128000, 160000],
+        calyxMat3: [6, 8],
+        commonMat3: [6, 8],
+    } as CharacterTraceCost,
+    "Lv. 80": {
+        credits: [128000, 160000],
+        calyxMat3: [6, 8],
+        commonMat3: [6, 8],
+    } as CharacterTraceCost,
+};
+
+// Costs for Remembrance characters
+// [4-Star Cost, 5-Star Cost]
+export const characterTraceSmallCostsRemembrance = {
+    A2: {
+        credits: [3200, 4000],
+        calyxMat1: [1, 3],
+        commonMat1: [2, 6],
+    } as CharacterTraceCost,
+    A3: {
+        credits: [7200, 9000],
+        calyxMat2: [2, 3],
+        commonMat2: [2, 2],
+    } as CharacterTraceCost,
+    A4: {
+        credits: [15200, 19000],
+        calyxMat2: [5, 4],
+        commonMat2: [2, 4],
+    } as CharacterTraceCost,
+    A5: {
+        credits: [36000, 45000],
+        calyxMat3: [2, 3],
+        commonMat3: [2, 3],
+    } as CharacterTraceCost,
+    A6: {
+        credits: [112000, 140000],
+        calyxMat3: [5, 7],
+        commonMat3: [3, 6],
     } as CharacterTraceCost,
     "Lv. 1": {
         credits: [2000, 2500],

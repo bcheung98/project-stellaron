@@ -75,15 +75,27 @@ export const skillKeywords: SkillKeywords = {
         description:
             "Unleashes an extra attack on the target. This effect is triggered automatically when requirements are met.",
     },
+    "joint attack": {
+        name: "Joint Attack",
+        description: "",
+    },
     "res pen": {
         name: "RES PEN",
         description:
             "When dealing DMG, ignore a part of the enemy target's resistance to the corresponding damage type.",
     },
+    summon: {
+        name: "Summon",
+        description: "",
+    },
     "super break dmg": {
         name: "Super Break DMG",
         description:
             "Super Break DMG increases with higher Break Effect, higher Toughness Reduction of the attack, and higher character levels.<br />Super Break DMG cannot CRIT hit and is not affected by DMG Boost effects.",
+    },
+    "true dmg": {
+        name: "True DMG",
+        description: "",
     },
     "weakness break state": {
         name: "Weakness Break State",

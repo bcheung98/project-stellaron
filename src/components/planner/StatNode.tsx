@@ -13,6 +13,10 @@ import { updateCharacterCosts } from "reducers/planner";
 import { formatCharacterBonusStats } from "helpers/formatCharacterBonusStats";
 import { characterBonusStats } from "data/characterBonusStats";
 import { parseSkillDescription } from "helpers/parseSkillDescription";
+import {
+    getCharacterTraceMain,
+    getCharacterTraceSmall,
+} from "helpers/getLevelUpCosts";
 
 // Type imports
 import { CardMode } from "./PlannerCard";
@@ -20,21 +24,18 @@ import {
     CharacterTraceNodeMain,
     CharacterTraceNodeSmall,
 } from "types/character";
-import {
-    getCharacterTraceMain,
-    getCharacterTraceSmall,
-} from "helpers/getLevelUpCosts";
-import { Rarity } from "types/_common";
+import { Path, Rarity } from "types/_common";
 
 interface StatNodeProps {
     mode: CardMode;
     id: string;
     name: string;
     rarity: Rarity;
+    path: Path;
     trace: CharacterTraceNodeMain | CharacterTraceNodeSmall;
 }
 
-function StatNode({ mode, id, name, rarity, trace }: StatNodeProps) {
+function StatNode({ mode, id, name, rarity, path, trace }: StatNodeProps) {
     const theme = useTheme();
     const matches_sm_dn = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -60,7 +61,7 @@ function StatNode({ mode, id, name, rarity, trace }: StatNodeProps) {
         type = "small";
         title = `${formatCharacterBonusStats(trace.stat)} +${
             characterBonusStats[trace.stat][unlock]
-        }`;
+        } (${unlock})`;
         imgSrc = `stat_icons/${trace.stat}`;
         imgSize = matches_sm_dn ? "24px" : "32px";
     }
@@ -76,9 +77,15 @@ function StatNode({ mode, id, name, rarity, trace }: StatNodeProps) {
                         ? getCharacterTraceMain(
                               unlock as "A2" | "A4" | "A6",
                               rarity,
-                              selected
+                              selected,
+                              path
                           )
-                        : getCharacterTraceSmall(unlock, rarity, selected),
+                        : getCharacterTraceSmall(
+                              unlock,
+                              rarity,
+                              selected,
+                              path
+                          ),
             })
         );
     }, [selected]);
@@ -117,6 +124,7 @@ function StatNode({ mode, id, name, rarity, trace }: StatNodeProps) {
                                     id={nextID}
                                     name={name}
                                     rarity={rarity}
+                                    path={path}
                                     trace={subTrace}
                                 />
                                 <Xarrow

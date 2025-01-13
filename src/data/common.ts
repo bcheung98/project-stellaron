@@ -16,6 +16,7 @@ export const paths = [
     "Nihility",
     "Preservation",
     "Abundance",
+    "Remembrance",
 ] as const;
 
 export const rarities = [5, 4, 3, 2, 1] as const;
@@ -29,4 +30,5 @@ export const worlds = [
     "Penacony",
     "Interastral Peace Corporation",
     "Cosmic",
+    "Amphoreus",
 ] as const;

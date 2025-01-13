@@ -31,6 +31,8 @@ export function formatCharacterBonusStatTitle(stat: BonusStat) {
         case "Quantum DMG Boost":
         case "Imaginary DMG Boost":
             return `DMG Boost: ${stat.split(" ")[0]}`;
+        default:
+            return "";
     }
 }
 
@@ -56,6 +58,10 @@ export function formatCharacterBonusStatDescription(
         case "Wind DMG Boost":
         case "Quantum DMG Boost":
         case "Imaginary DMG Boost":
-            return `<span class="text-${stat.split(" ")[0].toLowerCase()}">${stat.split(" ")[0]} DMG</span> increases by ${value}`;
+            return `<span class="text-${stat.split(" ")[0].toLowerCase()}">${
+                stat.split(" ")[0]
+            } DMG</span> increases by ${value}`;
+        default:
+            return "";
     }
 }

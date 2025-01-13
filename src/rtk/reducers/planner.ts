@@ -76,6 +76,8 @@ export const plannerSlice = createSlice({
                         state.characters[charIndex].traceIDs.indexOf(
                             action.payload.traceID
                         ) + 5;
+                } else if (action.payload.type.startsWith("memosprite")) {
+                    index = CostObjectSourceIndex[action.payload.type] + 11;
                 } else {
                     index = CostObjectSourceIndex[action.payload.type];
                 }

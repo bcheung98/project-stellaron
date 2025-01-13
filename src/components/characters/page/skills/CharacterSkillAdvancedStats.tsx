@@ -21,10 +21,15 @@ import {
     CharacterSkill,
     CharacterTalent,
     CharacterTechnique,
+    MemospriteSkill,
 } from "types/character";
 
 interface CharacterSkillAdvancedStatsProps {
-    skill: CharacterSkill | CharacterTalent | CharacterTechnique;
+    skill:
+        | CharacterSkill
+        | CharacterTalent
+        | CharacterTechnique
+        | MemospriteSkill;
 }
 
 function CharacterSkillAdvancedStats({
@@ -37,8 +42,8 @@ function CharacterSkillAdvancedStats({
 
     if ("cost" in skill) {
         const skillCost = getSkillCost(
-            skill.cost.type,
-            skill.cost.value,
+            skill.cost?.type || "",
+            skill.cost?.value || 0,
             matches_sm_up
         );
         rows.push({
@@ -107,7 +112,7 @@ function CharacterSkillAdvancedStats({
                     width: {
                         xs: "100%",
                         md: "60%",
-                        lg: "30%",
+                        lg: "40%",
                     },
                 },
                 rows.length > 0 && {

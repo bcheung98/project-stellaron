@@ -1,10 +1,9 @@
 import { BaseSyntheticEvent, useState } from "react";
 
 // Component imports
-import CharacterSkillAdvancedStats from "./CharacterSkillAdvancedStats";
-import CharacterSkillLevelUpCost from "./CharacterSkillLevelUpCost";
-import CharacterSkillScaling from "./CharacterSkillScaling";
-import CharacterSkillKeywordPopup from "./CharacterSkillKeywordPopup";
+import CharacterSkillAdvancedStats from "../skills/CharacterSkillAdvancedStats";
+import CharacterSkillLevelUpCost from "../skills/CharacterSkillLevelUpCost";
+import CharacterSkillKeywordPopup from "../skills/CharacterSkillKeywordPopup";
 import Image from "custom/Image";
 import { Text, TextStyled } from "styled/StyledTypography";
 
@@ -16,20 +15,15 @@ import { parseSkillDescription } from "helpers/parseSkillDescription";
 
 // Type imports
 import { Element, Path, Rarity } from "types/_common";
-import {
-    CharacterSkill,
-    CharacterSkillKey,
-    CharacterTalent,
-    CharacterTechnique,
-} from "types/character";
+import { CharacterMemospriteSkillKey, MemospriteSkill } from "types/character";
 import { CharacterMaterials } from "types/materials";
-import { LevelUpCostSkillKeys } from "custom/LevelUpCosts";
 import { SkillKeywords } from "types/skill";
+import MemospriteSkillScaling from "./MemospriteSkillScaling";
 
-interface CharacterSkillTabProps {
+interface MemospriteSkillTabProps {
     name: string;
-    skillKey: CharacterSkillKey;
-    skillData: CharacterSkill[] | CharacterTalent[] | CharacterTechnique[];
+    skillKey: CharacterMemospriteSkillKey;
+    skillData: MemospriteSkill[];
     rarity: Rarity;
     element: Element;
     path: Path;
@@ -37,31 +31,22 @@ interface CharacterSkillTabProps {
     keywords?: SkillKeywords;
 }
 
-export interface CharacterSkillScalingProps {
-    skillKey: CharacterSkillKey;
-    skillData: CharacterSkill[] | CharacterTalent[] | CharacterTechnique[];
+export interface MemospriteSkillScalingProps {
+    skillKey: CharacterMemospriteSkillKey;
+    skillData: MemospriteSkill[];
     element: Element;
 }
 
-export interface CharacterSkillLevelUpProps {
-    skillKey: LevelUpCostSkillKeys;
-    name: string;
-    rarity: Rarity;
-    element: Element;
-    path: Path;
-    materials: CharacterMaterials;
-}
-
-function CharacterSkillTab({
+function MemospriteSkillTab({
+    name,
     skillData,
     skillKey,
-    name,
     rarity,
     element,
     path,
     materials,
     keywords,
-}: CharacterSkillTabProps) {
+}: MemospriteSkillTabProps) {
     const theme = useTheme();
 
     const [open, setOpen] = useState(false);
@@ -90,7 +75,7 @@ function CharacterSkillTab({
                                 sx={{ height: "64px", mb: "8px" }}
                             >
                                 <Image
-                                    src={`characters/skills/${name.toLowerCase()}_${skillKey}${
+                                    src={`characters/skills/${name.toLowerCase()}_ms_${skillKey}${
                                         index > 0 ? index : ""
                                     }`}
                                     alt={skill.name}
@@ -112,8 +97,8 @@ function CharacterSkillTab({
                             <CharacterSkillAdvancedStats skill={skill} />
                             <Text sx={{ color: theme.text.description }}>
                                 {parseSkillDescription({
-                                    description: skill.description,
-                                    newClassName: "character-skill-value",
+                                    description: skill.description || "",
+                                    newClassName: "memosprite-skill-value",
                                     onClick: handleClickOpen,
                                 })}
                             </Text>
@@ -121,24 +106,20 @@ function CharacterSkillTab({
                     ))}
                 </Stack>
                 <Box sx={{ mt: "16px" }}>
-                    {skillKey !== "technique" && (
-                        <CharacterSkillScaling
-                            skillKey={skillKey}
-                            skillData={skillData}
-                            element={element}
-                        />
-                    )}
-                </Box>
-                {skillKey !== "technique" && (
-                    <CharacterSkillLevelUpCost
+                    <MemospriteSkillScaling
                         skillKey={skillKey}
-                        name={name}
+                        skillData={skillData}
                         element={element}
-                        rarity={rarity}
-                        path={path}
-                        materials={materials}
                     />
-                )}
+                </Box>
+                <CharacterSkillLevelUpCost
+                    skillKey={convertSkillKey(skillKey)}
+                    name={name}
+                    element={element}
+                    rarity={rarity}
+                    path={path}
+                    materials={materials}
+                />
             </Box>
             <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
                 <CharacterSkillKeywordPopup
@@ -151,19 +132,22 @@ function CharacterSkillTab({
     );
 }
 
-export default CharacterSkillTab;
+export default MemospriteSkillTab;
 
-function formatSkillKey(skill: CharacterSkillKey) {
+function formatSkillKey(skill: CharacterMemospriteSkillKey) {
     switch (skill) {
-        case "attack":
-            return "Basic ATK";
         case "skill":
-            return "Skill";
-        case "ultimate":
-            return "Ultimate";
+            return "Memosprite Skill";
         case "talent":
-            return "Talent";
-        case "technique":
-            return "Technique";
+            return "Memosprite Talent";
+    }
+}
+
+function convertSkillKey(skill: CharacterMemospriteSkillKey) {
+    switch (skill) {
+        case "skill":
+            return "memospriteSkill";
+        case "talent":
+            return "memospriteTalent";
     }
 }

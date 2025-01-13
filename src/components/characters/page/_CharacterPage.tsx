@@ -7,8 +7,10 @@ import CharacterInfoMisc from "./CharacterInfoMisc";
 import CharacterStats from "./CharacterStats";
 import CharacterAscension from "./CharacterAscension";
 import CharacterSkills from "./skills/CharacterSkills";
+import CharacterMemosprite from "./memosprite/CharacterMemosprite";
 import CharacterTraces from "./traces/CharacterTraces";
 import CharacterEidolon from "./CharacterEidolon";
+import BetaTag from "custom/BetaTag";
 import PageNotFound from "components/PageNotFound";
 
 // MUI imports
@@ -44,6 +46,8 @@ function CharacterPage() {
             .querySelector('meta[property="og:description"]')
             ?.setAttribute("content", documentDesc);
 
+        const betaTag = <BetaTag version={character.release.version} />;
+
         const charSplash = <CharacterImage character={character} />;
         const infoMain = <CharacterInfoMain character={character} />;
         const infoMisc = <CharacterInfoMisc character={character} />;
@@ -62,6 +66,7 @@ function CharacterPage() {
                         </Grid>
                         <Grid size="grow">
                             <Stack spacing={2}>
+                                {betaTag}
                                 {infoMain}
                                 {stats}
                                 {ascension}
@@ -70,6 +75,7 @@ function CharacterPage() {
                     </Grid>
                 ) : (
                     <>
+                        {betaTag}
                         {infoMain}
                         {charSplash}
                         {stats}
@@ -78,6 +84,7 @@ function CharacterPage() {
                     </>
                 )}
                 <CharacterSkills character={character} />
+                <CharacterMemosprite character={character} />
                 <CharacterTraces character={character} />
                 <CharacterEidolon character={character} />
             </Stack>

@@ -48,7 +48,7 @@ function CharacterTableRow({ row }: { row: CharacterTableRowProps }) {
             href: `/characters/${row.name.split(" ").join("_").toLowerCase()}`,
         },
         {
-            label: <RarityStars rarity={row.rarity} variant="h4-styled" />,
+            label: <RarityStars rarity={row.rarity} variant="h5-styled" />,
         },
         {
             label: row.element,

@@ -72,9 +72,30 @@ export const bossMaterials = <const>{
         source: "",
     },
     "Chordal Mirage": { displayName: "Chordal Mirage", source: "" },
+    "Darkveil Moonlight": {
+        unreleased: true,
+        displayName: "Darkveil Moonlight",
+        source: "",
+    },
+    "Harbinger of Strife": {
+        unreleased: true,
+        displayName: "Harbinger of Strife",
+        source: "",
+    },
 };
 
 export const bossMatNames = objectKeys(bossMaterials);
+
+export const filteredBossMaterials = (showUnreleased = false) => {
+    if (showUnreleased) {
+        return bossMatNames;
+    } else {
+        return bossMatNames.filter(
+            (material) =>
+                !Object.keys(bossMaterials[material]).includes("unreleased")
+        );
+    }
+};
 
 export const formatBossMaterials = (material: BossMaterial) => {
     const mat = bossMaterials[material] || { displayName: "", source: "?" };

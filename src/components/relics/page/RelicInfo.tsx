@@ -37,8 +37,8 @@ function RelicInfo({ relic }: RelicProps) {
     const tabIcon = (index: number): CSSProperties => {
         const selected = index === tabValue;
         return {
-            width: "48px",
-            height: "48px",
+            width: matches_sm_up ? "48px" : "40px",
+            height: matches_sm_up ? "48px" : "40px",
             margin: "4px 0",
             padding: "4px",
             backgroundColor: theme.appbar.backgroundColor,

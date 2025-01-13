@@ -42,6 +42,8 @@ function CharacterTraceCost({
                 <LevelUpCosts
                     type="character"
                     skillKey={type === "main" ? "traceMain" : "traceSmall"}
+                    name={character.name}
+                    element={character.element}
                     rarity={character.rarity}
                     mats={character.materials}
                     unlock={unlock}

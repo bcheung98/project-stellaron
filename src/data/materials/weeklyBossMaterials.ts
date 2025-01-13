@@ -30,6 +30,19 @@ export const weeklyBossMaterials = <const>{
 
 export const weeklyBossMatNames = objectKeys(weeklyBossMaterials);
 
+export const filteredWeeklyBossMaterials = (showUnreleased = false) => {
+    if (showUnreleased) {
+        return weeklyBossMatNames;
+    } else {
+        return weeklyBossMatNames.filter(
+            (material) =>
+                !Object.keys(weeklyBossMaterials[material]).includes(
+                    "unreleased"
+                )
+        );
+    }
+};
+
 export const formatWeeklyBossMaterials = (material: WeeklyBossMaterial) => {
     const mat = weeklyBossMaterials[material] || {
         displayName: "",

@@ -2,12 +2,15 @@ import { PayloadCostObject } from "types/costs";
 import { objectKeys, range } from "./utils";
 import {
     characterLevel,
+    characterMemosprite,
     characterSkill,
     characterTraceMainCosts,
+    characterTraceMainCostsRemembrance,
     characterTraceSmallCosts,
+    characterTraceSmallCostsRemembrance,
     weaponLevel,
 } from "data/levelUpCosts";
-import { Rarity } from "types/_common";
+import { Path, Rarity } from "types/_common";
 import { CharacterUnlockKeys } from "types/character";
 import { LevelUpCostSkillKeys } from "custom/LevelUpCosts";
 
@@ -16,6 +19,8 @@ export interface GetLevelUpCostsProps {
     stop?: number;
     selected?: boolean;
     withXP?: boolean;
+    name?: string;
+    path?: Path;
     rarity?: Rarity;
     skillKey?: LevelUpCostSkillKeys;
     node?: CharacterUnlockKeys;
@@ -25,15 +30,16 @@ export function getCharacterLevelCost({
     start,
     stop,
     selected,
+    name,
     rarity,
     withXP,
 }: Required<
     Pick<
         GetLevelUpCostsProps,
-        "start" | "stop" | "selected" | "rarity" | "withXP"
+        "start" | "stop" | "selected" | "name" | "rarity" | "withXP"
     >
 >) {
-    const costs = { ...characterLevel(rarity) };
+    const costs = { ...characterLevel(rarity, name) };
     if (!withXP) {
         objectKeys(costs).forEach((material) => {
             costs[material] = costs[material]
@@ -86,15 +92,16 @@ export function getCharacterSkillCost({
     start,
     stop,
     selected,
+    path,
     rarity,
     skillKey,
 }: Required<
     Pick<
         GetLevelUpCostsProps,
-        "start" | "stop" | "selected" | "rarity" | "skillKey"
+        "start" | "stop" | "selected" | "path" | "rarity" | "skillKey"
     >
 >) {
-    const costs = { ...characterSkill(rarity, skillKey) };
+    const costs = { ...characterSkill(rarity, skillKey, path) };
     let [
         credits,
         weeklyBossMat,
@@ -142,12 +149,62 @@ export function getCharacterSkillCost({
     } as PayloadCostObject;
 }
 
+export function getCharacterMemosprite({
+    start,
+    stop,
+    selected,
+    rarity,
+}: Required<
+    Pick<GetLevelUpCostsProps, "start" | "stop" | "selected" | "rarity">
+>) {
+    const costs = { ...characterMemosprite(rarity) };
+    let [
+        credits,
+        calyxMat1,
+        calyxMat2,
+        calyxMat3,
+        commonMat1,
+        commonMat2,
+        commonMat3,
+    ] = range(0, objectKeys(costs).length, 0);
+    if (selected) {
+        [
+            credits,
+            calyxMat1,
+            calyxMat2,
+            calyxMat3,
+            commonMat1,
+            commonMat2,
+            commonMat3,
+        ] = calculateCosts(costs, start, stop);
+    }
+    return {
+        credits: {
+            Credit: credits,
+        },
+        calyxMat: {
+            calyxMat1: calyxMat1,
+            calyxMat2: calyxMat2,
+            calyxMat3: calyxMat3,
+        },
+        commonMat: {
+            commonMat1: commonMat1,
+            commonMat2: commonMat2,
+            commonMat3: commonMat3,
+        },
+    } as PayloadCostObject;
+}
+
 export function getCharacterTraceMain(
     node: Extract<CharacterUnlockKeys, "A2" | "A4" | "A6">,
     rarity: Rarity,
-    selected: boolean
+    selected: boolean,
+    path: Path
 ) {
-    const costs = { ...characterTraceMainCosts[node] };
+    const costs =
+        path === "Remembrance"
+            ? { ...characterTraceMainCostsRemembrance[node] }
+            : { ...characterTraceMainCosts[node] };
     const index = rarity - 4;
     let {
         credits,
@@ -179,9 +236,13 @@ export function getCharacterTraceMain(
 export function getCharacterTraceSmall(
     node: CharacterUnlockKeys,
     rarity: Rarity,
-    selected: boolean
+    selected: boolean,
+    path: Path
 ) {
-    const costs = { ...characterTraceSmallCosts[node] };
+    const costs =
+        path === "Remembrance"
+            ? { ...characterTraceSmallCostsRemembrance[node] }
+            : { ...characterTraceSmallCosts[node] };
     const index = rarity - 4;
     let {
         credits,

@@ -45,7 +45,7 @@ function WeaponTableRow({ row }: { row: WeaponTableRowProps }) {
             href: `/lightcones/${row.name.split(" ").join("_").toLowerCase()}`,
         },
         {
-            label: <RarityStars rarity={row.rarity} variant="h4-styled" />,
+            label: <RarityStars rarity={row.rarity} variant="h5-styled" />,
         },
         {
             label: row.path,

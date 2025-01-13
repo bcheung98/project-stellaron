@@ -1,5 +1,6 @@
 // MAKE SURE TO CHANGE THIS EVERY UPDATE!
 export const updates = [
+    { version: "3.0", name: "Paean of Era Nova" },
     { version: "2.7", name: "A New Venture on the Eighth Dawn" },
     { version: "2.6", name: "Annals of Pinecany's Mappou Age" },
     { version: "2.5", name: "Flying Aureus Shot to Lupine Rue" },

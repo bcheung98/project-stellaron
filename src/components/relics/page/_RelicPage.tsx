@@ -1,7 +1,11 @@
 import { useParams } from "react-router";
 
 // Component imports
+import BetaTag from "custom/BetaTag";
 import PageNotFound from "components/PageNotFound";
+
+// MUI imports
+import { Stack } from "@mui/material";
 
 // Helper imports
 import { useAppSelector } from "helpers/hooks";
@@ -34,7 +38,12 @@ function RelicPage() {
             .querySelector('meta[property="og:description"]')
             ?.setAttribute("content", documentDesc);
 
-        return <RelicInfo relic={relic} />;
+        return (
+            <Stack spacing={2}>
+                <BetaTag version={relic.release.version} />
+                <RelicInfo relic={relic} />
+            </Stack>
+        );
     } else {
         return <PageNotFound />;
     }

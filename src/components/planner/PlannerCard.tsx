@@ -181,7 +181,10 @@ function PlannerCard({ data }: PlannerCardProps) {
                 </FlexBox>
             }
             actions={
-                <IconButton onClick={handleDelete} sx={{ color: "white" }}>
+                <IconButton
+                    onClick={handleDelete}
+                    sx={{ color: theme.appbar.color }}
+                >
                     <StyledTooltip title="Delete" arrow placement="top">
                         <DeleteIcon />
                     </StyledTooltip>
@@ -199,6 +202,7 @@ function PlannerCard({ data }: PlannerCardProps) {
                             rarity={material.rarity}
                             cost={material.cost}
                             imgSrc={material.img}
+                            size="56px"
                         />
                     )
                 )}
@@ -212,7 +216,9 @@ function PlannerCard({ data }: PlannerCardProps) {
                 startIcon={mode !== "edit" ? <EditIcon /> : <DoneIcon />}
                 sx={{ mb: "16px" }}
             >
-                {mode !== "edit" ? "Edit" : "Done"}
+                <TextStyled variant="body2-styled">
+                    {mode !== "edit" ? "Edit" : "Done"}
+                </TextStyled>
             </Button>
             <Box sx={{ mx: { xs: "0px", lg: "8px" } }}>
                 {"element" in data ? (

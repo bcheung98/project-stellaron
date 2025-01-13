@@ -12,8 +12,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
 // Helper imports
-import { objectKeys } from "helpers/utils";
 import { useAppDispatch, useAppSelector } from "helpers/hooks";
+import { selectUnreleasedContent } from "reducers/settings";
 import {
     activeWeaponFilters,
     clearFilters,
@@ -25,11 +25,11 @@ import {
 } from "reducers/weaponFilters";
 import { paths, rarities } from "data/common";
 import {
-    calyxMaterials,
+    filteredCalyxMaterials,
     formatCalyxMaterials,
 } from "data/materials/calyxMaterials";
 import {
-    commonMaterials,
+    filteredCommonMaterials,
     formatCommonMaterials,
 } from "data/materials/commonMaterials";
 
@@ -47,6 +47,8 @@ function WeaponFilters({ handleClose }: { handleClose: (arg0: any) => void }) {
 
     const filters = useAppSelector(selectWeaponFilters);
     const dispatch = useAppDispatch();
+
+    const showUnrelased = useAppSelector(selectUnreleasedContent);
 
     const filterGroups = [
         {
@@ -72,7 +74,7 @@ function WeaponFilters({ handleClose }: { handleClose: (arg0: any) => void }) {
             onChange: (_: BaseSyntheticEvent, newValues: CalyxMaterial[]) =>
                 dispatch(setCalyxMat(newValues)),
             buttons: createButtons<CalyxMaterial>(
-                objectKeys(calyxMaterials),
+                filteredCalyxMaterials(showUnrelased),
                 "materials/calyx"
             ),
         },
@@ -82,7 +84,7 @@ function WeaponFilters({ handleClose }: { handleClose: (arg0: any) => void }) {
             onChange: (_: BaseSyntheticEvent, newValues: CommonMaterial[]) =>
                 dispatch(setCommonMat(newValues)),
             buttons: createButtons<CommonMaterial>(
-                objectKeys(commonMaterials),
+                filteredCommonMaterials(showUnrelased),
                 "materials/common"
             ),
         },

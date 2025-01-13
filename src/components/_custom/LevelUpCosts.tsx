@@ -15,6 +15,7 @@ import { range } from "helpers/utils";
 import { getElementColor } from "helpers/elementColors";
 import {
     getCharacterLevelCost,
+    getCharacterMemosprite,
     getCharacterSkillCost,
     getCharacterTraceMain,
     getCharacterTraceSmall,
@@ -23,7 +24,7 @@ import {
 import { createMaterialCostData } from "helpers/createMaterialCostData";
 
 // Type imports
-import { Element, Rarity } from "types/_common";
+import { Element, Path, Rarity } from "types/_common";
 import { TotalCostObject } from "types/costs";
 import { CostObjectSourceIndex } from "types/costs";
 import {
@@ -39,8 +40,10 @@ export type LevelUpCostSkillKeys = keyof typeof CostObjectSourceIndex;
 
 interface LevelUpCostsProps {
     type: "character" | "weapon";
+    name?: string;
     skillKey: LevelUpCostSkillKeys;
     rarity?: Rarity;
+    path?: Path;
     element?: Element;
     mats: Materials;
     unlock?: CharacterUnlockKeys;
@@ -49,8 +52,10 @@ interface LevelUpCostsProps {
 
 function LevelUpCosts({
     type,
+    name = "",
     skillKey,
     rarity = 3,
+    path = "Destruction",
     element,
     mats,
     unlock,
@@ -58,6 +63,10 @@ function LevelUpCosts({
 }: LevelUpCostsProps) {
     const theme = useTheme();
     const matches_sm_dn = useMediaQuery(theme.breakpoints.down("sm"));
+
+    if (name.startsWith("Trailblazer")) {
+        rarity = 4;
+    }
 
     const levels = getLevels(skillKey);
     const minDistance = 1;
@@ -106,7 +115,9 @@ function LevelUpCosts({
     const costs = getCosts({
         type,
         skillKey,
+        name,
         rarity,
+        path,
         values,
         mats,
         unlock,
@@ -159,6 +170,8 @@ function getLevels(skillKey: LevelUpCostsProps["skillKey"]) {
         case "level":
             return ["20", "30", "40", "50", "60", "70", "80"];
         case "attack":
+        case "memospriteSkill":
+        case "memospriteTalent":
             return range(1, 6);
         case "skill":
         case "ultimate":
@@ -174,14 +187,18 @@ function getLevels(skillKey: LevelUpCostsProps["skillKey"]) {
 function getCosts({
     type,
     skillKey,
+    name,
     rarity,
+    path,
     values,
     mats,
     unlock = "A2",
 }: {
     type: "character" | "weapon";
     skillKey: LevelUpCostSkillKeys;
+    name: string;
     rarity: Rarity;
+    path: Path;
     values: number[];
     mats: Materials;
     unlock?: CharacterUnlockKeys;
@@ -195,6 +212,7 @@ function getCosts({
                     stop: values[1],
                     selected: true,
                     withXP: false,
+                    name: name,
                     rarity: rarity,
                 });
                 costs = {
@@ -253,6 +271,7 @@ function getCosts({
                 start: values[0],
                 stop: values[1],
                 selected: true,
+                path: path,
                 skillKey: skillKey,
                 rarity: rarity,
             });
@@ -286,11 +305,42 @@ function getCosts({
                 },
             } as TotalCostObject;
             break;
+        case "memospriteSkill":
+        case "memospriteTalent":
+            levelUpCost = getCharacterMemosprite({
+                start: values[0],
+                stop: values[1],
+                selected: true,
+                rarity: rarity,
+            });
+            costs = {
+                credits: {
+                    Credit: levelUpCost.credits.Credit,
+                },
+                calyxMat: {
+                    [`${mats.calyxMat}1` as CalyxMaterial]:
+                        levelUpCost.calyxMat.calyxMat1,
+                    [`${mats.calyxMat}2` as CalyxMaterial]:
+                        levelUpCost.calyxMat.calyxMat2,
+                    [`${mats.calyxMat}3` as CalyxMaterial]:
+                        levelUpCost.calyxMat.calyxMat3,
+                },
+                commonMat: {
+                    [`${mats.commonMat}1` as CommonMaterial]:
+                        levelUpCost.commonMat.commonMat1,
+                    [`${mats.commonMat}2` as CommonMaterial]:
+                        levelUpCost.commonMat.commonMat2,
+                    [`${mats.commonMat}3` as CommonMaterial]:
+                        levelUpCost.commonMat.commonMat3,
+                },
+            } as TotalCostObject;
+            break;
         case "traceMain":
             levelUpCost = getCharacterTraceMain(
                 unlock as "A2" | "A4" | "A6",
                 rarity,
-                true
+                true,
+                path
             );
             costs = {
                 credits: {
@@ -315,7 +365,7 @@ function getCosts({
             } as TotalCostObject;
             break;
         case "traceSmall":
-            levelUpCost = getCharacterTraceSmall(unlock, rarity, true);
+            levelUpCost = getCharacterTraceSmall(unlock, rarity, true, path);
             costs = {
                 credits: {
                     Credit: levelUpCost.credits.Credit,

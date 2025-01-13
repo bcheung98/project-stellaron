@@ -11,6 +11,7 @@ import { range } from "helpers/utils";
 import { getElementColor } from "helpers/elementColors";
 import {
     getCharacterLevelCost,
+    getCharacterMemosprite,
     getCharacterSkillCost,
 } from "helpers/getLevelUpCosts";
 import { useAppSelector } from "helpers/hooks";
@@ -32,6 +33,8 @@ function CharacterSliders({
     const char = useAppSelector(selectCharacters).find(
         (c) => c.name === character.name
     ) as Character;
+
+    const rarity = character.name.startsWith("Trailblazer") ? 4 : char.rarity;
 
     const sliders: {
         title: string;
@@ -74,9 +77,31 @@ function CharacterSliders({
             type: "talent",
             fn: getCharacterSkillCost,
         },
+        {
+            title: "Memosprite Skill",
+            icon: `characters/skills/${name}_ms_skill`,
+            levels: skillLevel.slice(0, 6),
+            type: "memospriteSkill",
+            fn: getCharacterMemosprite,
+        },
+        {
+            title: "Memosprite Talent",
+            icon: `characters/skills/${name}_ms_talent`,
+            levels: skillLevel.slice(0, 6),
+            type: "memospriteTalent",
+            fn: getCharacterMemosprite,
+        },
     ];
 
-    const [Level, Attack, Skill, Ultimate, Talent] = sliders.map((slider) => (
+    const [
+        Level,
+        Attack,
+        Skill,
+        Ultimate,
+        Talent,
+        MemospriteSkill,
+        MemospriteTalent,
+    ] = sliders.map((slider) => (
         <LevelSlider
             key={slider.type}
             mode={mode}
@@ -84,7 +109,8 @@ function CharacterSliders({
             variant="character"
             title={slider.title}
             icon={slider.icon}
-            rarity={character.rarity}
+            rarity={rarity}
+            path={character.path}
             levels={slider.levels}
             color={getElementColor({ element: character.element })}
             dispatchProps={{
@@ -95,25 +121,42 @@ function CharacterSliders({
     ));
 
     return (
-        <Stack spacing={2}>
-            <Grid
-                container
-                rowSpacing={1}
-                columnSpacing={mode === "view" ? 2 : 6}
-            >
+        <Stack
+            spacing={2}
+            direction={mode === "view" ? { xs: "column", md: "row" } : "column"}
+            alignItems={
+                mode === "view"
+                    ? { xs: "space-between", md: "flex-start" }
+                    : "left"
+            }
+        >
+            <Grid container rowSpacing={1} columnSpacing={4}>
                 <Grid size={12}>{Level}</Grid>
                 {[Attack, Skill, Ultimate, Talent].map((slider, index) => (
                     <Grid
                         key={index}
                         size={
                             mode === "view"
-                                ? { xs: 12, sm: 4 }
-                                : { xs: 12, md: 6 }
+                                ? { xs: 6, md: 12 }
+                                : { xs: 12, sm: 6 }
                         }
                     >
                         {slider}
                     </Grid>
                 ))}
+                {character.path === "Remembrance" &&
+                    [MemospriteSkill, MemospriteTalent].map((slider, index) => (
+                        <Grid
+                            key={index}
+                            size={
+                                mode === "view"
+                                    ? { xs: 6, md: 12 }
+                                    : { xs: 12, sm: 6 }
+                            }
+                        >
+                            {slider}
+                        </Grid>
+                    ))}
             </Grid>
             <Stack spacing={2}>
                 <Stack spacing={2} divider={<Divider />} sx={{ px: "8px" }}>
@@ -123,7 +166,8 @@ function CharacterSliders({
                             mode={mode}
                             id={`${String.fromCharCode(index + 65)}-1`}
                             name={character.name}
-                            rarity={character.rarity}
+                            rarity={rarity}
+                            path={character.path}
                             trace={trace}
                         />
                     ))}

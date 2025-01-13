@@ -15,9 +15,9 @@ import { useAppDispatch } from "helpers/hooks";
 import { updateCharacterCosts, updateWeaponCosts } from "reducers/planner";
 
 // Type imports
-import { Weapon } from "types/weapon";
 import { UpdateCostsPayload } from "types/costs";
 import { CardMode } from "./PlannerCard";
+import { Path, Rarity } from "types/_common";
 
 interface LevelSliderProps {
     mode: CardMode;
@@ -26,7 +26,8 @@ interface LevelSliderProps {
     title: string;
     icon?: string;
     levels: (string | number)[];
-    rarity?: Weapon["rarity"];
+    rarity?: Rarity;
+    path: Path;
     dispatchProps: {
         type: UpdateCostsPayload["type"];
         getCost: Function;
@@ -42,6 +43,7 @@ function LevelSlider({
     icon,
     levels,
     rarity = 3,
+    path,
     dispatchProps,
     color,
 }: LevelSliderProps) {
@@ -111,7 +113,9 @@ function LevelSlider({
                         start: sliderValue[0],
                         stop: sliderValue[1],
                         selected: selected,
+                        name: name,
                         rarity: rarity,
+                        path: path,
                         skillKey: dispatchProps.type,
                         withXP: true,
                     }),
