@@ -22,6 +22,7 @@ function WeaponSliders({
             variant="weapon"
             title="Level"
             levels={weaponLevel}
+            path={weapon.path}
             rarity={weapon.rarity}
             dispatchProps={{
                 type: "level",
