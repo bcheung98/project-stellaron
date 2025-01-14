@@ -39,7 +39,7 @@ export const skillKeywords: SkillKeywords = {
     "crowd control debuff": {
         name: "Crowd Control debuff",
         description:
-            "Frozen, Entanglement, Imprisonment, Dominated, Outrage, Strong Reverberation, and Alien Dream.",
+            "Freeze, Entanglement, Imprisonment, Dominated, Outrage, Strong Reverberation, Alien Dream, Snarelock, Terrified.",
     },
     debuff: {
         name: "Debuff",
@@ -77,7 +77,8 @@ export const skillKeywords: SkillKeywords = {
     },
     "joint attack": {
         name: "Joint Attack",
-        description: "",
+        description:
+            "Multiple targets respectively use attacks on enemy targets in one action.",
     },
     "res pen": {
         name: "RES PEN",
@@ -85,8 +86,9 @@ export const skillKeywords: SkillKeywords = {
             "When dealing DMG, ignore a part of the enemy target's resistance to the corresponding damage type.",
     },
     summon: {
-        name: "Summon",
-        description: "",
+        name: "Summon Memosprite",
+        description:
+            "Summon the memosprite to the field. If the memosprite is already on the field, dispels all Crowd Control debuffs the memosprite is afflicted with.",
     },
     "super break dmg": {
         name: "Super Break DMG",
@@ -95,7 +97,8 @@ export const skillKeywords: SkillKeywords = {
     },
     "true dmg": {
         name: "True DMG",
-        description: "",
+        description:
+            "Non-Type DMG that is not affected by any effects. This DMG is not considered as using 1 attack.",
     },
     "weakness break state": {
         name: "Weakness Break State",
