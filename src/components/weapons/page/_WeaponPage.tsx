@@ -40,15 +40,17 @@ function WeaponPage() {
             ?.setAttribute("content", documentDesc);
 
         return (
-            <Grid container spacing={3}>
-                <Grid size={{ xs: 12, sm: "auto" }}>
-                    <WeaponImage weapon={weapon} />
-                </Grid>
-                <Grid size="grow">
-                    <Stack spacing={2}>
-                        <BetaTag version={weapon.release.version} />
-                        <WeaponInfo weapon={weapon} />
-                    </Stack>
+            <Stack spacing={2}>
+                <Grid container spacing={3}>
+                    <Grid size={{ xs: 12, sm: "auto" }}>
+                        <WeaponImage weapon={weapon} />
+                    </Grid>
+                    <Grid size="grow">
+                        <Stack spacing={2}>
+                            <BetaTag version={weapon.release.version} />
+                            <WeaponInfo weapon={weapon} />
+                        </Stack>
+                    </Grid>
                 </Grid>
                 <Grid container columnSpacing={3} rowSpacing={2}>
                     <Grid size={{ xs: 12, md: 7 }}>
@@ -61,7 +63,7 @@ function WeaponPage() {
                         <WeaponStats weapon={weapon} />
                     </Grid>
                 </Grid>
-            </Grid>
+            </Stack>
         );
     } else {
         return <PageNotFound />;
