@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 
 // Component imports
+import RelicInfo from "./RelicInfo";
 import BetaTag from "custom/BetaTag";
 import PageNotFound from "components/PageNotFound";
 
@@ -10,7 +11,6 @@ import { Stack } from "@mui/material";
 // Helper imports
 import { useAppSelector } from "helpers/hooks";
 import { selectCavernRelics, selectPlanarRelics } from "reducers/relic";
-import RelicInfo from "./RelicInfo";
 
 function RelicPage() {
     const cavernRelics = useAppSelector(selectCavernRelics);

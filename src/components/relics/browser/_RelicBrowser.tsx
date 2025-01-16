@@ -1,8 +1,9 @@
-import { useState, BaseSyntheticEvent } from "react";
+import { useState, BaseSyntheticEvent, useMemo } from "react";
 
 // Component imports
 import InfoCard from "custom/InfoCard";
 import Image from "custom/Image";
+import SearchBar from "custom/SearchBar";
 import ToggleButtons, { CustomToggleButtonProps } from "custom/ToggleButtons";
 import { TextStyled } from "styled/StyledTypography";
 
@@ -71,13 +72,23 @@ function RelicBrowser() {
     const planarRelics = [...useAppSelector(selectPlanarRelics)].sort((a, b) =>
         a.displayName.localeCompare(b.displayName)
     );
-    const currentRelics: Relic[] = [];
+    const relics: Relic[] = [];
     if (view.includes("cavern")) {
-        currentRelics.push(...cavernRelics);
+        relics.push(...cavernRelics);
     }
     if (view.includes("planar")) {
-        currentRelics.push(...planarRelics);
+        relics.push(...planarRelics);
     }
+
+    const [searchValue, setSearchValue] = useState("");
+    const handleInputChange = (event: BaseSyntheticEvent) => {
+        setSearchValue(event.target.value);
+    };
+
+    const currentRelics = useMemo(
+        () => filterRelics(relics, searchValue),
+        [relics, searchValue]
+    );
 
     return (
         <>
@@ -101,6 +112,14 @@ function RelicBrowser() {
                         highlightOnHover={false}
                     />
                 </Grid>
+                <Grid size={{ xs: 12, sm: "auto" }}>
+                    <SearchBar
+                        placeholder="Search"
+                        value={searchValue}
+                        onChange={handleInputChange}
+                        size={{ height: "36px" }}
+                    />
+                </Grid>
             </Grid>
             <Grid container spacing={3}>
                 {currentRelics.map((relic, index) => (
@@ -119,3 +138,17 @@ function RelicBrowser() {
 }
 
 export default RelicBrowser;
+
+function filterRelics(relics: Relic[], searchValue: string) {
+    if (searchValue !== "") {
+        return relics.filter(
+            (relic) =>
+                relic.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+                relic.displayName
+                    .toLowerCase()
+                    .includes(searchValue.toLowerCase())
+        );
+    } else {
+        return relics;
+    }
+}

@@ -42,10 +42,10 @@ function RelicInfo({ relic }: RelicProps) {
             margin: "4px 0",
             padding: "4px",
             backgroundColor: theme.appbar.backgroundColor,
-            borderWidth: selected ? "thick" : "3px",
+            borderWidth: selected ? "thick" : "2px",
             borderStyle: selected ? "double" : "solid",
             borderColor: theme.border.color.primary,
-            borderRadius: "64px",
+            borderRadius: "8px",
         };
     };
 
@@ -121,7 +121,7 @@ function RelicInfo({ relic }: RelicProps) {
                                 </TextStyled>
                                 <FlexBox
                                     sx={{
-                                        alignItems: "center",
+                                        alignItems: "flex-start",
                                         flexWrap: "wrap",
                                         gap: "32px",
                                     }}
@@ -142,6 +142,7 @@ function RelicInfo({ relic }: RelicProps) {
                                                         color: theme.text
                                                             .description,
                                                     }}
+                                                    gutterBottom
                                                 >
                                                     <span
                                                         style={{
