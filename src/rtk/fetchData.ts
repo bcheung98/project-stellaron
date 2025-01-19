@@ -9,14 +9,14 @@ export type LoadingStatus = "idle" | "pending" | "success" | "error";
 // https://api.irminsul.gg/hsr/characters.json
 const charactersURL = "https://api.irminsul.gg/hsr/characters.json";
 
-// https://api.irminsul.gg/hsr/lightcones.json
-const weaponsURL = "https://api.irminsul.gg/hsr/lightcones.json";
+// https://api.irminsul.gg/hsr/weapons.json
+const weaponsURL = "https://api.irminsul.gg/hsr/weapons.json";
 
 // https://api.irminsul.gg/hsr/relics.json
 const relicsURL = "https://api.irminsul.gg/hsr/relics.json";
 
 const characterBannerURL = "https://api.irminsul.gg/hsr/character-banners.json";
-const weaponBannerURL = "https://api.irminsul.gg/hsr/lightcone-banners.json";
+const weaponBannerURL = "https://api.irminsul.gg/hsr/weapon-banners.json";
 
 export const fetchCharacters = createAsyncThunk(
     "GET/characters",
