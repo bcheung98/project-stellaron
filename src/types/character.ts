@@ -27,6 +27,7 @@ export interface Character {
     faction: string;
     world: World;
     keywords?: SkillKeywords;
+    outfits: CharacterOutfit[];
     voiceActors: {
         en: string;
         jp: string;
@@ -128,3 +129,10 @@ export interface CharacterMemosprite {
 }
 
 export type MemospriteSkill = Partial<CharacterSkill>;
+
+export interface CharacterOutfit {
+    name: string;
+    displayName?: string;
+    rarity: Rarity;
+    description: string;
+}
