@@ -221,7 +221,7 @@ function Search() {
 
     useEffect(() => {
         window.addEventListener("keydown", keyDownHandler);
-    });
+    }, []);
 
     const subHeaderTextStyle = {
         alignItems: "center",
