@@ -94,7 +94,7 @@ function Search() {
     );
 
     const [searchOpen, setSearchOpen] = useState(false);
-    const handleClick = () => {
+    const handleSearchOpen = () => {
         setFocus(-1);
         setSearchValue("");
         setSearchOpen(true);
@@ -215,7 +215,9 @@ function Search() {
     const keyDownHandler = (event: KeyboardEvent) => {
         if (event.ctrlKey && event.key === "k") {
             event.preventDefault();
-            setSearchOpen(!searchOpen);
+            if (!searchOpen) {
+                handleSearchOpen();
+            }
         }
     };
 
@@ -419,7 +421,7 @@ function Search() {
             {/* Navbar component */}
             {matches_up_sm ? (
                 <Button
-                    onClick={handleClick}
+                    onClick={handleSearchOpen}
                     variant="contained"
                     disableRipple
                     startIcon={
@@ -435,7 +437,6 @@ function Search() {
                             <TextStyled
                                 variant="subtitle2-styled"
                                 sx={{
-                                    fontFamily: "Consolas",
                                     fontSize: `${theme.typography.pxToRem(
                                         12
                                     )} !important`,
@@ -445,7 +446,7 @@ function Search() {
                                     px: "8px",
                                 }}
                             >
-                                Ctrl+K
+                                <code>Ctrl+K</code>
                             </TextStyled>
                         </Stack>
                     }
@@ -464,9 +465,9 @@ function Search() {
                 <IconButton
                     disableRipple
                     disableTouchRipple
-                    onClick={handleClick}
+                    onClick={handleSearchOpen}
                     sx={{
-                        borderRadius: "64px",
+                        borderRadius: "8px",
                         px: "2px",
                         width: "36px",
                         height: "36px",
